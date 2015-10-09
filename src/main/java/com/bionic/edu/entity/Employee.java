@@ -2,13 +2,14 @@ package com.bionic.edu.entity;
 
 import java.util.Date;
 
-public class Customer {
+public class Employee {
     private int id;
     private String name;
     private String email;
     private String password;
-    private String address;
     private Date birthdate;
+    private Date hiredate;
+    private boolean ready;
 
     public int getId() {
         return id;
@@ -42,19 +43,27 @@ public class Customer {
         this.password = password;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Date getBirthdate() {
         return birthdate;
     }
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public Date getHiredate() {
+        return hiredate;
+    }
+
+    public void setHiredate(Date hiredate) {
+        this.hiredate = hiredate;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
     }
 }

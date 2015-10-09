@@ -1,2 +1,7 @@
 target
 .settings
+.idea
+.classpath
+.project
+.springBeans
+E-Restaurant.iml

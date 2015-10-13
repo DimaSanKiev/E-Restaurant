@@ -54,7 +54,6 @@ CREATE TABLE customer (
   PRIMARY KEY (id)
 );
 
-
 CREATE TABLE order (
   id                  INT            NOT NULL GENERATED ALWAYS AS IDENTITY,
   date_time_taken     TIMESTAMP      NOT NULL,

@@ -7,8 +7,8 @@ public class Employee {
     private String name;
     private String email;
     private String password;
-    private Date birthdate;
-    private Date hiredate;
+    private Date birthDate;
+    private Date hireDate;
     private boolean ready;
 
     public int getId() {
@@ -43,20 +43,20 @@ public class Employee {
         this.password = password;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public Date getHiredate() {
-        return hiredate;
+    public Date getHireDate() {
+        return hireDate;
     }
 
-    public void setHiredate(Date hiredate) {
-        this.hiredate = hiredate;
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
     }
 
     public boolean isReady() {

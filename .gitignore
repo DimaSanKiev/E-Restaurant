@@ -5,3 +5,4 @@ target
 .project
 .springBeans
 E-Restaurant.iml
+.dbeaver-data-sources.xml

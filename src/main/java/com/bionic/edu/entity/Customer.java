@@ -1,6 +1,6 @@
 package com.bionic.edu.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Customer {
     private int id;
@@ -8,7 +8,7 @@ public class Customer {
     private String email;
     private String password;
     private String address;
-    private Date birthdate;
+    private Date birthDate;
 
     public int getId() {
         return id;
@@ -50,11 +50,23 @@ public class Customer {
         this.address = address;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
     }
 }

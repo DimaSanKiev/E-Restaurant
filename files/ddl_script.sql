@@ -3,7 +3,7 @@
 --DROP TABLE dish_category;
 --DROP TABLE dish;
 --DROP TABLE customer;
---DROP TABLE "ORDER";
+--DROP TABLE orders;
 --DROP TABLE order_dishes;
 --DROP TABLE role;
 --DROP TABLE employee;
@@ -54,7 +54,7 @@ CREATE TABLE customer (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE "ORDER" (
+CREATE TABLE orders (
   id                  INT            NOT NULL GENERATED ALWAYS AS IDENTITY,
   date_time_taken     TIMESTAMP      NOT NULL,
   date_time_delivered TIMESTAMP      NOT NULL,
@@ -69,5 +69,5 @@ CREATE TABLE order_dishes (
   price    DECIMAL(15, 2) NOT NULL,
   PRIMARY KEY (id),
   dish_id  INT CONSTRAINT dish_fk REFERENCES dish,
-  order_id INT CONSTRAINT order_fk REFERENCES "ORDER"
+  order_id INT CONSTRAINT order_fk REFERENCES orders
 )

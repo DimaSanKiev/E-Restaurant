@@ -9,7 +9,8 @@ public class Employee {
     private String password;
     private Date birthDate;
     private Date hireDate;
-    private boolean ready;
+    private char ready;
+    private Role role;
 
     public int getId() {
         return id;
@@ -59,11 +60,33 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public boolean isReady() {
+    public char getReady() {
         return ready;
     }
 
-    public void setReady(boolean ready) {
+    public void setReady(char ready) {
         this.ready = ready;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", birthDate=" + birthDate +
+                ", hireDate=" + hireDate +
+                ", ready=" + ready +
+                ", role=" + role +
+                '}';
     }
 }

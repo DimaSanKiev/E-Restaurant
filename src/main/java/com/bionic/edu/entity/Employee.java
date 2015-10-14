@@ -1,15 +1,19 @@
 package com.bionic.edu.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Employee {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)private int id;
     private String name;
     private String email;
     private String password;
     private Date birthDate;
     private Date hireDate;
     private char ready;
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public int getId() {

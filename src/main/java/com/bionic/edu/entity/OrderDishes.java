@@ -1,10 +1,21 @@
 package com.bionic.edu.entity;
 
+import javax.persistence.*;
+
+@Entity
 public class OrderDishes {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)private int id;
     private double price;
+    @ManyToOne
+    @JoinColumn(name = "dish_id")
     private Dish dish;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
+
+    public OrderDishes() {
+    }
 
     public int getId() {
         return id;

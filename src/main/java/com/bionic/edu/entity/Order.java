@@ -1,14 +1,22 @@
 package com.bionic.edu.entity;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
 public class Order {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)private int id;
     private Timestamp dateTimeTaken;
     private Timestamp dateTimeDelivered;
     private double totalPrice;
     private char deliveryStatus;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    public Order() {
+    }
 
     public int getId() {
         return id;

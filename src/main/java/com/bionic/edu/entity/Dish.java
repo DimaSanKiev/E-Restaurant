@@ -1,15 +1,23 @@
 package com.bionic.edu.entity;
 
+import javax.persistence.*;
 import java.util.Arrays;
 
+@Entity
 public class Dish {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String description;
     private double price;
     private boolean kitchenmade;
     private byte[] photo;
+    @Enumerated(EnumType.STRING)
     private DishCategory category;
+
+    public Dish() {
+    }
 
     public int getId() {
         return id;

@@ -8,11 +8,11 @@ public interface OrderDao {
 
     Order findById(int id);
 
-    Order findByEmail(String email);
-
     List<Order> findAll();
 
-    void add(Order customer);
+    void add(Order order);
 
-    void update(Order customer);
+    void update(Order order);
+
+    void delete(int id);
 }

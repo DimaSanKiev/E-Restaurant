@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 public class OrderDishes {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private double price;
     @ManyToOne
     @JoinColumn(name = "dish_id")

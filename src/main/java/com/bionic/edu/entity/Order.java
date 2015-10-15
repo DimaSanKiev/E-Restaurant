@@ -6,7 +6,8 @@ import java.sql.Timestamp;
 @Entity
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private Timestamp dateTimeTaken;
     private Timestamp dateTimeDelivered;
     private double totalPrice;

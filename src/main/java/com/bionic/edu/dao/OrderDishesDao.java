@@ -8,11 +8,11 @@ public interface OrderDishesDao {
 
     OrderDishes findById(int id);
 
-    OrderDishes findByEmail(String email);
-
     List<OrderDishes> findAll();
 
-    void add(OrderDishes customer);
+    void add(OrderDishes orderDishes);
 
-    void update(OrderDishes customer);
+    void update(OrderDishes orderDishes);
+
+    void delete(int id);
 }

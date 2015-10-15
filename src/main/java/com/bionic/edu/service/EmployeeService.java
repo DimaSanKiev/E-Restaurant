@@ -12,7 +12,9 @@ public interface EmployeeService {
 
     List<Employee> findAll();
 
-    void add(Employee customer);
+    void add(Employee employee);
 
-    void update(Employee customer);
+    void update(Employee employee);
+
+    void delete(int id);
 }

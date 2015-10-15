@@ -8,11 +8,11 @@ public interface DishService {
 
     Dish findById(int id);
 
-    Dish findByEmail(String email);
-
     List<Dish> findAll();
 
-    void add(Dish customer);
+    void add(Dish dish);
 
-    void update(Dish customer);
+    void update(Dish dish);
+
+    void delete(int id);
 }

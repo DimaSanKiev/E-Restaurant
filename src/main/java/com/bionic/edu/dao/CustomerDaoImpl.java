@@ -41,6 +41,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void update(Customer customer) {
+        // todo check if correct
         em.merge(customer);
     }
 

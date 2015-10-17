@@ -128,7 +128,7 @@ VALUES ('Cream of mushroom soup',
 INSERT INTO dish (name, description, price, kitchenmade, photo, dish_category_id)
 VALUES ('Miso soup',
         'Miso soup is a traditional Japanese soup consisting of a stock called "dashi" into which softened miso paste is mixed.',
-        2.90, '1', 'photo', 1);
+        3.60, '1', 'photo', 1);
 
 -- salads --
 INSERT INTO dish (name, description, price, kitchenmade, photo, dish_category_id)
@@ -178,13 +178,17 @@ VALUES ('Latte',
         'A Latte is a type of coffee made with espresso and hot steamed milk, milkier than a cappuccino.',
         4.90, '1', 'photo', 5);
 INSERT INTO dish (name, description, price, kitchenmade, photo, dish_category_id)
+VALUES ('Tea',
+        'Aromatic beverage prepared by pouring hot water over cured leaves of tea leaves.',
+        3.40, '1', 'photo', 5);
+INSERT INTO dish (name, description, price, kitchenmade, photo, dish_category_id)
 VALUES ('Juice',
         'Natural and healthy juices from different fruits and vegetables. Can be mixed in different variations.',
         4.50, '1', 'photo', 5);
 INSERT INTO dish (name, description, price, kitchenmade, photo, dish_category_id)
 VALUES ('Cola',
         'A typical brown carbonated drink that is flavoured with an extract of cola nuts, or with a similar flavouring.',
-        4.10, '0', 'photo', 5);
+        2.90, '0', 'photo', 5);
 INSERT INTO dish (name, description, price, kitchenmade, photo, dish_category_id)
 VALUES ('Mineral water',
         'Water that contains mineral salts and natural carbon dioxide).',

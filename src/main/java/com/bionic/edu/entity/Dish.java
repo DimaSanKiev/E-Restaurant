@@ -12,7 +12,8 @@ public class Dish {
     private String description;
     private double price;
     private boolean kitchenmade;
-    private byte[] photo;
+    @Lob
+    private byte[] photo; //todo byte[] ?
     @Enumerated(EnumType.STRING)
     private DishCategory category;
 

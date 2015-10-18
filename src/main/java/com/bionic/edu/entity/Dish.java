@@ -11,7 +11,8 @@ public class Dish {
     private String name;
     private String description;
     private double price;
-    private boolean kitchenmade;
+    private boolean kitchenmade;  //todo char to boolean
+    private boolean available = true;
     @Lob
     private byte[] photo; //todo byte[] ?
     @Enumerated(EnumType.STRING)
@@ -58,6 +59,14 @@ public class Dish {
 
     public void setKitchenmade(boolean kitchenmade) {
         this.kitchenmade = kitchenmade;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public byte[] getPhoto() {

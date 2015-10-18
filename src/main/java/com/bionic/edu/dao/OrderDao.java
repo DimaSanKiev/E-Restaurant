@@ -15,4 +15,16 @@ public interface OrderDao {
     void update(Order order);
 
     void delete(int id);
+
+
+    List<Order> getDeliveryListByTime();
+
+    List<Order> getDeliveryListByStatus();
+
+
+    void prepare();
+
+    void deliver();
+
+    void markDone();
 }

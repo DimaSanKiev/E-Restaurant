@@ -15,4 +15,12 @@ public interface DishDao {
     void update(Dish dish);
 
     void delete(int id);
+
+
+    List<Dish> findByCategory(int categoryId);
+
+    List<Dish> findByCategory(String categoryName);
+
+    List<Dish> findAvailable();
+
 }

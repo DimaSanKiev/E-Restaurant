@@ -15,4 +15,11 @@ public interface OrderDishesDao {
     void update(OrderDishes orderDishes);
 
     void delete(int id);
+
+
+    List<OrderDishes> getAllFromOrder();
+
+    void addKitchenmadeToOrder();
+
+    void createListforKitchen();
 }

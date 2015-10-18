@@ -17,4 +17,7 @@ public interface EmployeeDao {
     void update(Employee employee);
 
     void delete(int id);
+
+
+    void login(String email, String password);
 }

@@ -5,13 +5,19 @@ import java.sql.Timestamp;
 
 @Entity
 public class Order {
+
+    public enum Status {
+        NOT_READY, READY_FOR_SHIPMENT,
+        DELIVERING, DELIVERED
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Timestamp dateTimeTaken;
     private Timestamp dateTimeDelivered;
     private double totalPrice;
-    private char deliveryStatus;
+    private char orderStatus;
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -51,12 +57,12 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public char getDeliveryStatus() {
-        return deliveryStatus;
+    public char getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setDeliveryStatus(char deliveryStatus) {
-        this.deliveryStatus = deliveryStatus;
+    public void setOrderStatus(char deliveryStatus) {
+        this.orderStatus = deliveryStatus;
     }
 
     public Customer getCustomer() {
@@ -74,7 +80,7 @@ public class Order {
                 ", dateTimeTaken=" + dateTimeTaken +
                 ", dateTimeDelivered=" + dateTimeDelivered +
                 ", totalPrice=" + totalPrice +
-                ", deliveryStatus=" + deliveryStatus +
+                ", deliveryStatus=" + orderStatus +
                 ", customer=" + customer +
                 '}';
     }

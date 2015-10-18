@@ -61,7 +61,7 @@ CREATE TABLE orders (
   date_time_taken     TIMESTAMP      NOT NULL,
   date_time_delivered TIMESTAMP      NOT NULL,
   total_price         DECIMAL(15, 2) NOT NULL,
-  delivery_status     CHAR(1)        NOT NULL,
+  order_status    CHAR(1)        NOT NULL,
   PRIMARY KEY (id),
   customer_id         INT CONSTRAINT customer_fk REFERENCES customer
 );
@@ -206,15 +206,15 @@ VALUES ('Roman Karetskiy', 'roman.karetskiy@gmail.com', 'pass4', '36 Ivana Lepse
 INSERT INTO customer (name, email, password, address, birthDate)
 VALUES ('Oksana Alekseeva', 'oksana.alekseeva@gmail.com', 'pass5', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18');
 
-INSERT INTO orders (date_time_taken, date_time_delivered, total_price, delivery_status, customer_id)
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, order_status, customer_id)
 VALUES ('2015-10-17 15:21:10', '2015-10-17 16:21:10', 5.50, '1', 1);
-INSERT INTO orders (date_time_taken, date_time_delivered, total_price, delivery_status, customer_id)
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, order_status, customer_id)
 VALUES ('2015-10-17 14:11:11', '2015-10-17 15:10:01', 6.05, '1', 2);
-INSERT INTO orders (date_time_taken, date_time_delivered, total_price, delivery_status, customer_id)
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, order_status, customer_id)
 VALUES ('2015-10-17 15:59:50', '2015-10-17 16:25:04', 6.40, '1', 3);
-INSERT INTO orders (date_time_taken, date_time_delivered, total_price, delivery_status, customer_id)
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, order_status, customer_id)
 VALUES ('2015-10-17 15:31:11', '2015-10-17 16:11:02', 7.50, '1', 4);
-INSERT INTO orders (date_time_taken, date_time_delivered, total_price, delivery_status, customer_id)
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, order_status, customer_id)
 VALUES ('2015-10-17 12:11:19', '2015-10-17 13:34:11', 7.15, '1', 5);
 
 INSERT INTO order_dishes (price, dish_id, order_id)

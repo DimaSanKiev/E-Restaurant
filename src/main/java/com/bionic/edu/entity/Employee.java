@@ -14,7 +14,8 @@ public class Employee {
     private Date birthDate;
     private Date hireDate;
     private char ready;
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn("role_id")
     private Role role;
 
     public int getId() {

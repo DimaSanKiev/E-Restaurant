@@ -15,7 +15,8 @@ public class Dish {
     private boolean available = true;
     @Lob
     private byte[] photo; //todo byte[] ?
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn("category_id")
     private DishCategory category;
 
     public Dish() {

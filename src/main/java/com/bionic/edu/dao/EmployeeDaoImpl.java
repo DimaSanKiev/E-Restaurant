@@ -66,5 +66,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
     }
 
-
+    @Override
+    public void setReadiness(Employee employee, boolean isReady) {
+        employee.setReady(isReady);
+        em.merge(employee);
+    }
 }

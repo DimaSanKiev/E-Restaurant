@@ -20,4 +20,6 @@ public interface EmployeeDao {
     void register(Employee employee);
 
     Employee login(String email, String password);
+
+    void setReadiness(Employee employee, boolean isReady);
 }

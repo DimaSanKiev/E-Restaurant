@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     @Override
     public void add(Employee employee) {
-        employeeDao.add(employee);
+        employeeDao.register(employee);
     }
 
     @Override

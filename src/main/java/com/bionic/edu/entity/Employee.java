@@ -13,7 +13,7 @@ public class Employee {
     private String password;
     private Date birthDate;
     private Date hireDate;
-    private char ready;
+    private boolean ready;
     @ManyToOne
     @JoinColumn("role_id")
     private Role role;
@@ -66,11 +66,11 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public char getReady() {
+    public boolean isReady() {
         return ready;
     }
 
-    public void setReady(char ready) {
+    public void setReady(boolean ready) {
         this.ready = ready;
     }
 

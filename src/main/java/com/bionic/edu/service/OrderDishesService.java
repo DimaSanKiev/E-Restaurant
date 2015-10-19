@@ -1,6 +1,7 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.OrderDishes;
+import com.bionic.edu.entity.Orders;
 
 import java.util.List;
 
@@ -15,4 +16,10 @@ public interface OrderDishesService {
     void update(OrderDishes orderDishes);
 
     void delete(int id);
+
+    List<OrderDishes> getAllFromOrder(Orders order);
+
+    void addKitchenmadeToOrder(OrderDishes orderDishes);
+
+    List<OrderDishes> createListForKitchen();
 }

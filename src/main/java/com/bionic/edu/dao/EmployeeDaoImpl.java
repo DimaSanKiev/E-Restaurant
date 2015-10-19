@@ -35,7 +35,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public void add(Employee employee) {
+    public void register(Employee employee) {
         em.persist(employee);
     }
 
@@ -51,4 +51,20 @@ public class EmployeeDaoImpl implements EmployeeDao {
             em.remove(employee);
         }
     }
+
+    @Override
+    public Employee login(String email, String password) {
+        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e " +
+                "WHERE e.email = :email", Employee.class);
+        query.setParameter("email", email);
+
+        Employee employee = query.getSingleResult();
+        if (employee.getPassword().equals(password)) {
+            return employee;
+        } else {
+            throw new RuntimeException(); // todo handle
+        }
+    }
+
+
 }

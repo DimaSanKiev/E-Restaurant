@@ -44,4 +44,31 @@ public class DishDaoImpl implements DishDao {
             em.remove(dish);
         }
     }
+
+    @Override
+    public List<Dish> findByCategory(int categoryId) {
+        TypedQuery<Dish> query = em.createQuery(
+                "SELECT d FROM Dish d WHERE d.category.id =" +
+                        ":category_id AND d.available = true", Dish.class);
+        query.setParameter("category_id", categoryId);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Dish> findByCategory(String categoryName) {
+        TypedQuery<Dish> query = em.createQuery(
+                "SELECT d FROM Dish d WHERE d.category.name =" +
+                        ":category_name AND d.available = true", Dish.class);
+        query.setParameter("category_name", categoryName);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Dish> findAvailable() {
+        TypedQuery<Dish> query = em.createQuery(
+                "SELECT d FROM Dish d WHERE d.available = true", Dish.class);
+        return query.getResultList();
+    }
+
+
 }

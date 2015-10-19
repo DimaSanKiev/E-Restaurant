@@ -1,6 +1,7 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.OrderDishes;
+import com.bionic.edu.entity.Orders;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -44,4 +45,23 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
             em.remove(orderDishes);
         }
     }
+
+    @Override
+    public List<OrderDishes> getAllFromOrder(Orders order) {
+        return em.createQuery("SELECT o FROM OrderDishes o WHERE o.order.id = :id", OrderDishes.class).
+                setParameter("id", order.getId()).getResultList();
+    }
+
+    @Override
+    public void addKitchenmadeToOrder(OrderDishes orderDishes) {
+        // todo
+    }
+
+    @Override
+    public List<OrderDishes> createListForKitchen() {
+        return em.createQuery("SELECT o FROM OrderDishes o where o.dish.kitchenmade = true " +
+                "AND o.order.orderStatus =:status", OrderDishes.class)
+                .setParameter("status", 1).getResultList();
+    }
+
 }

@@ -39,6 +39,7 @@ public class CustomerDaoImpl implements CustomerDao {
         em.persist(customer);
     }
 
+
     @Override
     public void update(Customer customer) {
         // todo check if correct
@@ -52,5 +53,26 @@ public class CustomerDaoImpl implements CustomerDao {
             em.remove(customer);
         }
     }
+
+
+    @Override
+    public void register(Customer customer) {
+        em.persist(customer);
+    }
+
+    @Override
+    public Customer login(String email, String password) {
+        TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c WHERE c.email =" +
+                ": email", Customer.class);
+        query.setParameter("email", email);
+
+        Customer customer = query.getSingleResult();
+        if (customer.getPassword().equals(password)) {
+            return customer;
+        } else {
+            throw new RuntimeException(); // todo handle
+        }
+    }
+
 
 }

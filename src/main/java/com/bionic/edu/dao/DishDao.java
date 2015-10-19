@@ -21,6 +21,6 @@ public interface DishDao {
 
     List<Dish> findByCategory(String categoryName);
 
-    List<Dish> findAvailable();
+    List<Dish> findByAvailability(boolean isAvailable);
 
 }

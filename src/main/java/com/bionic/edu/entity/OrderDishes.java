@@ -18,6 +18,12 @@ public class OrderDishes {
     public OrderDishes() {
     }
 
+    public OrderDishes(double price, Dish dish, Orders order) {
+        this.price = price;
+        this.dish = dish;
+        this.order = order;
+    }
+
     public int getId() {
         return id;
     }

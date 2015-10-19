@@ -1,12 +1,15 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.entity.Orders;
+import com.bionic.edu.entity.*;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
@@ -69,5 +72,24 @@ public class OrderDaoImpl implements OrderDao {
                         "WHERE o.id = :order_id", Orders.class);
         query.setParameter("order_status_id", order.getId()).
                 setParameter("order_status_id", statusId).executeUpdate();
+    }
+
+    // todo check!
+    @Override
+    public void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount) {
+        Orders order = new Orders(new Timestamp(Calendar.getInstance().getTime().getTime()), customer);
+        em.persist(order);
+        for (Dish dish : dishAmount.keySet()) {
+            for (int i = 1; i < dishAmount.get(dish); i++) {
+                if (dish.isKitchenmade()) {
+                    em.persist(new OrderDishes(dish.getPrice(), dish, order));
+                    order.setOrderStatus(new OrderStatus("NOT_READY"));
+                } else {
+                    order.setOrderStatus(new OrderStatus("READY_FOR_SHIPMENT"));
+                    em.persist(new OrderDishes(dish.getPrice(), dish, order));
+                }
+            }
+        }
+        em.merge(order);
     }
 }

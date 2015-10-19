@@ -64,9 +64,10 @@ public class DishDaoImpl implements DishDao {
     }
 
     @Override
-    public List<Dish> findAvailable() {
+    public List<Dish> findByAvailability(boolean isAvailable) {
         TypedQuery<Dish> query = em.createQuery(
-                "SELECT d FROM Dish d WHERE d.available = true", Dish.class);
+                "SELECT d FROM Dish d WHERE d.available = :avialability", Dish.class).
+                setParameter("avialability", isAvailable);
         return query.getResultList();
     }
 

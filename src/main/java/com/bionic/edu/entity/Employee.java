@@ -15,7 +15,7 @@ public class Employee {
     private Date hireDate;
     private boolean ready;
     @ManyToOne
-    @JoinColumn("role_id")
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public int getId() {

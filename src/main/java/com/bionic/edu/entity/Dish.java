@@ -16,7 +16,7 @@ public class Dish {
     @Lob
     private byte[] photo; //todo byte[] ?
     @ManyToOne
-    @JoinColumn("dish_category_id")
+    @JoinColumn(name = "dish_category_id")
     private DishCategory category;
 
     public Dish() {

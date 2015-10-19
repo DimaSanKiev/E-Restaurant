@@ -21,6 +21,15 @@ public class Orders {
     public Orders() {
     }
 
+    public Orders(Timestamp dateTimeTaken, Customer customer) {
+        this.dateTimeTaken = dateTimeTaken;
+        this.customer = customer;
+    }
+
+    public Orders(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     public int getId() {
         return id;
     }

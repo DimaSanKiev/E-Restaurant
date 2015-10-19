@@ -12,6 +12,13 @@ public class OrderStatus {
     private int id;
     private String name;
 
+    public OrderStatus() {
+    }
+
+    public OrderStatus(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

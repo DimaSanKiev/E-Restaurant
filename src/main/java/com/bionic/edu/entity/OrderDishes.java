@@ -13,7 +13,7 @@ public class OrderDishes {
     private Dish dish;
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Orders order;
 
     public OrderDishes() {
     }
@@ -42,11 +42,11 @@ public class OrderDishes {
         this.dish = dish;
     }
 
-    public Order getOrder() {
+    public Orders getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Orders order) {
         this.order = order;
     }
 

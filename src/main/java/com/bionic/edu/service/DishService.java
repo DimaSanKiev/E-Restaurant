@@ -20,5 +20,5 @@ public interface DishService {
 
     List<Dish> findByCategory(String categoryName);
 
-    List<Dish> findAvailable();
+    List<Dish> findByAvailability(boolean isAvailable);
 }

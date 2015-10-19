@@ -10,7 +10,6 @@ import java.util.List;
 
 @Named
 public class DishServiceImpl implements DishService {
-
     @Inject
     private DishDao dishDao;
 
@@ -39,5 +38,20 @@ public class DishServiceImpl implements DishService {
     @Override
     public void delete(int id) {
         dishDao.delete(id);
+    }
+
+    @Override
+    public List<Dish> findByCategory(int categoryId) {
+        return dishDao.findByCategory(categoryId);
+    }
+
+    @Override
+    public List<Dish> findByCategory(String categoryName) {
+        return dishDao.findByCategory(categoryName);
+    }
+
+    @Override
+    public List<Dish> findByAvailability(boolean isAvailable) {
+        return dishDao.findByAvailability(isAvailable);
     }
 }

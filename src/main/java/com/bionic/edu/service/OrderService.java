@@ -1,10 +1,11 @@
 package com.bionic.edu.service;
 
+import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface OrderService {
 
@@ -31,5 +32,5 @@ public interface OrderService {
     */
     void setOrderStatus(Orders order, int statusId);
 
-    Orders submitByCustomer(String address, HashMap<Dish, Integer> dishAmount);
+    void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount);
 }

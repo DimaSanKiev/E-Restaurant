@@ -10,7 +10,6 @@ import java.util.List;
 
 @Named
 public class CustomerServiceImpl implements CustomerService {
-
     @Inject
     private CustomerDao customerDao;
 
@@ -29,12 +28,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.findAll();
     }
 
-    @Transactional
-    @Override
-    public void register(Customer customer) {
-        customerDao.register(customer);
-    }
-
     @Override
     public void update(Customer customer) {
         customerDao.update(customer);
@@ -45,4 +38,16 @@ public class CustomerServiceImpl implements CustomerService {
     public void delete(int id) {
         customerDao.delete(id);
     }
+
+    @Transactional
+    @Override
+    public void register(Customer customer) {
+        customerDao.register(customer);
+    }
+
+    @Override
+    public Customer login(String login, String password) {
+        return customerDao.login(login, password);
+    }
+
 }

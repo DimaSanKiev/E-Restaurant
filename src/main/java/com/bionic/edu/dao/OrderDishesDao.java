@@ -1,6 +1,7 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.OrderDishes;
+import com.bionic.edu.entity.Orders;
 
 import java.util.List;
 
@@ -17,9 +18,9 @@ public interface OrderDishesDao {
     void delete(int id);
 
 
-    List<OrderDishes> getAllFromOrder();
+    List<OrderDishes> getAllFromOrder(Orders order);
 
-    void addKitchenmadeToOrder();
+    void addKitchenmadeToOrder(OrderDishes orderDishes);
 
-    void createListforKitchen();
+    List<OrderDishes>  createListForKitchen();
 }

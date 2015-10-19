@@ -6,11 +6,6 @@ import java.sql.Timestamp;
 @Entity
 public class Order {
 
-    // todo convert char to enum item
-    public enum Status {
-        NOT_READY, READY_FOR_SHIPMENT, DELIVERING, DELIVERED
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

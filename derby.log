@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Tue Oct 20 22:28:08 EEST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0150-86b9-1409-000005d9f290 
-on database directory E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\ERestaurant with class loader sun.misc.Launcher$AppClassLoader@15db9742 
+Tue Oct 20 21:20:08 EEST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0150-867a-d1c7-0000068524e0 
+on database directory E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\ERestaurant with class loader sun.misc.Launcher$AppClassLoader@4dc63996 
 Loaded from file:/C:/Users/Dima/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_60-b27

@@ -1,7 +1,7 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class Employee {

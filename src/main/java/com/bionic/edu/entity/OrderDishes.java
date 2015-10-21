@@ -2,7 +2,7 @@ package com.bionic.edu.entity;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "order_dishes")
 public class OrderDishes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

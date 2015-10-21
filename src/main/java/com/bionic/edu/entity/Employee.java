@@ -18,6 +18,19 @@ public class Employee {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public Employee() {
+    }
+
+    public Employee(String name, String email, String password, Date birthDate, Date hireDate, boolean ready, Role role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.hireDate = hireDate;
+        this.ready = ready;
+        this.role = role;
+    }
+
     public int getId() {
         return id;
     }

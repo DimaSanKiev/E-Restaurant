@@ -36,7 +36,7 @@ public class DishDaoImplTest {
     public void testFindAll() throws Exception {
         List<Dish> dishes = dishDao.findAll();
         assertNotNull(dishes);
-        assertEquals(17, dishes.size());
+        assertEquals(18, dishes.size());
     }
 
     @Test
@@ -57,6 +57,7 @@ public class DishDaoImplTest {
 
     @Test
     public void testDelete() throws Exception {
+        // todo NPE
         DishCategory dishCategory = dishCategoryDao.findById(1);
         Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategory);
         dishDao.add(dish);
@@ -66,17 +67,28 @@ public class DishDaoImplTest {
     }
 
     @Test
-    public void testFindByCategory() throws Exception {
-
+    public void testFindByCategoryId() throws Exception {
+        List<Dish> dishes = dishDao.findByCategory(1);
+        assertNotNull(dishes);
+        assertEquals(3, dishes.size());
     }
 
     @Test
-    public void testFindByCategory1() throws Exception {
-
+    public void testFindByCategoryName() throws Exception {
+        List<Dish> dishes = dishDao.findByCategory("SOUP");
+        assertNotNull(dishes);
+        assertEquals(3, dishes.size());
     }
 
     @Test
-    public void testFindByAvailability() throws Exception {
+    public void testFindByAvailabilityTrue() throws Exception {
+        List<Dish> dishes = dishDao.findByAvailability(true);
+        assertEquals(17, dishes.size());
+    }
 
+    @Test
+    public void testFindByAvailabilityFalse() throws Exception {
+        List<Dish> dishes = dishDao.findByAvailability(false);
+        assertEquals(1, dishes.size());
     }
 }

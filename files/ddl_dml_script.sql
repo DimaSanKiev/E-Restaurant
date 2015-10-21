@@ -199,8 +199,12 @@ VALUES ('Cola',
         2.90, FALSE, TRUE, 'photo', 5);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_url, dish_category_id)
 VALUES ('Mineral water',
-        'Water that contains mineral salts and natural carbon dioxide).',
+        'Water that contains mineral salts and natural carbon dioxide.',
         4.50, FALSE, TRUE, 'photo', 5);
+INSERT INTO dish (name, description, price, kitchenmade, available, photo_url, dish_category_id)
+VALUES ('Beer',
+        'An alcoholic drink made from yeast-fermented malt flavoured with hops.',
+        5.50, FALSE, FALSE , 'photo', 5);
 
 
 INSERT INTO customer (name, email, password, address, birthDate)

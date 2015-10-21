@@ -2,6 +2,7 @@ package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Customer;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,30 +36,35 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
+    @Transactional
     public void add(Customer customer) {
         em.persist(customer);
     }
 
 
     @Override
+    @Transactional
     public void update(Customer customer) {
         // todo check if correct
         em.merge(customer);
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         Customer customer = em.find(Customer.class, id);
         if (customer != null) {
             em.remove(customer);
         }
     }
 
-
     @Override
-    public void register(Customer customer) {
-        em.persist(customer);
+    public void deleteByEmail(String email) {
+        Customer customer = em.find(Customer.class, email);
+        if (customer != null) {
+            em.remove(customer);
+        }
     }
+
 
     @Override
     public Customer login(String email, String password) {

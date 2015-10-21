@@ -28,6 +28,12 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.findAll();
     }
 
+    @Transactional
+    @Override
+    public void add(Customer customer) {
+        customerDao.add(customer);
+    }
+
     @Override
     public void update(Customer customer) {
         customerDao.update(customer);
@@ -36,14 +42,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     @Override
     public void delete(int id) {
-        customerDao.delete(id);
+        customerDao.deleteById(id);
     }
 
-    @Transactional
-    @Override
-    public void register(Customer customer) {
-        customerDao.register(customer);
-    }
 
     @Override
     public Customer login(String login, String password) {

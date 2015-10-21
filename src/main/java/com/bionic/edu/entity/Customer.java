@@ -20,6 +20,14 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(String name, String email, String password, String address, Date birthDate) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.birthDate = birthDate;
+    }
+
     public int getId() {
         return id;
     }

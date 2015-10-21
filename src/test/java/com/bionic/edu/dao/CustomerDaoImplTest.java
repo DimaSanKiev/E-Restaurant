@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -25,7 +27,7 @@ public class CustomerDaoImplTest {
 
     @After
     public void tearDown() throws Exception {
-    
+
     }
 
     @Test
@@ -46,25 +48,29 @@ public class CustomerDaoImplTest {
     public void testFindAll() throws Exception {
         List<Customer> customers = customerDao.findAll();
         assertNotNull(customers);
-        assertEquals(5, customers.size());
+        assertEquals(6, customers.size());
     }
 
     @Test
     public void testAdd() throws Exception {
-    	Customer customer = new Customer();
-    	customerDao.add(customer);
-    	assertNotNull(customerDao.findById(6));
+        Customer customer = new Customer("testName", "test@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
+        customerDao.add(customer);
+        assertNotNull(customerDao.findByEmail("test@email.com"));
+        customerDao.deleteByEmail("test@email.com");
     }
 
     @Test
     public void testUpdate() throws Exception {
-    	
+        Customer customer = customerDao.findById(1);
+        customer.setName("Olga Kovalenko");
+        customerDao.update(customer);
+        assertEquals("Olga Kovalenko", customer.getName());
     }
 
     @Test
     public void testDelete() throws Exception {
-    	customerDao.delete(6);
-    	assertEquals(5, customerDao.findAll().size());
+        customerDao.deleteById(6);
+        assertEquals(5, customerDao.findAll().size());
     }
 
     @Test

@@ -16,10 +16,10 @@ public interface CustomerDao {
 
     void update(Customer customer);
 
-    void delete(int id);
+    void deleteById(int id);
 
+    void deleteByEmail(String email);
 
-    void register(Customer customer);
 
     Customer login(String email, String password);
 }

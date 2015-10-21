@@ -8,11 +8,14 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "date_time_taken")
     private Timestamp dateTimeTaken;
+    @Column(name = "date_time_delivered")
     private Timestamp dateTimeDelivered;
+    @Column(name = "total_price")
     private double totalPrice;
     @ManyToOne
-    @JoinColumn(name = "order_status_id")
+    @JoinColumn(name = "orders_status_id")
     private OrderStatus orderStatus;
     @ManyToOne
     @JoinColumn(name = "customer_id")

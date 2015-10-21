@@ -9,9 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class DishDaoImplTest {
 
@@ -41,7 +39,8 @@ public class DishDaoImplTest {
 
     @Test
     public void testAdd() throws Exception {
-        Dish dish = new Dish("testDishAdd", "justTestDish", 0.00, true, true, "photo", new DishCategory());
+        DishCategory dishCategory = dishCategoryDao.findById(1);
+        Dish dish = new Dish("testDishAdd", "justTestDish", 0.00, true, true, "photo", dishCategory);
         dishDao.add(dish);
         int id = dish.getId();
         assertNotNull(dishDao.findById(id));

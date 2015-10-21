@@ -2,6 +2,7 @@ package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,16 +32,19 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    @Transactional
     public void add(Orders order) {
         em.persist(order);
     }
 
     @Override
+    @Transactional
     public void update(Orders order) {
         em.merge(order);
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
         Orders order = em.find(Orders.class, id);
         if (order != null) {

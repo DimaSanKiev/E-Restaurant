@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name = "dish_category")
+@Entity(name = "DishCategory")
 public class DishCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

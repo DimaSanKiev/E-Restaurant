@@ -66,7 +66,6 @@ public class OrderDaoImplTest {
         int id = order.getId();
         orderDao.delete(id);
         assertNull(orderDao.findById(id));
-
     }
 
     @Test

@@ -11,7 +11,7 @@ public class Dish {
     private String name;
     private String description;
     private double price;
-    private boolean kitchenmade;  //todo char to boolean
+    private boolean kitchenmade;
     private boolean available = true;
     @Lob
     private byte[] photo; //todo byte[] ?

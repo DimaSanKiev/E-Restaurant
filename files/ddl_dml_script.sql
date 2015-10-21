@@ -23,7 +23,7 @@ CREATE TABLE employee (
   password  VARCHAR(100) NOT NULL,
   birthDate DATE,
   hireDate  DATE         NOT NULL,
-  ready     CHAR(1)      NOT NULL,
+  ready     BOOLEAN      NOT NULL,
   PRIMARY KEY (id),
   role_id   INT CONSTRAINT role_fk REFERENCES role
 );
@@ -40,8 +40,8 @@ CREATE TABLE dish (
   name             VARCHAR(100)   NOT NULL,
   description      VARCHAR(500)   NOT NULL,
   price            DECIMAL(15, 2) NOT NULL,
-  kitchenmade      CHAR(1)        NOT NULL,
-  available        CHAR(1)        NOT NULL,
+  kitchenmade      BOOLEAN        NOT NULL,
+  available        BOOLEAN        NOT NULL,
   --   photo            BLOB(1M), -- todo BLOB
   photo            VARCHAR(500),
   PRIMARY KEY (id),
@@ -97,15 +97,15 @@ INSERT INTO role (name) VALUES ('DELIVERY_STAFF');
 INSERT INTO role (name) VALUES ('BUSINESS_ANALYST');
 
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Dmytro Arkheev', 'superuser@gmail.com', 'pass1', '1984-06-27', '2013-10-01', '1', 1);
+VALUES ('Dmytro Arkheev', 'superuser@gmail.com', 'pass1', '1984-06-27', '2013-10-01', TRUE, 1);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Igor Himchenko', 'igor.himchenko@yahoo.com', 'pass2', '1987-07-02', '2011-06-10', '1', 2);
+VALUES ('Igor Himchenko', 'igor.himchenko@yahoo.com', 'pass2', '1987-07-02', '2011-06-10', TRUE, 2);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Elena Bakhmach', 'elena.bakhmach@gmail.com', 'pass3', '1991-04-05', '2014-02-03', '1', 3);
+VALUES ('Elena Bakhmach', 'elena.bakhmach@gmail.com', 'pass3', '1991-04-05', '2014-02-03', TRUE, 3);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Alexander Volkov', 'alexander.volkov@gmail.com', 'pass4', '1993-03-03', '2014-02-28', '1', 4);
+VALUES ('Alexander Volkov', 'alexander.volkov@gmail.com', 'pass4', '1993-03-03', '2014-02-28', TRUE, 4);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Khristina Tkachuk', 'khristina.tkachuk@gmail.com', 'pass5', '1979-11-15', '2010-01-20', '1', 5);
+VALUES ('Khristina Tkachuk', 'khristina.tkachuk@gmail.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5);
 
 INSERT INTO dish_category (name, description)
 VALUES ('SOUP',
@@ -128,79 +128,79 @@ VALUES ('DRINK',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Tomato Soup',
         'Tomato soup is a soup made with tomatoes as the primary ingredient. It may be served hot or cold in a bowl.',
-        4.20, '1', '1', 'photo', 1);
+        4.20, TRUE, TRUE, 'photo', 1);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Cream of mushroom soup',
         'Cream of mushroom soup is a soup where a basic roux is thinned with milk and then mushrooms and mushroom broth are added',
-        5.40, '1', '1', 'photo', 1);
+        5.40, TRUE, TRUE, 'photo', 1);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Miso soup',
         'Miso soup is a traditional Japanese soup consisting of a stock called "dashi" into which softened miso paste is mixed.',
-        3.60, '1', '1', 'photo', 1);
+        3.60, TRUE, TRUE, 'photo', 1);
 
 -- salads --
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Greek Salad',
         'Greek salad is made with tomatoes, cucumbers, onion, feta cheese and olives, seasoned with salt and oregano and dressed with olive oil.',
-        5.50, '1', '1', 'photo', 2);
+        5.50, TRUE, TRUE, 'photo', 2);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Avocado and Tuna Tapas',
         'This is a light, healthy Spanish tapa that goes best with crisp white wines and crunchy bread.',
-        7.30, '1', '1', 'photo', 2);
+        7.30, TRUE, TRUE, 'photo', 2);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Caesar salad',
         'It is a salad of romaine lettuce and croutons dressed with parmesan cheese, lemon juice, olive oil, egg, garlic, and black pepper.',
-        4.30, '1', '1', 'photo', 2);
+        4.30, TRUE, TRUE, 'photo', 2);
 
 -- main course --
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Baked Spaghetti',
         'Casserole of thin spaghetti pasta, sausage, mushroom, and tomato sauce, ricotta, Parmesan, and Mozzarella cheeses.',
-        7.20, '1', '1', 'photo', 3);
+        7.20, TRUE, TRUE, 'photo', 3);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Beef Bourguignon',
         'Luxurious beef bourguignon, or beef Burgundy, with beef chuck, carrots, pearl onions, mushrooms, and coated with a deeply flavored, silky sauce.',
-        8.20, '1', '1', 'photo', 3);
+        8.20, TRUE, TRUE, 'photo', 3);
 INSERT INTO dish (NAME, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Wild Salmon',
         'Grilled whole wild salmon, stuffed with a relish made of preserved lemons, parsley, dill, and shallots.',
-        8.90, '1', '1', 'photo', 3);
+        8.90, TRUE, TRUE, 'photo', 3);
 
 -- desserts --
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Chocolate Fondue',
         'Chocolate fondue is easy and fun to make, a party favorite.  Dip fresh fruit and other dippables into the hot, melted creamy chocolate mixture.',
-        5.10, '1', '1', 'photo', 4);
+        5.10, TRUE, TRUE, 'photo', 4);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Tapioca Pudding',
         'One of our favorite desserts growing up! This tapioca pudding recipe uses small pearl tapioca, milk, sugar, eggs, and vanilla.',
-        4.20, '1', '1', 'photo', 4);
+        4.20, TRUE, TRUE, 'photo', 4);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Fruit Salad',
         'Blueberry, peach, nectarine fruit salad seasoned with fresh thyme, ginger, and lemon juice.',
-        4.40, '1', '1', 'photo', 4);
+        4.40, TRUE, TRUE, 'photo', 4);
 
 -- drinks --
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Latte',
         'A Latte is a type of coffee made with espresso and hot steamed milk, milkier than a cappuccino.',
-        4.90, '1', '1', 'photo', 5);
+        4.90, TRUE, TRUE, 'photo', 5);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Tea',
         'Aromatic beverage prepared by pouring hot water over cured leaves of tea leaves.',
-        3.40, '1', '1', 'photo', 5);
+        3.40, TRUE, TRUE, 'photo', 5);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Juice',
         'Natural and healthy juices from different fruits and vegetables. Can be mixed in different variations.',
-        4.50, '1', '1', 'photo', 5);
+        4.50, TRUE, TRUE, 'photo', 5);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Cola',
         'A typical brown carbonated drink that is flavoured with an extract of cola nuts, or with a similar flavouring.',
-        2.90, '0', '1', 'photo', 5);
+        2.90, FALSE, TRUE, 'photo', 5);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Mineral water',
         'Water that contains mineral salts and natural carbon dioxide).',
-        4.50, '0', '0', 'photo', 5);
+        4.50, FALSE, TRUE, 'photo', 5);
 
 
 INSERT INTO customer (name, email, password, address, birthDate)

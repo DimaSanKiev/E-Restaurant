@@ -54,6 +54,7 @@ public class OrderDaoImpl implements OrderDao {
 
 
     @Override
+    // todo - variable order.Status.id - ?
     public List<Orders> getDeliveryListByTime() {
         TypedQuery<Orders> query = em.createQuery(
                 "SELECT o FROM Orders o WHERE o.orderStatus.id = 2 " +
@@ -70,6 +71,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    @Transactional
     public void setOrderStatus(Orders order, int statusId) {
         TypedQuery<Orders> query = em.createQuery(
                 "UPDATE Orders o SET o.orderStatus = :order_status_id " +

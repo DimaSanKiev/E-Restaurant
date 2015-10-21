@@ -31,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     @Override
     public void add(Employee employee) {
-        employeeDao.register(employee);
+        employeeDao.add(employee);
     }
 
     @Override
@@ -45,10 +45,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDao.delete(id);
     }
 
-    @Override
-    public void register(Employee employee) {
-        employeeDao.register(employee);
-    }
 
     @Override
     public Employee login(String email, String password) {

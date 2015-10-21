@@ -35,7 +35,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public void register(Employee employee) {
+    public void add(Employee employee) {
         em.persist(employee);
     }
 

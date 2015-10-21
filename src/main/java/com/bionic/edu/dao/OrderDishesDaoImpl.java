@@ -64,7 +64,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
     @Override
     public List<OrderDishes> createListForKitchen() {
         return em.createQuery("SELECT o FROM OrderDishes o where o.dish.kitchenmade = true " +
-                "AND o.order.orderStatus =:status", OrderDishes.class)
+                "AND o.order.orderStatus = :status", OrderDishes.class)
                 .setParameter("status", 1).getResultList();
     }
 

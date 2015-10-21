@@ -1,6 +1,7 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.OrderDishes;
+import com.bionic.edu.entity.Orders;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -63,13 +64,17 @@ public class OrderDishesDaoImplTest {
     }
 
     @Test
+    // todo NPE
     public void testGetAllFromOrder() throws Exception {
-
+        Orders order = new OrderDaoImpl().findById(1);
+        List<OrderDishes> orderDishesList = orderDishesDao.getAllFromOrder(order);
+        assertNotNull(orderDishesList);
+        assertEquals(2, orderDishesList.size());
     }
 
     @Test
     public void testAddKitchenmadeToOrder() throws Exception {
-
+        
     }
 
     @Test

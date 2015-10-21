@@ -13,13 +13,24 @@ public class Dish {
     private double price;
     private boolean kitchenmade;
     private boolean available = true;
-    @Lob
-    private byte[] photo; //todo byte[] ?
-    @ManyToOne
+//    @Lob
+//    private byte[] photo; //todo byte[] ?
+    private String photo_url;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "dish_category_id")
     private DishCategory category;
 
     public Dish() {
+    }
+
+    public Dish(String name, String description, double price, boolean kitchenmade, boolean available, String photo_url, DishCategory category) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.kitchenmade = kitchenmade;
+        this.available = available;
+        this.photo_url = photo_url;
+        this.category = category;
     }
 
     public int getId() {
@@ -70,12 +81,12 @@ public class Dish {
         this.available = available;
     }
 
-    public byte[] getPhoto() {
-        return photo;
+    public String getPhoto_url() {
+        return photo_url;
     }
 
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
     }
 
     public DishCategory getCategory() {
@@ -94,7 +105,8 @@ public class Dish {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", kitchenmade=" + kitchenmade +
-                ", photo=" + Arrays.toString(photo) +
+                ", available=" + available +
+                ", photo_url='" + photo_url + '\'' +
                 ", category=" + category +
                 '}';
     }

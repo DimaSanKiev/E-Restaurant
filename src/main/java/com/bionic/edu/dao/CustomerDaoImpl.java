@@ -45,11 +45,11 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     @Transactional
     public void update(Customer customer) {
-        // todo check if correct
         em.merge(customer);
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
         Customer customer = em.find(Customer.class, id);
         if (customer != null) {
@@ -76,7 +76,7 @@ public class CustomerDaoImpl implements CustomerDao {
         if (customer.getPassword().equals(password)) {
             return customer;
         } else {
-            throw new RuntimeException(); // todo handle
+            throw new AssertionError(); // todo handle
         }
     }
 

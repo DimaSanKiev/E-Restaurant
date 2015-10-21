@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class CustomerDaoImplTest {
 
@@ -27,11 +28,11 @@ public class CustomerDaoImplTest {
 
     @After
     public void tearDown() throws Exception {
-
+        // todo - rollback tests
     }
 
     @Test
-    public void testFindById_1() throws Exception {
+    public void testFindById() throws Exception {
         Customer customer = customerDao.findById(1);
         assertNotNull(customer);
         assertEquals(1, customer.getId());
@@ -53,7 +54,7 @@ public class CustomerDaoImplTest {
 
     @Test
     public void testAdd() throws Exception {
-        Customer customer = new Customer("testName", "test@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
+        Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
         customerDao.add(customer);
         assertNotNull(customerDao.findByEmail("test@email.com"));
         customerDao.deleteByEmail("test@email.com");
@@ -69,17 +70,20 @@ public class CustomerDaoImplTest {
 
     @Test
     public void testDelete() throws Exception {
-        customerDao.deleteById(6);
-        assertEquals(5, customerDao.findAll().size());
-    }
-
-    @Test
-    public void testRegister() throws Exception {
-
+        Customer customer = new Customer("testDelete", "testDelete@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
+        customerDao.add(customer);
+        int id = customer.getId();
+        customerDao.deleteById(id);
+        assertNull(customerDao.findById(id));
     }
 
     @Test
     public void testLogin() throws Exception {
-
+        try {
+            customerDao.login("kate.belova@gmail.com", "wrongPass");
+        } catch (AssertionError er) {
+            assertEquals(1, 1);
+        }
+        customerDao.login("kate.belova@gmail.com", "pass3");
     }
 }

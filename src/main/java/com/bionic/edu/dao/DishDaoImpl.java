@@ -2,6 +2,7 @@ package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Dish;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,11 +29,13 @@ public class DishDaoImpl implements DishDao {
     }
 
     @Override
+    @Transactional
     public void add(Dish dish) {
         em.persist(dish);
     }
 
     @Override
+    @Transactional
     public void update(Dish dish) {
         em.merge(dish);
     }

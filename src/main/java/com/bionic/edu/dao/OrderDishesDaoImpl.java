@@ -25,7 +25,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
 
     @Override
     public List<OrderDishes> findAll() {
-        TypedQuery<OrderDishes> query = em.createQuery("SELECT od FROM OrderDishes od", OrderDishes.class);
+        TypedQuery<OrderDishes> query = em.createQuery("SELECT od FROM order_dishes od", OrderDishes.class);
         return query.getResultList();
     }
 
@@ -52,7 +52,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
 
     @Override
     public List<OrderDishes> getAllFromOrder(Orders order) {
-        return em.createQuery("SELECT o FROM OrderDishes o WHERE o.order.id = :id", OrderDishes.class).
+        return em.createQuery("SELECT o FROM order_dishes o WHERE o.order.id = :id", OrderDishes.class).
                 setParameter("id", order.getId()).getResultList();
     }
 
@@ -63,7 +63,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
 
     @Override
     public List<OrderDishes> createListForKitchen() {
-        return em.createQuery("SELECT o FROM OrderDishes o where o.dish.kitchenmade = true " +
+        return em.createQuery("SELECT o FROM order_dishes o where o.dish.kitchenmade = true " +
                 "AND o.order.orderStatus = :status", OrderDishes.class)
                 .setParameter("status", 1).getResultList();
     }

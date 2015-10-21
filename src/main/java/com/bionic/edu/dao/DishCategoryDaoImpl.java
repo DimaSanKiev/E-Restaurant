@@ -25,7 +25,7 @@ public class DishCategoryDaoImpl implements DishCategoryDao {
 
     @Override
     public List<DishCategory> findAll() {
-        TypedQuery<DishCategory> query = em.createQuery("SELECT dc FROM DishCategory dc", DishCategory.class);
+        TypedQuery<DishCategory> query = em.createQuery("SELECT dc FROM dish_category dc", DishCategory.class);
         return query.getResultList();
     }
 

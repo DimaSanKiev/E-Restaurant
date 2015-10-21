@@ -69,7 +69,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Customer login(String email, String password) {
         TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c WHERE c.email =" +
-                ": email", Customer.class);
+                ":email", Customer.class);
         query.setParameter("email", email);
 
         Customer customer = query.getSingleResult();

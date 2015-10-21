@@ -67,7 +67,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         if (employee.getPassword().equals(password)) {
             return employee;
         } else {
-            throw new RuntimeException(); // todo handle
+            throw new AssertionError(); // todo handle
         }
     }
 

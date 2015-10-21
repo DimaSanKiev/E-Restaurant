@@ -75,10 +75,16 @@ public class EmployeeDaoImplTest {
 
     @Test
     public void testLogin() throws Exception {
-
+        try {
+            employeeDao.login("elena.bakhmach@gmail.com", "wrongPass");
+        } catch (AssertionError er) {
+            assertEquals(1, 1);
+        }
+        employeeDao.login("elena.bakhmach@gmail.com", "pass3");
     }
 
     @Test
+    // todo - is it correct way to test
     public void testSetReadiness() throws Exception {
         Employee employee = employeeDao.findById(3);
         employee.setReady(false);

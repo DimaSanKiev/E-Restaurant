@@ -73,10 +73,11 @@ public class CustomerDaoImpl implements CustomerDao {
         query.setParameter("email", email);
 
         Customer customer = query.getSingleResult();
-        if (customer.getPassword().equals(password)) {
+        if (customer.getPassword().equals(password)) { // crypto password XOR
             return customer;
         } else {
-            throw new AssertionError(); // todo handle
+            throw new AssertionError(); // todo return null
+
         }
     }
 

@@ -31,6 +31,7 @@ public interface OrderService {
         4 = DONE
     */
     void setOrderStatus(Orders order, int statusId);
+    // check this order for ready dishes
 
     void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount);
 }

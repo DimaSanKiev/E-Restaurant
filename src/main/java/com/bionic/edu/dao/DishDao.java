@@ -19,7 +19,7 @@ public interface DishDao {
 
     List<Dish> findByCategory(int categoryId);
 
-    List<Dish> findByCategory(String categoryName);
+    List<Dish> findByCategory(String categoryName); // todo delete
 
     List<Dish> findByAvailability(boolean isAvailable);
 

@@ -26,11 +26,6 @@ public class CustomerDaoImplTest {
         customerDao = (CustomerDao) context.getBean("customerDaoImpl");
     }
 
-    @After
-    public void tearDown() throws Exception {
-        // todo - rollback tests
-    }
-
     @Test
     public void testFindById() throws Exception {
         Customer customer = customerDao.findById(1);

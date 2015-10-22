@@ -56,7 +56,7 @@ public class DishDaoImplTest {
 
     @Test
     public void testDelete() throws Exception {
-        // todo NPE
+        // todo INJECT!!!
         DishCategory dishCategory = dishCategoryDao.findById(1);
         Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategory);
         dishDao.add(dish);

@@ -1,7 +1,6 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 public class Dish {
@@ -13,8 +12,6 @@ public class Dish {
     private double price;
     private boolean kitchenmade;
     private boolean available = true;
-//    @Lob
-//    private byte[] photo; //todo byte[] ?
     private String photo_url;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "dish_category_id")

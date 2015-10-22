@@ -47,7 +47,6 @@ public class OrderDishesDaoImplTest {
     @Test
     public void testUpdate() throws Exception {
         OrderDishes orderDishes = orderDishesDao.findById(1);
-        // todo - NPE
         orderDishes.setPrice(10.00);
         orderDishesDao.update(orderDishes);
         assertEquals(10.00, orderDishes.getPrice(), 0.00);
@@ -64,7 +63,6 @@ public class OrderDishesDaoImplTest {
     }
 
     @Test
-    // todo NPE
     public void testGetAllFromOrder() throws Exception {
         Orders order = new OrderDaoImpl().findById(1);
         List<OrderDishes> orderDishesList = orderDishesDao.getAllFromOrder(order);

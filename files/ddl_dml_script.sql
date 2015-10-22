@@ -41,7 +41,6 @@ CREATE TABLE dish (
   price            DECIMAL(15, 2) NOT NULL,
   kitchenmade      BOOLEAN        NOT NULL,
   available        BOOLEAN        NOT NULL,
-  --   photo            BLOB(1M), -- todo BLOB
   photo_url        VARCHAR(500),
   PRIMARY KEY (id),
   dish_category_id INT CONSTRAINT dish_category_fk REFERENCES dish_category
@@ -117,7 +116,6 @@ INSERT INTO dish_category (name, description)
 VALUES ('DRINK',
         'Here you can order different cold beverages like juices, lemonades, soda, mineral water, and also some hot drinks like tea, espresso, latte, mochaccino.');
 
--- todo store BLOBs
 -- soups --
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_url, dish_category_id)
 VALUES ('Tomato Soup',

@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public void save(Orders order) {
-        orderDao.add(order);
+        orderDao.save(order);
     }
 
     @Transactional

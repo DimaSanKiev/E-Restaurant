@@ -31,14 +31,11 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
 
     @Override
     @Transactional
-    public void add(OrderDishes orderDishes) {
-        em.persist(orderDishes);
-    }
-
-    @Override
-    @Transactional
-    public void update(OrderDishes orderDishes) {
-        em.merge(orderDishes);
+    public void save(OrderDishes orderDishes) {
+        if (orderDishes.getId() == 0) {
+            em.persist(orderDishes);
+        } else
+            em.merge(orderDishes);
     }
 
     @Override

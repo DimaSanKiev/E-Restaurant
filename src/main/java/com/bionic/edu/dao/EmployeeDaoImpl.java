@@ -37,14 +37,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     @Transactional
-    public void add(Employee employee) {
-        em.persist(employee);
-    }
-
-    @Override
-    @Transactional
-    public void update(Employee employee) {
-        em.merge(employee);
+    public void save(Employee employee) {
+        if (employee.getId() == 0) {
+            em.persist(employee);
+        } else
+            em.merge(employee);
     }
 
     @Override

@@ -59,7 +59,7 @@ public class EmployeeDaoImplTest {
     public void testUpdate() throws Exception {
         Employee employee = employeeDao.findById(1);
         employee.setName("Dima Test");
-        employeeDao.update(employee);
+        employeeDao.save(employee);
         assertEquals("Dima Test", employee.getName());
     }
 

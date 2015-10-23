@@ -54,7 +54,7 @@ public class OrderDaoImplTest {
         Orders order = orderDao.findById(1);
         // todo - NPE
         order.setCustomer(new CustomerDaoImpl().findById(1));
-        orderDao.update(order);
+        orderDao.save(order);
         assertEquals(1, order.getCustomer().getId());
         assertEquals("olga.romanova@gmail.com", order.getCustomer().getEmail());
     }

@@ -13,9 +13,7 @@ public interface OrderService {
 
     List<Orders> findAll();
 
-    void add(Orders order);
-
-    void update(Orders order);
+    void save(Orders order);
 
     void delete(int id);
 

@@ -1,7 +1,6 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Customer;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -59,7 +58,7 @@ public class CustomerDaoImplTest {
     public void testUpdate() throws Exception {
         Customer customer = customerDao.findById(1);
         customer.setName("Olga Kovalenko");
-        customerDao.update(customer);
+        customerDao.save(customer);
         assertEquals("Olga Kovalenko", customer.getName());
     }
 
@@ -68,7 +67,7 @@ public class CustomerDaoImplTest {
         Customer customer = new Customer("testDelete", "testDelete@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
         customerDao.add(customer);
         int id = customer.getId();
-        customerDao.deleteById(id);
+        customerDao.delete(id);
         assertNull(customerDao.findById(id));
     }
 

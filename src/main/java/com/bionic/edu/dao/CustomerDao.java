@@ -12,13 +12,9 @@ public interface CustomerDao {
 
     List<Customer> findAll();
 
-    void add(Customer customer);
+    void save(Customer customer);
 
-    void update(Customer customer);
-
-    void deleteById(int id);
-
-    void deleteByEmail(String email);
+    void delete(int id);
 
 
     Customer login(String email, String password);

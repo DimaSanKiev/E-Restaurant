@@ -28,27 +28,21 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.findAll();
     }
 
-    @Transactional
     @Override
-    public void add(Customer customer) {
-        customerDao.add(customer);
-    }
-
-    @Override
-    public void update(Customer customer) {
-        customerDao.update(customer);
+    public void save(Customer customer) {
+        customerDao.save(customer);
     }
 
     @Transactional
     @Override
     public void delete(int id) {
-        customerDao.deleteById(id);
+        customerDao.delete(id);
     }
 
 
     @Override
-    public Customer login(String login, String password) {
-        return customerDao.login(login, password);
+    public Customer login(String email, String password) {
+        return customerDao.login(email, password);
     }
 
 }

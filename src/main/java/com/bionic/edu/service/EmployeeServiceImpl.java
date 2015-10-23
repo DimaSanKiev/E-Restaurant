@@ -28,15 +28,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDao.findAll();
     }
 
-    @Transactional
     @Override
-    public void add(Employee employee) {
-        employeeDao.add(employee);
-    }
-
-    @Override
-    public void update(Employee employee) {
-        employeeDao.update(employee);
+    public void save(Employee employee) {
+        employeeDao.save(employee);
     }
 
     @Transactional

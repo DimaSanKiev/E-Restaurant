@@ -11,9 +11,7 @@ public interface OrderDishesDao {
 
     List<OrderDishes> findAll();
 
-    void add(OrderDishes orderDishes);
-
-    void update(OrderDishes orderDishes);
+    void save(OrderDishes orderDishes);
 
     void delete(int id);
 
@@ -22,5 +20,5 @@ public interface OrderDishesDao {
 
     void addKitchenmadeToOrder(OrderDishes orderDishes);
 
-    List<OrderDishes>  createListForKitchen();
+    List<OrderDishes> createListForKitchen();
 }

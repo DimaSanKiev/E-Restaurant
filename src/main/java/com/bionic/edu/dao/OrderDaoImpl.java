@@ -33,14 +33,11 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     @Transactional
-    public void add(Orders order) {
-        em.persist(order);
-    }
-
-    @Override
-    @Transactional
-    public void update(Orders order) {
-        em.merge(order);
+    public void save(Orders order) {
+        if (order.getId() == 0) {
+            em.persist(order);
+        } else
+            em.merge(order);
     }
 
     @Override

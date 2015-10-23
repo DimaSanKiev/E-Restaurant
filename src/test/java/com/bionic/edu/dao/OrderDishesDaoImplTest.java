@@ -48,7 +48,7 @@ public class OrderDishesDaoImplTest {
     public void testUpdate() throws Exception {
         OrderDishes orderDishes = orderDishesDao.findById(1);
         orderDishes.setPrice(10.00);
-        orderDishesDao.update(orderDishes);
+        orderDishesDao.save(orderDishes);
         assertEquals(10.00, orderDishes.getPrice(), 0.00);
     }
 

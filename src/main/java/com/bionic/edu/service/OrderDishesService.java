@@ -11,11 +11,10 @@ public interface OrderDishesService {
 
     List<OrderDishes> findAll();
 
-    void add(OrderDishes orderDishes);
-
-    void update(OrderDishes orderDishes);
+    void save(OrderDishes orderDishes);
 
     void delete(int id);
+
 
     List<OrderDishes> getAllFromOrder(Orders order);
 

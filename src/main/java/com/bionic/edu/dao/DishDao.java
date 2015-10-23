@@ -10,16 +10,12 @@ public interface DishDao {
 
     List<Dish> findAll();
 
-    void add(Dish dish);
-
-    void update(Dish dish);
+    void save(Dish dish);
 
     void delete(int id);
 
 
     List<Dish> findByCategory(int categoryId);
-
-    List<Dish> findByCategory(String categoryName); // todo delete
 
     List<Dish> findByAvailability(boolean isAvailable);
 

@@ -12,12 +12,10 @@ public interface CustomerService {
 
     List<Customer> findAll();
 
-    void add(Customer customer);
-
-    void update(Customer customer);
+    void save(Customer customer);
 
     void delete(int id);
 
 
-    Customer login(String login, String password);
+    Customer login(String email, String password);
 }

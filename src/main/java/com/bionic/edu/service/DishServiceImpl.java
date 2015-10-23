@@ -23,15 +23,9 @@ public class DishServiceImpl implements DishService {
         return dishDao.findAll();
     }
 
-    @Transactional
     @Override
-    public void add(Dish dish) {
-        dishDao.add(dish);
-    }
-
-    @Override
-    public void update(Dish dish) {
-        dishDao.update(dish);
+    public void save(Dish dish) {
+        dishDao.save(dish);
     }
 
     @Transactional
@@ -43,11 +37,6 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<Dish> findByCategory(int categoryId) {
         return dishDao.findByCategory(categoryId);
-    }
-
-    @Override
-    public List<Dish> findByCategory(String categoryName) {
-        return dishDao.findByCategory(categoryName);
     }
 
     @Override

@@ -11,9 +11,7 @@ public interface DishCategoryDao {
 
     List<DishCategory> findAll();
 
-    void add(DishCategory dishCategory);
-
-    void update(DishCategory dishCategory);
+    void save(DishCategory dishCategory);
 
     void delete(int id);
 

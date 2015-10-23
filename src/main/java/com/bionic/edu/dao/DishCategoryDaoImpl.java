@@ -29,16 +29,14 @@ public class DishCategoryDaoImpl implements DishCategoryDao {
         return query.getResultList();
     }
 
-    @Override
-    @Transactional
-    public void add(DishCategory dishCategory) {
-        em.persist(dishCategory);
-    }
 
     @Override
     @Transactional
-    public void update(DishCategory dishCategory) {
-        em.merge(dishCategory);
+    public void save(DishCategory dishCategory) {
+        if (dishCategory.getId() == 0) {
+            em.persist(dishCategory);
+        } else
+            em.merge(dishCategory);
     }
 
     @Override

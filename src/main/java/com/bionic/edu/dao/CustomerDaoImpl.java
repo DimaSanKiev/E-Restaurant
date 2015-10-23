@@ -37,34 +37,21 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     @Transactional
-    public void add(Customer customer) {
-        em.persist(customer);
-    }
-
-
-    @Override
-    @Transactional
-    public void update(Customer customer) {
-        em.merge(customer);
+    public void save(Customer customer) {
+        if (customer.getId() == 0)
+            em.persist(customer);
+        else
+            em.merge(customer);
     }
 
     @Override
     @Transactional
-    public void deleteById(int id) {
+    public void delete(int id) {
         Customer customer = em.find(Customer.class, id);
         if (customer != null) {
             em.remove(customer);
         }
     }
-
-    @Override
-    public void deleteByEmail(String email) {
-        Customer customer = em.find(Customer.class, email);
-        if (customer != null) {
-            em.remove(customer);
-        }
-    }
-
 
     @Override
     public Customer login(String email, String password) {

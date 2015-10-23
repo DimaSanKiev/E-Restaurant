@@ -50,7 +50,7 @@ public class DishDaoImplTest {
     public void testUpdate() throws Exception {
         Dish dish = dishDao.findById(1);
         dish.setName("Test Name");
-        dishDao.update(dish);
+        dishDao.save(dish);
         assertEquals("Test Name", dish.getName());
     }
 

@@ -24,15 +24,9 @@ public class OrderDishesServiceImpl implements OrderDishesService {
         return orderDishesDao.findAll();
     }
 
-    @Transactional
     @Override
-    public void add(OrderDishes orderDishes) {
-        orderDishesDao.add(orderDishes);
-    }
-
-    @Override
-    public void update(OrderDishes orderDishes) {
-        orderDishesDao.update(orderDishes);
+    public void save(OrderDishes orderDishes) {
+        orderDishesDao.save(orderDishes);
     }
 
     @Transactional

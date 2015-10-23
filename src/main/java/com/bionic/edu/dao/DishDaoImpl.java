@@ -30,14 +30,11 @@ public class DishDaoImpl implements DishDao {
 
     @Override
     @Transactional
-    public void add(Dish dish) {
-        em.persist(dish);
-    }
-
-    @Override
-    @Transactional
-    public void update(Dish dish) {
-        em.merge(dish);
+    public void save(Dish dish) {
+        if (dish.getId() == 0) {
+            em.persist(dish);
+        } else
+            em.merge(dish);
     }
 
     @Override
@@ -54,15 +51,6 @@ public class DishDaoImpl implements DishDao {
                 "SELECT d FROM Dish d WHERE d.category.id =" +
                         ":category_id AND d.available = true", Dish.class);
         query.setParameter("category_id", categoryId);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Dish> findByCategory(String categoryName) {
-        TypedQuery<Dish> query = em.createQuery(
-                "SELECT d FROM Dish d WHERE d.category.name =" +
-                        ":category_name AND d.available = true", Dish.class);
-        query.setParameter("category_name", categoryName);
         return query.getResultList();
     }
 

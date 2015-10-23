@@ -41,7 +41,7 @@ public class DishDaoImplTest {
     public void testAdd() throws Exception {
         DishCategory dishCategory = dishCategoryDao.findById(1);
         Dish dish = new Dish("testDishAdd", "justTestDish", 0.00, true, true, "photo", dishCategory);
-        dishDao.add(dish);
+        dishDao.save(dish);
         int id = dish.getId();
         assertNotNull(dishDao.findById(id));
     }
@@ -59,7 +59,7 @@ public class DishDaoImplTest {
         // todo INJECT!!!
         DishCategory dishCategory = dishCategoryDao.findById(1);
         Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategory);
-        dishDao.add(dish);
+        dishDao.save(dish);
         int id = dish.getId();
         dishDao.delete(id);
         assertNull(dishDao.findById(id));
@@ -74,7 +74,7 @@ public class DishDaoImplTest {
 
     @Test
     public void testFindByCategoryName() throws Exception {
-        List<Dish> dishes = dishDao.findByCategory("SOUP");
+        List<Dish> dishes = dishDao.findByCategory(1);
         assertNotNull(dishes);
         assertEquals(3, dishes.size());
     }

@@ -48,7 +48,7 @@ public class EmployeeDaoImplTest {
     public void testAdd() throws Exception {
         Employee employee = employeeDao.findById(1);
         employee.setEmail("testAdd@email.com");
-        employeeDao.add(employee);
+        employeeDao.save(employee);
         int id = employee.getId();
         assertNotNull(employeeDao.findById(id));
         // todo - Class expected : class java.lang.Integer, Class received : class java.lang.String.
@@ -67,7 +67,7 @@ public class EmployeeDaoImplTest {
     public void testDelete() throws Exception {
         Employee employee = employeeDao.findById(2);
         employee.setEmail("testDelete@email.com");
-        employeeDao.add(employee);
+        employeeDao.save(employee);
         int id = employee.getId();
         employeeDao.delete(id);
         assertNull(employeeDao.findById(id));

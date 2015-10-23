@@ -39,7 +39,7 @@ public class OrderDishesDaoImplTest {
     @Test
     public void testAdd() throws Exception {
         OrderDishes orderDishes = orderDishesDao.findById(1);
-        orderDishesDao.add(orderDishes);
+        orderDishesDao.save(orderDishes);
         int id = orderDishes.getId();
         assertNotNull(orderDishesDao.findById(id));
     }
@@ -55,7 +55,7 @@ public class OrderDishesDaoImplTest {
     @Test
     public void testDelete() throws Exception {
         OrderDishes orderDishes = orderDishesDao.findById(2);
-        orderDishesDao.add(orderDishes);
+        orderDishesDao.save(orderDishes);
         int id = orderDishes.getId();
         orderDishesDao.delete(id);
         assertNull(orderDishesDao.findById(id));

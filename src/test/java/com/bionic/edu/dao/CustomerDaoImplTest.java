@@ -49,9 +49,8 @@ public class CustomerDaoImplTest {
     @Test
     public void testAdd() throws Exception {
         Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
-        customerDao.add(customer);
+        customerDao.save(customer);
         assertNotNull(customerDao.findByEmail("test@email.com"));
-        customerDao.deleteByEmail("test@email.com");
     }
 
     @Test
@@ -65,7 +64,7 @@ public class CustomerDaoImplTest {
     @Test
     public void testDelete() throws Exception {
         Customer customer = new Customer("testDelete", "testDelete@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
-        customerDao.add(customer);
+        customerDao.save(customer);
         int id = customer.getId();
         customerDao.delete(id);
         assertNull(customerDao.findById(id));

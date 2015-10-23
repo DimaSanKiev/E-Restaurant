@@ -44,7 +44,7 @@ public class OrderDaoImplTest {
     @Test
     public void testAdd() throws Exception {
         Orders order = orderDao.findById(1);
-        orderDao.add(order);
+        orderDao.save(order);
         int id = order.getId();
         assertNotNull(orderDao.findById(id));
     }
@@ -62,7 +62,7 @@ public class OrderDaoImplTest {
     @Test
     public void testDelete() throws Exception {
         Orders order = orderDao.findById(2);
-        orderDao.add(order);
+        orderDao.save(order);
         int id = order.getId();
         orderDao.delete(id);
         assertNull(orderDao.findById(id));
@@ -89,7 +89,7 @@ public class OrderDaoImplTest {
     public void testSetOrderStatus() throws Exception {
         Orders order = orderDao.findById(1);
         orderDao.setOrderStatus(order, 2);
-        orderDao.add(order);
+        orderDao.save(order);
         List<Orders> orders = orderDao.getDeliveryListByStatus();
         assertEquals(1, orders.size());
     }

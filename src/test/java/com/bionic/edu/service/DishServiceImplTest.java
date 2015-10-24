@@ -1,72 +1,86 @@
 package com.bionic.edu.service;
 
+import com.bionic.edu.entity.Dish;
+import com.bionic.edu.entity.DishCategory;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class DishServiceImplTest {
+    DishService dishService;
+    DishCategoryService dishCategoryService;
 
     @Before
     public void setUp() throws Exception {
-
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
+        dishService = context.getBean(DishService.class);
     }
 
     @Test
     public void testFindById() throws Exception {
-
+        Dish dish = dishService.findById(1);
+        assertNotNull(dish);
+        assertEquals(1, dish.getId());
     }
 
     @Test
     public void testFindAll() throws Exception {
-
+        List<Dish> dishes = dishService.findAll();
+        assertNotNull(dishes);
+        assertEquals(18, dishes.size());
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void testAdd() throws Exception {
+        DishCategory dishCategory = dishCategoryService.findById(1);
+        Dish dish = new Dish("testDishAdd", "justTestDish", 0.00, true, true, "photo", dishCategory);
+        dishService.save(dish);
+        int id = dish.getId();
+        assertNotNull(dishService.findById(id));
+    }
 
+    @Test
+    public void testUpdate() throws Exception {
+        Dish dish = dishService.findById(1);
+        dish.setName("Test Name");
+        dishService.save(dish);
+        assertEquals("Test Name", dish.getName());
     }
 
     @Test
     public void testDelete() throws Exception {
-
+        DishCategory dishCategory = dishCategoryService.findById(1);
+        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategory);
+        dishService.save(dish);
+        int id = dish.getId();
+        dishService.delete(id);
+        assertNull(dishService.findById(id));
     }
 
     @Test
     public void testFindByCategory() throws Exception {
-
+        List<Dish> dishes = dishService.findByCategory(1);
+        assertNotNull(dishes);
+        assertEquals(3, dishes.size());
     }
 
     @Test
-    public void testFindByAvailability() throws Exception {
-
+    public void testFindByAvailabilityTrue() throws Exception {
+        List<Dish> dishes = dishService.findByAvailability(true);
+        assertEquals(17, dishes.size());
     }
 
     @Test
-    public void testFindById1() throws Exception {
-
+    public void testFindByAvailabilityFalse() throws Exception {
+        List<Dish> dishes = dishService.findByAvailability(false);
+        assertEquals(1, dishes.size());
     }
 
-    @Test
-    public void testFindAll1() throws Exception {
-
-    }
-
-    @Test
-    public void testSave1() throws Exception {
-
-    }
-
-    @Test
-    public void testDelete1() throws Exception {
-
-    }
-
-    @Test
-    public void testFindByCategory1() throws Exception {
-
-    }
-
-    @Test
-    public void testFindByAvailability1() throws Exception {
-
-    }
 }

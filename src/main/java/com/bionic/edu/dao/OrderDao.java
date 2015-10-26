@@ -28,7 +28,7 @@ public interface OrderDao {
         3 = DELIVERING
         4 = DONE
     */
-    void setOrderStatus(Orders order, int statusId);
+    void setOrderStatus(int orderId, int statusId);
 
     void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount);
 

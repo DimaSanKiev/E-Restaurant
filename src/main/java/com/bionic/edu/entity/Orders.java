@@ -15,7 +15,7 @@ public class Orders {
     @Column(name = "total_price")
     private double totalPrice;
     @ManyToOne
-    @JoinColumn(name = "orders_status_id")
+    @JoinColumn(referencedColumnName = "orders_status_id")
     private OrderStatus orderStatus;
     @ManyToOne
     @JoinColumn(name = "customer_id")

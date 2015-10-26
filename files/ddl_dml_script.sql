@@ -68,7 +68,8 @@ CREATE TABLE orders (
   date_time_delivered TIMESTAMP      NOT NULL,
   total_price         DECIMAL(15, 2) NOT NULL,
   PRIMARY KEY (id),
-  orders_status_id    INT CONSTRAINT orders_fk REFERENCES orders,
+--   orders_status_id    INT CONSTRAINT orders_fk REFERENCES orders,
+  orders_status_id    INT CONSTRAINT orders_status_fk REFERENCES orders_status,
   customer_id         INT CONSTRAINT customer_fk REFERENCES customer
 );
 
@@ -210,6 +211,15 @@ VALUES ('Roman Karetskiy', 'roman.karetskiy@gmail.com', 'pass4', '36 Ivana Lepse
 INSERT INTO customer (name, email, password, address, birthDate)
 VALUES ('Oksana Alekseeva', 'oksana.alekseeva@gmail.com', 'pass5', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18');
 
+INSERT INTO orders_status (name)
+VALUES ('NOT_READY');
+INSERT INTO orders_status (name)
+VALUES ('READY_FOR_SHIPMENT');
+INSERT INTO orders_status (name)
+VALUES ('DELIVERING');
+INSERT INTO orders_status (name)
+VALUES ('DONE');
+
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
 VALUES ('2015-10-17 15:21:10', '2015-10-17 16:21:10', 5.50, 1, 1);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
@@ -220,15 +230,6 @@ INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_st
 VALUES ('2015-10-17 15:31:11', '2015-10-17 16:11:02', 7.50, 1, 4);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
 VALUES ('2015-10-17 12:11:19', '2015-10-17 13:34:11', 7.15, 1, 5);
-
-INSERT INTO orders_status (name)
-VALUES ('NOT_READY');
-INSERT INTO orders_status (name)
-VALUES ('READY_FOR_SHIPMENT');
-INSERT INTO orders_status (name)
-VALUES ('DELIVERING');
-INSERT INTO orders_status (name)
-VALUES ('DONE');
 
 INSERT INTO order_dishes (price, dish_id, order_id)
 VALUES (2.20, 1, 1);

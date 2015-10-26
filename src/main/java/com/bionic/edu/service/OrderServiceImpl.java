@@ -51,8 +51,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Transactional
     @Override
-    public void setOrderStatus(Orders order, int statusId) {
-        orderDao.setOrderStatus(order, statusId);
+    public void setOrderStatus(int orderId, int statusId) {
+        orderDao.setOrderStatus(orderId, statusId);
     }
 
     @Override

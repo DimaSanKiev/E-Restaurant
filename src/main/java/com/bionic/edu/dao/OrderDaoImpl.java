@@ -2,7 +2,6 @@ package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -49,7 +48,6 @@ public class OrderDaoImpl implements OrderDao {
 
 
     @Override
-    // todo - variable order.Status.id - !! yes
     public List<Orders> getDeliveryListByTime() {
         TypedQuery<Orders> query = em.createQuery(
                 "SELECT o FROM Orders o WHERE o.orderStatus.id = 2 " +
@@ -66,11 +64,12 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void setOrderStatus(Orders order, int statusId) { // (orderid, statusid)
+    // todo - You have attempted to set a value of type class java.lang.Integer for parameter order_status_id with expected type of class com.bionic.edu.entity.OrderStatus
+    public void setOrderStatus(int orderId, int statusId) {
         TypedQuery<Orders> query = em.createQuery(
                 "UPDATE Orders o SET o.orderStatus = :order_status_id " +
                         "WHERE o.id = :order_id", Orders.class);
-        query.setParameter("order_status_id", order.getId()).
+        query.setParameter("order_id", orderId).
                 setParameter("order_status_id", statusId).executeUpdate();
     }
 
@@ -92,4 +91,6 @@ public class OrderDaoImpl implements OrderDao {
         }
         em.merge(order);
     }
+
+    // todo - createReport()
 }

@@ -46,7 +46,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    // todo - don't work without @Transactional - everywhere
     @Transactional
     public void delete(int id) {
         Employee employee = em.find(Employee.class, id);

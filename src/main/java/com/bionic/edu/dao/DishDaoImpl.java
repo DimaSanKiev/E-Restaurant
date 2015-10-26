@@ -2,7 +2,6 @@ package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Dish;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,7 +28,6 @@ public class DishDaoImpl implements DishDao {
     }
 
     @Override
-    @Transactional
     public void save(Dish dish) {
         if (dish.getId() == 0) {
             em.persist(dish);

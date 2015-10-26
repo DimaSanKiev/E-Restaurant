@@ -38,6 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customers;
     }
 
+    @Transactional
     @Override
     public void save(Customer customer) {
         customer.setPassword(Crypto.encrypt(customer.getPassword()));

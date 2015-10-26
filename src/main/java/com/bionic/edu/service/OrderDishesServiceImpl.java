@@ -24,6 +24,7 @@ public class OrderDishesServiceImpl implements OrderDishesService {
         return orderDishesDao.findAll();
     }
 
+    @Transactional
     @Override
     public void save(OrderDishes orderDishes) {
         orderDishesDao.save(orderDishes);

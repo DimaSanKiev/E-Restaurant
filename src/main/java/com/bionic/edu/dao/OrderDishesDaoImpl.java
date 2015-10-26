@@ -3,7 +3,6 @@ package com.bionic.edu.dao;
 import com.bionic.edu.entity.OrderDishes;
 import com.bionic.edu.entity.Orders;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,7 +29,6 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
     }
 
     @Override
-    @Transactional
     public void save(OrderDishes orderDishes) {
         if (orderDishes.getId() == 0) {
             em.persist(orderDishes);
@@ -39,7 +37,6 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
     }
 
     @Override
-    @Transactional
     public void delete(int id) {
         OrderDishes orderDishes = em.find(OrderDishes.class, id);
         if (orderDishes != null) {

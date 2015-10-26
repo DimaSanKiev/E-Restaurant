@@ -13,6 +13,7 @@ import java.util.Map;
 
 @Named
 public class OrderServiceImpl implements OrderService {
+
     @Inject
     private OrderDao orderDao;
 
@@ -48,6 +49,7 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getDeliveryListByStatus();
     }
 
+    @Transactional
     @Override
     public void setOrderStatus(Orders order, int statusId) {
         orderDao.setOrderStatus(order, statusId);

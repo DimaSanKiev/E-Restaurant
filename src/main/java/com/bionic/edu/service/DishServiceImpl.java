@@ -10,6 +10,7 @@ import java.util.List;
 
 @Named
 public class DishServiceImpl implements DishService {
+
     @Inject
     private DishDao dishDao;
 
@@ -23,6 +24,7 @@ public class DishServiceImpl implements DishService {
         return dishDao.findAll();
     }
 
+    @Transactional
     @Override
     public void save(Dish dish) {
         dishDao.save(dish);

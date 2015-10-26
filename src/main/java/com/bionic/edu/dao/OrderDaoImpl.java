@@ -32,7 +32,6 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    @Transactional
     public void save(Orders order) {
         if (order.getId() == 0) {
             em.persist(order);
@@ -41,7 +40,6 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    @Transactional
     public void delete(int id) {
         Orders order = em.find(Orders.class, id);
         if (order != null) {
@@ -68,7 +66,6 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    @Transactional
     public void setOrderStatus(Orders order, int statusId) { // (orderid, statusid)
         TypedQuery<Orders> query = em.createQuery(
                 "UPDATE Orders o SET o.orderStatus = :order_status_id " +

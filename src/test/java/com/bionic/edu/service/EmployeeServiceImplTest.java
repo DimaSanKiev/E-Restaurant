@@ -81,7 +81,6 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    // todo - is it correct way to test
     public void testSetReadiness() throws Exception {
         Employee employee = employeeService.findById(3);
         employee.setReady(false);

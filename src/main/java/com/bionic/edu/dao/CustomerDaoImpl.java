@@ -63,10 +63,8 @@ public class CustomerDaoImpl implements CustomerDao {
         if (customer.getPassword().equals(password)) { // crypto password XOR
             return customer;
         } else {
-            throw new AssertionError(); // todo return null
-
+            return null;
         }
     }
-
 
 }

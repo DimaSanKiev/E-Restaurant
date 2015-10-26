@@ -2,6 +2,7 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.EmployeeDao;
 import com.bionic.edu.entity.Employee;
+import com.bionic.edu.util.Crypto;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -10,26 +11,36 @@ import java.util.List;
 
 @Named
 public class EmployeeServiceImpl implements EmployeeService {
+
     @Inject
     private EmployeeDao employeeDao;
 
     @Override
     public Employee findById(int id) {
-        return employeeDao.findById(id);
+        Employee employee = employeeDao.findById(id);
+        employee.setPassword(Crypto.encrypt(employee.getPassword()));
+        return employee;
     }
 
     @Override
     public Employee findByEmail(String email) {
-        return employeeDao.findByEmail(email);
+        Employee employee = employeeDao.findByEmail(email);
+        employee.setPassword(Crypto.encrypt(employee.getPassword()));
+        return employee;
     }
 
     @Override
     public List<Employee> findAll() {
-        return employeeDao.findAll();
+        List<Employee> employees = employeeDao.findAll();
+        for (Employee employee : employees) {
+            employee.setPassword(Crypto.encrypt(employee.getPassword()));
+        }
+        return employees;
     }
 
     @Override
     public void save(Employee employee) {
+        employee.setPassword(Crypto.encrypt(employee.getPassword()));
         employeeDao.save(employee);
     }
 

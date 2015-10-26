@@ -1,6 +1,7 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Customer;
+import com.bionic.edu.util.Crypto;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,16 +56,16 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer login(String email, String password) {
+        String decryptPass = Crypto.encrypt(password);
         TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c WHERE c.email =" +
                 ":email", Customer.class);
         query.setParameter("email", email);
 
         Customer customer = query.getSingleResult();
-        if (customer.getPassword().equals(password)) { // crypto password XOR
+        if (customer.getPassword().equals(decryptPass)) {
             return customer;
-        } else {
+        } else
             return null;
-        }
     }
 
 }

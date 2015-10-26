@@ -1,6 +1,7 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Employee;
+import com.bionic.edu.util.Crypto;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,16 +57,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public Employee login(String email, String password) {
+        String decryptPass = Crypto.encrypt(password);
         TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e " +
                 "WHERE e.email = :email", Employee.class);
         query.setParameter("email", email);
 
         Employee employee = query.getSingleResult();
-        if (employee.getPassword().equals(password)) {
+        if (employee.getPassword().equals(decryptPass)) {
             return employee;
-        } else {
-            throw new AssertionError(); // todo handle
-        }
+        } else
+            return null;
     }
 
     @Override

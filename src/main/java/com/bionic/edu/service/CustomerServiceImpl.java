@@ -2,6 +2,7 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.CustomerDao;
 import com.bionic.edu.entity.Customer;
+import com.bionic.edu.util.Crypto;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -10,26 +11,36 @@ import java.util.List;
 
 @Named
 public class CustomerServiceImpl implements CustomerService {
+
     @Inject
     private CustomerDao customerDao;
 
     @Override
     public Customer findById(int id) {
-        return customerDao.findById(id);
+        Customer customer = customerDao.findById(id);
+        customer.setPassword(Crypto.encrypt(customer.getPassword()));
+        return customer;
     }
 
     @Override
     public Customer findByEmail(String email) {
-        return customerDao.findByEmail(email);
+        Customer customer = customerDao.findByEmail(email);
+        customer.setPassword(Crypto.encrypt(customer.getPassword()));
+        return customer;
     }
 
     @Override
     public List<Customer> findAll() {
-        return customerDao.findAll();
+        List<Customer> customers = customerDao.findAll();
+        for (Customer customer : customers) {
+            customer.setPassword(Crypto.encrypt(customer.getPassword()));
+        }
+        return customers;
     }
 
     @Override
     public void save(Customer customer) {
+        customer.setPassword(Crypto.encrypt(customer.getPassword()));
         customerDao.save(customer);
     }
 

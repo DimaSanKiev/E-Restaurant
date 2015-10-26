@@ -79,7 +79,6 @@ public class OrderServiceImplTest {
         assertEquals(0, orders.size());
     }
 
-//    todo - allMethods - find ORDERSTATUS_ID - ERROR 42X04: Column 'ORDERSTATUS_ID' is either not in any table in the FROM list or appears within...
     @Test
     public void testSetOrderStatus() throws Exception {
         Orders order = orderService.findById(1);

@@ -6,8 +6,10 @@ import com.bionic.edu.entity.DishCategory;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
+@Named
 public class DishCategoryServiceImpl implements DishCategoryService {
 
     @Inject

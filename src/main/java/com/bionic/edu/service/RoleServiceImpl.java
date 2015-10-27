@@ -19,7 +19,6 @@ public class RoleServiceImpl implements RoleService {
         return roleDao.findById(id);
     }
 
-    @Transactional
     @Override
     public List<Role> findAll() {
         return roleDao.findAll();
@@ -31,6 +30,7 @@ public class RoleServiceImpl implements RoleService {
         roleDao.save(role);
     }
 
+    @Transactional
     @Override
     public void delete(int id) {
         roleDao.delete(id);

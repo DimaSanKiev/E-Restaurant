@@ -17,9 +17,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
 
     @Override
     public OrderDishes findById(int id) {
-        OrderDishes orderDishes;
-        orderDishes = em.find(OrderDishes.class, id);
-        return orderDishes;
+        return em.find(OrderDishes.class, id);
     }
 
     @Override

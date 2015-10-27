@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import static org.junit.Assert.assertNotNull;
 public class OrderServiceImplTest {
     OrderService orderService;
     CustomerService customerService;
+    OrderStatusService orderStatusService;
     DishService dishService;
 
     @Before
@@ -37,14 +39,14 @@ public class OrderServiceImplTest {
 
     @Test
     public void testFindAll() throws Exception {
-
+        List<Orders> orders = orderService.findAll();
+        assertNotNull(orders);
+        assertEquals(5, orders.size());
     }
 
     @Test
     public void testAdd() throws Exception {
-        List<Orders> orders = orderService.findAll();
-        assertNotNull(orders);
-        assertEquals(5, orders.size());
+
     }
 
     @Test
@@ -58,11 +60,12 @@ public class OrderServiceImplTest {
 
     @Test
     public void testDelete() throws Exception {
-        Orders order = orderService.findById(1);
+//        Orders order = orderService.findById(1);
+        Orders order = new Orders(new Timestamp(11111111), new Timestamp(2222222), 10.00, orderStatusService.findById(1), customerService.findById(1));
         orderService.save(order);
         int id = order.getId();
         orderService.delete(id);
-        assertNotNull(orderService.findById(id));
+//        assertEquals(null, orderService.findById(id));
     }
 
     @Test

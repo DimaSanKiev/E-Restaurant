@@ -18,7 +18,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findById(int id) {
         Customer customer = customerDao.findById(id);
-        customer.setPassword(Crypto.encrypt(customer.getPassword()));
+        if (customer != null)
+            customer.setPassword(Crypto.encrypt(customer.getPassword()));
         return customer;
     }
 

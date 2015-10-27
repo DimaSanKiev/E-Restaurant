@@ -24,9 +24,9 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer findByEmail(String email) {
-        Customer customer;
-        customer = em.find(Customer.class, email);
-        return customer;
+        TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c WHERE c.email = :email",
+                Customer.class).setParameter("email", email);
+        return query.getSingleResult();
     }
 
     @Override

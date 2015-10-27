@@ -24,6 +24,14 @@ public class Orders {
     public Orders() {
     }
 
+    public Orders(Timestamp dateTimeTaken, Timestamp dateTimeDelivered, double totalPrice, OrderStatus orderStatus, Customer customer) {
+        this.dateTimeTaken = dateTimeTaken;
+        this.dateTimeDelivered = dateTimeDelivered;
+        this.totalPrice = totalPrice;
+        this.orderStatus = orderStatus;
+        this.customer = customer;
+    }
+
     public Orders(Timestamp dateTimeTaken, Customer customer) {
         this.dateTimeTaken = dateTimeTaken;
         this.customer = customer;

@@ -9,9 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class DishServiceImplTest {
     DishService dishService;
@@ -39,8 +37,7 @@ public class DishServiceImplTest {
 
     @Test
     public void testAdd() throws Exception {
-        DishCategory dishCategory = dishCategoryService.findById(1);
-        Dish dish = new Dish("testDishAdd", "justTestDish", 0.00, true, true, "photo", dishCategory);
+        Dish dish = new Dish("testDishAdd", "justTestDish", 0.00, true, true, "photo", dishCategoryService.findById(1));
         dishService.save(dish);
         int id = dish.getId();
         assertNotNull(dishService.findById(id));

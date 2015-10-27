@@ -25,9 +25,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public Employee findByEmail(String email) {
-        Employee employee;
-        employee = em.find(Employee.class, email);
-        return employee;
+        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e WHERE e.email = :email",
+                Employee.class).setParameter("email", email);
+        return query.getSingleResult();
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 public class EmployeeServiceImplTest {
     EmployeeService employeeService;
@@ -43,7 +42,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testAdd() throws Exception {
+    public void testSave() throws Exception {
         Employee employee = employeeService.findById(1);
         employee.setEmail("testAdd@email.com");
         employeeService.save(employee);
@@ -67,7 +66,7 @@ public class EmployeeServiceImplTest {
         employeeService.save(employee);
         int id = employee.getId();
         employeeService.delete(id);
-        assertNull(employeeService.findById(id));
+        assertEquals(null, employeeService.findById(id));
     }
 
     @Test

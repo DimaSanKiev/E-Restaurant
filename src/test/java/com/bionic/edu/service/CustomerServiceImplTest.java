@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 public class CustomerServiceImplTest {
     CustomerService customerService;
@@ -44,12 +43,11 @@ public class CustomerServiceImplTest {
         assertEquals(5, customers.size());
     }
 
-    // todo - You have provided an instance of an incorrect PK class for this find operation.  Class expected : class java.lang.Integer, Class received : class java.lang.String.
     @Test
     public void testSave() throws Exception {
         Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
         customerService.save(customer);
-        assertNotNull(customerService.findByEmail("test@email.com"));
+        assertNotNull(customerService.findByEmail("testAdd@email.com"));
     }
 
     @Test
@@ -66,7 +64,7 @@ public class CustomerServiceImplTest {
         customerService.save(customer);
         int id = customer.getId();
         customerService.delete(id);
-        assertNull(customerService.findById(id));
+        assertEquals(null, customerService.findById(id));
     }
 
     @Test

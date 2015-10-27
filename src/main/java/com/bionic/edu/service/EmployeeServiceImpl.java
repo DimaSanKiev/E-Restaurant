@@ -18,7 +18,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findById(int id) {
         Employee employee = employeeDao.findById(id);
-        employee.setPassword(Crypto.encrypt(employee.getPassword()));
+        if (employee != null)
+            employee.setPassword(Crypto.encrypt(employee.getPassword()));
         return employee;
     }
 
@@ -38,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees;
     }
 
+    @Transactional
     @Override
     public void save(Employee employee) {
         employee.setPassword(Crypto.encrypt(employee.getPassword()));

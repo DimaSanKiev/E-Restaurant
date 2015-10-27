@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +45,11 @@ public class OrderServiceImplTest {
 
     @Test
     public void testAdd() throws Exception {
-
+        Orders order = orderService.findById(1);
+        int id = order.getId();
+        orderService.save(order);
+        assertNotNull(order.getId());
+        assertEquals(id, order.getId());
     }
 
     @Test
@@ -60,12 +63,11 @@ public class OrderServiceImplTest {
 
     @Test
     public void testDelete() throws Exception {
-//        Orders order = orderService.findById(1);
-        Orders order = new Orders(new Timestamp(11111111), new Timestamp(2222222), 10.00, orderStatusService.findById(1), customerService.findById(1));
-        orderService.save(order);
+        Orders order = orderService.findById(1);
         int id = order.getId();
+        orderService.save(order);
         orderService.delete(id);
-//        assertEquals(null, orderService.findById(id));
+        assertEquals(null, orderService.findById(id));
     }
 
     @Test

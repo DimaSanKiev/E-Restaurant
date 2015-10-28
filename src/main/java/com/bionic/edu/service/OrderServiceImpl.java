@@ -49,12 +49,6 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getDeliveryListByStatus();
     }
 
-    @Transactional
-    @Override
-    public void setOrderStatus(int orderId, int statusId) {
-        orderDao.setOrderStatus(orderId, statusId);
-    }
-
     @Override
     public void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount) {
         orderDao.submitByCustomer(customer, dishAmount);

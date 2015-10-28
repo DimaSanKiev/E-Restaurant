@@ -63,16 +63,6 @@ public class OrderDaoImpl implements OrderDao {
         return query.getResultList();
     }
 
-    @Override
-    // todo - You have attempted to set a value of type class java.lang.Integer for parameter order_status_id with expected type of class com.bionic.edu.entity.OrderStatus
-    public void setOrderStatus(int orderId, int statusId) {
-        TypedQuery<Orders> query = em.createQuery(
-                "UPDATE Orders o SET o.orderStatus = :order_status_id " +
-                        "WHERE o.id = :order_id", Orders.class);
-        query.setParameter("order_id", orderId).
-                setParameter("order_status_id", statusId).executeUpdate();
-    }
-
     // todo check!
     @Override
     public void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount) {

@@ -62,6 +62,7 @@ public class OrderDishesServiceImplTest {
         assertNull(orderDishesService.findById(id));
     }
 
+    // todo - NPE
     @Test
     public void testGetAllFromOrder() throws Exception {
         Orders order = new OrderDaoImpl().findById(1);

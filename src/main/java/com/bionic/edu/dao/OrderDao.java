@@ -22,14 +22,6 @@ public interface OrderDao {
 
     List<Orders> getDeliveryListByStatus();
 
-
-    /*  1 = NOT_READY
-        2 = READY_FOR_SHIPMENT
-        3 = DELIVERING
-        4 = DONE
-    */
-    void setOrderStatus(int orderId, int statusId);
-
     void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount);
 
 }

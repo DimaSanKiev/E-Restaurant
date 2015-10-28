@@ -22,14 +22,5 @@ public interface OrderService {
 
     List<Orders> getDeliveryListByStatus();
 
-
-    /*  1 = NOT_READY
-        2 = READY_FOR_SHIPMENT
-        3 = DELIVERING
-        4 = DONE
-    */
-    void setOrderStatus(int orderId, int statusId);
-    // check this order for ready dishes
-
     void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount);
 }

@@ -52,6 +52,7 @@ public class OrderServiceImplTest {
         assertEquals(id, order.getId());
     }
 
+    // todo - NPE
     @Test
     public void testUpdate() throws Exception {
         Orders order = orderService.findById(1);
@@ -61,6 +62,7 @@ public class OrderServiceImplTest {
         assertEquals("olga.romanova@gmail.com", order.getCustomer().getEmail());
     }
 
+    // todo - DELETE on table 'ORDERS' caused a violation of foreign key constraint 'ORDER_FK' for key (1)
     @Test
     public void testDelete() throws Exception {
         Orders order = orderService.findById(1);
@@ -84,15 +86,17 @@ public class OrderServiceImplTest {
         assertEquals(0, orders.size());
     }
 
+    // todo - NPE
     @Test
     public void testSetOrderStatus() throws Exception {
         Orders order = orderService.findById(1);
-        orderService.setOrderStatus(1, 2);
+        order.setOrderStatus(orderStatusService.findById(2));
         orderService.save(order);
         List<Orders> orders = orderService.getDeliveryListByStatus();
         assertEquals(1, orders.size());
     }
 
+    // todo - NPE
     @Test
     public void testSubmitByCustomer() throws Exception {
         Customer customer = customerService.findById(1);

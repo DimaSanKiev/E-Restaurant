@@ -35,9 +35,12 @@ public class DishServiceImplTest {
         assertEquals(18, dishes.size());
     }
 
+    // todo - NPE
     @Test
     public void testAdd() throws Exception {
-        Dish dish = new Dish("testDishAdd", "justTestDish", 0.00, true, true, "photo", dishCategoryService.findById(1));
+//        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, "photo", dishCategoryService.findById(1));
+        Dish dish = dishService.findById(1);
+        System.out.println(dish);
         dishService.save(dish);
         int id = dish.getId();
         assertNotNull(dishService.findById(id));
@@ -51,6 +54,7 @@ public class DishServiceImplTest {
         assertEquals("Test Name", dish.getName());
     }
 
+    // todo - NPE
     @Test
     public void testDelete() throws Exception {
         DishCategory dishCategory = dishCategoryService.findById(1);

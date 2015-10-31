@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -13,11 +14,13 @@ import static org.junit.Assert.assertNotNull;
 
 public class EmployeeServiceImplTest {
     EmployeeService employeeService;
+    RoleService roleService;
 
     @Before
     public void setUp() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
         employeeService = context.getBean(EmployeeService.class);
+        roleService = context.getBean(RoleService.class);
     }
 
     @Test
@@ -43,8 +46,7 @@ public class EmployeeServiceImplTest {
 
     @Test
     public void testSave() throws Exception {
-        Employee employee = employeeService.findById(1);
-        employee.setEmail("testAdd@email.com");
+        Employee employee = new Employee("testName", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(1));
         employeeService.save(employee);
         int id = employee.getId();
         assertNotNull(employeeService.findById(id));

@@ -1,7 +1,6 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Dish;
-import com.bionic.edu.entity.DishCategory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -19,6 +18,7 @@ public class DishServiceImplTest {
     public void setUp() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
         dishService = context.getBean(DishService.class);
+        dishCategoryService = context.getBean(DishCategoryService.class);
     }
 
     @Test
@@ -35,11 +35,9 @@ public class DishServiceImplTest {
         assertEquals(18, dishes.size());
     }
 
-    // todo - NPE
     @Test
     public void testAdd() throws Exception {
-//        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, "photo", dishCategoryService.findById(1));
-        Dish dish = dishService.findById(1);
+        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, "photo", dishCategoryService.findById(1));
         System.out.println(dish);
         dishService.save(dish);
         int id = dish.getId();
@@ -54,11 +52,9 @@ public class DishServiceImplTest {
         assertEquals("Test Name", dish.getName());
     }
 
-    // todo - NPE
     @Test
     public void testDelete() throws Exception {
-        DishCategory dishCategory = dishCategoryService.findById(1);
-        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategory);
+        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategoryService.findById(1));
         dishService.save(dish);
         int id = dish.getId();
         dishService.delete(id);

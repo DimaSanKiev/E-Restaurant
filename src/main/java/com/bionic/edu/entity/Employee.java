@@ -14,7 +14,7 @@ public class Employee {
     private Date birthDate;
     private Date hireDate;
     private boolean ready;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id")
     private Role role;
 

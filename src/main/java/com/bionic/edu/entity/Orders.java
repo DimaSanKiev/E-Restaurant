@@ -14,7 +14,7 @@ public class Orders {
     private Timestamp dateTimeDelivered;
     @Column(name = "total_price")
     private double totalPrice;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "orders_status_id")
     private OrderStatus orderStatus;
     @ManyToOne

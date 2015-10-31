@@ -1,6 +1,5 @@
 package com.bionic.edu.service;
 
-import com.bionic.edu.dao.OrderDaoImpl;
 import com.bionic.edu.entity.OrderDishes;
 import com.bionic.edu.entity.Orders;
 import org.junit.Before;
@@ -10,17 +9,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class OrderDishesServiceImplTest {
     OrderDishesService orderDishesService;
+    OrderService orderService;
 
     @Before
     public void setUp() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
         orderDishesService = context.getBean(OrderDishesService.class);
+        orderService = context.getBean(OrderService.class);
     }
 
     @Test
@@ -34,7 +33,7 @@ public class OrderDishesServiceImplTest {
     public void testFindAll() throws Exception {
         List<OrderDishes> ordersDishes = orderDishesService.findAll();
         assertNotNull(ordersDishes);
-        assertEquals(5, ordersDishes.size());
+        assertEquals(6, ordersDishes.size());
     }
 
     @Test
@@ -62,10 +61,9 @@ public class OrderDishesServiceImplTest {
         assertNull(orderDishesService.findById(id));
     }
 
-    // todo - NPE
     @Test
     public void testGetAllFromOrder() throws Exception {
-        Orders order = new OrderDaoImpl().findById(1);
+        Orders order = orderService.findById(1);
         List<OrderDishes> orderDishesList = orderDishesService.getAllFromOrder(order);
         assertNotNull(orderDishesList);
         assertEquals(2, orderDishesList.size());

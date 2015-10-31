@@ -13,7 +13,7 @@ public class Dish {
     private boolean kitchenmade;
     private boolean available = true;
     private String photo_url;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "dish_category_id")
     private DishCategory category;
 

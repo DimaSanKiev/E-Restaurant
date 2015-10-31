@@ -12,7 +12,7 @@ public class OrderDishes {
     @JoinColumn(name = "dish_id")
     private Dish dish;
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "orders_id")
     private Orders order;
 
     public OrderDishes() {

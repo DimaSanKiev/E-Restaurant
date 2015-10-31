@@ -1,6 +1,5 @@
 package com.bionic.edu.service;
 
-import com.bionic.edu.dao.CustomerDaoImpl;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
@@ -26,6 +25,9 @@ public class OrderServiceImplTest {
     public void setUp() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
         orderService = context.getBean(OrderService.class);
+        customerService = context.getBean(CustomerService.class);
+        orderStatusService = context.getBean(OrderStatusService.class);
+        dishService = context.getBean(DishService.class);
     }
 
 
@@ -52,11 +54,10 @@ public class OrderServiceImplTest {
         assertEquals(id, order.getId());
     }
 
-    // todo - NPE
     @Test
     public void testUpdate() throws Exception {
         Orders order = orderService.findById(1);
-        order.setCustomer(new CustomerDaoImpl().findById(1));
+        order.setCustomer(customerService.findById(1));
         orderService.save(order);
         assertEquals(1, order.getCustomer().getId());
         assertEquals("olga.romanova@gmail.com", order.getCustomer().getEmail());
@@ -76,17 +77,16 @@ public class OrderServiceImplTest {
     public void testGetDeliveryListByTime() throws Exception {
         List<Orders> orders = orderService.getDeliveryListByTime();
         assertNotNull(orders);
-        assertEquals(0, orders.size());
+        assertEquals(1, orders.size());
     }
 
     @Test
     public void testGetDeliveryListByStatus() throws Exception {
         List<Orders> orders = orderService.getDeliveryListByStatus();
         assertNotNull(orders);
-        assertEquals(0, orders.size());
+        assertEquals(1, orders.size());
     }
 
-    // todo - NPE
     @Test
     public void testSetOrderStatus() throws Exception {
         Orders order = orderService.findById(1);
@@ -96,7 +96,7 @@ public class OrderServiceImplTest {
         assertEquals(1, orders.size());
     }
 
-    // todo - NPE
+    // todo - No EntityManager with actual transaction available for current thread - cannot reliably process 'persist' call
     @Test
     public void testSubmitByCustomer() throws Exception {
         Customer customer = customerService.findById(1);

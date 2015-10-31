@@ -7,6 +7,7 @@ public class OrderDishes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int quantity;
     private double price;
     @ManyToOne
     @JoinColumn(name = "dish_id")
@@ -30,6 +31,14 @@ public class OrderDishes {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getPrice() {
@@ -60,6 +69,7 @@ public class OrderDishes {
     public String toString() {
         return "OrderDishes{" +
                 "id=" + id +
+                ", quantity=" + quantity +
                 ", price=" + price +
                 ", dish=" + dish +
                 ", order=" + order +

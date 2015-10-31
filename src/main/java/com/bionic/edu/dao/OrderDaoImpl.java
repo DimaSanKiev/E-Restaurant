@@ -1,12 +1,14 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.*;
+import com.bionic.edu.util.Report;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +53,7 @@ public class OrderDaoImpl implements OrderDao {
     public List<Orders> getDeliveryListByTime() {
         TypedQuery<Orders> query = em.createQuery(
                 "SELECT o FROM Orders o WHERE o.orderStatus.id = 2 " +
-                        "ORDER BY o.dateTimeTaken", Orders.class);
+                        "ORDER BY o.dateTimeTaken DESC", Orders.class);
         return query.getResultList();
     }
 
@@ -82,5 +84,29 @@ public class OrderDaoImpl implements OrderDao {
         em.merge(order);
     }
 
-    // todo - createReport()
+    @Override
+    public List<Report> getReport(LocalDateTime startPeriod, LocalDateTime endPeriod) {
+        TypedQuery<Report> query = em.createQuery(
+                "SELECT new com.bionic.edu.util.Report(COUNT(o), SUM(o.totalPrice), FUNC('DATE', o.dateTimeTaken)) " +
+                        "FROM Orders o WHERE o.dateTimeTaken BETWEEN ?1 AND ?2 " +
+                        "GROUP BY FUNC('DATE', o.dateTimeTaken) " +
+                        "ORDER BY FUNC('DATE', o.dateTimeTaken)", Report.class);
+        query.setParameter(1, startPeriod);
+        query.setParameter(2, endPeriod);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Report> getReport(LocalDateTime startPeriod, LocalDateTime endPeriod, String category) {
+        TypedQuery<Report> query = em.createQuery(
+                "SELECT new com.bionic.edu.util.Report (SUM(od.quantity), SUM(od.price * od.quantity), FUNC('DATE',od.order.dateTimeTaken), " +
+                        "\"" + category + "\") " +
+                        " FROM order_dishes od where od.order.dateTimeTaken between ?1 and ?2" +
+                        " and od.dish.category = \"" + category + "\"" +
+                        " GROUP BY FUNC('DATE',od.order.dateTimeTaken) " +
+                        " ORDER BY FUNC('DATE',od.order.dateTimeTaken)", Report.class);
+        query.setParameter(1, startPeriod);
+        query.setParameter(2, endPeriod);
+        return query.getResultList();
+    }
 }

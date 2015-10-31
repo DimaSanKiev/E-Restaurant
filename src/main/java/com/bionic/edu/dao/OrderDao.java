@@ -3,7 +3,9 @@ package com.bionic.edu.dao;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
+import com.bionic.edu.util.Report;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -24,4 +26,8 @@ public interface OrderDao {
 
     void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount);
 
+
+    List<Report> getReport(LocalDateTime startPeriod, LocalDateTime endPeriod);
+
+    List<Report> getReport(LocalDateTime startPeriod, LocalDateTime endPeriod, String category);
 }

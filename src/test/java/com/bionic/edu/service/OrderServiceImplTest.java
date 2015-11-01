@@ -117,7 +117,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void testGetReportPeriod() throws Exception {
-        List<Report> reports = orderService.getReport(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-18"));
+        List<Report> reports = orderService.getReport(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-19"));
         System.out.println(reports);
         assertNotNull(reports);
     }

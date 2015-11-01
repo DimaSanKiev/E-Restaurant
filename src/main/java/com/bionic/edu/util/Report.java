@@ -3,37 +3,37 @@ package com.bionic.edu.util;
 import java.sql.Date;
 
 public class Report {
-    private Long count;
-    private Double total;
+    private long count;
+    private double total;
     Date date;
     String category;
 
-    public Report(Long count, Double total, Date date) {
+    public Report(long count, double total, Date date) {
         this.count = count;
         this.total = total;
         this.date = date;
     }
 
-    public Report(Long count, Double total, Date date, String category) {
+    public Report(long count, double total, Date date, String category) {
         this.count = count;
         this.total = total;
         this.date = date;
         this.category = category;
     }
 
-    public Long getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(Long count) {
+    public void setCount(long count) {
         this.count = count;
     }
 
-    public Double getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 

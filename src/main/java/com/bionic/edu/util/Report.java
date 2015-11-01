@@ -1,30 +1,30 @@
 package com.bionic.edu.util;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class Report {
-    private int count;
+    private long count;
     private double total;
-    private LocalDateTime startPeriod;
-    private LocalDateTime endPeriod;
+    private Timestamp startPeriod;
+    private Timestamp endPeriod;
     private String category;
 
     public Report() {
     }
 
-    public Report(int count, double total) {
+    public Report(long count, double total) {
         this.count = count;
         this.total = total;
     }
 
-    public Report(int count, double total, LocalDateTime startPeriod, LocalDateTime endPeriod) {
+    public Report(long count, double total, Timestamp startPeriod, Timestamp endPeriod) {
         this.count = count;
         this.total = total;
         this.startPeriod = startPeriod;
         this.endPeriod = endPeriod;
     }
 
-    public Report(int count, double total, LocalDateTime startPeriod, LocalDateTime endPeriod, String category) {
+    public Report(long count, double total, Timestamp startPeriod, Timestamp endPeriod, String category) {
         this.count = count;
         this.total = total;
         this.startPeriod = startPeriod;
@@ -32,11 +32,11 @@ public class Report {
         this.category = category;
     }
 
-    public int getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(long count) {
         this.count = count;
     }
 
@@ -48,19 +48,19 @@ public class Report {
         this.total = total;
     }
 
-    public LocalDateTime getStartPeriod() {
+    public Timestamp getStartPeriod() {
         return startPeriod;
     }
 
-    public void setStartPeriod(LocalDateTime startPeriod) {
+    public void setStartPeriod(Timestamp startPeriod) {
         this.startPeriod = startPeriod;
     }
 
-    public LocalDateTime getEndPeriod() {
+    public Timestamp getEndPeriod() {
         return endPeriod;
     }
 
-    public void setEndPeriod(LocalDateTime endPeriod) {
+    public void setEndPeriod(Timestamp endPeriod) {
         this.endPeriod = endPeriod;
     }
 

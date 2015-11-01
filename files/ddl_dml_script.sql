@@ -224,13 +224,13 @@ VALUES ('DONE');
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, customer_id)
 VALUES ('2015-10-17 15:21:10', '2015-10-17 16:21:10', 5.50, 1);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, customer_id)
-VALUES ('2015-10-17 14:11:11', '2015-10-17 15:10:01', 6.05, 2);
+VALUES ('2015-10-18 14:11:11', '2015-10-18 15:10:01', 6.05, 2);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, customer_id)
-VALUES ('2015-10-17 15:59:50', '2015-10-17 16:25:04', 6.40, 3);
+VALUES ('2015-10-19 15:59:50', '2015-10-19 16:25:04', 6.40, 3);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, customer_id)
-VALUES ('2015-10-17 15:31:11', '2015-10-17 16:11:02', 7.50, 4);
+VALUES ('2015-10-20 15:31:11', '2015-10-20 16:11:02', 7.50, 4);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, customer_id)
-VALUES ('2015-10-17 12:11:19', '2015-10-17 13:34:11', 7.15, 5);
+VALUES ('2015-10-21 12:11:19', '2015-10-21 13:34:11', 7.15, 5);
 
 INSERT INTO order_dishes (price, dish_id, orders_id)
 VALUES (2.20, 1, 1);

@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -85,7 +84,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Report> getReport(LocalDateTime startPeriod, LocalDateTime endPeriod) {
+    public List<Report> getReport(Timestamp startPeriod, Timestamp endPeriod) {
         TypedQuery<Report> query = em.createQuery(
                 "SELECT new com.bionic.edu.util.Report(COUNT(o), SUM(o.totalPrice), FUNC('DATE', o.dateTimeTaken)) " +
                         "FROM Orders o WHERE o.dateTimeTaken BETWEEN ?1 AND ?2 " +
@@ -97,7 +96,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Report> getReport(LocalDateTime startPeriod, LocalDateTime endPeriod, String category) {
+    public List<Report> getReport(Timestamp startPeriod, Timestamp endPeriod, String category) {
         TypedQuery<Report> query = em.createQuery(
                 "SELECT new com.bionic.edu.util.Report (SUM(od.quantity), SUM(od.price * od.quantity), FUNC('DATE',od.order.dateTimeTaken), " +
                         "\"" + category + "\") " +

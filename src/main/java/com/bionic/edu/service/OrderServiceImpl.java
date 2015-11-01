@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -57,12 +57,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Report> getReport(LocalDateTime startPeriod, LocalDateTime endPeriod) {
+    public List<Report> getReport(Timestamp startPeriod, Timestamp endPeriod) {
         return orderDao.getReport(startPeriod, endPeriod);
     }
 
     @Override
-    public List<Report> getReport(LocalDateTime startPeriod, LocalDateTime endPeriod, String category) {
+    public List<Report> getReport(Timestamp startPeriod, Timestamp endPeriod, String category) {
         return orderDao.getReport(startPeriod, endPeriod, category);
     }
 }

@@ -3,11 +3,13 @@ package com.bionic.edu.service;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
+import com.bionic.edu.util.Report;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,5 +106,18 @@ public class OrderServiceImplTest {
         Map<Dish, Integer> dishesQuantity = new HashMap<>();
         dishesQuantity.put(dish, 2);
         orderService.submitByCustomer(customer, dishesQuantity);
+    }
+
+    @Test
+    public void testGetReportPeriod() throws Exception {
+        List<Report> reports = orderService.getReport(new Timestamp(2015, 10, 16, 0, 0, 0, 0), new Timestamp(2015, 11, 1, 0, 0, 0, 0));
+        System.out.println(reports);
+        assertNotNull(reports);
+    }
+
+    @Test
+    public void testGetReportCategory() throws Exception {
+        List<Report> reports = orderService.getReport(new Timestamp(2015, 10, 16, 0, 0, 0, 0), new Timestamp(2015, 11, 1, 0, 0, 0, 0), "SOUP");
+        assertNotNull(reports);
     }
 }

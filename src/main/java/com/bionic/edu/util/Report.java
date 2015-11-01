@@ -12,11 +12,6 @@ public class Report {
     public Report() {
     }
 
-    public Report(long count, double total) {
-        this.count = count;
-        this.total = total;
-    }
-
     public Report(long count, double total, Timestamp startPeriod, Timestamp endPeriod) {
         this.count = count;
         this.total = total;

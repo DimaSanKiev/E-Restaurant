@@ -34,4 +34,12 @@ public class OrderStatus {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "OrderStatus{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

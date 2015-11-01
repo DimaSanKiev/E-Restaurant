@@ -76,6 +76,8 @@ public class OrderDishesServiceImplTest {
 
     @Test
     public void testCreateListForKitchen() throws Exception {
-        // todo
+        List<OrderDishes> orderDishesList = orderDishesService.createListForKitchen();
+        assertNotNull(orderDishesList);
+        assertEquals(4, orderDishesList.size());
     }
 }

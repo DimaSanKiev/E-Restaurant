@@ -1,62 +1,48 @@
 package com.bionic.edu.util;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Report {
-    private long count;
-    private double total;
-    private Timestamp startPeriod;
-    private Timestamp endPeriod;
-    private String category;
+    private Long count;
+    private Double total;
+    Date date;
+    String category;
 
-    public Report() {
-    }
-
-    public Report(long count, double total, Timestamp startPeriod, Timestamp endPeriod) {
+    public Report(Long count, Double total, Date date) {
         this.count = count;
         this.total = total;
-        this.startPeriod = startPeriod;
-        this.endPeriod = endPeriod;
+        this.date = date;
     }
 
-    public Report(long count, double total, Timestamp startPeriod, Timestamp endPeriod, String category) {
+    public Report(Long count, Double total, Date date, String category) {
         this.count = count;
         this.total = total;
-        this.startPeriod = startPeriod;
-        this.endPeriod = endPeriod;
+        this.date = date;
         this.category = category;
     }
 
-    public long getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(long count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 
-    public double getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
-    public Timestamp getStartPeriod() {
-        return startPeriod;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStartPeriod(Timestamp startPeriod) {
-        this.startPeriod = startPeriod;
-    }
-
-    public Timestamp getEndPeriod() {
-        return endPeriod;
-    }
-
-    public void setEndPeriod(Timestamp endPeriod) {
-        this.endPeriod = endPeriod;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCategory() {
@@ -72,9 +58,7 @@ public class Report {
         return "Report{" +
                 "count=" + count +
                 ", total=" + total +
-                ", startPeriod=" + startPeriod +
-                ", endPeriod=" + endPeriod +
-                ", category='" + category + '\'' +
+                ", date=" + date +
                 '}';
     }
 }

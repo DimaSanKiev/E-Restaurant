@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -52,17 +52,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Orders> getCustomersOrder(int customerId) {
+        return orderDao.getCustomersOrder(customerId);
+    }
+
+    @Override
     public void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount) {
         orderDao.submitByCustomer(customer, dishAmount);
     }
 
     @Override
-    public List<Report> getReport(Timestamp startPeriod, Timestamp endPeriod) {
+    public List<Report> getReport(Date startPeriod, Date endPeriod) {
         return orderDao.getReport(startPeriod, endPeriod);
     }
 
     @Override
-    public List<Report> getReport(Timestamp startPeriod, Timestamp endPeriod, String category) {
+    public List<Report> getReport(Date startPeriod, Date endPeriod, String category) {
         return orderDao.getReport(startPeriod, endPeriod, category);
     }
 }

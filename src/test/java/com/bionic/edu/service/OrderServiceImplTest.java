@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,6 +98,13 @@ public class OrderServiceImplTest {
         assertEquals(1, orders.size());
     }
 
+    @Test
+    public void testGetCustomersOrder() throws Exception {
+        List<Orders> orders = orderService.getCustomersOrder(3);
+        assertNotNull(orders);
+        assertEquals(1, orders.size());
+    }
+
     // todo - No EntityManager with actual transaction available for current thread - cannot reliably process 'persist' call
     @Test
     public void testSubmitByCustomer() throws Exception {
@@ -110,14 +117,14 @@ public class OrderServiceImplTest {
 
     @Test
     public void testGetReportPeriod() throws Exception {
-        List<Report> reports = orderService.getReport(new Timestamp(2015, 10, 16, 0, 0, 0, 0), new Timestamp(2015, 11, 1, 0, 0, 0, 0));
+        List<Report> reports = orderService.getReport(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-18"));
         System.out.println(reports);
         assertNotNull(reports);
     }
 
     @Test
     public void testGetReportCategory() throws Exception {
-        List<Report> reports = orderService.getReport(new Timestamp(2015, 10, 16, 0, 0, 0, 0), new Timestamp(2015, 11, 1, 0, 0, 0, 0), "SOUP");
+        List<Report> reports = orderService.getReport(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-18"), "SOUP");
         assertNotNull(reports);
     }
 }

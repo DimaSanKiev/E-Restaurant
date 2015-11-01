@@ -44,7 +44,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
 
     @Override
     public List<OrderDishes> getAllFromOrder(Orders order) {
-        return em.createQuery("SELECT o FROM order_dishes o WHERE o.order.id = :id", OrderDishes.class).
+        return em.createQuery("SELECT od FROM order_dishes od WHERE od.order.id = :id", OrderDishes.class).
                 setParameter("id", order.getId()).getResultList();
     }
 
@@ -55,8 +55,8 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
 
     @Override
     public List<OrderDishes> createListForKitchen() {
-        return em.createQuery("SELECT o FROM order_dishes o where o.dish.kitchenmade = true " +
-                "AND o.order.orderStatus = :status", OrderDishes.class) // sort by time - oldest first
+        return em.createQuery("SELECT od FROM order_dishes od WHERE od.dish.kitchenmade = true " +
+                "AND od.order.orderStatus.id = :status ORDER BY od.order.dateTimeTaken DESC", OrderDishes.class)
                 .setParameter("status", 1).getResultList();
     }
 

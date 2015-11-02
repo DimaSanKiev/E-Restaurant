@@ -1,8 +1,6 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.dao.OrderDao;
-import com.bionic.edu.entity.Customer;
-import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.Report;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 
 @Named
 public class OrderServiceImpl implements OrderService {
@@ -56,10 +53,6 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getCustomersOrder(customerId);
     }
 
-    @Override
-    public void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount) {
-        orderDao.submitByCustomer(customer, dishAmount);
-    }
 
     @Override
     public List<Report> getReport(Date startPeriod, Date endPeriod) {

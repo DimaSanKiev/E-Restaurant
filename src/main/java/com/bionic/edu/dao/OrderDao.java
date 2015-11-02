@@ -1,13 +1,10 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.entity.Customer;
-import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.Report;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 
 public interface OrderDao {
 
@@ -25,8 +22,6 @@ public interface OrderDao {
     List<Orders> getDeliveryListByStatus();
 
     List<Orders> getCustomersOrder(int customerId);
-
-    void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount);
 
 
     List<Report> getReport(Date startPeriod, Date endPeriod);

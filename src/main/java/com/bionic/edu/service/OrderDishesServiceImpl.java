@@ -43,13 +43,8 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     }
 
     @Override
-    public void addKitchenmadeToOrder(OrderDishes orderDishes) {
-        orderDishesDao.addKitchenmadeToOrder(orderDishes);
-    }
-
-    @Override
-    public List<OrderDishes> createListForKitchen() {
-        return orderDishesDao.createListForKitchen();
+    public List<OrderDishes> getKitchenPendingList() {
+        return orderDishesDao.getKitchenPendingList();
     }
 
 

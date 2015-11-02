@@ -73,25 +73,6 @@ public class OrderDaoImpl implements OrderDao {
         return query.getResultList();
     }
 
-    // todo check!
-    @Override
-    public void submitByCustomer(Customer customer, Map<Dish, Integer> dishAmount) {
-        Orders order = new Orders(new Timestamp(Calendar.getInstance().getTime().getTime()), customer);
-        em.persist(order);
-        for (Dish dish : dishAmount.keySet()) {
-            for (int i = 1; i < dishAmount.get(dish); i++) {
-                if (dish.isKitchenmade()) {
-                    em.persist(new OrderDishes(dish.getPrice(), dish, order));
-                    order.setOrderStatus(new OrderStatus("NOT_READY"));
-                } else {
-                    order.setOrderStatus(new OrderStatus("READY_FOR_SHIPMENT"));
-                    em.persist(new OrderDishes(dish.getPrice(), dish, order));
-                }
-            }
-        }
-        em.merge(order);
-    }
-
     @Override
     public List<Report> getReport(Date startPeriod, Date endPeriod) {
         TypedQuery<Report> query = em.createQuery("SELECT new com.bionic.edu.util.Report(" +

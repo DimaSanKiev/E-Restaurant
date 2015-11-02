@@ -49,12 +49,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
     }
 
     @Override
-    public void addKitchenmadeToOrder(OrderDishes orderDishes) {
-        // todo
-    }
-
-    @Override
-    public List<OrderDishes> createListForKitchen() {
+    public List<OrderDishes> getKitchenPendingList() {
         return em.createQuery("SELECT od FROM order_dishes od WHERE od.dish.kitchenmade = true " +
                 "AND od.order.orderStatus.id = :status ORDER BY od.order.dateTimeTaken DESC", OrderDishes.class)
                 .setParameter("status", 1).getResultList();

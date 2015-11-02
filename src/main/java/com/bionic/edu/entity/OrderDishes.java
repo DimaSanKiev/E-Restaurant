@@ -9,10 +9,10 @@ public class OrderDishes {
     private int id;
     private int quantity;
     private double price;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "dish_id")
     private Dish dish;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "orders_id")
     private Orders order;
 

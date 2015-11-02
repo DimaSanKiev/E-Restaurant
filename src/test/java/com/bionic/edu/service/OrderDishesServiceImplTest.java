@@ -52,6 +52,7 @@ public class OrderDishesServiceImplTest {
         assertEquals(10.00, orderDishes.getPrice(), 0.00);
     }
 
+    // todo - SQLIntegrityConstraintViolationException: DELETE on table 'ORDERS' caused a violation of foreign key constraint 'ORDERS_FK' for key (1)
     @Test
     public void testDelete() throws Exception {
         OrderDishes orderDishes = orderDishesService.findById(2);
@@ -70,14 +71,9 @@ public class OrderDishesServiceImplTest {
     }
 
     @Test
-    public void testAddKitchenmadeToOrder() throws Exception {
-        // todo
-    }
-
-    @Test
-    public void testCreateListForKitchen() throws Exception {
-        List<OrderDishes> orderDishesList = orderDishesService.createListForKitchen();
+    public void testGetKitchenPendingList() throws Exception {
+        List<OrderDishes> orderDishesList = orderDishesService.getKitchenPendingList();
         assertNotNull(orderDishesList);
-        assertEquals(4, orderDishesList.size());
+        assertEquals(6, orderDishesList.size());
     }
 }

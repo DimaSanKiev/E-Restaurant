@@ -18,7 +18,5 @@ public interface OrderDishesService {
 
     List<OrderDishes> getAllFromOrder(Orders order);
 
-    void addKitchenmadeToOrder(OrderDishes orderDishes);
-
-    List<OrderDishes> createListForKitchen();
+    List<OrderDishes> getKitchenPendingList();
 }

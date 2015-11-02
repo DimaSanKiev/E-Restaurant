@@ -32,7 +32,7 @@ public class DishServiceImplTest {
     public void testFindAll() throws Exception {
         List<Dish> dishes = dishService.findAll();
         assertNotNull(dishes);
-        assertEquals(18, dishes.size());
+        assertEquals(19, dishes.size());
     }
 
     @Test
@@ -65,13 +65,13 @@ public class DishServiceImplTest {
     public void testFindByCategory() throws Exception {
         List<Dish> dishes = dishService.findByCategory(1);
         assertNotNull(dishes);
-        assertEquals(3, dishes.size());
+        assertEquals(4, dishes.size());
     }
 
     @Test
     public void testFindByAvailabilityTrue() throws Exception {
         List<Dish> dishes = dishService.findByAvailability(true);
-        assertEquals(17, dishes.size());
+        assertEquals(18, dishes.size());
     }
 
     @Test

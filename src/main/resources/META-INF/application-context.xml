@@ -15,9 +15,14 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
 		<!-- todo absolute db path -->
+<<<<<<< Updated upstream
         <property name="url" value="jdbc:derby:..//E-Restaurant/ERestaurant;create=true"/>
         <!--<property name="url" value="jdbc:derby:E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\ERestaurant;create=true"/>-->
 		<!--<property name="url" value="jdbc:derby:/Users/Dima/Java/Projects/E-Restaurant/ERestaurant;create=true"/>-->
+=======
+        <!--<property name="url" value="jdbc:derby:E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\ERestaurant;create=true"/>-->
+		<property name="url" value="jdbc:derby:/Users/Dima/Java/Projects/E-Restaurant/ERestaurant;create=true"/>
+>>>>>>> Stashed changes
 	</bean>
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

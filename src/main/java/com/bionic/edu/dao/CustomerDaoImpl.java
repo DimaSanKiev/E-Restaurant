@@ -51,6 +51,7 @@ public class CustomerDaoImpl implements CustomerDao {
         }
     }
 
+    // todo - password encryption to service
     @Override
     public Customer login(String email, String password) {
         String decryptPass = Crypto.encrypt(password);

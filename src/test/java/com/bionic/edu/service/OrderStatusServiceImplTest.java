@@ -33,7 +33,7 @@ public class OrderStatusServiceImplTest {
     public void testFindAll() throws Exception {
         List<OrderStatus> orderStatuses = orderStatusService.findAll();
         assertNotNull(orderStatuses);
-        assertEquals(4, orderStatuses.size());
+        assertEquals(5, orderStatuses.size());
     }
 
     @Test

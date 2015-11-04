@@ -5,7 +5,7 @@ public class Crypto {
     public static String encrypt(String password) {
         String cryptPassword = "";
         for (char c : password.toCharArray()) {
-            cryptPassword += (char) (c ^ 1);
+            cryptPassword += (char) (c ^ 51);
         }
         return cryptPassword;
     }

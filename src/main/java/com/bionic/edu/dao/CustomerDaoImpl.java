@@ -1,7 +1,6 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Customer;
-import com.bionic.edu.util.Crypto;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -49,17 +48,6 @@ public class CustomerDaoImpl implements CustomerDao {
         if (customer != null) {
             em.remove(customer);
         }
-    }
-
-    // todo - password encryption to service
-    @Override
-    public Customer login(String email, String password) {
-        String decryptPass = Crypto.encrypt(password);
-        Customer customer = findByEmail(email);
-        if (customer.getPassword().equals(decryptPass)) {
-            return customer;
-        } else
-            return null;
     }
 
 }

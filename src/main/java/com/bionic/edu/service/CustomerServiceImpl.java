@@ -55,7 +55,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer login(String email, String password) {
-        return customerDao.login(email, password);
+        String decryptPass = Crypto.encrypt(password);
+        Customer customer = customerDao.findByEmail(email);
+        if (customer.getPassword().equals(decryptPass)) {
+            return customer;
+        } else
+            return null;
     }
 
 }

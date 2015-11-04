@@ -75,5 +75,6 @@ public class CustomerServiceImplTest {
             assertEquals(1, 1);
         }
         customerService.login("kate.belova@gmail.com", "pass3");
+
     }
 }

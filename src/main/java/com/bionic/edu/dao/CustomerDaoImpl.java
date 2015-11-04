@@ -55,11 +55,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public Customer login(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
-        TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c WHERE c.email =" +
-                ":email", Customer.class);
-        query.setParameter("email", email);
-
-        Customer customer = query.getSingleResult();
+        Customer customer = findByEmail(email);
         if (customer.getPassword().equals(decryptPass)) {
             return customer;
         } else

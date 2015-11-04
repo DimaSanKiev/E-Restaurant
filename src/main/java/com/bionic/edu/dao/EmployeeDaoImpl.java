@@ -57,11 +57,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     @Override
     public Employee login(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
-        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e " +
-                "WHERE e.email = :email", Employee.class);
-        query.setParameter("email", email);
-
-        Employee employee = query.getSingleResult();
+        Employee employee = findByEmail(email);
         if (employee.getPassword().equals(decryptPass)) {
             return employee;
         } else

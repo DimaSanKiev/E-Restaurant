@@ -1,17 +1,14 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.entity.*;
-import com.bionic.edu.util.Report;
+import com.bionic.edu.entity.Orders;
+import com.bionic.edu.util.ReportInTotal;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class OrderDaoImpl implements OrderDao {
@@ -74,27 +71,27 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Report> getReport(Date startPeriod, Date endPeriod) {
-        TypedQuery<Report> query = em.createQuery("SELECT new com.bionic.edu.util.Report(" +
-                "COUNT(od.order), SUM(od.quantity * d.price), FUNC('DATE', od.order.dateTimeTaken)) " +
+    public List<ReportInTotal> getReport(Date startPeriod, Date endPeriod) {
+        TypedQuery<ReportInTotal> query = em.createQuery("SELECT new com.bionic.edu.util.ReportInTotal(" +
+                "COUNT(od), SUM(od.quantity * d.price), FUNC('DATE', od.order.dateTimeTaken)) " +
                 "FROM order_dishes od, Dish d " +
-                "WHERE od.dish.id = d.id " + // remove
+                "WHERE od.dish.id = d.id " +
                 "AND FUNC('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
-                "GROUP BY FUNC('DATE', od.order.dateTimeTaken)", Report.class);
+                "GROUP BY FUNC('DATE', od.order.dateTimeTaken)", ReportInTotal.class);
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);
         return query.getResultList();
     }
 
     @Override
-    public List<Report> getReport(Date startPeriod, Date endPeriod, String category) {
-        TypedQuery<Report> query = em.createQuery("SELECT new com.bionic.edu.util.Report(" +
-                "SUM(od.quantity), SUM(d.price * od.quantity), FUNC('DATE',od.order.dateTimeTaken), " +
+    public List<ReportInTotal> getReport(Date startPeriod, Date endPeriod, String category) {
+        TypedQuery<ReportInTotal> query = em.createQuery("SELECT new com.bionic.edu.util.ReportInTotal(" +
+                "SUM(od.quantity), SUM(d.price * od.quantity), FUNC('DATE', od.order.dateTimeTaken), " +
                 "\"" + category + "\") " +
                 "FROM order_dishes od, Dish d where od.order.dateTimeTaken between :start and :finish " +
                 "and od.dish.category = \"" + category + "\"" +
-                "GROUP BY FUNC('DATE',od.order.dateTimeTaken) " +
-                "ORDER BY FUNC('DATE',od.order.dateTimeTaken)", Report.class);
+                "ORDER BY FUNC('DATE', od.order.dateTimeTaken " +
+                "GROUP BY FUNC('DATE', od.order.dateTimeTaken))", ReportInTotal.class);
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);
         return query.getResultList();

@@ -1,7 +1,7 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Orders;
-import com.bionic.edu.util.Report;
+import com.bionic.edu.util.ReportInTotal;
 
 import java.sql.Date;
 import java.util.List;
@@ -24,8 +24,8 @@ public interface OrderService {
     List<Orders> getCustomersOrder(int customerId);
 
 
-    List<Report> getReport(Date startPeriod, Date endPeriod);
+    List<ReportInTotal> getReport(Date startPeriod, Date endPeriod);
 
-    List<Report> getReport(Date startPeriod, Date endPeriod, String category);
+    List<ReportInTotal> getReport(Date startPeriod, Date endPeriod, String category);
 
 }

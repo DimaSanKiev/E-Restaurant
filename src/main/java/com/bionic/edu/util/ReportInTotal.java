@@ -2,19 +2,19 @@ package com.bionic.edu.util;
 
 import java.sql.Date;
 
-public class Report {
+public class ReportInTotal {
     private long count;
     private double total;
     Date date;
     String category;
 
-    public Report(long count, double total, Date date) {
+    public ReportInTotal(long count, double total, Date date) {
         this.count = count;
         this.total = total;
         this.date = date;
     }
 
-    public Report(long count, double total, Date date, String category) {
+    public ReportInTotal(long count, double total, Date date, String category) {
         this.count = count;
         this.total = total;
         this.date = date;

@@ -40,6 +40,11 @@
             <artifactId>el-ri</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>8.0.28</version>
+        </dependency>
 
         <!-- Servlet API -->
         <dependency>

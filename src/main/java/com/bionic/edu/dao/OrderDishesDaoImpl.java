@@ -42,6 +42,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
         }
     }
 
+
     @Override
     public List<OrderDishes> getAllFromOrder(Orders order) {
         return em.createQuery("SELECT od FROM order_dishes od WHERE od.order.id = :id", OrderDishes.class).

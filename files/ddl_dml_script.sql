@@ -243,6 +243,15 @@ VALUES (1, 3, 3);
 INSERT INTO order_dishes (quantity, dish_id, orders_id)
 VALUES (1, 4, 4);
 INSERT INTO order_dishes (quantity, dish_id, orders_id)
-VALUES (2, 5, 5);
+VALUES (2, 5, 4);
 INSERT INTO order_dishes (quantity, dish_id, orders_id)
-VALUES (2, 6, 5);
+VALUES (2, 6, 4);
+
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 1, 5);
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 4, 5);
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 8, 5);
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 15, 5);

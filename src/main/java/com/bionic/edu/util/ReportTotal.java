@@ -2,23 +2,15 @@ package com.bionic.edu.util;
 
 import java.sql.Date;
 
-public class ReportInTotal {
+public class ReportTotal {
     private long count;
     private double total;
-    Date date;
-    String category;
+    private Date date;
 
-    public ReportInTotal(long count, double total, Date date) {
+    public ReportTotal(long count, double total, Date date) {
         this.count = count;
         this.total = total;
         this.date = date;
-    }
-
-    public ReportInTotal(long count, double total, Date date, String category) {
-        this.count = count;
-        this.total = total;
-        this.date = date;
-        this.category = category;
     }
 
     public long getCount() {
@@ -45,17 +37,9 @@ public class ReportInTotal {
         this.date = date;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     @Override
     public String toString() {
-        return "Report{" +
+        return "ReportTotal{" +
                 "count=" + count +
                 ", total=" + total +
                 ", date=" + date +

@@ -104,7 +104,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void testGetReportPeriod() throws Exception {
-        List<ReportTotal> reports = orderService.getReport(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-19"));
+        List<ReportTotal> reports = orderService.getReportTotal(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-19"));
         reports.forEach(System.out::println);
         assertNotNull(reports);
         assertEquals(3, reports.size());
@@ -112,7 +112,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void testGetReportCategory() throws Exception {
-        List<ReportCategory> reports = orderService.getReport(Date.valueOf("2015-10-21"), Date.valueOf("2015-10-21"), 1);
+        List<ReportCategory> reports = orderService.getReportCategory(Date.valueOf("2015-10-21"), Date.valueOf("2015-10-21"));
         reports.forEach(System.out::println);
         assertNotNull(reports);
     }

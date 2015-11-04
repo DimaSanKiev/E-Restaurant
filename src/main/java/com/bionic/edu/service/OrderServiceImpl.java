@@ -56,12 +56,12 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public List<ReportTotal> getReport(Date startPeriod, Date endPeriod) {
-        return orderDao.getReport(startPeriod, endPeriod);
+    public List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod) {
+        return orderDao.getReportTotal(startPeriod, endPeriod);
     }
 
     @Override
-    public List<ReportCategory> getReport(Date startPeriod, Date endPeriod, int dishCategoryId) {
-        return orderDao.getReport(startPeriod, endPeriod, dishCategoryId);
+    public List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod) {
+        return orderDao.getReportCategory(startPeriod, endPeriod);
     }
 }

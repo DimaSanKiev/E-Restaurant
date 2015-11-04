@@ -1,6 +1,5 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.entity.DishCategory;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
@@ -73,7 +72,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<ReportTotal> getReport(Date startPeriod, Date endPeriod) {
+    public List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod) {
         TypedQuery<ReportTotal> query = em.createQuery("SELECT new com.bionic.edu.util.ReportTotal(" +
                 "SUM(od.quantity), SUM(od.quantity * d.price), FUNC('DATE', od.order.dateTimeTaken)) " +
                 "FROM order_dishes od, Dish d " +
@@ -86,13 +85,14 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<ReportCategory> getReport(Date startPeriod, Date endPeriod, int dishCategoryId) {
+    public List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod) {
         TypedQuery<ReportCategory> query = em.createQuery("SELECT new com.bionic.edu.util.ReportCategory(" +
-                "SUM(od.quantity), SUM(od.quantity * d.price), FUNC('DATE', od.order.dateTimeTaken), d.category.id " +
-                "FROM order_dishes od, Dish d where od.order.dateTimeTaken between :start and :finish " +
-                "and od.dish.category = \"" + dishCategoryId + "\"" +
-                "ORDER BY FUNC('DATE', od.order.dateTimeTaken " +
-                "GROUP BY FUNC('DATE', od.order.dateTimeTaken))", ReportCategory.class);
+                "od.dish.category, FUNC('DATE', od.order.dateTimeTaken), COUNT(od.order.id), SUM(od.quantity * d.price)) " +
+                "FROM order_dishes od, Dish d " +
+                "WHERE od.dish.category = d.category AND " +
+                "FUNC('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
+                "AND od.dish.category = d.category " +
+                "GROUP BY d.category", ReportCategory.class);
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);
         return query.getResultList();

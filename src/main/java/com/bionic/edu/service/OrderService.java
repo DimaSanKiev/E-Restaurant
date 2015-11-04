@@ -25,8 +25,8 @@ public interface OrderService {
     List<Orders> getCustomersOrder(int customerId);
 
 
-    List<ReportTotal> getReport(Date startPeriod, Date endPeriod);
+    List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod);
 
-    List<ReportCategory> getReport(Date startPeriod, Date endPeriod, int dishCategoryId);
+    List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod);
 
 }

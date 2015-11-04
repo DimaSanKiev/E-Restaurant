@@ -71,13 +71,12 @@ public class OrderDaoImpl implements OrderDao {
         return query.getResultList();
     }
 
+
     @Override
     public List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod) {
         TypedQuery<ReportTotal> query = em.createQuery("SELECT new com.bionic.edu.util.ReportTotal(" +
-                "SUM(od.quantity), SUM(od.quantity * d.price), FUNC('DATE', od.order.dateTimeTaken)) " +
-                "FROM order_dishes od, Dish d " +
-                "WHERE od.dish.id = d.id " +
-                "AND FUNC('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
+                "SUM(od.quantity), SUM(od.quantity * od.dish.price), FUNC('DATE', od.order.dateTimeTaken)) " +
+                "FROM order_dishes od WHERE FUNC('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
                 "GROUP BY FUNC('DATE', od.order.dateTimeTaken)", ReportTotal.class);
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);
@@ -87,12 +86,9 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod) {
         TypedQuery<ReportCategory> query = em.createQuery("SELECT new com.bionic.edu.util.ReportCategory(" +
-                "od.dish.category, FUNC('DATE', od.order.dateTimeTaken), COUNT(od.order.id), SUM(od.quantity * d.price)) " +
-                "FROM order_dishes od, Dish d " +
-                "WHERE od.dish.category = d.category AND " +
-                "FUNC('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
-                "AND od.dish.category = d.category " +
-                "GROUP BY d.category", ReportCategory.class);
+                "od.dish.category.name, COUNT(od.order.id), SUM(od.quantity * od.dish.price)) " +
+                "FROM order_dishes od WHERE FUNC('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
+                "GROUP BY od.dish.category.name", ReportCategory.class);    // todo - ORDER BY od.dish.category.id not name
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);
         return query.getResultList();

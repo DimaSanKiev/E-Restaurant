@@ -254,4 +254,6 @@ VALUES (1, 4, 5);
 INSERT INTO order_dishes (quantity, dish_id, orders_id)
 VALUES (1, 8, 5);
 INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 10, 5);
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
 VALUES (1, 15, 5);

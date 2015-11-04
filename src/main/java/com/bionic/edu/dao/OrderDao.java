@@ -1,7 +1,8 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Orders;
-import com.bionic.edu.util.ReportInTotal;
+import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportTotal;
 
 import java.sql.Date;
 import java.util.List;
@@ -24,7 +25,7 @@ public interface OrderDao {
     List<Orders> getCustomersOrder(int customerId);
 
 
-    List<ReportInTotal> getReport(Date startPeriod, Date endPeriod);
+    List<ReportTotal> getReport(Date startPeriod, Date endPeriod);
 
-    List<ReportInTotal> getReport(Date startPeriod, Date endPeriod, String category);
+    List<ReportCategory> getReport(Date startPeriod, Date endPeriod, int dishCategoryId);
 }

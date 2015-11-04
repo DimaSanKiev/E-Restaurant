@@ -1,7 +1,8 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Orders;
-import com.bionic.edu.util.ReportInTotal;
+import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportTotal;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +18,7 @@ public class OrderServiceImplTest {
     OrderService orderService;
     CustomerService customerService;
     OrderStatusService orderStatusService;
-    DishService dishService;
+    DishCategoryService dishCategoryService;
 
     @Before
     public void setUp() throws Exception {
@@ -25,7 +26,7 @@ public class OrderServiceImplTest {
         orderService = context.getBean(OrderService.class);
         customerService = context.getBean(CustomerService.class);
         orderStatusService = context.getBean(OrderStatusService.class);
-        dishService = context.getBean(DishService.class);
+        dishCategoryService = context.getBean(DishCategoryService.class);
     }
 
 
@@ -103,7 +104,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void testGetReportPeriod() throws Exception {
-        List<ReportInTotal> reports = orderService.getReport(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-19"));
+        List<ReportTotal> reports = orderService.getReport(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-19"));
         reports.forEach(System.out::println);
         assertNotNull(reports);
         assertEquals(3, reports.size());
@@ -111,7 +112,8 @@ public class OrderServiceImplTest {
 
     @Test
     public void testGetReportCategory() throws Exception {
-        List<ReportInTotal> reports = orderService.getReport(Date.valueOf("2015-10-17"), Date.valueOf("2015-10-18"), "SOUP");
+        List<ReportCategory> reports = orderService.getReport(Date.valueOf("2015-10-21"), Date.valueOf("2015-10-21"), 1);
+        reports.forEach(System.out::println);
         assertNotNull(reports);
     }
 }

@@ -2,7 +2,8 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.OrderDao;
 import com.bionic.edu.entity.Orders;
-import com.bionic.edu.util.ReportInTotal;
+import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportTotal;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -55,12 +56,12 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public List<ReportInTotal> getReport(Date startPeriod, Date endPeriod) {
+    public List<ReportTotal> getReport(Date startPeriod, Date endPeriod) {
         return orderDao.getReport(startPeriod, endPeriod);
     }
 
     @Override
-    public List<ReportInTotal> getReport(Date startPeriod, Date endPeriod, String category) {
-        return orderDao.getReport(startPeriod, endPeriod, category);
+    public List<ReportCategory> getReport(Date startPeriod, Date endPeriod, int dishCategoryId) {
+        return orderDao.getReport(startPeriod, endPeriod, dishCategoryId);
     }
 }

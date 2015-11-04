@@ -1,7 +1,6 @@
 package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Employee;
-import com.bionic.edu.util.Crypto;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,16 +51,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
         if (employee != null) {
             em.remove(employee);
         }
-    }
-
-    @Override
-    public Employee login(String email, String password) {
-        String decryptPass = Crypto.encrypt(password);
-        Employee employee = findByEmail(email);
-        if (employee.getPassword().equals(decryptPass)) {
-            return employee;
-        } else
-            return null;
     }
 
     @Override

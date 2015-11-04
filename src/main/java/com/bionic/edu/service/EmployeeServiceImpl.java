@@ -55,13 +55,17 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee login(String email, String password) {
-        return employeeDao.login(email, password);
+        String decryptPass = Crypto.encrypt(password);
+        Employee employee = employeeDao.findByEmail(email);
+        if (employee.getPassword().equals(decryptPass)) {
+            return employee;
+        } else
+            return null;
     }
 
     @Override
     public void setReadiness(Employee employee, boolean isReady) {
         employeeDao.setReadiness(employee, isReady);
     }
-
 
 }

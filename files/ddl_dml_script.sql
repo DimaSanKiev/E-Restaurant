@@ -248,6 +248,7 @@ VALUES (2, 14.60, 5, 4);
 INSERT INTO order_dishes (quantity, price, dish_id, orders_id)
 VALUES (2, 8.60, 6, 4);
 
+<<<<<<< HEAD
 INSERT INTO order_dishes (quantity, price, dish_id, orders_id)
 VALUES (1, 4.20, 1, 5);
 INSERT INTO order_dishes (quantity, price, dish_id, orders_id)
@@ -256,3 +257,15 @@ INSERT INTO order_dishes (quantity, price, dish_id, orders_id)
 VALUES (1, 8.20, 8, 5);
 INSERT INTO order_dishes (quantity, price, dish_id, orders_id)
 VALUES (1, 4.50, 15, 5);
+=======
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 1, 5);
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 4, 5);
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 8, 5);
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 10, 5);
+INSERT INTO order_dishes (quantity, dish_id, orders_id)
+VALUES (1, 15, 5);
+>>>>>>> origin/master

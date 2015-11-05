@@ -9,21 +9,12 @@ public class OrderDishes {
     private int id;
     private int quantity;
     private double price;
-    @ManyToOne()
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "dish_id")
     private Dish dish;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "orders_id")
     private Orders order;
-
-    public OrderDishes() {
-    }
-
-    public OrderDishes(double price, Dish dish, Orders order) {
-        this.price = price;
-        this.dish = dish;
-        this.order = order;
-    }
 
     public int getId() {
         return id;

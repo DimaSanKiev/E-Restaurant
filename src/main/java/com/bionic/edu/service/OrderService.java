@@ -18,6 +18,8 @@ public interface OrderService {
     void delete(int id);
 
 
+    void setOrderStatus(int orderId, int statusId); // - check other dishes in the same order, if they are all ready - set order status to 'ready_for_shipping'
+
     List<Orders> getDeliveryListByTime();
 
     List<Orders> getDeliveryListByStatus();

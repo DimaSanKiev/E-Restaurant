@@ -1,6 +1,8 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.dao.OrderDao;
+import com.bionic.edu.dao.OrderDishesDao;
+import com.bionic.edu.dao.OrderStatusDao;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
@@ -16,6 +18,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Inject
     private OrderDao orderDao;
+    @Inject
+    private OrderStatusDao orderStatusDao;
+    @Inject
+    private OrderDishesDao orderDishesDao;
 
     @Override
     public Orders findById(int id) {
@@ -37,6 +43,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void delete(int id) {
         orderDao.delete(id);
+    }
+
+
+    @Transactional
+    @Override
+    public void setOrderStatus(int orderId, int statusId) {
+        Orders order = orderDao.findById(orderId);
+        order.setOrderStatus(orderStatusDao.findById(statusId));
+        orderDao.save(order);
     }
 
     @Override

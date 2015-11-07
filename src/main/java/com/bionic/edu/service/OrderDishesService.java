@@ -18,5 +18,7 @@ public interface OrderDishesService {
 
     List<OrderDishes> getAllFromOrder(Orders order);
 
+    List<OrderDishes> getDeliveryPendingList();
+
     List<OrderDishes> getKitchenPendingList();
 }

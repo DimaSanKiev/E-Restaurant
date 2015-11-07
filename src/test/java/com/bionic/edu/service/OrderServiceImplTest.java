@@ -72,6 +72,15 @@ public class OrderServiceImplTest {
         assertEquals(null, orderService.findById(id));
     }
 
+
+    @Test
+    public void testSetOrderStatus() throws Exception {
+        Orders order = orderService.findById(1);
+        System.out.println(order.getOrderStatus());
+        orderService.setOrderStatus(1, 2);
+        assertEquals(2, orderService.findById(1).getOrderStatus().getId());
+    }
+
     @Test
     public void testGetDeliveryListByTime() throws Exception {
         List<Orders> orders = orderService.getDeliveryListByTime();
@@ -83,15 +92,6 @@ public class OrderServiceImplTest {
     public void testGetDeliveryListByStatus() throws Exception {
         List<Orders> orders = orderService.getDeliveryListByStatus();
         assertNotNull(orders);
-        assertEquals(1, orders.size());
-    }
-
-    @Test
-    public void testSetOrderStatus() throws Exception {
-        Orders order = orderService.findById(1);
-        order.setOrderStatus(orderStatusService.findById(2));
-        orderService.save(order);
-        List<Orders> orders = orderService.getDeliveryListByStatus();
         assertEquals(1, orders.size());
     }
 

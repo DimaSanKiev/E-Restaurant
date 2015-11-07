@@ -43,9 +43,12 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     }
 
     @Override
+    public List<OrderDishes> getDeliveryPendingList() {
+        return orderDishesDao.getDeliveryPendingList();
+    }
+
+    @Override
     public List<OrderDishes> getKitchenPendingList() {
         return orderDishesDao.getKitchenPendingList();
     }
-
-
 }

@@ -9,6 +9,7 @@ public class OrderDishes {
     private int id;
     private int quantity;
     private double price;
+    private boolean readiness;
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "dish_id")
     private Dish dish;
@@ -40,6 +41,14 @@ public class OrderDishes {
         this.price = price;
     }
 
+    public boolean isReadiness() {
+        return readiness;
+    }
+
+    public void setReadiness(boolean readiness) {
+        this.readiness = readiness;
+    }
+
     public Dish getDish() {
         return dish;
     }
@@ -62,8 +71,9 @@ public class OrderDishes {
                 "id=" + id +
                 ", quantity=" + quantity +
                 ", price=" + price +
-                ", dish=" + dish +
-                ", order=" + order +
+                ", readiness=" + readiness +
+                ", dish=" + dish.getId() +
+                ", order=" + order.getId() +
                 '}';
     }
 }

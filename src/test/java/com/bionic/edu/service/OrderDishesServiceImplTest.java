@@ -66,13 +66,15 @@ public class OrderDishesServiceImplTest {
     public void testGetAllFromOrder() throws Exception {
         Orders order = orderService.findById(1);
         List<OrderDishes> orderDishesList = orderDishesService.getAllFromOrder(order);
+        orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);
         assertEquals(2, orderDishesList.size());
     }
 
     @Test
-    public void testGetKitchenPendingList() throws Exception {
-        List<OrderDishes> orderDishesList = orderDishesService.getKitchenPendingList();
+    public void testGetDeliveryPendingList() throws Exception {
+        List<OrderDishes> orderDishesList = orderDishesService.getDeliveryPendingList();
+        orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);
         assertEquals(6, orderDishesList.size());
     }

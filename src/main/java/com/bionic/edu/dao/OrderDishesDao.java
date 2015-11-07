@@ -17,5 +17,7 @@ public interface OrderDishesDao {
 
     List<OrderDishes> getAllDishesFromOrder(int orderId);
 
+    List<OrderDishes> getUndoneDishesFromOrder(int orderId);
+
     List<OrderDishes> getKitchenPendingList();
 }

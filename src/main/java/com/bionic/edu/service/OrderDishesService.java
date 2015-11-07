@@ -15,7 +15,11 @@ public interface OrderDishesService {
     void delete(int id);
 
 
+    void setDishReady(int orderDishesId);
+
     List<OrderDishes> getAllDishesFromOrder(int orderId);
+
+    List<OrderDishes> getUndoneDishesFromOrder(int orderId);
 
     List<OrderDishes> getKitchenPendingList();
 }

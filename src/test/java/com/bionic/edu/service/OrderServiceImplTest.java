@@ -84,15 +84,17 @@ public class OrderServiceImplTest {
     @Test
     public void testGetDeliveryListByTime() throws Exception {
         List<Orders> orders = orderService.getDeliveryListByTime();
+        orders.forEach(System.out::println);
         assertNotNull(orders);
-        assertEquals(1, orders.size());
+        assertEquals(2, orders.size());
     }
 
     @Test
     public void testGetDeliveryListByStatus() throws Exception {
         List<Orders> orders = orderService.getDeliveryListByStatus();
+        orders.forEach(System.out::println);
         assertNotNull(orders);
-        assertEquals(1, orders.size());
+        assertEquals(2, orders.size());
     }
 
     @Test

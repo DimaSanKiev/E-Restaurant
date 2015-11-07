@@ -72,8 +72,9 @@ public class OrderDishes {
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", readiness=" + readiness +
-                ", dish=" + dish.getId() +
-                ", order=" + order.getId() +
+                ", dish=" + dish.getName() +
+                ", order_id=" + order.getId() +
+                ", order_taken=" + order.getDateTimeTaken() +
                 '}';
     }
 }

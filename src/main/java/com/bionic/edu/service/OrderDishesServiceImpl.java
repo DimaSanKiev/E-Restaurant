@@ -2,7 +2,6 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.OrderDishesDao;
 import com.bionic.edu.entity.OrderDishes;
-import com.bionic.edu.entity.Orders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -38,13 +37,8 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     }
 
     @Override
-    public List<OrderDishes> getAllFromOrder(Orders order) {
-        return orderDishesDao.getAllFromOrder(order);
-    }
-
-    @Override
-    public List<OrderDishes> getDeliveryPendingList() {
-        return orderDishesDao.getDeliveryPendingList();
+    public List<OrderDishes> getAllDishesFromOrder(int orderId) {
+        return orderDishesDao.getAllDishesFromOrder(orderId);
     }
 
     @Override

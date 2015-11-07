@@ -1,7 +1,6 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.OrderDishes;
-import com.bionic.edu.entity.Orders;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -62,20 +61,20 @@ public class OrderDishesServiceImplTest {
         assertNull(orderDishesService.findById(id));
     }
 
+
     @Test
-    public void testGetAllFromOrder() throws Exception {
-        Orders order = orderService.findById(1);
-        List<OrderDishes> orderDishesList = orderDishesService.getAllFromOrder(order);
+    public void testGetAllDishesFromOrder() throws Exception {
+        List<OrderDishes> orderDishesList = orderDishesService.getAllDishesFromOrder(1);
         orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);
         assertEquals(2, orderDishesList.size());
     }
 
     @Test
-    public void testGetDeliveryPendingList() throws Exception {
-        List<OrderDishes> orderDishesList = orderDishesService.getDeliveryPendingList();
+    public void testGetKitchenPendingList() throws Exception {
+        List<OrderDishes> orderDishesList = orderDishesService.getKitchenPendingList();
         orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);
-        assertEquals(6, orderDishesList.size());
+        assertEquals(4, orderDishesList.size());
     }
 }

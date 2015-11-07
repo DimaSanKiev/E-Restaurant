@@ -115,7 +115,7 @@ public class OrderServiceImplTest {
         List<ReportCategory> reports = orderService.getReportCategory(Date.valueOf("2015-10-21"), Date.valueOf("2015-10-21"));
         reports.forEach(System.out::println);
         assertNotNull(reports);
-        assertEquals(5, reports.size());
+        assertEquals(4, reports.size());
         assertEquals(5.1, reports.get(0).getTotal(), 0.05);
     }
 }

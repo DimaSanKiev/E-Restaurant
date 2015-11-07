@@ -33,7 +33,7 @@ public class OrderDishesServiceImplTest {
     public void testFindAll() throws Exception {
         List<OrderDishes> ordersDishes = orderDishesService.findAll();
         assertNotNull(ordersDishes);
-        assertEquals(6, ordersDishes.size());
+        assertEquals(18, ordersDishes.size());
     }
 
     @Test
@@ -58,6 +58,7 @@ public class OrderDishesServiceImplTest {
         OrderDishes orderDishes = orderDishesService.findById(2);
         orderDishesService.save(orderDishes);
         int id = orderDishes.getId();
+        System.out.println(orderDishes);
         orderDishesService.delete(id);
         assertNull(orderDishesService.findById(id));
     }

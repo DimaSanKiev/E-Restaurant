@@ -10,10 +10,10 @@ public class OrderDishes {
     private int quantity;
     private double price;
     private boolean readiness;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dish_id")
     private Dish dish;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orders_id")
     private Orders order;
 

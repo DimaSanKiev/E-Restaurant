@@ -58,7 +58,7 @@ public class EmployeeServiceImplTest {
         Employee employee = employeeService.findById(1);
         employee.setName("Dima TestUpdate");
         employeeService.save(employee);
-        assertEquals("Dima TestUpdate", employee.getName());
+        assertEquals("Dima TestUpdate", employeeService.findById(1).getName());
     }
 
     @Test

@@ -10,12 +10,12 @@
 <body>
 <h:form>
     <h:panelGrid columns="2">
-        <h:outputText value="Name"></h:outputText>
-        <h:inputText value="#{loginBean.name}"></h:inputText>
-        <h:outputText value="Password"></h:outputText>
+        <h:outputText value="Name" />
+        <h:inputText value="#{loginBean.email}" />
+        <h:outputText value="Password" />
         <h:inputSecret value="#{loginBean.password}"/>
     </h:panelGrid>
-    <h:commandButton value="Login" action="login“ />
+    <h:commandButton value="Login" action="login" />
 </h:form>
 </body>
 </html>

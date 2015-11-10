@@ -16,8 +16,7 @@ public class MessageBean implements Serializable {
     private final String passwordRange = "Customer's password should not be less 8 symbols";
     private final String addressRequired = "Customer's address field could not be empty";
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public MessageBean() {
     }
 
     public String getNameRequired() {

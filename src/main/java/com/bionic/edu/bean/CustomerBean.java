@@ -12,11 +12,12 @@ import java.util.List;
 @Scope("request")
 public class CustomerBean {
     private List<Customer> customers = null;
+    private Customer customer = null;
     @Inject
     private CustomerService customerService;
-    private Customer customer;
 
     public CustomerBean() {
+        customer = new Customer();
     }
 
     public List<Customer> getCustomers() {

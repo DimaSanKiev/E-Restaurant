@@ -13,37 +13,37 @@
         <h:panelGrid columns="3">
             <h:outputText value="Customer name:"/>
             <h:inputText id="cName"
-                         value="#{customerBean.name}" required="true"
+                         value="#{customerBean.customer.name}" required="true"
                          requiredMessage="#{msgs.nameRequired}">
             </h:inputText>
             <h:message for="cName" style="color:red"/>
 
             <h:outputText value="Customer email:"/>
             <h:inputText id="cEmail"
-                         value="#{customerBean.email}" required="true"
+                         value="#{customerBean.customer.email}" required="true"
                          requiredMessage="#{msgs.emailRequired}">
             </h:inputText>
             <h:message for="cEmail" style="color:red"/>
 
             <h:outputText value="Customer password:"/>
             <h:inputText id="cPassword"
-                         value="#{customerBean.password}" required="true"
+                         value="#{customerBean.customer.password}" required="true"
                          requiredMessage="#{msgs.passwordRequired}"
                          validatorMessage="#{msgs.passwordRange}">
-                <f:convertNumber maxIntegerDigits="8"/>
+                <f:validateLength minimum="8"/>
             </h:inputText>
             <h:message for="cPassword" style="color:red"/>
 
             <h:outputText value="Customer address:"/>
             <h:inputText id="cAddress"
-                         value="#{customerBean.address}" required="true"
+                         value="#{customerBean.customer.address}" required="true"
                          requiredMessage="#{msgs.addressRequired}">
             </h:inputText>
             <h:message for="cAddress" style="color:red"/>
 
             <h:outputText value="Customer birthdate:"/>
             <h:inputText id="cBirthdate"
-                         value="#{customerBean.birthdate}" required="false">
+                         value="#{customerBean.customer.birthDate}" required="false">
             </h:inputText>
 
         </h:panelGrid>

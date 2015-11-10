@@ -13,7 +13,7 @@ public class MessageBean implements Serializable {
     private final String nameRequired = "Customer's name field could not be empty";
     private final String emailRequired = "Customer's email field could not be empty";
     private final String passwordRequired = "Customer's password field could not be empty";
-    private final String passwordRange = "Customer's password should not be less 8 symbols";
+    private final String passwordRange = "Customer's password should not be less than 8 symbols";
     private final String addressRequired = "Customer's address field could not be empty";
 
     public MessageBean() {

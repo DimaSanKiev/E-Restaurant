@@ -77,6 +77,33 @@ public class Customer {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+
+        Customer customer = (Customer) o;
+
+        if (id != customer.id) return false;
+        if (name != null ? !name.equals(customer.name) : customer.name != null) return false;
+        if (email != null ? !email.equals(customer.email) : customer.email != null) return false;
+        if (password != null ? !password.equals(customer.password) : customer.password != null) return false;
+        if (address != null ? !address.equals(customer.address) : customer.address != null) return false;
+        return !(birthDate != null ? !birthDate.equals(customer.birthDate) : customer.birthDate != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +

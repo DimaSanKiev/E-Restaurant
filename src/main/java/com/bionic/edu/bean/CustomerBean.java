@@ -14,6 +14,7 @@ public class CustomerBean {
     private List<Customer> customers = null;
     @Inject
     private CustomerService customerService;
+    private Customer customer;
 
     public CustomerBean() {
     }
@@ -22,11 +23,25 @@ public class CustomerBean {
         return customers;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
 
+
     public void refreshList() {
         customers = customerService.findAll();
+    }
+
+    public String saveCustomer() {
+        customerService.save(customer);
+        return "CustomerList";
     }
 }

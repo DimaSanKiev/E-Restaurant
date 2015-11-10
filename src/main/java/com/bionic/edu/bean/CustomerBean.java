@@ -1,42 +1,32 @@
 package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Customer;
+import com.bionic.edu.service.CustomerService;
 import org.springframework.context.annotation.Scope;
 
+import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 @Named
-@Scope("session")
+@Scope("request")
 public class CustomerBean {
-    private Customer customer;
-    private String login;
-    private String password;
+    private List<Customer> customers = null;
+    @Inject
+    private CustomerService customerService;
 
-    public Customer getCustomer() {
-        return customer;
+    public CustomerBean() {
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public String getLogin() {
-        return login;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String register() {
-        return "registration.xhtml";
+    public void refreshList() {
+        customers = customerService.findAll();
     }
 }

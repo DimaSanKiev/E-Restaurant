@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Wed Nov 11 19:57:51 EET 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0150-f7b1-ea8f-000011b0cdc8 
-on database directory /Users/Dima/Java/Projects/E-Restaurant/ERestaurant with class loader WebAppClassLoader=257718694@f5c79a6 
-Loaded from file:/Users/Dima/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+Wed Nov 11 22:42:01 EET 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0150-f848-28a7-0000072a5c28 
+on database directory E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\ERestaurant with class loader WebAppClassLoader=143357682@88b76f2 
+Loaded from file:/C:/Users/Dima/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_60-b27
-user.dir=/Users/Dima/Java/Projects/E-Restaurant
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.11.1
+user.dir=E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

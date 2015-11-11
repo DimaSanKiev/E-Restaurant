@@ -12,11 +12,13 @@
     <h2>Registered Customers</h2>
     #{customerBean.refreshList()}
     <h:form>
+        <h:panelGrid columns="1">
+        <h:commandButton value="Add Customer"
+                         action="#{customerBean.addCustomer()}" />
+        </h:panelGrid>
         <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="customerTable"
                      headerClass="customerTableHeader"
-                     rowClasses="customerTableOddRow,
-			    customerTableEvenRow">
-
+                     rowClasses="customerTableOddRow, customerTableEvenRow">
             <h:column>
                 <f:facet name="header">Id</f:facet>
                 #{customer.id}
@@ -25,7 +27,6 @@
                 <f:facet name="header">Name</f:facet>
                 #{customer.name}
             </h:column>
-            . . . . . . . . . . .
         </h:dataTable>
     </h:form>
 </h:body>

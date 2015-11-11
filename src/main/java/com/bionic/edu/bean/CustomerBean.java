@@ -45,4 +45,9 @@ public class CustomerBean {
         customerService.save(customer);
         return "CustomerList";
     }
+
+    public String addCustomer(){
+        customer = new Customer();
+        return "NewCustomer";
+    }
 }

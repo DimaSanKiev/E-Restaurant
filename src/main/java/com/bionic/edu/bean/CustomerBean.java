@@ -9,7 +9,7 @@ import javax.inject.Named;
 import java.util.List;
 
 @Named
-@Scope("request")
+@Scope("session")
 public class CustomerBean {
     private List<Customer> customers = null;
     private Customer customer = null;
@@ -50,4 +50,11 @@ public class CustomerBean {
         customer = new Customer();
         return "NewCustomer";
     }
+
+    public String updateCustomer(String id){
+        int n = Integer.valueOf(id);
+        customer = customerService.findById(n);
+        return "NewCustomer";
+    }
+
 }

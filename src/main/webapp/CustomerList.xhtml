@@ -13,19 +13,21 @@
     #{customerBean.refreshList()}
     <h:form>
         <h:panelGrid columns="1">
-        <h:commandButton value="Add Customer"
-                         action="#{customerBean.addCustomer()}" />
+            <h:commandButton value="Add Customer" action="#{customerBean.addCustomer()}"/>
         </h:panelGrid>
+
         <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="customerTable"
                      headerClass="customerTableHeader"
                      rowClasses="customerTableOddRow, customerTableEvenRow">
             <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{customer.id}
+                <f:facet name="header">Id</f:facet> #{customer.id}
             </h:column>
             <h:column>
-                <f:facet name="header">Name</f:facet>
-                #{customer.name}
+                <f:facet name="header">Name</f:facet> #{customer.name}
+                <h:commandLink action="#{customerBean.updateCustomer(customer.id)}" >
+                    <h:graphicImage value="resources/edit.png" height="16" width="16" title="Update"/>
+                </h:commandLink>
+
             </h:column>
         </h:dataTable>
     </h:form>

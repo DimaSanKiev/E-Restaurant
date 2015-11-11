@@ -6,7 +6,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 
 @Named("msgs")
-@Scope("session")
+@Scope("request")
 public class MessageBean implements Serializable {
     private static final long serialVersionUID = 8775004566511526824L;
 
@@ -15,6 +15,7 @@ public class MessageBean implements Serializable {
     private final String passwordRequired = "Customer's password field could not be empty";
     private final String passwordRange = "Customer's password should not be less than 8 symbols";
     private final String addressRequired = "Customer's address field could not be empty";
+    private final String birthDateConverter = "Customer's birthdate field has wrong date format";
 
     public MessageBean() {
     }
@@ -37,5 +38,9 @@ public class MessageBean implements Serializable {
 
     public String getAddressRequired() {
         return addressRequired;
+    }
+
+    public String getBirthDateConverter() {
+        return birthDateConverter;
     }
 }

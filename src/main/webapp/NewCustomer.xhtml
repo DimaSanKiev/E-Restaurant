@@ -43,8 +43,11 @@
 
             <h:outputText value="Customer birthdate:"/>
             <h:inputText id="cBirthdate"
-                         value="#{customerBean.customer.birthDate}" required="false">
+                         value="#{customerBean.customer.birthDate}" required="false"
+                         converterMessage="#{msgs.birthDateConverter}">
+                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
             </h:inputText>
+            <h:message for="cBirthdate" style="color:red"/>
 
         </h:panelGrid>
         <h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/>

@@ -46,12 +46,12 @@ public class CustomerBean {
         return "CustomerList";
     }
 
-    public String addCustomer(){
+    public String addCustomer() {
         customer = new Customer();
         return "NewCustomer";
     }
 
-    public String updateCustomer(String id){
+    public String updateCustomer(String id) {
         int n = Integer.valueOf(id);
         customer = customerService.findById(n);
         return "NewCustomer";

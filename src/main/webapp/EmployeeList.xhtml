@@ -5,38 +5,44 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-    <title>Customer List</title>
+    <title>Employee List</title>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
-    <h2>Registered Customers</h2>
-    #{customerBean.refreshList()}
+    <h2>Registered Employees</h2>
+    #{employeeBean.refreshList()}
     <h:form>
         <h:panelGrid columns="1">
-            <h:commandButton value="Add Customer" action="#{customerBean.addCustomer()}"/>
+            <h:commandButton value="Add Employee" action="#{employeeBean.addEmployee()}"/>
         </h:panelGrid>
 
-        <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="customerTable"
+        <h:dataTable value="#{employeeBean.employees}" var="employee" styleClass="customerTable"
                      headerClass="customerTableHeader"
                      rowClasses="customerTableOddRow, customerTableEvenRow">
             <h:column>
-                <f:facet name="header">Id</f:facet> #{customer.id}
+                <f:facet name="header">Id</f:facet> #{employee.id}
             </h:column>
             <h:column>
-                <f:facet name="header">Name</f:facet> #{customer.name}
+                <f:facet name="header">Name</f:facet> #{employee.name}
             </h:column>
             <h:column>
-                <f:facet name="header">Email</f:facet> #{customer.email}
+                <f:facet name="header">Email</f:facet> #{employee.email}
             </h:column>
             <!-- todo - display date in dd.mm.yyy pattern -->
             <h:column>
-                <f:facet name="header">Birthdate</f:facet> #{customer.birthDate}
+                <f:facet name="header">Birthdate</f:facet> #{employee.birthDate}
             </h:column>
             <h:column>
-                <f:facet name="header">Address</f:facet> #{customer.address}
+                <f:facet name="header">Hiredate</f:facet> #{employee.hireDate}
             </h:column>
             <h:column>
-                <h:commandLink action="#{customerBean.updateCustomer(customer.id)}" >
+                <f:facet name="header">Readiness</f:facet> #{employee.ready}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Role</f:facet> #{employee.role.name}
+            </h:column>
+            <h:column>
+                <h:commandLink action="#{employeeBean.updateEmployee(employee.id)}" >
                     <h:graphicImage value="resources/edit.png" height="16" width="16" title="Update"/>
                 </h:commandLink>
             </h:column>

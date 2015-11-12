@@ -1,21 +1,27 @@
-.customerTable {
+.userTable {
     border-collapse: collapse;
     border: 1px solid #000000;
 }
 
-.customerTableHeader {
+.userTableHeader {
     text-align: center;
     background: none repeat scroll 0 0 #B5B5B5;
     border-bottom: 1px solid #000000;
     padding: 2px;
 }
 
-.customerTableOddRow {
+.userTableOddRow {
     text-align: left;
     background: none repeat scroll 0 0 #FFFFFF;
 }
 
-.customerTableEvenRow {
+.userTableEvenRow {
     text-align: left;
     background: none repeat scroll 0 0 #D3D3D3;
+}
+
+.userTableColumns {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }

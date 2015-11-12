@@ -16,9 +16,10 @@
             <h:commandButton value="Add Customer" action="#{customerBean.addCustomer()}"/>
         </h:panelGrid>
 
-        <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="customerTable"
-                     headerClass="customerTableHeader"
-                     rowClasses="customerTableOddRow, customerTableEvenRow">
+        <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="userTable"
+                     headerClass="userTableHeader"
+                     rowClasses="userTableOddRow, userTableEvenRow"
+                     columnClasses="userTableColumns">
             <h:column>
                 <f:facet name="header">Id</f:facet> #{customer.id}
             </h:column>
@@ -36,7 +37,7 @@
                 <f:facet name="header">Address</f:facet> #{customer.address}
             </h:column>
             <h:column>
-                <h:commandLink action="#{customerBean.updateCustomer(customer.id)}" >
+                <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
                     <h:graphicImage value="resources/edit.png" height="16" width="16" title="Update"/>
                 </h:commandLink>
             </h:column>

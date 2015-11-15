@@ -71,18 +71,18 @@ public class CustomerBean {
 
     public String saveCustomer() {
         customerService.save(customer);
-        return "CustomerList";
+        return "customerList";
     }
 
     public String addCustomer() {
         customer = new Customer();
-        return "NewCustomer";
+        return "newCustomer";
     }
 
     public String updateCustomer(String id) {
         int n = Integer.valueOf(id);
         customer = customerService.findById(n);
-        return "NewCustomer";
+        return "newCustomer";
     }
 
     public String signIn(String email, String password) {

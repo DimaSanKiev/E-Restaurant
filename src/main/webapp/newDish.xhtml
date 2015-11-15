@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>New dish</title>
+</h:head>
+<h:body>
+    <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+        <ui:define name="content">
+
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputText value="Dish name:"/>
+                    <h:inputText id="dName" value="#{dishBean.dish.name}"
+                                 required="true">
+                    </h:inputText>
+                    <h:message for="dName" style="color:red"/>
+
+                    <h:outputText value="Dish description:"/>
+                    <h:inputText id="dDescription" value="#{dishBean.dish.description}"
+                                 required="false">
+                    </h:inputText>
+                    <h:message for="dDescription" style="color:red"/>
+
+                    <h:outputText value="Price:"/>
+                    <h:inputText id="dPrice" value="#{dishBean.dish.price}"
+                                 required="true">
+                        <f:convertNumber minFractionDigits="2"/>
+                        <f:validateDoubleRange minimum="0.00" maximum="1000.00"/>
+                    </h:inputText>
+                    <h:message for="dPrice" style="color:red"/>
+
+                    <h:outputText value="Kitchen made:"/>
+                    <h:selectBooleanCheckbox id="kitchenMade" value="#{dishBean.dish.kitchenmade}"/>
+                    <h:outputText value=" "/>
+
+                    <h:outputText value="Available:"/>
+                    <h:selectBooleanCheckbox id="activated" value="#{dishBean.dish.available}"/>
+                    <h:outputText value=" "/>
+
+                    <h:outputText value="Dish category:"/>
+                    <h:selectOneMenu value="#{dishBean.category}">
+                        <f:selectItems value="#{dishBean.idCategoryMap}"/>
+                    </h:selectOneMenu>
+                    <h:outputText value=" "/>
+
+                    <h:outputText value="Dish photo URL:"/>
+                    <h:inputText id="dPhoto" value="#{dishBean.dish.photo_url}"
+                                 required="false">
+                    </h:inputText>
+                    <h:message for="dPhoto" style="color:red"/>
+
+                </h:panelGrid>
+                <h:commandButton value="Submit" action="#{dishBean.saveDish}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>

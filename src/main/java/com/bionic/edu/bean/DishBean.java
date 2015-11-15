@@ -82,6 +82,20 @@ public class DishBean {
     }
 
 
+    public void refreshCategories() {
+        idNameCategoryMap = new HashMap<>();
+        idCategoryMap = new HashMap<>();
+        List<DishCategory> dishCategories = dishCategoryService.findAll();
+        for (DishCategory dc : dishCategories) {
+            idNameCategoryMap.put(dc.getName(), String.valueOf(dc.getId()));
+            idCategoryMap.put(String.valueOf(dc.getId()), dc);
+        }
+    }
+
+    public void refreshDishes() {
+        dishes = dishService.findAll();
+    }
+
     public String saveDish() {
         dish.setCategory(idCategoryMap.get(category));
         dishService.save(dish);
@@ -89,11 +103,13 @@ public class DishBean {
     }
 
     public String addDish() {
+        refreshCategories();
         dish = new Dish();
         return "newDish";
     }
 
     public String updateDish(String id) {
+        refreshCategories();
         int n = Integer.valueOf(id);
         dish = dishService.findById(n);
         return "newDish";

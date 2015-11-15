@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>List of Dishes</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+        <ui:define name="content">
+
+            <h2>Dishes</h2>
+            #{dishBean.refreshDishes()}
+            <h:form>
+                <h:panelGrid columns="1">
+                    <h:commandButton value="Add dish" action="#{dishBean.addDish()}"/>
+                </h:panelGrid>
+
+                <h:dataTable value="#{dishBean.dishes}" var="dish"
+                             styleClass="table" headerClass="tableHeader"
+                             rowClasses="tableOddRow, tableEvenRow">
+
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{dish.name}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Description</f:facet>
+                        #{dish.description}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Price</f:facet>
+                        <h:outputText value="#{dish.price}">
+                            <f:convertNumber pattern="#0.00"/>
+                        </h:outputText>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Kitchen made</f:facet>
+                        <h:outputText value="yes" rendered="#{dish.kitchenmade}"/>
+                        <h:outputText value="no" rendered="#{!dish.kitchenmade}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Photo</f:facet>
+                        <!--<h:graphicImage value="#{dish.photo_url}" width="200"/>-->
+
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Available</f:facet>
+                        <h:outputText value="yes" rendered="#{dish.available}"/>
+                        <h:outputText value="no" rendered="#{!dish.available}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Dish category</f:facet>
+                        #{dish.category.name}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                        </f:facet>
+                        <h:commandButton action="#{dishBean.updateDish(dish.id)}"
+                                         value="Edit"/>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

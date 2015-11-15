@@ -11,6 +11,8 @@ import java.util.List;
 @Named
 @Scope("session")
 public class CustomerBean {
+    private boolean signedIn;
+    private String message = "";
     private List<Customer> customers = null;
     private Customer customer = null;
     @Inject
@@ -18,6 +20,14 @@ public class CustomerBean {
 
     public CustomerBean() {
         customer = new Customer();
+    }
+
+    public boolean isSignedIn() {
+        return signedIn;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
     }
 
     public List<Customer> getCustomers() {
@@ -55,6 +65,27 @@ public class CustomerBean {
         int n = Integer.valueOf(id);
         customer = customerService.findById(n);
         return "NewCustomer";
+    }
+
+    public String signIn(String email, String password) {
+        try {
+            customerService.login(email, password);
+        } catch (NullPointerException e) {
+            message = "Incorrect email or password, please try again.";
+            return "signIn";
+        }
+        return "homePage";
+    }
+
+    public String signOut() {
+        customer = null;
+        signedIn = false;
+        message = "Thank you for visiting ERestaurant, see you again.";
+        return "menuList";
+    }
+
+    public String signUp() {
+        return "signUp";
     }
 
 }

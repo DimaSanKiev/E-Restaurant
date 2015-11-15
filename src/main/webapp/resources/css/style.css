@@ -28,7 +28,7 @@
 
 .menuButton {
     color: #ffffff;
-    background: url("WEB-INF/template/restaurant-pattern.jpg");
+    background: url("../images/restaurant-pattern.jpg");
     border: none;
     font-size: 4.8mm;
     font-weight: normal;

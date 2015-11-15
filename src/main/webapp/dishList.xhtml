@@ -30,6 +30,11 @@
                     </h:column>
 
                     <h:column>
+                        <f:facet name="header">Photo</f:facet>
+                        <h:graphicImage value="#{dish.photo_url}" width="100"/>
+                    </h:column>
+
+                    <h:column>
                         <f:facet name="header">Description</f:facet>
                         #{dish.description}
                     </h:column>
@@ -45,12 +50,6 @@
                         <f:facet name="header">Kitchen made</f:facet>
                         <h:outputText value="yes" rendered="#{dish.kitchenmade}"/>
                         <h:outputText value="no" rendered="#{!dish.kitchenmade}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">Photo</f:facet>
-                        <!--<h:graphicImage value="#{dish.photo_url}" width="200"/>-->
-
                     </h:column>
 
                     <h:column>

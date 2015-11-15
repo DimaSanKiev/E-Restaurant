@@ -25,3 +25,17 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.menuButton {
+    color: #ffffff;
+    background: url("WEB-INF/template/restaurant-pattern.jpg");
+    border: none;
+    font-size: 4.8mm;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #cec6ae;
+    height: 2.5em;
+    width: 10em;
+    color: #cec6ae;
+    letter-spacing: 1px;
+}

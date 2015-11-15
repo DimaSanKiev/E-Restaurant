@@ -3,45 +3,52 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-    <title>Customer List</title>
-    <h:outputStylesheet library="css" name="style.css"/>
-</h:head>
-<h:body>
-    <h2>Registered Customers</h2>
-    #{customerBean.refreshList()}
-    <h:form>
-        <h:panelGrid columns="1">
-            <h:commandButton value="Add Customer" action="#{customerBean.addCustomer()}"/>
-        </h:panelGrid>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
-        <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="userTable"
-                     headerClass="userTableHeader"
-                     rowClasses="userTableOddRow, userTableEvenRow"
-                     columnClasses="userTableColumns">
-            <h:column>
-                <f:facet name="header">Id</f:facet> #{customer.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Name</f:facet> #{customer.name}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Email</f:facet> #{customer.email}
-            </h:column>
-            <!-- todo - display date in dd.mm.yyy pattern -->
-            <h:column>
-                <f:facet name="header">Birthdate</f:facet> #{customer.birthDate}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Address</f:facet> #{customer.address}
-            </h:column>
-            <h:column>
-                <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
-                    <h:graphicImage value="resources/edit.png" height="16" width="16" title="Update"/>
-                </h:commandLink>
-            </h:column>
-        </h:dataTable>
-    </h:form>
-</h:body>
+<ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+    <ui:define name="content">
+        <h2>Registered Customers</h2>
+        #{customerBean.refreshList()}
+        <h:form>
+            <h:panelGrid columns="1">
+                <h:commandButton value="Add Customer" action="#{customerBean.addCustomer()}"/>
+            </h:panelGrid>
+
+            <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="userTable"
+                         headerClass="userTableHeader"
+                         rowClasses="userTableOddRow, userTableEvenRow"
+                         columnClasses="userTableColumns">
+                <h:column>
+                    <f:facet name="header">Id</f:facet> #{customer.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet> #{customer.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet> #{customer.email}
+                </h:column>
+                <!-- todo - display date in dd.mm.yyy pattern -->
+                <h:column>
+                    <f:facet name="header">Birthdate</f:facet> #{customer.birthDate}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Address</f:facet> #{customer.address}
+                </h:column>
+                <h:column>
+                    <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
+                        <h:graphicImage value="resources/images/edit.png" height="16" width="16" title="Update"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+<div style="border-width: 2px; border-color: red; border-style: solid;">
+    <ui:insert name="footer">
+        <ui:include src="WEB-INF/template/footer.xhtml"/>
+    </ui:insert>
+</div>
+
 </html>

@@ -3,55 +3,56 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-    <title>New Customer</title>
-</h:head>
-<h:body>
-    <h1>New Customer</h1>
-    <h:form>
-        <h:panelGrid columns="3">
-            <h:outputText value="Customer name:"/>
-            <h:inputText id="cName"
-                         value="#{customerBean.customer.name}" required="true"
-                         requiredMessage="#{msgs.nameRequired}">
-            </h:inputText>
-            <h:message for="cName" style="color:red"/>
 
-            <h:outputText value="Customer email:"/>
-            <h:inputText id="cEmail"
-                         value="#{customerBean.customer.email}" required="true"
-                         requiredMessage="#{msgs.emailRequired}">
-            </h:inputText>
-            <h:message for="cEmail" style="color:red"/>
+<ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+    <ui:define name="content">
+        <h2>New Customer</h2>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputText value="Customer name:"/>
+                <h:inputText id="cName"
+                             value="#{customerBean.customer.name}" required="true"
+                             requiredMessage="#{msgs.nameRequired}">
+                </h:inputText>
+                <h:message for="cName" style="color:red"/>
 
-            <!-- todo - crypted password stores but shown encrypted -->
-            <h:outputText value="Customer password:"/>
-            <h:inputText id="cPassword"
-                         value="#{customerBean.customer.password}" required="true"
-                         requiredMessage="#{msgs.passwordRequired}"
-                         validatorMessage="#{msgs.passwordRange}">
-                <f:validateLength minimum="4"/>
-            </h:inputText>
-            <h:message for="cPassword" style="color:red"/>
+                <h:outputText value="Customer email:"/>
+                <h:inputText id="cEmail"
+                             value="#{customerBean.customer.email}" required="true"
+                             requiredMessage="#{msgs.emailRequired}">
+                </h:inputText>
+                <h:message for="cEmail" style="color:red"/>
 
-            <h:outputText value="Customer address:"/>
-            <h:inputText id="cAddress"
-                         value="#{customerBean.customer.address}" required="true"
-                         requiredMessage="#{msgs.addressRequired}">
-            </h:inputText>
-            <h:message for="cAddress" style="color:red"/>
+                <!-- todo - crypted password stores but shown encrypted -->
+                <h:outputText value="Customer password:"/>
+                <h:inputText id="cPassword"
+                             value="#{customerBean.customer.password}" required="true"
+                             requiredMessage="#{msgs.passwordRequired}"
+                             validatorMessage="#{msgs.passwordRange}">
+                    <f:validateLength minimum="4"/>
+                </h:inputText>
+                <h:message for="cPassword" style="color:red"/>
 
-            <h:outputText value="Customer birthdate:"/>
-            <h:inputText id="cBirthdate"
-                         value="#{customerBean.customer.birthDate}" required="false"
-                         converterMessage="#{msgs.birthDateConverter}">
-                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-            </h:inputText>
-            <h:message for="cBirthdate" style="color:red"/>
+                <h:outputText value="Customer address:"/>
+                <h:inputText id="cAddress"
+                             value="#{customerBean.customer.address}" required="true"
+                             requiredMessage="#{msgs.addressRequired}">
+                </h:inputText>
+                <h:message for="cAddress" style="color:red"/>
 
-        </h:panelGrid>
-        <h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/>
-    </h:form>
-</h:body>
+                <h:outputText value="Customer birthdate:"/>
+                <h:inputText id="cBirthdate"
+                             value="#{customerBean.customer.birthDate}" required="false"
+                             converterMessage="#{msgs.birthDateConverter}">
+                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                </h:inputText>
+                <h:message for="cBirthdate" style="color:red"/>
+
+            </h:panelGrid>
+            <h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>

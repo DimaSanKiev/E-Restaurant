@@ -19,6 +19,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>5.2</version>
+        </dependency>
+
         <!-- JSF -->
         <dependency>
             <groupId>com.sun.faces</groupId>

@@ -16,6 +16,8 @@ public class MessageBean implements Serializable {
     private final String passwordRange = "Customer's password should not be less than 8 symbols";
     private final String addressRequired = "Customer's address field could not be empty";
     private final String birthDateConverter = "Customer's birthdate field has wrong date format";
+    private final String readyRequired = "Employee's readiness is required";
+    private final String roleRequired = "Employee's role is required";
 
     public MessageBean() {
     }
@@ -42,5 +44,13 @@ public class MessageBean implements Serializable {
 
     public String getBirthDateConverter() {
         return birthDateConverter;
+    }
+
+    public String getReadyRequired() {
+        return readyRequired;
+    }
+
+    public String getRoleRequired() {
+        return roleRequired;
     }
 }

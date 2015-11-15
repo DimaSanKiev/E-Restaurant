@@ -3,72 +3,87 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title>New Employee</title>
 </h:head>
 <h:body>
-    <h1>New Employee</h1>
-    <h:form>
-        <h:panelGrid columns="3">
-            <h:outputText value="Employee name:"/>
-            <h:inputText id="eName"
-                         value="#{employeeBean.employee.name}" required="true"
-                         requiredMessage="#{msgs.nameRequired}">
-            </h:inputText>
-            <h:message for="eName" style="color:red"/>
+    <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
+        <ui:define name="content">
+            <h2>New Employee</h2>
 
-            <h:outputText value="Employee email:"/>
-            <h:inputText id="eEmail"
-                         value="#{employeeBean.employee.email}" required="true"
-                         requiredMessage="#{msgs.emailRequired}">
-            </h:inputText>
-            <h:message for="eEmail" style="color:red"/>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputText value="Employee name:"/>
+                    <h:inputText id="eName"
+                                 value="#{employeeBean.employee.name}" required="true"
+                                 requiredMessage="#{msgs.nameRequired}">
+                    </h:inputText>
+                    <h:message for="eName" style="color:red"/>
 
-            <!-- todo - crypted password stores but shown encrypted -->
-            <h:outputText value="Employee password:"/>
-            <h:inputSecret id="ePassword"
-                         value="#{employeeBean.employee.password}" required="true"
-                         requiredMessage="#{msgs.passwordRequired}"
-                         validatorMessage="#{msgs.passwordRange}">
-                <f:validateLength minimum="4"/>
-            </h:inputSecret>
-            <h:message for="ePassword" style="color:red"/>
+                    <h:outputText value="Employee email:"/>
+                    <h:inputText id="eEmail"
+                                 value="#{employeeBean.employee.email}" required="true"
+                                 requiredMessage="#{msgs.emailRequired}">
+                    </h:inputText>
+                    <h:message for="eEmail" style="color:red"/>
 
-            <h:outputText value="Employee birthdate:"/>
-            <h:inputText id="eBirthdate"
-                         value="#{employeeBean.employee.birthDate}" required="false"
-                         converterMessage="#{msgs.birthDateConverter}">
-                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-            </h:inputText>
-            <h:message for="eBirthdate" style="color:red"/>
+                    <!-- todo - crypted password stores but shown encrypted -->
+                    <h:outputText value="Employee password:"/>
+                    <h:inputSecret id="ePassword"
+                                   value="#{employeeBean.employee.password}" required="true"
+                                   requiredMessage="#{msgs.passwordRequired}"
+                                   validatorMessage="#{msgs.passwordRange}">
+                        <f:validateLength minimum="4"/>
+                    </h:inputSecret>
+                    <h:message for="ePassword" style="color:red"/>
 
-            <h:outputText value="Employee hiredate:"/>
-            <h:inputText id="eHiredate"
-                         value="#{employeeBean.employee.hireDate}" required="false"
-                         converterMessage="#{msgs.birthDateConverter}">
-                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-            </h:inputText>
-            <h:message for="eHiredate" style="color:red"/>
+                    <h:outputText value="Employee birthdate:"/>
+                    <h:inputText id="eBirthdate"
+                                 value="#{employeeBean.employee.birthDate}" required="false"
+                                 converterMessage="#{msgs.birthDateConverter}">
+                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                    </h:inputText>
+                    <h:message for="eBirthdate" style="color:red"/>
 
-            <!-- todo checkbox -->
-            <h:outputText value="Employee readiness:"/>
-            <h:inputText id="eReadiness"
-                         value="#{employeeBean.employee.ready}" required="true"
-                         requiredMessage="#{msgs.readyRequired}">
-            </h:inputText>
-            <h:message for="eReadiness" style="color:red"/>
+                    <h:outputText value="Employee hiredate:"/>
+                    <h:inputText id="eHiredate"
+                                 value="#{employeeBean.employee.hireDate}" required="false"
+                                 converterMessage="#{msgs.birthDateConverter}">
+                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                    </h:inputText>
+                    <h:message for="eHiredate" style="color:red"/>
 
-            <!-- todo - dropdown list -->
-            <h:outputText value="Employee role:"/>
-            <h:inputText id="eRole"
-                         value="#{employeeBean.employee.role.name}" required="true"
-                         requiredMessage="#{msgs.roleRequired}">
-            </h:inputText>
-            <h:message for="eRole" style="color:red"/>
+                    <!-- todo checkbox -->
+                    <h:outputText value="Employee readiness:"/>
+                    <h:inputText id="eReadiness"
+                                 value="#{employeeBean.employee.ready}" required="true"
+                                 requiredMessage="#{msgs.readyRequired}">
+                    </h:inputText>
 
-        </h:panelGrid>
-        <h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/>
-    </h:form>
+                    <!-- todo - dropdown list -->
+                    <h:outputText value="Employee role:"/>
+                    <h:inputText id="eRole"
+                                 value="#{employeeBean.employee.role.name}" required="true"
+                                 requiredMessage="#{msgs.roleRequired}">
+                    </h:inputText>
+                    <!--<h:selectManyCheckbox id="eRole"-->
+                    <!--value="#{employeeBean.employee.role.name}" required="true"-->
+                    <!--requiredMessage="#{msgs.roleRequired}">-->
+                    <!--<f:selectItem id="superUser" itemLabel="Super User" itemValue="false"/>-->
+                    <!--<f:selectItem id="admin" itemLabel="Administrator" itemValue="false"/>-->
+                    <!--<f:selectItem id="kitchenStaff" itemLabel="Kitchen Staff" itemValue="false"/>-->
+                    <!--<f:selectItem id="deliveryStaff" itemLabel="Delivery Staff" itemValue="false"/>-->
+                    <!--<f:selectItem id="analyst" itemLabel="Business Analyst" itemValue="false"/>-->
+                    <!--</h:selectManyCheckbox>-->
+                    <!--<h:message for="eRole" style="color:red"/>-->
+                </h:panelGrid>
+                <h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </h:body>
 </html>
+
+      

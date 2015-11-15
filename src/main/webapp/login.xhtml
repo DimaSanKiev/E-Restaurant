@@ -2,20 +2,69 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Login Page</title>
-</head>
-<body>
-<h:form>
-    <h:panelGrid columns="2">
-        <h:outputText value="Name" />
-        <h:inputText value="#{loginBean.email}" />
-        <h:outputText value="Password" />
-        <h:inputSecret value="#{loginBean.password}"/>
-    </h:panelGrid>
-    <h:commandButton value="Login" action="login" />
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>SignIn</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<body class="front">
+<h:form id="forUpdate">
+    <div class="body">
+        <div class="header">
+            <div>
+                <ui:insert name="header">
+                    <ui:include src="WEB-INF/template/header.xhtml"/>
+                </ui:insert>
+            </div>
+            <!--<div>-->
+                <!--<ui:insert name="cart">-->
+                    <!--<ui:include src="WEB-INF/template/cart.xhtml"/>-->
+                <!--</ui:insert>-->
+            <!--</div>-->
+            <div>
+                <ui:insert name="navigation">
+                    <ui:include src="WEB-INF/template/menu.xhtml"/>
+                </ui:insert>
+            </div>
+        </div>
+        <br/>
+
+        <div>
+            <h1>SignIn</h1>
+            <h:form>
+                <h:messages id="msg"/>
+                <h:panelGrid columns="2">
+                    <p:outputLabel styleClass="lable" for="email" value="Email: "/>
+                    <p:inputText id="email" value="#{customerBean.email}" required="true">
+                    </p:inputText>
+
+                    <p:outputLabel styleClass="lable" for="password" value="Password: "/>
+                    <p:password id="password" value="#{customerBean.password}"
+                                required="true">
+                    </p:password>
+
+                </h:panelGrid>
+                <p:commandButton value="Log in"
+                                 action="#{customerBean.signIn(customerBean.email, customerBean.password)}"/>
+
+            </h:form>
+            <h:form>
+                <p:commandButton value="Sign Up"
+                                 action="homePage"/>
+            </h:form>
+
+            <div>
+                <ui:insert name="bottom">
+                    <ui:include src="WEB-INF/template/footer.xhtml"/>
+                </ui:insert>
+            </div>
+        </div>
+    </div>
 </h:form>
 </body>
 </html>

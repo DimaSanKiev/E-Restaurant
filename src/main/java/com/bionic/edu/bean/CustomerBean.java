@@ -11,6 +11,8 @@ import java.util.List;
 @Named
 @Scope("session")
 public class CustomerBean {
+    private String email;
+    private String password;
     private boolean signedIn;
     private String message = "";
     private List<Customer> customers = null;
@@ -20,6 +22,22 @@ public class CustomerBean {
 
     public CustomerBean() {
         customer = new Customer();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isSignedIn() {

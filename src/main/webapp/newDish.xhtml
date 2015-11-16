@@ -12,7 +12,7 @@
     <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
         <ui:define name="content">
 
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <h:panelGrid columns="3">
                     <h:outputText value="Dish name:"/>
                     <h:inputText id="dName" value="#{dishBean.dish.name}"
@@ -48,10 +48,16 @@
                     </h:selectOneMenu>
                     <h:outputText value=" "/>
 
+                    <!--<h:outputText value="Dish photo URL:"/>-->
+                    <!--<h:inputText id="dPhoto" value="#{dishBean.dish.photo_url}"-->
+                    <!--required="false">-->
+                    <!--</h:inputText>-->
+                    <!--<h:message for="dPhoto" style="color:red"/>-->
+
                     <h:outputText value="Dish photo URL:"/>
-                    <h:inputText id="dPhoto" value="#{dishBean.dish.photo_url}"
-                                 required="false">
-                    </h:inputText>
+                    <h:inputFile id="dPhoto" value="#{dishBean.dish.photo_url}"
+                                 validator="#{dishBean.validateFile}"/>
+                    <h:commandButton value="Upload photo" action="#{dishBean.uploadPhoto}"/>
                     <h:message for="dPhoto" style="color:red"/>
 
                 </h:panelGrid>

@@ -4,21 +4,23 @@ import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
 import com.bionic.edu.service.DishCategoryService;
 import com.bionic.edu.service.DishService;
-import org.primefaces.model.UploadedFile;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.context.annotation.Scope;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.Part;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Named
+@RequestScoped
 @Scope("session")
 public class DishBean {
     @Inject
@@ -30,8 +32,6 @@ public class DishBean {
     private Map<String, String> idNameCategoryMap;
     private Map<String, DishCategory> idCategoryMap;
     private String category;
-    private Part file;
-    private String fileContent;
     private UploadedFile uploadedFile;
 
     public DishService getDishService() {
@@ -90,12 +90,12 @@ public class DishBean {
         this.category = category;
     }
 
-    public Part getFile() {
-        return file;
+    public UploadedFile getUploadedFile() {
+        return uploadedFile;
     }
 
-    public void setFile(Part file) {
-        this.file = file;
+    public void setUploadedFile(UploadedFile uploadedFile) {
+        this.uploadedFile = uploadedFile;
     }
 
 
@@ -132,41 +132,15 @@ public class DishBean {
         return "newDish";
     }
 
-    public void uploadPhoto() {
-        try {
-//            fileContent = new Scanner(file.getInputStream()).useDelimiter("\\A").next();
-            file.write("resources/images/" + getFilename(file));
-        } catch (IOException e) {
-            // todo - handle
-        }
+    public void submit() throws IOException {
+        String fileName= FilenameUtils.getName(uploadedFile.getName());
+        String contentType = uploadedFile.getContentType();
+        byte[] bytes = uploadedFile.getBytes();
+        FileOutputStream fos = new FileOutputStream("resources/images/" + fileName);
+        fos.write(bytes);
+        fos.close();
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(String.format("File '%s' of type '%s' successfully uploaded!", fileName, contentType)));
     }
 
-    private static String getFilename(Part part) {
-        for (String cd : part.getHeader("content-disposition").split(";")) {
-            if (cd.trim().startsWith("filename")) {
-                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-                return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.
-            }
-        }
-        return null;
-    }
-
-    public void validateFile(FacesContext context, UIComponent component, Object value) {
-        List<FacesMessage> messages = new ArrayList<FacesMessage>();
-        Part file = (Part) value;
-        if (file.getSize() > 1024000) {
-            messages.add(new FacesMessage("File is too big."));
-        }
-//        if (!"image".equals(file.getContentType())) {
-//            messages.add(new FacesMessage("Not an image file."));
-//        }
-        try {
-            ImageIO.read(file.getInputStream());
-        } catch (IOException e) {
-            messages.add(new FacesMessage("Not an image file."));
-        }
-        if (!messages.isEmpty()) {
-            throw new ValidatorException(messages);
-        }
-    }
 }

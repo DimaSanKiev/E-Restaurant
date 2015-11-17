@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title>New dish</title>
@@ -48,17 +49,16 @@
                     </h:selectOneMenu>
                     <h:outputText value=" "/>
 
-                    <!--<h:outputText value="Dish photo URL:"/>-->
-                    <!--<h:inputText id="dPhoto" value="#{dishBean.dish.photo_url}"-->
-                    <!--required="false">-->
-                    <!--</h:inputText>-->
-                    <!--<h:message for="dPhoto" style="color:red"/>-->
-
                     <h:outputText value="Dish photo URL:"/>
-                    <h:inputFile id="dPhoto" value="#{dishBean.dish.photo_url}"
-                                 validator="#{dishBean.validateFile}"/>
-                    <h:commandButton value="Upload photo" action="#{dishBean.uploadPhoto}"/>
+                    <h:inputText id="dPhoto" value="#{dishBean.dish.photo_url}"
+                    required="false">
+                    </h:inputText>
                     <h:message for="dPhoto" style="color:red"/>
+
+                    <!--<h:outputText value="Dish photo URL:"/>-->
+                    <!--<t:inputFileUpload value="#{dishBean.uploadedFile}"/>-->
+                    <!--<h:commandButton value="Submit" action="#{dishBean.submit}"/>-->
+                    <!--<h:messages />-->
 
                 </h:panelGrid>
                 <h:commandButton value="Submit" action="#{dishBean.saveDish}"/>

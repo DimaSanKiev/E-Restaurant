@@ -1,7 +1,7 @@
 package com.bionic.edu.util;
 
 public class ReportCategory {
-    private String  dishCategoryName;
+    private String dishCategoryName;
     private long count;
     private double total;
 

@@ -132,6 +132,13 @@ public class DishBean {
         return "newDish";
     }
 
+    public String showCategory(String id) {
+        int n = Integer.valueOf(id);
+        dishes = dishService.findByCategory(n);
+        return "dishByCategoryList";
+    }
+
+
     public void submit() throws IOException {
         String fileName= FilenameUtils.getName(uploadedFile.getName());
         String contentType = uploadedFile.getContentType();

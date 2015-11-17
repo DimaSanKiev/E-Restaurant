@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Menu</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+        <ui:define name="content">
+            <h2>Menu</h2>
+            #{dishCategoryBean.refreshList}
+
+            <h:form>
+                <h:dataTable value="#{dishCategoryBean.dishCategories}" var="dishCategory"
+                             styleClass="table" headerClass="userTableHeader"
+                             rowClasses="userTableOddRow userTableEvenRow">
+
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{dishCategory.name}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header"/>
+                        <h:commandButton action="#{dishBean.showCategory(dishCategory.id)}" value="showCategory"/>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

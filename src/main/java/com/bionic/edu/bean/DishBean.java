@@ -15,9 +15,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Named
 @RequestScoped
@@ -140,7 +142,7 @@ public class DishBean {
 
 
     public void submit() throws IOException {
-        String fileName= FilenameUtils.getName(uploadedFile.getName());
+        String fileName = FilenameUtils.getName(uploadedFile.getName());
         String contentType = uploadedFile.getContentType();
         byte[] bytes = uploadedFile.getBytes();
         FileOutputStream fos = new FileOutputStream("resources/images/" + fileName);

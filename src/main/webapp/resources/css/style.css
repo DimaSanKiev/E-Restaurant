@@ -39,3 +39,12 @@
     color: #cec6ae;
     letter-spacing: 1px;
 }
+
+.dishes {
+    margin-top:25px;
+    max-width: 70%;
+    margin-left:15%;
+    margin-right:15%;
+    display: table;
+    border-collapse: collapse;
+}

@@ -14,16 +14,15 @@
             <h:panelGrid columns="2">
                 <h:outputText value="Start Date"/>
                 <h:inputText value="#{reportBean.startDate}">
-                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
                 </h:inputText>
-
                 <h:outputText value="End Date"/>
                 <h:inputText value="#{reportBean.endDate}">
-                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
                 </h:inputText>
             </h:panelGrid>
-            <h:commandButton value="Daily report" action="reportCategories" />
-            <h:commandButton value="Category report" action="reportTotal" />
+            <h:commandButton value="Daily report" action="reportCategories"/>
+            <h:commandButton value="Category report" action="reportTotal"/>
         </h:form>
 
     </ui:define>

@@ -31,6 +31,6 @@ public class DishCategoryServiceImplTest {
     @Test
     public void testFindAll() throws Exception {
         List<Dish> dishes = dishCategoryService.findDishes(1);
-        assertEquals(3, dishes.size());
+        assertEquals(4, dishes.size());
     }
 }

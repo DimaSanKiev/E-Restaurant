@@ -88,7 +88,7 @@ public class OrderDaoImpl implements OrderDao {
         TypedQuery<ReportCategory> query = em.createQuery("SELECT new com.bionic.edu.util.ReportCategory(" +
                 "od.dish.category.name, COUNT(od.order.id), SUM(od.price)) " +
                 "FROM order_dishes od WHERE FUNC('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
-                "GROUP BY od.dish.category.name", ReportCategory.class);    // todo - ORDER BY od.dish.category.id not name
+                "GROUP BY od.dish.category.name", ReportCategory.class);
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);
         return query.getResultList();

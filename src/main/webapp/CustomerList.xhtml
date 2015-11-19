@@ -28,7 +28,7 @@
                 <h:column>
                     <f:facet name="header">Email</f:facet> #{customer.email}
                 </h:column>
-                <!-- todo - display date in dd.mm.yyy pattern -->
+                <!-- todo - display date in dd.mm.yyy pattern output tetx -->
                 <h:column>
                     <f:facet name="header">Birthdate</f:facet> #{customer.birthDate}
                 </h:column>
@@ -44,11 +44,5 @@
         </h:form>
     </ui:define>
 </ui:composition>
-
-<div style="border-width: 2px; border-color: red; border-style: solid;">
-    <ui:insert name="footer">
-        <ui:include src="WEB-INF/template/footer.xhtml"/>
-    </ui:insert>
-</div>
 
 </html>

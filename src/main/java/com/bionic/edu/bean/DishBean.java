@@ -145,7 +145,7 @@ public class DishBean {
         String fileName = FilenameUtils.getName(uploadedFile.getName());
         String contentType = uploadedFile.getContentType();
         byte[] bytes = uploadedFile.getBytes();
-        FileOutputStream fos = new FileOutputStream("resources/images/" + fileName);
+        FileOutputStream fos = new FileOutputStream("resources/images/" + fileName + ".jpg");
         fos.write(bytes);
         fos.close();
         FacesContext.getCurrentInstance().addMessage(null,

@@ -1,0 +1,16 @@
+<<<<<<< HEAD
+=======
+----------------------------------------------------------------
+Wed Nov 18 18:41:35 EET 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0151-1b78-c073-00001641f138 
+on database directory /Users/Dima/Java/Projects/E-Restaurant/ERestaurant with class loader WebAppClassLoader=736888459@2bec068b 
+Loaded from file:/Users/Dima/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_60-b27
+user.dir=/Users/Dima/Java/Projects/E-Restaurant
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.11.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+>>>>>>> origin/master

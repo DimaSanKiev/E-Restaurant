@@ -1,31 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:body>
-    <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
-        <ui:define name="content">
-            <h:dataTable value="#{dishBean.dishes}" var="dish"
-                         styleClass="table" headerClass="tableHeader"
-                         rowClasses="tableOddRow, tableEvenRow">
+<h:head>
+    <title>Menu</title>
+    <h:outputStylesheet library="css" name="menuStyle.css"/>
+</h:head>
 
-                <h:column>
-                    <f:facet name="header">Name</f:facet>
-                    #{dish.name}
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">Photo</f:facet>
-                    <h:graphicImage value="#{dish.photo_url}" width="100"/>
-                </h:column>
-
-            </h:dataTable>
-        </ui:define>
-    </ui:composition>
-</h:body>
+<ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+    <ui:define name="content">
+        #{menuBean.refreshDishes} <!--todo - not working, List dishes don't updates -->
+        <div class="item_block">
+            <ul>
+                <ui:repeat value="#{menuBean.dishes}" var="dish">
+                    <h:graphicImage styleClass="item_avatar" value="#{dish.photo_url}"/>
+                    <li><h:outputText styleClass="item_name">#{dish.name}></h:outputText></li>
+                    <li><h:outputText styleClass="item_description">#{dish.description}></h:outputText></li>
+                    <li><h:outputText styleClass="item_price">#{dish.description}</h:outputText></li>
+                    <h:commandButton value="Add to Cart"/>
+                </ui:repeat>
+            </ul>
+        </div>
+    </ui:define>
+</ui:composition>
 
 </html>

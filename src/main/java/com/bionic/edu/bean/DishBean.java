@@ -36,22 +36,6 @@ public class DishBean {
     private String category;
     private UploadedFile uploadedFile; // delete
 
-    public DishService getDishService() {
-        return dishService;
-    }
-
-    public void setDishService(DishService dishService) {
-        this.dishService = dishService;
-    }
-
-    public DishCategoryService getDishCategoryService() {
-        return dishCategoryService;
-    }
-
-    public void setDishCategoryService(DishCategoryService dishCategoryService) {
-        this.dishCategoryService = dishCategoryService;
-    }
-
     public List<Dish> getDishes() {
         return dishes;
     }
@@ -134,14 +118,14 @@ public class DishBean {
         return "newDish";
     }
 
-    public String showCategory(String id) {
+    /*public String showCategory(String id) {
         int n = Integer.valueOf(id);
         dishes = dishService.findByCategory(n);
         return "dishByCategoryList";
-    }
+    }*/
 
 
-    public void submit() throws IOException {
+    /*public void submit() throws IOException {
         String fileName = FilenameUtils.getName(uploadedFile.getName());
         String contentType = uploadedFile.getContentType();
         byte[] bytes = uploadedFile.getBytes();
@@ -150,6 +134,6 @@ public class DishBean {
         fos.close();
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(String.format("File '%s' of type '%s' successfully uploaded!", fileName, contentType)));
-    }
+    }*/
 
 }

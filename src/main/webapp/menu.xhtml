@@ -2,29 +2,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
     <title>Menu</title>
-    <h:outputStylesheet library="css" name="menuStyle.css"/>
 </h:head>
 
-<ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
-    <ui:define name="content">
-        #{menuBean.refreshDishes} <!--todo - not working, List dishes don't updates -->
-        <div class="item_block">
-            <ul>
-                <ui:repeat value="#{menuBean.dishes}" var="dish">
-                    <h:graphicImage styleClass="item_avatar" value="#{dish.photo_url}"/>
-                    <li><h:outputText styleClass="item_name">#{dish.name}></h:outputText></li>
-                    <li><h:outputText styleClass="item_description">#{dish.description}></h:outputText></li>
-                    <li><h:outputText styleClass="item_price">#{dish.description}</h:outputText></li>
-                    <h:commandButton value="Add to Cart"/>
+<h:body>
+    <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+        <ui:define name="content">
+            #{dishBean.refreshDishes()}
+            <div class="dish_table">
+                <ui:repeat var="dish" value="#{dishBean.dishes}">
+                    <ul class="dish_block">
+                        <li>
+                            <h:graphicImage styleClass="dish_photo" value="#{dish.photo_url}"/>
+                            <p class="dish_name">#{dish.name}</p>
+                            <p class="dish_description">#{dish.description}</p>
+                            <p class="dish_price">
+                                <h:outputText value="#{dish.price}">
+                                    <f:convertNumber currencyCode="USD" type="currency" />
+                                </h:outputText>
+                            </p>
+                            <h:form><h:commandButton styleClass="dish_button" value="Add to Cart"/></h:form>
+                        </li>
+                    </ul>
                 </ui:repeat>
-            </ul>
-        </div>
-    </ui:define>
-</ui:composition>
-
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>

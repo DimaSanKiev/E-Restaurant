@@ -16,9 +16,9 @@
             <h:commandButton value="Add Employee" action="#{employeeBean.addEmployee()}"/>
         </h:panelGrid>
 
-        <h:dataTable value="#{employeeBean.employees}" var="employee" styleClass="userTable"
-                     headerClass="userTableHeader"
-                     rowClasses="userTableOddRow, userTableEvenRow">
+        <h:dataTable value="#{employeeBean.employees}" var="employee" styleClass="user_table"
+                     headerClass="user_table_header"
+                     rowClasses="user_table_odd_row, user_table_even_row">
             <h:column>
                 <f:facet name="header">Id</f:facet> #{employee.id}
             </h:column>

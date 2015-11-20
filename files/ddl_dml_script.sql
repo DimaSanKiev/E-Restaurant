@@ -125,7 +125,7 @@ VALUES ('Tomato Soup',
         4.20, TRUE, TRUE, 'resources/images/01_Tomato-Soup.jpg', 1);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_url, dish_category_id)
 VALUES ('Cream of mushroom soup',
-        'Cream of mushroom soup is a soup where a basic roux is thinned with milk and then mushrooms and mushroom broth are added',
+        'Cream of mushroom soup is a soup where a basic roux is thinned with milk and then mushrooms and mushroom broth are added.',
         5.40, TRUE, TRUE, 'resources/images/02_Cream-Of-Mushroom-Soup.jpg', 1);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_url, dish_category_id)
 VALUES ('Miso soup',

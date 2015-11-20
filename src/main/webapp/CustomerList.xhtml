@@ -15,10 +15,10 @@
                 <h:commandButton value="Add Customer" action="#{customerBean.addCustomer()}"/>
             </h:panelGrid>
 
-            <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="userTable"
-                         headerClass="userTableHeader"
-                         rowClasses="userTableOddRow, userTableEvenRow"
-                         columnClasses="userTableColumns">
+            <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="user_table"
+                         headerClass="user_table_header"
+                         rowClasses="user_table_odd_row, user_table_even_row"
+                         columnClasses="user_table_columns">
                 <h:column>
                     <f:facet name="header">Id</f:facet> #{customer.id}
                 </h:column>

@@ -1,50 +1,76 @@
-.userTable {
+.user_table {
     border-collapse: collapse;
     border: 1px solid #000000;
 }
 
-.userTableHeader {
+.user_table_header {
     text-align: center;
     background: none repeat scroll 0 0 #B5B5B5;
     border-bottom: 1px solid #000000;
     padding: 2px;
 }
 
-.userTableOddRow {
+.user_table_odd_row {
     text-align: left;
     background: none repeat scroll 0 0 #FFFFFF;
 }
 
-.userTableEvenRow {
+.user_table_even_row {
     text-align: left;
     background: none repeat scroll 0 0 #D3D3D3;
 }
 
-.userTableColumns {
+.user_table_columns {
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.menuButton {
-    color: #ffffff;
-    background: url("../images/restaurant-pattern.jpg");
-    border: none;
-    font-size: 4.8mm;
-    font-weight: normal;
-    letter-spacing: 1px;
-    color: #cec6ae;
-    height: 2.5em;
-    width: 10em;
-    color: #cec6ae;
-    letter-spacing: 1px;
+/* MENU styles */
+
+.dish_block {
+    width: 400px;
+    margin: 20px;
+    float: left;
 }
 
-.dishes {
-    margin-top:25px;
-    max-width: 70%;
-    margin-left:15%;
-    margin-right:15%;
+.dish_photo {
+    width: 250px;
+    height: 250px;
+    float: left;
+    margin-right: 10px;
+}
+
+.dish_name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.dish_description {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666666;
+    text-align: justify;
+    word-wrap: break-word;
+    word-break: keep-all;
+    margin-bottom: 10px;
+}
+
+.dish_price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.dish_table {
+    max-width: 100%;
     display: table;
     border-collapse: collapse;
+}
+
+.dish_button {
+    float: right;
 }

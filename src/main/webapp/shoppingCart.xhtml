@@ -22,7 +22,7 @@
 
 
             <h:dataTable rendered="#{not empty cartBean.cartMap}"
-                         value="#{cartBean.getCartAsList()}" var="dish"
+                         value="#{cartBean.cartMap.entrySet().toArray()}" var="dish"
                          styleClass="dish_table" headerClass="table_header"
                          columnClasses="dish_table_name, none, center, center, center, center"
                          rowClasses="dish_table_odd_row, dish_table_even_row">

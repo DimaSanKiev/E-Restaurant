@@ -9,10 +9,7 @@ import org.springframework.context.annotation.Scope;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Named
 @Scope("session")
@@ -20,7 +17,6 @@ public class CartBean implements Serializable {
     private static final long serialVersionUID = -2351220622598691145L;
     private Map<Dish, Integer> cartMap;
     private Dish dish;
-    private int count;
     private double total;
     @Inject
     private CustomerBean customerBean;
@@ -48,14 +44,6 @@ public class CartBean implements Serializable {
 
     public void setDish(Dish dish) {
         this.dish = dish;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public double getTotal() {
@@ -87,12 +75,12 @@ public class CartBean implements Serializable {
         }
     }
 
-    public int getCartItemsCount() {
+    public int getCartDishesCount() {
         return cartMap.values().stream().mapToInt(Integer::intValue).sum();
     }
 
-    public List getCartAsList() {
-        return new ArrayList(cartMap.entrySet());
+    public Set getCartEntrySet() {
+        return cartMap.entrySet();
     }
 
     public double updateTotalPrice() {

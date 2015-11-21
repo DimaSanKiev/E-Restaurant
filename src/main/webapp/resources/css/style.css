@@ -127,3 +127,12 @@ td.center {
 .dish_button {
     float: right;
 }
+
+
+/* TEMPLATES */
+.customer-menu-items {
+    position:relative;
+    margin-right:15%;
+    letter-spacing:-1px;
+    text-align:right;
+}

@@ -1,5 +1,6 @@
 package com.bionic.edu.bean;
 
+import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.service.DishService;
 import com.bionic.edu.service.OrderService;
@@ -7,10 +8,9 @@ import org.springframework.context.annotation.Scope;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.InterruptedIOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Named
@@ -19,7 +19,7 @@ public class CartBean implements Serializable {
     private static final long serialVersionUID = -2351220622598691145L;
     private Map<Dish, Integer> dishCountMap;
     private Dish dish;
-    private int count = 1;
+    private int count;
     private double total;
     @Inject
     private CustomerBean customerBean;
@@ -66,8 +66,7 @@ public class CartBean implements Serializable {
     }
 
 
-    public void addToCart(int id, String count) {
-        int intCount = Integer.valueOf(count);
+    public void addToCart(int id) {
         Dish dish = dishService.findById(id);
         if (!dishCountMap.containsKey(dish)) {
             dishCountMap.put(dish, 1);
@@ -76,16 +75,21 @@ public class CartBean implements Serializable {
         }
     }
 
-    public void updateTotal() {
+    public int getCartItemsCount() {
+        return dishCountMap.values().stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public double updateTotalPrice() {
         total = 0.0;
         for (Map.Entry<Dish, Integer> entry : dishCountMap.entrySet()) {
             total += entry.getKey().getPrice() * entry.getValue();
         }
+        return total;
     }
 
-    public void changeCount() {
+    public void changeCount(int count) {
         dishCountMap.put(dish, count);
-        updateTotal();
+        updateTotalPrice();
     }
 
     public void update(int id, String count) {
@@ -96,7 +100,18 @@ public class CartBean implements Serializable {
     public void remove(int id) {
         Dish dish = dishService.findById(id);
         dishCountMap.remove(dish);
-        updateTotal();
+        updateTotalPrice();
+    }
+
+    public String submit(Customer customer) {
+        if (customer.getId() == 0) {
+            return "newCustomer";
+        }
+        return "orderInfo";
+    }
+
+    public String goToCart() {
+        return "shoppingCart";
     }
 
 }

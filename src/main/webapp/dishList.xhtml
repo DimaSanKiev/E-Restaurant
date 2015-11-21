@@ -51,7 +51,7 @@
                     <h:column>
                         <f:facet name="header">Price</f:facet>
                         <h:outputText value="#{dish.price}">
-                            <f:convertNumber pattern="#0.00"/>
+                            <f:convertNumber currencyCode="USD" type="currency"/>
                         </h:outputText>
                     </h:column>
 

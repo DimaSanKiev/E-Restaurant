@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Your shopping cart</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+    <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
+        <ui:define name="content">
+
+            <h2>Your shopping cart</h2>
+            <h:form id="form">
+                <h:outputText rendered="#{empty cartBean.dishCountMap}"
+                              value="Please add dishes to your shopping cart"/>
+
+                <p:dataTable id="cart"
+                             rendered="#{not empty cartBean.dishCountMap}"
+                             value="#{cartBean.dishCountMap.keySet}" var="dish">
+                    <p:column>
+                        <h:outputText id="dish" value="#{dish.name}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:outputLabel id="count" value="#{cartBean.dishCountMap.get(dish)}"/>
+                        <p:commandButton value="Change"
+                                         actionListener="#{cartBean.dish}"
+                                         oncomplete="PF('change').show()"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton id="remove" value="Remove"
+                                         actionListener="#{cartBean.remove(dish.id)}"
+                                         update="forUpdate:form:sum forUpdate:form:cart">
+
+                        </p:commandButton>
+
+                        <p:dialog widgetVar="change" header="Change quantity"
+                                  modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:spinner value="#{cartBean.count}" min="1" max="20"/>
+                            <p:commandButton value="Ok"
+                                             actionListener="#{cartBean.changeCount(cartBean.count)}"
+                                             onclick="PF('change').hide();"
+                                             update="forUpdate:form:sum forUpdate:form:cart"/>
+                        </p:dialog>
+                    </p:column>
+                </p:dataTable>
+
+                <p:commandButton id="submit" value="Submit order"
+                                 rendered="#{not empty cartBean.dishCountMap}"
+                                 action="#{cartBean.submit(customerBean.customer)}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

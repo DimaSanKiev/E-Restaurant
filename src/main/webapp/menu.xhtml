@@ -11,7 +11,7 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+    <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
         <ui:define name="content">
             #{dishBean.refreshDishes()}
             <div class="dish_table">
@@ -19,14 +19,18 @@
                     <ul class="dish_block">
                         <li>
                             <h:graphicImage styleClass="dish_photo" value="#{dish.photo_url}"/>
+
                             <p class="dish_name">#{dish.name}</p>
+
                             <p class="dish_description">#{dish.description}</p>
+
                             <p class="dish_price">
                                 <h:outputText value="#{dish.price}">
-                                    <f:convertNumber currencyCode="USD" type="currency" />
+                                    <f:convertNumber currencyCode="USD" type="currency"/>
                                 </h:outputText>
                             </p>
-                            <h:form><h:commandButton styleClass="dish_button" value="Add to Cart"/></h:form>
+                            <h:form><h:commandButton id="addToCart" value="Add to Cart"
+                                                     action="#{cartBean.addToCart(dish.id)}"/></h:form>
                         </li>
                     </ul>
                 </ui:repeat>

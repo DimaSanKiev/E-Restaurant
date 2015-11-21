@@ -3,13 +3,27 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
 
 <h:body>
     <ui:composition>
-        <h1>Customer Accounting</h1>
-        <h:link value="Customer List" outcome="customerList"/>  
-        <h:link value="New Customer" outcome="newCustomer"/>
+        <h:form><h:commandButton id="home" value="Home"/></h:form>
+
+        <h:form><h:commandButton id="signIn" value="Sign In"/></h:form>
+        <h:form><h:commandButton id="signUp" value="Sign Up"/></h:form>
+
+        <h:form rendered="#{not empty cartBean.dishCountMap}">
+            <h:commandLink
+                    value="Your shopping cart: #{cartBean.getCartItemsCount()} items, total #{cartBean.updateTotalPrice()}"
+                    action="#{cartBean.goToCart()}">
+
+            </h:commandLink>
+        </h:form>
+        <h:form rendered="#{empty cartBean.dishCountMap}">
+            <h:commandLink value="Your shopping cart: 0 items, total 0.00" action="#{cartBean.goToCart}">
+            </h:commandLink>
+        </h:form>
+
     </ui:composition>
 </h:body>
 </html>

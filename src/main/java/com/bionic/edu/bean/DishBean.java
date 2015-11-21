@@ -34,7 +34,7 @@ public class DishBean {
     private Map<String, String> idNameCategoryMap;
     private Map<String, DishCategory> idCategoryMap;
     private String category;
-    private UploadedFile uploadedFile; // delete
+    private UploadedFile uploadedFile; // delete or to do in last step
 
     public List<Dish> getDishes() {
         return dishes;

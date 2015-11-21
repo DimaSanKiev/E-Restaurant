@@ -13,7 +13,7 @@
     <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
         <ui:define name="content">
 
-            <h:form >
+            <h:form>
                 <h:panelGrid columns="3">
                     <h:outputText value="Dish name:"/>
                     <h:inputText id="dName" value="#{dishBean.dish.name}"
@@ -54,11 +54,6 @@
                     required="false">
                     </h:inputText>
                     <h:message for="dPhoto" style="color:red"/>
-
-                    <h:outputText value="Dish photo URL:"/>
-                    <t:inputFileUpload value="#{dishBean.uploadedFile}"/>
-                    <h:commandButton value="Submit" action="#{dishBean.submit}"/>
-                    <h:messages />
 
                 </h:panelGrid>
                 <h:commandButton value="Submit" action="#{dishBean.saveDish}"/>

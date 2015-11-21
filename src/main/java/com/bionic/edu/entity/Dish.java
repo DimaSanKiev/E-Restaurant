@@ -95,6 +95,39 @@ public class Dish {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dish dish = (Dish) o;
+
+        if (id != dish.id) return false;
+        if (Double.compare(dish.price, price) != 0) return false;
+        if (kitchenmade != dish.kitchenmade) return false;
+        if (available != dish.available) return false;
+        if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
+        if (description != null ? !description.equals(dish.description) : dish.description != null) return false;
+        if (photo_url != null ? !photo_url.equals(dish.photo_url) : dish.photo_url != null) return false;
+        return true;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (kitchenmade ? 1 : 0);
+        result = 31 * result + (available ? 1 : 0);
+        result = 31 * result + (photo_url != null ? photo_url.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Dish{" +
                 "id=" + id +

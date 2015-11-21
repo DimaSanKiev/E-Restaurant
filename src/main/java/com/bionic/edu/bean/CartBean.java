@@ -93,9 +93,9 @@ public class CartBean implements Serializable {
 
     public void remove(int id) {
         Dish dish = dishService.findById(id);
-        if (cartMap.containsKey(dish)) {
+//        if (cartMap.containsKey(dish)) {
             cartMap.remove(dish);
-        }
+//        }
     }
 
     public String submit(Customer customer) {

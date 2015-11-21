@@ -133,6 +133,13 @@ td.center {
 .customer-menu-items {
     position:relative;
     margin-right:15%;
-    letter-spacing:-1px;
     text-align:right;
+}
+
+.cart-icon {
+    text-align: right;
+}
+
+.cart-text {
+    font-size: 14pt;
 }

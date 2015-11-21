@@ -3,35 +3,40 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:body>
     <ui:composition>
-        <h:form><h:commandButton id="home" value="Home"/></h:form>
+        <div class="customer-menu-items">
+            <h:form>
+                <p:button outcome="menu" id="home" value="Home"/>
+                <p:button id="signIn" value="Sign In"/>
+                <p:button id="signUp" value="Sign Up"/>
+            </h:form>
+        </div>
 
         <div class="customer-menu-items">
-
-            <h:form><h:commandButton id="signIn" value="Sign In"/></h:form>
-            <h:form><h:commandButton id="signUp" value="Sign Up"/></h:form>
-
             <h:form rendered="#{not empty cartBean.cartMap}">
-                <h:outputText
-                        value="Your shopping cart: #{cartBean.cartDishesCount} items, total=#{cartBean.updateTotalPrice()}"
-                        action="#{cartBean.goToCart()}">
+                <h:outputText escape="false" styleClass="cart-text"
+                              value="Your shopping cart: &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items, total= $&lt;b&gt;#{cartBean.updateTotalPrice()}&lt;/b&gt;"
+                              action="#{cartBean.goToCart()}">
+                    <f:convertNumber currencyCode="USD" type="currency"/> <!-- todo - don't work -->
                 </h:outputText>
             </h:form>
 
-            <h:form rendered="#{empty cartBean.cartMap}">
-                <h:outputText value="Your shopping cart: 0 items, total 0.00" action="#{cartBean.goToCart}"/>
-            </h:form>
+            <h:form styleClass="cart-icon">
+                <h:form rendered="#{empty cartBean.cartMap}">
+                    <h:outputText styleClass="cart-text" escape="false"
+                                  value="Your shopping cart: &lt;b&gt;0&lt;/b&gt; items, total $&lt;b&gt;0.00&lt;/b&gt;" action="#{cartBean.goToCart}"/>
+                </h:form>
 
-            <h:form>
                 <h:commandLink action="#{cartBean.goToCart}">
                     <h:graphicImage value="resources/images/cart-icon.png" height="50" width="50" title="Update"/>
                 </h:commandLink>
             </h:form>
         </div>
-
     </ui:composition>
 </h:body>
 </html>

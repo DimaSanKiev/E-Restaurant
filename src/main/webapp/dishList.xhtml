@@ -12,7 +12,7 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="WEB-INF/template/BasicTemplate.xhtml">
+    <ui:composition template="WEB-INF/template/AdministratorTemplate.xhtml">
         <ui:define name="content">
 
             <h2>Dishes</h2>
@@ -20,15 +20,19 @@
             <h:form>
                 <h:panelGrid columns="1">
                     <h:commandButton value="Add dish" action="#{dishBean.addDish()}"/>
+                    <br/>
                 </h:panelGrid>
 
                 <h:dataTable value="#{dishBean.dishes}" var="dish"
-                             styleClass="table" headerClass="tableHeader"
-                             rowClasses="tableOddRow, tableEvenRow">
+                             styleClass="dish_table" headerClass="table_header"
+                             columnClasses="dish_table_name, none, column_description, center, center, center, center, center"
+                             rowClasses="dish_table_odd_row, dish_table_even_row">
 
                     <h:column>
-                        <f:facet name="header">Name</f:facet>
-                        #{dish.name}
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishName" value="#{dish.name}"/>
                     </h:column>
 
                     <h:column>
@@ -37,8 +41,10 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Description</f:facet>
-                        #{dish.description}
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Description</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishDescription" class="dish_table_description" value="#{dish.description}"/>
                     </h:column>
 
                     <h:column>
@@ -49,26 +55,29 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Kitchen made</f:facet>
-                        <h:outputText value="yes" rendered="#{dish.kitchenmade}"/>
-                        <h:outputText value="no" rendered="#{!dish.kitchenmade}"/>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Kitchen made</h:outputLabel>
+                        </f:facet>
+                        <h:outputText rendered="#{dish.kitchenmade}" class="dish_kitchen_made" value="yes"/>
+                        <h:outputText rendered="#{!dish.kitchenmade}" class="dish_kitchen_made" value="no"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Available</f:facet>
-                        <h:outputText value="yes" rendered="#{dish.available}"/>
-                        <h:outputText value="no" rendered="#{!dish.available}"/>
+                        <h:outputText rendered="#{dish.available}" value="yes" class="dish_available_yes"/>
+                        <h:outputText rendered="#{!dish.available}" value="no" class="dish_available_no"/>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Dish category</f:facet>
+                        <f:facet name="header">Category</f:facet>
                         #{dish.category.name}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">
-                        </f:facet>
-                        <h:commandButton action="#{dishBean.updateDish(dish.id)}" value="Edit"/>
+                        <f:facet name="header">Edit</f:facet>
+                        <h:commandLink action="#{dishBean.updateDish(dish.id)}">
+                            <h:graphicImage value="resources/images/edit.png" height="16" width="16" title="Update"/>
+                        </h:commandLink>
                     </h:column>
 
                 </h:dataTable>

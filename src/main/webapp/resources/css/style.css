@@ -1,3 +1,9 @@
+td.center {
+    text-align: center;
+    padding: 5px;
+}
+
+/* USER TABLES */
 .user_table {
     border-collapse: collapse;
     border: 1px solid #000000;
@@ -26,8 +32,55 @@
     padding-right: 10px;
 }
 
-/* MENU styles */
+/* DISH LIST */
+.column_center {
+    text-align: right;
+}
 
+.dish_available_yes {
+    text-align: center;
+}
+
+.dish_available_no {
+    text-align: center;
+    color: red;
+}
+
+.dish-table {
+    border-collapse: collapse;
+}
+
+.table_header {
+    font-size: 13pt;
+    font-weight: bold;
+    background: none repeat scroll 0 0 #d9d9d9;
+    padding: 10px;
+}
+
+.dish_table_odd_row {
+    text-align: left;
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+
+.dish_table_even_row {
+    text-align: left;
+    background: none repeat scroll 0 0 #f0f0f0;
+}
+
+.dish_table_name {
+    font-weight: bold;
+    text-align: left;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.column_description {
+    text-align: justify;
+    width: 30%;
+    padding-right: 2%;
+}
+
+/* MENU */
 .dish_block {
     width: 400px;
     margin: 20px;

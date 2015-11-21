@@ -30,7 +30,7 @@
                                 </h:outputText>
                             </p>
                             <h:form><h:commandButton id="addToCart" value="Add to Cart"
-                                                     action="#{cartBean.addToCart(dish.id)}"/></h:form>
+                                                     action="#{cartBean.increaseCount(dish.id)}"/></h:form>
                         </li>
                     </ul>
                 </ui:repeat>

@@ -8,16 +8,17 @@ import org.springframework.context.annotation.Scope;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.InterruptedIOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Named
 @Scope("session")
 public class CartBean implements Serializable {
     private static final long serialVersionUID = -2351220622598691145L;
-    private Map<Dish, Integer> dishCountMap;
+    private Map<Dish, Integer> cartMap;
     private Dish dish;
     private int count;
     private double total;
@@ -29,16 +30,16 @@ public class CartBean implements Serializable {
     private OrderService orderService;
 
     public CartBean() {
-        dishCountMap = new HashMap<>();
+        cartMap = new HashMap<>();
         total = 0.0;
     }
 
-    public Map<Dish, Integer> getDishCountMap() {
-        return dishCountMap;
+    public Map<Dish, Integer> getCartMap() {
+        return cartMap;
     }
 
-    public void setDishCountMap(Map<Dish, Integer> dishCountMap) {
-        this.dishCountMap = dishCountMap;
+    public void setCartMap(Map<Dish, Integer> cartMap) {
+        this.cartMap = cartMap;
     }
 
     public Dish getDish() {
@@ -66,41 +67,47 @@ public class CartBean implements Serializable {
     }
 
 
-    public void addToCart(int id) {
+    public void increaseCount(int id) {
         Dish dish = dishService.findById(id);
-        if (!dishCountMap.containsKey(dish)) {
-            dishCountMap.put(dish, 1);
+        if (cartMap.containsKey(dish)) {
+            cartMap.put(dish, cartMap.get(dish) + 1);
         } else {
-            dishCountMap.put(dish, dishCountMap.get(dish) + 1);
+            cartMap.put(dish, 1);
+        }
+    }
+
+    public void decreaseCount(int id) {
+        Dish dish = dishService.findById(id);
+        if (cartMap.containsKey(dish)) {
+            if (cartMap.get(dish) > 1) {
+                cartMap.put(dish, cartMap.get(dish) - 1);
+            } else {
+                remove(dish.getId());
+            }
         }
     }
 
     public int getCartItemsCount() {
-        return dishCountMap.values().stream().mapToInt(Integer::intValue).sum();
+        return cartMap.values().stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public List getCartAsList() {
+        return new ArrayList(cartMap.entrySet());
     }
 
     public double updateTotalPrice() {
         total = 0.0;
-        for (Map.Entry<Dish, Integer> entry : dishCountMap.entrySet()) {
+        for (Map.Entry<Dish, Integer> entry : cartMap.entrySet()) {
             total += entry.getKey().getPrice() * entry.getValue();
         }
         return total;
     }
 
-    public void changeCount(int count) {
-        dishCountMap.put(dish, count);
-        updateTotalPrice();
-    }
-
-    public void update(int id, String count) {
-        Dish dish = dishService.findById(id);
-        dishCountMap.put(dish, Integer.valueOf(count));
-    }
-
     public void remove(int id) {
         Dish dish = dishService.findById(id);
-        dishCountMap.remove(dish);
-        updateTotalPrice();
+        if (cartMap.containsKey(dish)) {
+            cartMap.remove(dish);
+        }
     }
 
     public String submit(Customer customer) {

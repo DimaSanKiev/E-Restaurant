@@ -9,7 +9,7 @@
     <title>New Employee</title>
 </h:head>
 <h:body>
-    <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
+    <ui:composition template="WEB-INF/template/AdministratorTemplate.xhtml">
         <ui:define name="content">
             <h2>New Employee</h2>
 
@@ -55,29 +55,17 @@
                     </h:inputText>
                     <h:message for="eHiredate" style="color:red"/>
 
-                    <!-- todo checkbox -->
                     <h:outputText value="Employee readiness:"/>
-                    <h:selectBooleanCheckbox id="eReadiness"
-                                             value="#{employeeBean.employee.ready}" required="true"
-                                             requiredMessage="#{msgs.readyRequired}">
-                    </h:selectBooleanCheckbox>
+                    <h:selectBooleanCheckbox id="eReadiness" value="#{employeeBean.employee.ready}" required="true"/>
 
-                    <!-- todo - dropdown list -->
                     <h:outputText value="Employee role:"/>
-                    <!--<h:inputText id="eRole"-->
-                    <!--value="#{employeeBean.employee.role.name}" required="true"-->
-                    <!--requiredMessage="#{msgs.roleRequired}">-->
-                    <!--</h:inputText>-->
-                    <h:selectManyCheckbox id="eRole"
-                                          value="#{employeeBean.employee.role.name}" required="true"
-                                          requiredMessage="#{msgs.roleRequired}">
+                    <h:selectOneRadio id="eRole" value="#{employeeBean.employee.role.name}" required="true">
                         <f:selectItem id="superUser" itemLabel="Super User" itemValue="false"/>
                         <f:selectItem id="admin" itemLabel="Administrator" itemValue="false"/>
                         <f:selectItem id="kitchenStaff" itemLabel="Kitchen Staff" itemValue="false"/>
                         <f:selectItem id="deliveryStaff" itemLabel="Delivery Staff" itemValue="false"/>
                         <f:selectItem id="analyst" itemLabel="Business Analyst" itemValue="false"/>
-                    </h:selectManyCheckbox>
-                    <h:message for="eRole" style="color:red"/>
+                    </h:selectOneRadio>
                 </h:panelGrid>
                 <h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/>
             </h:form>
@@ -85,81 +73,3 @@
     </ui:composition>
 </h:body>
 </html>
-
-        <!--<?xml version="1.0" encoding="UTF-8" ?>
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:h="http://java.sun.com/jsf/html"
-              xmlns:ui="http://java.sun.com/jsf/facelets"
-              xmlns:f="http://java.sun.com/jsf/core">
-        <h:head>
-            <title>New employee</title>
-        </h:head>
-        <h:body>
-            <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
-                <ui:define name="content">
-
-                    <h1>New employee</h1>
-                    <h:form>
-                        <h:panelGrid columns="3">
-                            <h:outputText value="Name:"/>
-                            <h:inputText id="eName" value="#{employeeBean.employee.name}" required="true">
-                            </h:inputText>
-                            <h:message for="eName" style="color:red"/>
-
-                            <h:outputText value="Email:"/>
-                            <h:inputText id="eEmail" value="#{employeeBean.employee.email}" required="true">
-                            </h:inputText>
-                            <h:message for="eEmail" style="color:red"/>
-
-                            <h:outputText value="Password:"/>
-                            <h:inputText id="ePassword" value="#{employeeBean.employee.password}" required="true">
-                            </h:inputText>
-                            <h:message for="ePassword" style="color:red"/>
-
-                            <h:outputText value="Birth date:"/>
-                            <h:inputText id="eBirthdate" value="#{employeeBean.employee.birthDate}">
-                                <f:convertDateTime pattern="dd.MM.yyyy"/>
-                            </h:inputText>
-                            <h:message for="eBirthdate" style="color:red"/>
-
-                            <h:outputText value="Hire date:"/>
-                            <h:inputText id="eHiredate" value="#{employeeBean.employee.hireDate}">
-                                <f:convertDateTime pattern="dd.MM.yyyy"/>
-                            </h:inputText>
-                            <h:message for="eHiredate" style="color:red"/>
-
-                            <h:outputText value="Readiness:"/>
-                            <h:selectBooleanCheckbox id="readiness" value="#{employeeBean.employee.ready}"/>
-                            <h:outputText value=" "/>
-
-                            <h:outputText value="Administarator:"/>
-                            <h:selectBooleanCheckbox id="admin" value="#{employeeBean.employee.administrator}"/>
-                            <h:outputText value=" "></h:outputText>
-
-                            <h:outputText value="Kitchen staff:"/>
-                            <h:selectBooleanCheckbox id="kitchenSt" value="#{employeeBean.employee.kitchenStaff}"/>
-                            <h:outputText value=" "></h:outputText>
-
-                            <h:outputText value="Delivery staff:"/>
-                            <h:selectBooleanCheckbox id="deliverySt" value="#{employeeBean.employee.deliveryStaff}"/>
-                            <h:outputText value=" "></h:outputText>
-
-                            <h:outputText value="Business analyst:"/>
-                            <h:selectBooleanCheckbox id="businessAn" value="#{employeeBean.employee.businessAnalyst}"/>
-                            <h:outputText value=" "></h:outputText>
-
-                            <h:outputText value="Sequrity officer:"/>
-                            <h:outputText value="#{employeeBean.employee.sequrityOfficer}"/>
-                            <h:outputText value=" "></h:outputText>
-
-
-                        </h:panelGrid>
-                        <h:commandButton value="Submit" action="#{employeeBean.saveEmployee}"/>
-                    </h:form>
-                </ui:define>
-            </ui:composition>
-
-        </h:body>
-        </html>-->

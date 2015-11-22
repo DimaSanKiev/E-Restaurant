@@ -2,6 +2,8 @@ package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.OrderDishes;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

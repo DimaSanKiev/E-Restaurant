@@ -15,20 +15,16 @@
             <h:form>
                 <h:panelGrid columns="3">
                     <h:outputText value="Dish name:"/>
-                    <h:inputText id="dName" value="#{dishBean.dish.name}"
-                                 required="true">
+                    <h:inputText id="dName" value="#{dishBean.dish.name}" required="true">
                     </h:inputText>
                     <h:message for="dName" style="color:red"/>
 
                     <h:outputText value="Dish description:"/>
-                    <h:inputText id="dDescription" value="#{dishBean.dish.description}"
-                                 required="false">
-                    </h:inputText>
+                    <h:inputText id="dDescription" value="#{dishBean.dish.description}" required="false"/>
                     <h:message for="dDescription" style="color:red"/>
 
                     <h:outputText value="Price:"/>
-                    <h:inputText id="dPrice" value="#{dishBean.dish.price}"
-                                 required="true">
+                    <h:inputText id="dPrice" value="#{dishBean.dish.price}" required="true">
                         <f:convertNumber minFractionDigits="2"/>
                         <f:validateDoubleRange minimum="0.00" maximum="1000.00"/>
                     </h:inputText>
@@ -49,10 +45,8 @@
                     <h:outputText value=" "/>
 
                     <h:outputText value="Dish photo URL:"/>
-                    <h:inputText id="dPhoto" value="#{dishBean.dish.photo_url}"
-                    required="false">
+                    <h:inputText id="dPhoto" value="#{dishBean.dish.photo_url}" required="false">
                     </h:inputText>
-                    <h:message for="dPhoto" style="color:red"/>
 
                 </h:panelGrid>
                 <h:commandButton value="Submit" action="#{dishBean.saveDish}"/>

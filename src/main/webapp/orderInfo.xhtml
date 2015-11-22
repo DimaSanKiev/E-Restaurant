@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Information about order</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body class="front">
+    <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
+        <ui:define name="content">
+            <h:form id="forUpdate">
+                <h:form id="form">
+
+                    <p:dataTable id="cart" rendered="#{empty cartBean.cartMap}"
+                                 value="#{cartBean.cartMap.entrySet().toArray()}" var="dish" border="1">
+
+                        <p:column>
+                            <h:outputText value="Name dish: "/>
+                            <h:outputText value="#{dish.key.name}"/>
+                        </p:column>
+                        <p:column>
+                            <p:outputLabel id="count" value="#{cartBean.cartMap.get(dish)}"/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <p style="font-size: 20px">
+                        Name:
+                        <h:outputText value="#{customerBean.customer.name}"/><br/>
+                        Email:
+                        <h:outputText value="#{customerBean.customer.email}"/><br/>
+                        Address:
+                        <h:outputText value="#{customerBean.customer.address}"/>
+                    </p>
+
+
+                    <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
+                                     actionListener="#{cartBean.submitOrder()}"/>
+
+                    <p:dialog widgetVar="confirm" header="Your order was confirmed successfully."
+                              modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                        <p:commandButton action="menu" value="OK"/>
+                    </p:dialog>
+
+                </h:form>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

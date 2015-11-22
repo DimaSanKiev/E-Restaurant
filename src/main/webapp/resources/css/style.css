@@ -143,3 +143,8 @@ td.center {
 .cart-text {
     font-size: 14pt;
 }
+
+.footer {
+    font-size: large;
+    text-align: center;
+}

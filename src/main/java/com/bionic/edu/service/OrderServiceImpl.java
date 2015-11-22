@@ -3,15 +3,21 @@ package com.bionic.edu.service;
 import com.bionic.edu.dao.OrderDao;
 import com.bionic.edu.dao.OrderDishesDao;
 import com.bionic.edu.dao.OrderStatusDao;
+import com.bionic.edu.entity.Customer;
+import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Named
 public class OrderServiceImpl implements OrderService {
@@ -21,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
     @Inject
     private OrderStatusDao orderStatusDao;
     @Inject
-    private OrderDishesDao orderDishesDao;
+    private OrderDishesService orderDishesService;
 
     @Override
     public Orders findById(int id) {
@@ -45,6 +51,21 @@ public class OrderServiceImpl implements OrderService {
         orderDao.delete(id);
     }
 
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Override
+    public void addFromCart(Map<Dish, Integer> cartMap, Customer customer, double sum) {
+        Orders order = new Orders();
+        order.setCustomer(customer);
+        order.setTotalPrice(sum);
+        order.setDateTimeTaken(Timestamp.valueOf(LocalDateTime.now()));
+        order.setOrderStatus(orderStatusDao.findById(1));
+        if (customer.getId() == 0) {
+            orderDishesService.addOrderDishes(order, cartMap);
+        } else {
+            orderDishesService.addOrderDishesCustomer(customer, order, cartMap);
+        }
+    }
 
     @Transactional
     @Override

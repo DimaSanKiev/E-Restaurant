@@ -79,10 +79,6 @@ public class CartBean implements Serializable {
         return cartMap.values().stream().mapToInt(Integer::intValue).sum();
     }
 
-    public Set getCartEntrySet() {
-        return cartMap.entrySet();
-    }
-
     public double updateTotalPrice() {
         total = 0.0;
         for (Map.Entry<Dish, Integer> entry : cartMap.entrySet()) {
@@ -93,20 +89,22 @@ public class CartBean implements Serializable {
 
     public void remove(int id) {
         Dish dish = dishService.findById(id);
-//        if (cartMap.containsKey(dish)) {
+        if (cartMap.containsKey(dish)) {
             cartMap.remove(dish);
-//        }
+        }
     }
 
-    public String submit(Customer customer) {
+    public String confirm(Customer customer) {
         if (customer.getId() == 0) {
             return "newCustomer";
         }
         return "orderInfo";
     }
 
-    public String goToCart() {
-        return "shoppingCart";
+    public String submitOrder(){
+        orderService.addFromCart(cartMap, customerBean.getCustomer(), total);
+        cartMap = new HashMap<>();
+        return "menu";
     }
 
 }

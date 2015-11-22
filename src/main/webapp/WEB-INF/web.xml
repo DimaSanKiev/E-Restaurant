@@ -5,7 +5,7 @@
          version="3.1">
 
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>menu.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>

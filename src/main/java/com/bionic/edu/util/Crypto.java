@@ -3,11 +3,12 @@ package com.bionic.edu.util;
 public class Crypto {
 
     public static String encrypt(String password) {
-        String cryptPassword = "";
-        for (char c : password.toCharArray()) {
-            cryptPassword += (char) (c ^ 51);
-        }
-        return cryptPassword;
+//        String cryptPassword = "";
+//        for (char c : password.toCharArray()) {
+//            cryptPassword += (char) (c ^ 51);
+//        }
+//        return cryptPassword;
+        return password;
     }
 
     public static void main(String[] args) {

@@ -13,7 +13,6 @@
         <ui:define name="content">
             <h2>New Employee</h2>
 
-            <h:form>
                 <h:panelGrid columns="3">
                     <h:outputText value="Employee name:"/>
                     <h:inputText id="eName"
@@ -29,7 +28,7 @@
                     </h:inputText>
                     <h:message for="eEmail" style="color:red"/>
 
-                    <!-- todo - crypted password stores but shown encrypted -->
+                    <!-- crypted password stores but shown encrypted -->
                     <h:outputText value="Employee password:"/>
                     <h:inputSecret id="ePassword"
                                    value="#{employeeBean.employee.password}" required="true"
@@ -66,9 +65,9 @@
                         <f:selectItem id="deliveryStaff" itemLabel="Delivery Staff" itemValue="false"/>
                         <f:selectItem id="analyst" itemLabel="Business Analyst" itemValue="false"/>
                     </h:selectOneRadio>
+                    <h:message for="eRole" style="color:red"/>
                 </h:panelGrid>
                 <h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/>
-            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

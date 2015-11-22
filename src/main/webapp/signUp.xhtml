@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>SignIn</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+    <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
+        <ui:define name="content">
+            <h:form id="forUpdate">
+                <div class="body">
+                    <h2>Please Sign Up</h2>
+                    <h:form>
+                        <h:messages id="msg"/>
+                        <h:panelGrid columns="2">
+                            <p:outputLabel styleClass="lable" for="name" value="Please eneter your name: "/>
+                            <p:inputText id="name" value="#{customerBean.customer.name}" required="true"
+                                         requiredMessage="#{msgs.nameRequired}"/>
+                            <h:message for="name" style="color:red"/>
+
+                            <p:outputLabel styleClass="lable" for="email" value="Please eneter your email: "/>
+                            <p:inputText id="email" value="#{customerBean.customer.email}"
+                                         required="true" requiredMessage="#{msgs.emailRequired}"/>
+                            <h:message for="email" style="color:red"/>
+
+                            <p:outputLabel styleClass="lable" for="password"
+                                           value="Please enter your password"/>
+                            <p:password id="password" value="#{customerBean.customer.password}" required="true"
+                                        redisplay="true"/>
+
+                            <p:outputLabel styleClass="lable" for="address" value="Please enter your address: "/>
+                            <p:inputText id="address" value="#{customerBean.customer.address}" required="true"
+                                         requiredMessage="#{msgs.addressRequired}"/>
+                            <h:message for="address" style="color:red"/>
+
+                            <p:outputLabel styleClass="lable" for="birthdate" value="Please enter your birthdate: "/>
+                            <p:calendar id="birthdate" value="#{customerBean.customer.birthDate}" required="false"
+                                        type="date"/>
+                        </h:panelGrid>
+
+                        <br/>
+                        <p:commandButton value="Confirm" action="#{customerBean.submitRegistration()}"
+                                         update="matchGrid" ajax="false"/>
+                    </h:form>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

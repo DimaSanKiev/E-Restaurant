@@ -74,6 +74,11 @@ public class CustomerBean {
         return "customerList";
     }
 
+    public String submitRegistration() {
+        customerService.save(customer);
+        return "menu";
+    }
+
     public String addCustomer() {
         customer = new Customer();
         return "newCustomer";

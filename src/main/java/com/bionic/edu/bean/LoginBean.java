@@ -3,10 +3,13 @@ package com.bionic.edu.bean;
 import org.springframework.context.annotation.Scope;
 
 import javax.inject.Named;
+import java.io.Serializable;
 
 @Named
 @Scope("request")
-public class LoginBean {
+public class LoginBean implements Serializable {
+    private static final long serialVersionUID = -1575215658600923333L;
+
     private String email;
     private String password;
     private boolean employee;

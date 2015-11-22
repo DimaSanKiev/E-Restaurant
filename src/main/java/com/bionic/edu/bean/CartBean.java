@@ -96,7 +96,7 @@ public class CartBean implements Serializable {
 
     public String confirm(Customer customer) {
         if (customer.getId() == 0) {
-            return "newCustomer";
+            return "signUp";
         }
         return "orderInfo";
     }

@@ -12,7 +12,7 @@
         <div class="customer-menu-items">
             <h:form>
                 <p:button outcome="menu" id="home" value="Menu"/>
-                <p:button rendered="#{customerBean.signedIn == false}" outcome="signin" id="signIn"
+                <p:button rendered="#{customerBean.signedIn == false}" outcome="signIn" id="signIn"
                                  value="Sign In" update="matchGrid" ajax="false"/>
                 <p:button rendered="#{customerBean.signedIn == false}" outcome="signUp" id="signUp"
                                  value="Sign Up" update="matchGrid" ajax="false"/>

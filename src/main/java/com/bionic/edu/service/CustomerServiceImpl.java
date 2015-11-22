@@ -52,12 +52,12 @@ public class CustomerServiceImpl implements CustomerService {
         customerDao.delete(id);
     }
 
-
     @Override
+    // fixme - NPE
     public Customer login(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
         Customer customer = customerDao.findByEmail(email);
-        if (customer.getPassword().equals(decryptPass)) {
+        if (decryptPass.equals(customer.getPassword())) {
             return customer;
         } else
             return null;

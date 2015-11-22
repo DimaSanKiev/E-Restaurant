@@ -4,6 +4,7 @@ import com.bionic.edu.entity.Customer;
 import com.bionic.edu.service.CustomerService;
 import org.springframework.context.annotation.Scope;
 
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -98,19 +99,19 @@ public class CustomerBean {
     public String signIn(String email, String password) {
         try {
             customerService.login(email, password);
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             message = "Incorrect email or password, please try again.";
             return "signIn";
         }
+        signedIn = true;
         message = "Hello, " + customerService.findByEmail(email).getName() + "!";
         return "menu";
     }
 
     public String signOut() {
-        customer = null;
-        signedIn = false;
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         message = "Thank you for visiting ERestaurant, see you again.";
-        return "menuList";
+        return "menu";
     }
 
     public String printMessage() {

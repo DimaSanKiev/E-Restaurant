@@ -11,9 +11,13 @@
     <ui:composition>
         <div class="customer-menu-items">
             <h:form>
-                <p:button outcome="menu" id="home" value="Home"/>
-                <p:button outcome="signin" id="signIn" value="Sign In"/>
-                <p:button outcome="signUp" id="signUp" value="Sign Up"/>
+                <p:button outcome="menu" id="home" value="Menu"/>
+                <p:button rendered="#{customerBean.signedIn == false}" outcome="signin" id="signIn"
+                                 value="Sign In" update="matchGrid" ajax="false"/>
+                <p:button rendered="#{customerBean.signedIn == false}" outcome="signUp" id="signUp"
+                                 value="Sign Up" update="matchGrid" ajax="false"/>
+                <p:commandButton rendered="#{customerBean.signedIn == true}" outcome="menu" id="signOut"
+                                 action="#{customerBean.signOut}" value="Sign Out" update="matchGrid" ajax="false"/>
             </h:form>
         </div>
 
@@ -29,7 +33,7 @@
                 <h:form rendered="#{empty cartBean.cartMap}">
                     <h:outputText styleClass="cart-text" escape="false"
                                   value="Your shopping cart: &lt;b&gt;0&lt;/b&gt; items, total $&lt;b&gt;0.00&lt;/b&gt;"
-                                  />
+                    />
                 </h:form>
 
                 <h:commandLink action="shoppingCart">

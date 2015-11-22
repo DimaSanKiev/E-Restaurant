@@ -69,12 +69,8 @@ public class CustomerServiceImplTest {
 
     @Test
     public void testLogin() throws Exception {
-        try {
-            customerService.login("kate.belova@gmail.com", "wrongPass");
-        } catch (Throwable e) {
-            assertEquals(1, 1);
-        }
+        Customer customer = customerService.login("kate.belova@gmail.com", "wrongPass");
         customerService.login("kate.belova@gmail.com", "pass3");
-
+        assertEquals("Kate Belova", customer.getName());
     }
 }

@@ -6,7 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
+<ui:composition template="WEB-INF/template/AdministratorTemplate.xhtml">
     <ui:define name="content">
         <h2>Registered Customers</h2>
         #{customerBean.refreshList()}
@@ -37,7 +37,12 @@
                 </h:column>
                 <h:column>
                     <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
-                        <h:graphicImage value="resources/images/edit-icon.png" height="16" width="16" title="Update"/>
+                        <h:graphicImage value="resources/images/edit-icon.png" height="16" width="16" title="Update" style="padding: 3px" />
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <h:commandLink action="#{customerBean.deleteCustomer(customer.id)}">
+                        <h:graphicImage value="resources/images/delete-icon.png" height="16" width="16" title="Delete" style="padding: 3px" />
                     </h:commandLink>
                 </h:column>
             </h:dataTable>

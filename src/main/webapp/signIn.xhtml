@@ -17,6 +17,7 @@
             <h:form id="forUpdate">
                 <div class="body">
                     <h2>Please Sign In</h2>
+                    <h3>#{customerBean.printMessage()}</h3>
                     <h:form>
                         <h:messages id="msg"/>
                         <h:panelGrid columns="2">
@@ -28,7 +29,8 @@
                         </h:panelGrid>
 
                         <p:commandButton value="Sign in"
-                                         action="#{customerBean.signIn(customerBean.email, customerBean.password)}"/>
+                                         action="#{customerBean.signIn(customerBean.email, customerBean.password)}"
+                                         update="matchGrid" ajax="false"/>
                     </h:form>
                 </div>
             </h:form>

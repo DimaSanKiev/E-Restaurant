@@ -76,6 +76,7 @@ public class CustomerBean {
 
     public String submitRegistration() {
         customerService.save(customer);
+        message = "Registration successful.";
         return "menu";
     }
 
@@ -85,9 +86,13 @@ public class CustomerBean {
     }
 
     public String updateCustomer(String id) {
-        int n = Integer.valueOf(id);
-        customer = customerService.findById(n);
+        customer = customerService.findById(Integer.valueOf(id));
         return "newCustomer";
+    }
+
+    public String deleteCustomer(String id) {
+        customerService.delete(Integer.valueOf(id));
+        return "customerList";
     }
 
     public String signIn(String email, String password) {
@@ -97,7 +102,8 @@ public class CustomerBean {
             message = "Incorrect email or password, please try again.";
             return "signIn";
         }
-        return "homePage";
+        message = "Hello, " + customerService.findByEmail(email).getName() + "!";
+        return "menu";
     }
 
     public String signOut() {
@@ -107,8 +113,10 @@ public class CustomerBean {
         return "menuList";
     }
 
-    public String signUp() {
-        return "signUp";
+    public String printMessage() {
+        String temp = message;
+        message = "";
+        return temp;
     }
 
 }

@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
->
+      xmlns:p="http://java.sun.com/jsf/html">
 
 <h:head>
     <title>Your shopping cart</title>
@@ -80,8 +80,8 @@
 
                 </h:dataTable>
 
-                <br/><h:commandButton rendered="#{not empty cartBean.cartMap}" value="Confirm"
-                                 action="#{cartBean.confirm(customerBean.customer)}"/><br/>
+                <br/><h:form><h:commandButton rendered="#{not empty cartBean.cartMap}" value="Confirm"
+                                              action="#{cartBean.confirm(customerBean.customer)}"/></h:form><br/>
             </h:form>
         </ui:define>
     </ui:composition>

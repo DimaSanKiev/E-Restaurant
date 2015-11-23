@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+
 <h:head>
     <title>Information about order</title>
     <h:outputStylesheet library="css" name="style.css"/>
@@ -12,40 +14,45 @@
 <h:body class="front">
     <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
         <ui:define name="content">
-            <h:form id="forUpdate">
-                <h:form id="form">
+            <h:form>
+                <h2>Please check your order</h2>
 
-                    <p:dataTable id="cart" rendered="#{empty cartBean.cartMap}"
-                                 value="#{cartBean.cartMap.entrySet().toArray()}" var="dish" border="1">
+                <h:dataTable id="cart" value="#{cartBean.cartMap.entrySet().toArray()}" var="dish"
+                             styleClass="dish_table" headerClass="table_header"
+                             columnClasses="dish_table_name, none, center, center, center, center"
+                             rowClasses="dish_table_odd_row, dish_table_even_row">
 
-                        <p:column>
-                            <h:outputText value="Name dish: "/>
-                            <h:outputText value="#{dish.key.name}"/>
-                        </p:column>
-                        <p:column>
-                            <p:outputLabel id="count" value="#{cartBean.cartMap.get(dish)}"/>
-                        </p:column>
-                    </p:dataTable>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishName" value="#{dish.key.name}"/>
+                    </h:column>
 
-                    <p style="font-size: 20px">
-                        Name:
-                        <h:outputText value="#{customerBean.customer.name}"/><br/>
-                        Email:
-                        <h:outputText value="#{customerBean.customer.email}"/><br/>
-                        Address:
-                        <h:outputText value="#{customerBean.customer.address}"/>
-                    </p>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Count</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishCount" value="#{dish.value}"/>
+                    </h:column>
+
+                </h:dataTable>
+
+                <p style="font-size: 20px">
+                    Name:
+                    <h:outputText escape="false" value="&lt;b&gt;#{customerBean.customer.name}&lt;/b&gt;"/><br/>
+                    Address:
+                    <h:outputText escape="false" value="&lt;b&gt;#{customerBean.customer.address}&lt;/b&gt;"/>
+                </p>
 
 
-                    <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
-                                     actionListener="#{cartBean.submitOrder()}"/>
+                <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
+                                 actionListener="#{cartBean.submitOrder()}"/>
 
-                    <p:dialog widgetVar="confirm" header="Your order was confirmed successfully."
-                              modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                        <p:commandButton action="menu" value="OK"/>
-                    </p:dialog>
-
-                </h:form>
+                <p:dialog widgetVar="confirm" header="Your order was confirmed successfully."
+                          modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:commandButton action="menu" value="OK"/>
+                </p:dialog>
 
             </h:form>
 

@@ -4,8 +4,10 @@ import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.service.DishService;
 import com.bionic.edu.service.OrderService;
+import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -95,13 +97,16 @@ public class CartBean implements Serializable {
     }
 
     public String confirm(Customer customer) {
-        if (customer.getId() == 0) {
-            return "signUp";
-        }
+//        if (customer.getId() == 0) {
+//            RequestContext.getCurrentInstance().showMessageInDialog(new
+//                    FacesMessage(FacesMessage.SEVERITY_INFO,
+//                    "Please Authorize", "Please sign in or create new account."));
+//            return "signUp";
+//        }
         return "orderInfo";
     }
 
-    public String submitOrder(){
+    public String submitOrder() {
         orderService.addFromCart(cartMap, customerBean.getCustomer(), total);
         cartMap = new HashMap<>();
         return "menu";

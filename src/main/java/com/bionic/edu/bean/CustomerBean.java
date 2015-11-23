@@ -78,6 +78,7 @@ public class CustomerBean {
 
     public String submitRegistration() {
         customerService.save(customer);
+        signIn(customer.getEmail(), customer.getPassword());
         RequestContext.getCurrentInstance().showMessageInDialog(new
                 FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Sign Up Success", "You have successfully registered on ERestaurant."));

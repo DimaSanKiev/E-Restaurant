@@ -15,7 +15,6 @@
     <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
         <ui:define name="content">
             #{dishBean.refreshDishes()}
-            <p:outputText rendered="#{customerBean.signedIn == true}">Hello, #{customerBean.customer.name}</p:outputText>
 
             <div class="dish_table">
                 <ui:repeat var="dish" value="#{dishBean.dishes}">
@@ -32,7 +31,7 @@
                                     <f:convertNumber currencyCode="USD" type="currency"/>
                                 </h:outputText>
                             </p>
-                            <h:form><h:commandButton id="addToCart" value="Add to Cart"
+                            <h:form><p:commandButton id="addToCart" value="Add to Cart" styleClass="dish_button"
                                                      action="#{cartBean.increaseCount(dish.id)}"/></h:form>
                         </li>
                     </ul>

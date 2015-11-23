@@ -85,6 +85,11 @@ td.center {
     width: 400px;
     margin: 20px;
     float: left;
+    position: relative;
+}
+
+.dish_block li {
+    list-style-type: none;
 }
 
 .dish_photo {
@@ -125,15 +130,16 @@ td.center {
 }
 
 .dish_button {
-    float: right;
+    position: absolute;
+    bottom: 0px;
+    float: left;
 }
-
 
 /* TEMPLATES */
 .customer-menu-items {
-    position:relative;
-    margin-right:15%;
-    text-align:right;
+    position: relative;
+    margin-right: 15%;
+    text-align: right;
 }
 
 .cart-icon {

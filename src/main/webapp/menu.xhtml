@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://java.sun.com/jsf/html">
 
 <h:head>
     <title>Menu</title>
@@ -14,7 +15,7 @@
     <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
         <ui:define name="content">
             #{dishBean.refreshDishes()}
-            <h3>#{customerBean.printMessage()}</h3>
+            <p:outputText rendered="#{customerBean.signedIn == true}">Hello, #{customerBean.customer.name}</p:outputText>
 
             <div class="dish_table">
                 <ui:repeat var="dish" value="#{dishBean.dishes}">

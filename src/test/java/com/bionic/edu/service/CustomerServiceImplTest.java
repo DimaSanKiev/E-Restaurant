@@ -68,9 +68,9 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testLogin() throws Exception {
-        Customer customer = customerService.login("kate.belova@gmail.com", "wrongPass");
-        customerService.login("kate.belova@gmail.com", "pass3");
+    public void testSignIn() throws Exception {
+        Customer customer = customerService.signIn("kate.belova@gmail.com", "wrongPass");
+        customerService.signIn("kate.belova@gmail.com", "pass3");
         assertEquals("Kate Belova", customer.getName());
     }
 }

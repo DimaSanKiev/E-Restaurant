@@ -17,7 +17,7 @@ public interface EmployeeService {
     void delete(int id);
 
 
-    Employee login(String email, String password);
+    Employee signIn(String email, String password);
 
     void setReadiness(Employee employee, boolean isReady);
 }

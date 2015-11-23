@@ -2,8 +2,10 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.service.CustomerService;
+import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +17,6 @@ public class CustomerBean {
     private String email;
     private String password;
     private boolean signedIn;
-    private String message = "";
     private List<Customer> customers = null;
     private Customer customer = null;
     @Inject
@@ -77,7 +78,9 @@ public class CustomerBean {
 
     public String submitRegistration() {
         customerService.save(customer);
-        message = "Registration successful.";
+        RequestContext.getCurrentInstance().showMessageInDialog(new
+                FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Sign Up Success", "You have successfully registered on ERestaurant."));
         return "menu";
     }
 
@@ -97,27 +100,23 @@ public class CustomerBean {
     }
 
     public String signIn(String email, String password) {
-        try {
-            customerService.login(email, password);
-        } catch (Exception e) {
-            message = "Incorrect email or password, please try again.";
+        customer = customerService.signIn(email, password);
+        if (customer == null) {
+            RequestContext.getCurrentInstance().showMessageInDialog(new
+                    FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Sign In Error", "Incorrect email or password, please try again."));
             return "signIn";
         }
         signedIn = true;
-        message = "Hello, " + customerService.findByEmail(email).getName() + "!";
         return "menu";
     }
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        message = "Thank you for visiting ERestaurant, see you again.";
+        RequestContext.getCurrentInstance().showMessageInDialog(new
+                FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Signed Out", "Thank you for visiting ERestaurant."));
         return "menu";
-    }
-
-    public String printMessage() {
-        String temp = message;
-        message = "";
-        return temp;
     }
 
 }

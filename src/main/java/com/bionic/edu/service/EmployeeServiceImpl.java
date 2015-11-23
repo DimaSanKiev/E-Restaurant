@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public Employee login(String email, String password) {
+    public Employee signIn(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
         Employee employee = employeeDao.findByEmail(email);
         if (employee.getPassword().equals(decryptPass)) {

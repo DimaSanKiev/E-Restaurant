@@ -17,5 +17,5 @@ public interface CustomerService {
     void delete(int id);
 
 
-    Customer login(String email, String password);
+    Customer signIn(String email, String password);
 }

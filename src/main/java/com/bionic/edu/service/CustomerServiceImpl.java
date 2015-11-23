@@ -53,14 +53,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    // fixme - NPE
-    public Customer login(String email, String password) {
+    public Customer signIn(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
         Customer customer = customerDao.findByEmail(email);
-        if (decryptPass.equals(customer.getPassword())) {
+        if (customer != null & decryptPass.equals(customer.getPassword())) {
             return customer;
-        } else
-            return null;
+        }
+        return null;
     }
 
 }

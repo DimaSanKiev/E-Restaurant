@@ -72,13 +72,13 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testLogin() throws Exception {
+    public void testSignIn() throws Exception {
         try {
-            employeeService.login("elena.bakhmach@gmail.com", "wrongPass");
+            employeeService.signIn("elena.bakhmach@gmail.com", "wrongPass");
         } catch (AssertionError er) {
             assertEquals(1, 1);
         }
-        employeeService.login("elena.bakhmach@gmail.com", "pass3");
+        employeeService.signIn("elena.bakhmach@gmail.com", "pass3");
     }
 
     @Test

@@ -79,14 +79,10 @@
                     </h:column>
 
                 </h:dataTable>
-
-                <br/><h:form><h:commandButton rendered="#{not empty cartBean.cartMap}" value="Confirm"
-                                              action="#{cartBean.confirm(customerBean.customer)}"/></h:form><br/>
-
-                <br/><h:form><p:commandButton rendered="#{not empty cartBean.cartMap}" value="Submit"
-                                      action="#{cartBean.confirm(customerBean.customer)}"/></h:form><br/>
-
             </h:form>
+
+            <br/><h:form><p:commandButton rendered="#{not empty cartBean.cartMap}" value="Submit" styleClass="button"
+                                          action="#{cartBean.confirm(customerBean.customer)}"/></h:form><br/>
         </ui:define>
     </ui:composition>
 </h:body>

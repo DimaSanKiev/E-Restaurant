@@ -19,7 +19,7 @@
 
                 <h:dataTable id="cart" value="#{cartBean.cartMap.entrySet().toArray()}" var="dish"
                              styleClass="dish_table" headerClass="table_header"
-                             columnClasses="dish_table_name, none, center, center, center, center"
+                             columnClasses="dish_table_name, center, center, center"
                              rowClasses="dish_table_odd_row, dish_table_even_row">
 
                     <h:column>
@@ -65,6 +65,8 @@
 
                 <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
                                  actionListener="#{cartBean.submitOrder()}"/>
+
+                <p:commandButton value="Back to Cart" action="shoppingCart"/>
 
                 <p:dialog widgetVar="confirm" header="Your order was confirmed successfully. Please wait for delivery."
                           modal="true" showEffect="fade" hideEffect="fade" resizable="true">

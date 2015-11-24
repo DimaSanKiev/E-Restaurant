@@ -2,6 +2,7 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.service.CustomerService;
+import com.bionic.edu.util.Crypto;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
@@ -9,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.NoResultException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -104,15 +106,25 @@ public class CustomerBean implements Serializable {
     }
 
     public String signIn(String email, String password) {
-        customer = customerService.signIn(email, password);
-        if (customer == null) {
+        String decryptPass = Crypto.encrypt(password);
+        try {
+            customer = customerService.signIn(email, password);
+        } catch (NoResultException e) {
+            // logger
             RequestContext.getCurrentInstance().showMessageInDialog(new
                     FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
             return "signIn";
         }
-        signedIn = true;
-        return "menu";
+        signedIn = customer.getPassword().equals(decryptPass);
+        if (signedIn) {
+            return "menu";
+        } else {
+            RequestContext.getCurrentInstance().showMessageInDialog(new
+                    FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Sign In Error", "Incorrect email or password, please try again."));
+            return "signIn";
+        }
     }
 
     public String signOut() {

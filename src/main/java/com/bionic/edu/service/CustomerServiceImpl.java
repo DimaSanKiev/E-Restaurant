@@ -54,9 +54,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer signIn(String email, String password) {
-        String decryptPass = Crypto.encrypt(password);
+        @SuppressWarnings("unchecked")
         Customer customer = customerDao.findByEmail(email);
-        if (customer != null & decryptPass.equals(customer.getPassword())) {
+        if (customer != null) {
             return customer;
         }
         return null;

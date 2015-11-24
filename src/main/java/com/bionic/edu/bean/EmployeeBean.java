@@ -14,6 +14,9 @@ import java.util.List;
 public class EmployeeBean implements Serializable {
     private static final long serialVersionUID = -6003880259950580877L;
 
+    private String email;
+    private String password;
+    private boolean signedIn;
     private List<Employee> employees = null;
     private Employee employee = null;
     @Inject
@@ -21,6 +24,30 @@ public class EmployeeBean implements Serializable {
 
     public EmployeeBean() {
         employee = new Employee();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isSignedIn() {
+        return signedIn;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
     }
 
     public List<Employee> getEmployees() {
@@ -38,7 +65,6 @@ public class EmployeeBean implements Serializable {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
 
     public void refreshList() {
         employees = employeeService.findAll();

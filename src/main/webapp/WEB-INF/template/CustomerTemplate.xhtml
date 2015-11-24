@@ -5,20 +5,26 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-    <title><ui:insert name="title">Customers</ui:insert></title>
+    <title><ui:insert name="title">E-Restaurant</ui:insert></title>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
-    <ui:insert name="header">
-        <ui:include src="customerHeader.xhtml"/>
-    </ui:insert>
-    <br/>
-    <ui:insert name="content">
-        <ui:include src="customerContent.xhtml"/>
-    </ui:insert>
-    <br/>
-    <ui:insert name="footer">
-        <ui:include src="footer.xhtml"/>
-    </ui:insert>
+    <div class="header">
+        <ui:insert name="header">
+            <ui:include src="customerHeader.xhtml"/>
+        </ui:insert>
+    </div>
+
+    <div>
+        <ui:insert name="content">
+            <ui:include src="customerContent.xhtml"/>
+        </ui:insert>
+    </div>
+
+    <div class="footer">
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
+    </div>
 </h:body>
 </html>

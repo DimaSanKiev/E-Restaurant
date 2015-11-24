@@ -26,7 +26,7 @@
                     <h:outputText value="Price:"/>
                     <h:inputText id="dPrice" value="#{dishBean.dish.price}" required="true">
                         <f:convertNumber minFractionDigits="2"/>
-                        <f:validateDoubleRange minimum="0.00" maximum="1000.00"/>
+                        <f:validateDoubleRange minimum="0.00" maximum="100.00"/>
                     </h:inputText>
                     <h:message for="dPrice" style="color:red"/>
 
@@ -49,7 +49,8 @@
                     </h:inputText>
 
                 </h:panelGrid>
-                <h:commandButton value="Submit" action="#{dishBean.saveDish}"/>
+
+                <br/><h:commandButton value="Submit" action="#{dishBean.saveDish}"/>
             </h:form>
         </ui:define>
     </ui:composition>

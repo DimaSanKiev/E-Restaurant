@@ -17,7 +17,7 @@ public class Orders {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "orders_status_id")
     private OrderStatus orderStatus;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

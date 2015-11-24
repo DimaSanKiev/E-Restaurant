@@ -2,10 +2,13 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://java.sun.com/jsf/html"
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:form><h:commandButton rendered="#{not empty cartBean.cartMap}" value="Confirm"
                          action="#{cartBean.confirm(customerBean.customer)}"/></h:form>
+
+<br/><h:form><p:commandButton rendered="#{not empty cartBean.cartMap}" value="Submit"
+                      action="#{cartBean.confirm(customerBean.customer)}" /></h:form>
+
 </html>

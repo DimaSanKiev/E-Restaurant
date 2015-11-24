@@ -31,12 +31,29 @@
 
                     <h:column>
                         <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Price</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishPrice" value="$#{dish.key.price}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Count</h:outputLabel>
                         </f:facet>
                         <h:outputText id="dishCount" value="#{dish.value}"/>
                     </h:column>
 
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Total</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishTotal" value="$#{dish.key.price * dish.value}"/>
+                    </h:column>
+
                 </h:dataTable>
+
+                <br/>
+                <h:outputLabel>TOTAL ODER PRICE: $<b>#{cartBean.total}</b></h:outputLabel>
 
                 <p style="font-size: 20px">
                     Name:
@@ -49,8 +66,8 @@
                 <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
                                  actionListener="#{cartBean.submitOrder()}"/>
 
-                <p:dialog widgetVar="confirm" header="Your order was confirmed successfully."
-                          modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:dialog widgetVar="confirm" header="Your order was confirmed successfully. Please wait for delivery."
+                          modal="true" showEffect="fade" hideEffect="fade" resizable="true">
                     <p:commandButton action="menu" value="OK"/>
                 </p:dialog>
 

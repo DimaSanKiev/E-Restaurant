@@ -1,5 +1,6 @@
 --- CREATE TABLES ---
 
+DROP TRIGGER customer_delete;
 DROP TABLE order_dishes;
 DROP TABLE dish;
 DROP TABLE dish_category;
@@ -277,3 +278,14 @@ INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
 VALUES (1, 5.50, TRUE, 4, 7);
 INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
 VALUES (1, 4.30, FALSE, 6, 7);
+
+
+--- TRIGGERS ---
+CREATE TRIGGER customer_delete
+AFTER DELETE ON customer
+REFERENCING OLD_TABLE AS deleted_customer
+FOR EACH STATEMENT MODE DB2SQL
+  DELETE FROM orders
+  WHERE customer_id IN
+        (SELECT customer_id
+         FROM deleted_customer);

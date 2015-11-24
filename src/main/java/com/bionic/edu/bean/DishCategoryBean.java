@@ -6,11 +6,14 @@ import org.springframework.context.annotation.Scope;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 @Named
 @Scope("session")
-public class DishCategoryBean {
+public class DishCategoryBean implements Serializable {
+    private static final long serialVersionUID = 2836340733987093740L;
+
     @Inject
     private DishCategoryService dishCategoryService;
     private List<DishCategory> dishCategories = null;

@@ -6,11 +6,14 @@ import org.springframework.context.annotation.Scope;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 @Named
 @Scope("session")
-public class EmployeeBean {
+public class EmployeeBean implements Serializable {
+    private static final long serialVersionUID = -6003880259950580877L;
+
     private List<Employee> employees = null;
     private Employee employee = null;
     @Inject

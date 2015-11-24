@@ -12,7 +12,7 @@
         #{customerBean.refreshList()}
         <h:form>
             <h:panelGrid columns="1">
-                <h:commandButton value="Add Customer" action="#{customerBean.addCustomer()}"/>
+                <h:commandButton value="Add Customer" action="#{customerBean.addCustomer()}"/> <br/>
             </h:panelGrid>
 
             <h:dataTable value="#{customerBean.customers}" var="customer" styleClass="user_table"
@@ -37,12 +37,14 @@
                 </h:column>
                 <h:column>
                     <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
-                        <h:graphicImage value="resources/images/edit-icon.png" height="16" width="16" title="Update" style="padding: 3px" />
+                        <h:graphicImage value="resources/images/edit-icon.png" height="16" width="16" title="Update"
+                                        style="padding: 3px"/>
                     </h:commandLink>
                 </h:column>
                 <h:column>
                     <h:commandLink action="#{customerBean.deleteCustomer(customer.id)}">
-                        <h:graphicImage value="resources/images/delete-icon.png" height="16" width="16" title="Delete" style="padding: 3px" />
+                        <h:graphicImage value="resources/images/delete-icon.png" height="16" width="16" title="Delete"
+                                        style="padding: 3px"/>
                     </h:commandLink>
                 </h:column>
             </h:dataTable>

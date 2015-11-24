@@ -11,13 +11,16 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 @Named
 @Scope("session")
-public class ReportBean {
+public class ReportBean implements Serializable {
+    private static final long serialVersionUID = -5967744118711816775L;
+
     @Inject
     private OrderService orderService;
     private List<ReportCategory> reportCategories = null;

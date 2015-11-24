@@ -17,6 +17,7 @@ import java.util.*;
 @Scope("session")
 public class CartBean implements Serializable {
     private static final long serialVersionUID = -2351220622598691145L;
+
     private Map<Dish, Integer> cartMap;
     private Dish dish;
     private double total;

@@ -9,11 +9,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 @Named
 @Scope("session")
-public class CustomerBean {
+public class CustomerBean implements Serializable {
+    private static final long serialVersionUID = -7781671161549205986L;
+
     private String email;
     private String password;
     private boolean signedIn;

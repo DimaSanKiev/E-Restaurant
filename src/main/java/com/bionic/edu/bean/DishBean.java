@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +25,9 @@ import java.util.stream.Collectors;
 @Named
 @RequestScoped
 @Scope("session")
-public class DishBean {
+public class DishBean implements Serializable {
+    private static final long serialVersionUID = 1308298924092691297L;
+
     @Inject
     private DishService dishService;
     @Inject

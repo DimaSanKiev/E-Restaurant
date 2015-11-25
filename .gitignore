@@ -7,9 +7,9 @@ out
 .springBeans
 E-Restaurant.iml
 e-restaurant.iml
-ERestaurant
+#ERestaurant
 .dbeaver-data-sources.xml
 files/userstories.txt
 files/project.txt
-derby.log
+#derby.log
 classes

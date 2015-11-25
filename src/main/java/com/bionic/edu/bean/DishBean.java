@@ -99,7 +99,7 @@ public class DishBean implements Serializable {
     }
 
     public void refreshDishes() {
-        dishes = dishService.findAll();
+        dishes = dishService.findByAvailability(true);
     }
 
     public String saveDish() {

@@ -14,7 +14,7 @@
 <h:body>
     <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
         <ui:define name="content">
-            #{dishBean.refreshDishes()}
+            #{dishBean.refreshAvailableDishes()}
 
             <div class="dish_table">
                 <ui:repeat var="dish" value="#{dishBean.dishes}">

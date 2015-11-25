@@ -98,7 +98,11 @@ public class DishBean implements Serializable {
         }
     }
 
-    public void refreshDishes() {
+    public void refreshAllDishes() {
+        dishes = dishService.findAll();
+    }
+
+    public void refreshAvailableDishes() {
         dishes = dishService.findByAvailability(true);
     }
 

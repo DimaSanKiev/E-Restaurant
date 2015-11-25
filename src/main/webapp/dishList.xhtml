@@ -16,7 +16,7 @@
         <ui:define name="content">
 
             <h2>Dishes</h2>
-            #{dishBean.refreshDishes()}
+            #{dishBean.refreshAllDishes()}
             <h:form>
                 <h:panelGrid columns="1">
                     <h:commandButton value="Add dish" action="#{dishBean.addDish()}"/>

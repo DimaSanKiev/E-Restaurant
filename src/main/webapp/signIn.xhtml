@@ -27,6 +27,7 @@
                             <p:password id="password" value="#{customerBean.password}" required="true"/>
                         </h:panelGrid>
 
+                        <br/>
                         <p:commandButton value="Sign in"
                                          action="#{customerBean.signIn(customerBean.email, customerBean.password)}"
                                          update="matchGrid" ajax="false"/>

@@ -26,7 +26,9 @@
         <div class="customer-menu-items">
             <h:form rendered="#{not empty cartBean.cartMap}">
                 <h:outputText escape="false" styleClass="cart-text"
-                              value="Your shopping cart: &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items, total= $&lt;b&gt;#{cartBean.updateTotalPrice()}&lt;/b&gt;">
+                              value="Your shopping cart: &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items, total= "/>
+                <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.updateTotalPrice()}"
+                              style="font-weight: bold">
                     <f:convertNumber currencyCode="USD" type="currency"/> <!-- todo - don't work -->
                 </h:outputText>
             </h:form>
@@ -35,7 +37,7 @@
                 <h:form rendered="#{empty cartBean.cartMap}">
                     <h:outputText styleClass="cart-text" escape="false"
                                   value="Your shopping cart: &lt;b&gt;0&lt;/b&gt; items, total $&lt;b&gt;0.00&lt;/b&gt;"
-                    />
+                            />
                 </h:form>
 
                 <h:commandLink action="shoppingCart">

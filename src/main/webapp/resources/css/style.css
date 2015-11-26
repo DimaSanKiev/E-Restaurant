@@ -82,7 +82,7 @@ td.center {
 
 /* MENU */
 .dish_block {
-    width: 400px;
+    width: 300px;
     margin: 20px;
     float: left;
     position: relative;
@@ -131,8 +131,7 @@ td.center {
 
 .dish_button {
     position: absolute;
-    bottom: 0px;
-    float: left;
+    float: right;
 }
 
 /* TEMPLATES */

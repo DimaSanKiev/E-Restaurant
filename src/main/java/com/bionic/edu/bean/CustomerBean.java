@@ -108,7 +108,7 @@ public class CustomerBean implements Serializable {
     public String signIn(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
         try {
-            customer = customerService.signIn(email, password);
+            customer = customerService.signIn(email, decryptPass);
         } catch (NoResultException e) {
             // logger
             RequestContext.getCurrentInstance().showMessageInDialog(new
@@ -116,7 +116,7 @@ public class CustomerBean implements Serializable {
                     "Sign In Error", "Incorrect email or password, please try again."));
             return "signIn";
         }
-        signedIn = customer.getPassword().equals(decryptPass);
+        signedIn = customer.getPassword().equals(password);
         if (signedIn) {
             return "menu";
         } else {

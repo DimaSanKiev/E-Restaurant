@@ -16,7 +16,7 @@
         <ui:define name="content">
             <h:form id="forUpdate">
                 <div class="body">
-                    <h2>Please Sign Up</h2>
+                    <h2>Please edit your personal info</h2>
 
                     <h:form>
                         <h:panelGrid columns="2">
@@ -27,8 +27,16 @@
                             <p:inputText id="email" value="#{customerBean.customer.email}" required="true"
                                          type="email"/>
 
-                            <p:outputLabel styleClass="label" for="password" value="Please enter your password"/>
-                            <p:password id="password" value="#{customerBean.customer.password}" required="true"
+                            <p:outputLabel styleClass="label" for="currentPassword" value="Please enter your current password"/>
+                            <p:password id="currentPassword" value="#{customerBean.customer.password}" required="true"
+                                        redisplay="true" match="repeatedPassword"/>
+
+                            <p:outputLabel styleClass="label" for="newPassword" value="Please enter your new password"/>
+                            <p:password id="newPassword" value="#{customerBean.customer.password}" required="true"
+                                        redisplay="true" match="repeatedPassword"/>
+
+                            <p:outputLabel styleClass="label" for="repeatedPassword" value="Please re-enter your new password"/>
+                            <p:password id="repeatedPassword" value="#{customerBean.customer.password}" required="true"
                                         redisplay="true"/>
 
                             <p:outputLabel styleClass="label" for="address" value="Please enter your address: "/>
@@ -40,7 +48,7 @@
                         </h:panelGrid>
 
                         <br/>
-                        <p:commandButton value="Confirm" action="#{customerBean.submitRegistration()}"
+                        <p:commandButton value="Confirm" action="#{customerBean.saveCustomer()}"
                                          update="matchGrid" ajax="false"/>
                         <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
                     </h:form>

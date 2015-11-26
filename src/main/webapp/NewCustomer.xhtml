@@ -24,17 +24,6 @@
                              requiredMessage="#{msgs.emailRequired}">
                 </h:inputText>
 
-                <!-- todo - crypted password stores but shown encrypted -->
-                <h:outputText value="Customer password:"/>
-                <h:inputSecret id="cPassword"
-                             value="#{customerBean.customer.password}" required="true"
-                             requiredMessage="#{msgs.passwordRequired}"
-                             validatorMessage="#{msgs.passwordRange}">
-                    <f:validateLength minimum="4"/>
-                </h:inputSecret>
-                <h:message for="cPassword" style="color:red"/>
-
-
                 <h:outputText value="Customer address:"/>
                 <h:inputText id="cAddress"
                              value="#{customerBean.customer.address}" required="true"

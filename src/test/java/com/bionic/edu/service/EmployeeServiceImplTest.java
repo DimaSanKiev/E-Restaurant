@@ -27,14 +27,16 @@ public class EmployeeServiceImplTest {
     public void testFindById() throws Exception {
         Employee employee = employeeService.findById(1);
         assertNotNull(employee);
+        System.out.println(employee);
         assertEquals(1, employee.getId());
     }
 
     @Test
     public void testFindByEmail() throws Exception {
-        Employee employee = employeeService.findByEmail("igor.himchenko@yahoo.com");
+        Employee employee = employeeService.findByEmail("super@erestaurant.com");
         assertNotNull(employee);
-        assertEquals("igor.himchenko@yahoo.com", employee.getEmail());
+        assertEquals("super@erestaurant.com", employee.getEmail());
+        assertEquals("Dmytro Arkheev", employee.getName());
     }
 
     @Test

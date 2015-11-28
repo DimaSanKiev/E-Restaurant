@@ -100,7 +100,7 @@ public class EmployeeBean implements Serializable {
         try {
             employee = employeeService.signIn(email, decryptPass);
         } catch (NoResultException e) {
-            // logger
+//             logger
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
             return "employeeSignIn";
@@ -111,7 +111,7 @@ public class EmployeeBean implements Serializable {
         }
         signedIn = employee.getPassword().equals(password);
         if (signedIn) {
-            return "menu";
+            return "employeeMainPage";
         } else {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));

@@ -94,15 +94,15 @@ INSERT INTO role (name) VALUES ('DELIVERY_STAFF');
 INSERT INTO role (name) VALUES ('BUSINESS_ANALYST');
 
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Dmytro Arkheev', 'superuser@gmail.com', 'pass1', '1984-06-27', '2013-10-01', TRUE, 1);
+VALUES ('Dmytro Arkheev', 'super@erestaurant.com', 'pass1', '1984-06-27', '2013-10-01', TRUE, 1);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Igor Himchenko', 'igor.himchenko@yahoo.com', 'pass2', '1987-07-02', '2011-06-10', TRUE, 2);
+VALUES ('Igor Himchenko', 'admin@erestaurant.com', 'pass2', '1987-07-02', '2011-06-10', TRUE, 2);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Elena Bakhmach', 'elena.bakhmach@gmail.com', 'pass3', '1991-04-05', '2014-02-03', TRUE, 3);
+VALUES ('Elena Bakhmach', 'kitchen@erestaurant.com', 'pass3', '1991-04-05', '2014-02-03', TRUE, 3);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Alexander Volkov', 'alexander.volkov@gmail.com', 'pass4', '1993-03-03', '2014-02-28', TRUE, 4);
+VALUES ('Alexander Volkov', 'delivery@erestaurant.com', 'pass4', '1993-03-03', '2014-02-28', TRUE, 4);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Khristina Tkachuk', 'khristina.tkachuk@gmail.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5);
+VALUES ('Khristina Tkachuk', 'business@erestaurant.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5);
 
 INSERT INTO dish_category (name, description)
 VALUES ('SOUP',

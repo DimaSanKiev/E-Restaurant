@@ -2,10 +2,15 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Employee;
 import com.bionic.edu.service.EmployeeService;
+import com.bionic.edu.util.Crypto;
+import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.NoResultException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -66,6 +71,7 @@ public class EmployeeBean implements Serializable {
         this.employee = employee;
     }
 
+
     public void refreshList() {
         employees = employeeService.findAll();
     }
@@ -81,9 +87,35 @@ public class EmployeeBean implements Serializable {
     }
 
     public String updateEmployee(String id) {
-        int n = Integer.valueOf(id);
-        employee = employeeService.findById(n);
+        employee = employeeService.findById(Integer.valueOf(id));
         return "NewEmployee";
+    }
+
+    public String signIn(String email, String password) {
+        String decryptPass = Crypto.encrypt(password);
+        try {
+            employee = employeeService.signIn(email, decryptPass);
+        } catch (NoResultException e) {
+            // logger
+            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Sign In Error", "Incorrect email or password, please try again."));
+            return "employeeSignIn";
+        }
+        signedIn = employee.getPassword().equals(password);
+        if (signedIn) {
+            return "menu";
+        } else {
+            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Sign In Error", "Incorrect email or password, please try again."));
+            return "employeeSignIn";
+        }
+    }
+
+    public String signOut() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Signed Out", "Thank you, have a good day."));
+        return "menu";
     }
 
 }

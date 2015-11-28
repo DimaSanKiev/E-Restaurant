@@ -16,6 +16,7 @@ public class Customer {
     private String password;
     private String address;
     private Date birthDate;
+    private boolean blocked;
 
     public Customer() {
     }
@@ -76,6 +77,14 @@ public class Customer {
         this.birthDate = birthDate;
     }
 
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -85,6 +94,7 @@ public class Customer {
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", birthDate=" + birthDate +
+                ", blocked=" + blocked +
                 '}';
     }
 }

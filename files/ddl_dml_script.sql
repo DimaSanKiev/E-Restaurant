@@ -54,6 +54,7 @@ CREATE TABLE customer (
   password  VARCHAR(100) NOT NULL,
   address   VARCHAR(500) NOT NULL,
   birthDate DATE,
+  blocked   BOOLEAN      NOT NULL DEFAULT FALSE,
   PRIMARY KEY (id)
 );
 

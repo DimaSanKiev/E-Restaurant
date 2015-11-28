@@ -82,10 +82,15 @@ public class CustomerBean implements Serializable {
     }
 
     public String submitRegistration() {
-        customerService.save(customer);
+        try {
+            customerService.save(customer);
+        } catch (Exception e) {
+            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Sign Up Error", "Current email is already used."));
+            return "signUp";
+        }
         signIn(customer.getEmail(), customer.getPassword());
-        RequestContext.getCurrentInstance().showMessageInDialog(new
-                FacesMessage(FacesMessage.SEVERITY_INFO,
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Sign Up Success", "You have successfully registered on ERestaurant."));
         return "menu";
     }
@@ -111,8 +116,7 @@ public class CustomerBean implements Serializable {
             customer = customerService.signIn(email, decryptPass);
         } catch (NoResultException e) {
             // logger
-            RequestContext.getCurrentInstance().showMessageInDialog(new
-                    FacesMessage(FacesMessage.SEVERITY_INFO,
+            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
             return "signIn";
         }
@@ -120,8 +124,7 @@ public class CustomerBean implements Serializable {
         if (signedIn) {
             return "menu";
         } else {
-            RequestContext.getCurrentInstance().showMessageInDialog(new
-                    FacesMessage(FacesMessage.SEVERITY_INFO,
+            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
             return "signIn";
         }
@@ -129,8 +132,7 @@ public class CustomerBean implements Serializable {
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        RequestContext.getCurrentInstance().showMessageInDialog(new
-                FacesMessage(FacesMessage.SEVERITY_INFO,
+        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Signed Out", "Thank you for visiting ERestaurant."));
         return "menu";
     }

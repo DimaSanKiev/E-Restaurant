@@ -39,6 +39,12 @@
                 </h:inputText>
                 <h:message for="cBirthdate" style="color:red"/>
 
+                <h:outputText value="Block customer:"/>
+                <h:selectBooleanCheckbox id="cBlock" value="#{customerBean.customer.blocked}" required="true"/>
+                <h:outputText value=" "/>
+                <h:outputText value=" "/>
+
+
             </h:panelGrid>
             <h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/>
         </h:form>

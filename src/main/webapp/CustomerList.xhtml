@@ -36,14 +36,13 @@
                     <f:facet name="header">Address</f:facet> #{customer.address}
                 </h:column>
                 <h:column>
-                    <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
-                        <h:graphicImage value="resources/images/edit-icon.png" height="16" width="16" title="Update"
-                                        style="padding: 3px"/>
-                    </h:commandLink>
+                    <f:facet name="header">Blocked</f:facet>
+                    <h:outputText rendered="#{customer.blocked}" value="yes" class="customer_blocked_yes"/>
+                    <h:outputText rendered="#{!customer.blocked}" value="no" class="customer_blocked_no"/>
                 </h:column>
                 <h:column>
-                    <h:commandLink action="#{customerBean.deleteCustomer(customer.id)}">
-                        <h:graphicImage value="resources/images/delete-icon.png" height="16" width="16" title="Delete"
+                    <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
+                        <h:graphicImage value="resources/images/edit-icon.png" height="16" width="16" title="Update"
                                         style="padding: 3px"/>
                     </h:commandLink>
                 </h:column>

@@ -3,6 +3,7 @@ package com.bionic.edu.service;
 import com.bionic.edu.dao.CustomerDao;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.util.Crypto;
+import com.bionic.edu.util.CustomerBlockedException;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -53,10 +54,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer signIn(String email, String password) {
+    public Customer signIn(String email, String password) throws CustomerBlockedException {
         @SuppressWarnings("unchecked")
         Customer customer = customerDao.findByEmail(email);
         if (customer != null) {
+            if (customer.isBlocked()) throw new CustomerBlockedException("Customer is blocked");
             return customer;
         }
         return null;

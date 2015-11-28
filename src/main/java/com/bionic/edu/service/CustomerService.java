@@ -1,6 +1,7 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Customer;
+import com.bionic.edu.util.CustomerBlockedException;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface CustomerService {
     void delete(int id);
 
 
-    Customer signIn(String email, String password);
+    Customer signIn(String email, String password) throws CustomerBlockedException;
 }

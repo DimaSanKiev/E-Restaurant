@@ -3,6 +3,7 @@ package com.bionic.edu.bean;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.service.CustomerService;
 import com.bionic.edu.util.Crypto;
+import com.bionic.edu.util.CustomerBlockedException;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
@@ -118,6 +119,10 @@ public class CustomerBean implements Serializable {
             // logger
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
+            return "signIn";
+        } catch (CustomerBlockedException e) {
+            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Sign In Error", "Your account is blocked."));
             return "signIn";
         }
         signedIn = customer.getPassword().equals(password);

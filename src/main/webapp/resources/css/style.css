@@ -154,3 +154,13 @@ td.center {
     font-size: large;
     text-align: center;
 }
+
+/* CUSTOMER LIST */
+.customer_blocked_yes {
+    text-align: center;
+    color: red;
+}
+
+.customer_blocked_no {
+    text-align: center;
+}

@@ -3,7 +3,7 @@ package com.bionic.edu.bean;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.service.CustomerService;
 import com.bionic.edu.util.Crypto;
-import com.bionic.edu.util.CustomerBlockedException;
+import com.bionic.edu.exception.CustomerBlockedException;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 

@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
@@ -27,6 +28,18 @@ public class RoleServiceImplTest {
         Role role = roleService.findById(1);
         assertNotNull(role);
         assertEquals(1, role.getId());
+    }
+
+    @Test
+    public void testFindByName() throws Exception {
+        List<Role> roles = new ArrayList<>();
+        roles.add(roleService.findByName("SUPER_USER"));
+        roles.add(roleService.findByName("ADMIN"));
+        roles.add(roleService.findByName("KITCHEN_STAFF"));
+        roles.add(roleService.findByName("DELIVERY_STAFF"));
+        roles.add(roleService.findByName("BUSINESS_ANALYST"));
+        assertNotNull(roles);
+        assertEquals(5, roles.size());
     }
 
     @Test

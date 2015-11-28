@@ -1,6 +1,7 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Employee;
+import com.bionic.edu.exception.EmployeeUnavailableException;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface EmployeeService {
     void delete(int id);
 
 
-    Employee signIn(String email, String password);
+    Employee signIn(String email, String password) throws EmployeeUnavailableException;
 
     void setReadiness(Employee employee, boolean isReady);
 }

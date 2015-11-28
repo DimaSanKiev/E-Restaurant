@@ -1,7 +1,9 @@
 package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Employee;
+import com.bionic.edu.exception.EmployeeUnavailableException;
 import com.bionic.edu.service.EmployeeService;
+import com.bionic.edu.service.RoleService;
 import com.bionic.edu.util.Crypto;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
@@ -26,6 +28,8 @@ public class EmployeeBean implements Serializable {
     private Employee employee = null;
     @Inject
     private EmployeeService employeeService;
+    @Inject
+    private RoleService roleService;
 
     public EmployeeBean() {
         employee = new Employee();
@@ -99,6 +103,10 @@ public class EmployeeBean implements Serializable {
             // logger
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
+            return "employeeSignIn";
+        } catch (EmployeeUnavailableException e) {
+            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Sign In Error", "You account in unavailable at the moment. Please contact SuperUser."));
             return "employeeSignIn";
         }
         signedIn = employee.getPassword().equals(password);

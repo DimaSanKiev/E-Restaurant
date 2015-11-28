@@ -2,6 +2,7 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.EmployeeDao;
 import com.bionic.edu.entity.Employee;
+import com.bionic.edu.exception.EmployeeUnavailableException;
 import com.bionic.edu.util.Crypto;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,13 +55,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public Employee signIn(String email, String password) {
-        String decryptPass = Crypto.encrypt(password);
+    public Employee signIn(String email, String password) throws EmployeeUnavailableException {
         Employee employee = employeeDao.findByEmail(email);
-        if (employee.getPassword().equals(decryptPass)) {
+        if (employee != null) {
+            if (!employee.isReady()) throw new EmployeeUnavailableException("Employee is not ready.");
             return employee;
-        } else
-            return null;
+        }
+        return null;
     }
 
     @Override

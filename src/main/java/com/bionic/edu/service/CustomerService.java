@@ -1,7 +1,7 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Customer;
-import com.bionic.edu.util.CustomerBlockedException;
+import com.bionic.edu.exception.CustomerBlockedException;
 
 import java.util.List;
 

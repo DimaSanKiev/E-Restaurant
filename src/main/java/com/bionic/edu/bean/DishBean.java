@@ -106,6 +106,10 @@ public class DishBean implements Serializable {
         dishes = dishService.findByAvailability(true);
     }
 
+    public void refreshCategory(int categoryId) {
+        dishes = dishService.findByCategory(categoryId);
+    }
+
     public String saveDish() {
         dish.setCategory(idCategoryMap.get(category));
         dishService.save(dish);
@@ -125,7 +129,7 @@ public class DishBean implements Serializable {
         return "newDish";
     }
 
-    /*public String showCategory(String id) {
+    /*public String refreshCategory(String id) {
         int n = Integer.valueOf(id);
         dishes = dishService.findByCategory(n);
         return "dishByCategoryList";

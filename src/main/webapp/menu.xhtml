@@ -14,7 +14,24 @@
 <h:body>
     <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
         <ui:define name="content">
-            #{dishBean.refreshAvailableDishes()}
+
+            <div class="category-menu-items" style="padding: 1%">
+                <h:outputLabel styleClass="menu-text">Please select dish by category:</h:outputLabel>
+                <h:form>
+                    <p:commandButton id="allCategories" value="All Dishes" update="matchGrid" ajax="false"
+                                     action="#{dishBean.refreshAvailableDishes}" styleClass="category-menu-buttons"/>
+                    <p:commandButton id="soup" value="Soups" update="matchGrid" ajax="false"
+                                     action="#{dishBean.refreshCategory(1)}" styleClass="category-menu-buttons"/>
+                    <p:commandButton id="salad" value="Salads" update="matchGrid" ajax="false"
+                                     action="#{dishBean.refreshCategory(2)}" styleClass="category-menu-buttons"/>
+                    <p:commandButton id="mainCourse" value="Main Course" update="matchGrid" ajax="false"
+                                     action="#{dishBean.refreshCategory(3)}" styleClass="category-menu-buttons"/>
+                    <p:commandButton id="dessert" value="Desserts" update="matchGrid" ajax="false"
+                                     action="#{dishBean.refreshCategory(4)}" styleClass="category-menu-buttons"/>
+                    <p:commandButton id="drink" value="Drinks" update="matchGrid" ajax="false"
+                                     action="#{dishBean.refreshCategory(5)}" styleClass="category-menu-buttons"/>
+                </h:form>
+            </div>
 
             <div class="dish_table">
                 <ui:repeat var="dish" value="#{dishBean.dishes}">

@@ -134,11 +134,25 @@ td.center {
     float: right;
 }
 
+.menu-text {
+    font-size: large;
+    padding: 1%;
+}
+
 /* TEMPLATES */
 .customer-menu-items {
     position: relative;
     margin-right: 15%;
     text-align: right;
+}
+
+.category-menu-items {
+    position: relative;
+    text-align: center;
+}
+
+.category-menu-buttons {
+ padding: 10px;
 }
 
 .cart-icon {

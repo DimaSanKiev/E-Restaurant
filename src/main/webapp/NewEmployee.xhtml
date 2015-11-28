@@ -5,13 +5,16 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
+
 <h:head>
-    <title>New Employee</title>
+    <title>Employee details</title>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
+
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2>New Employee</h2>
+            <h2>Employee details</h2>
 
                 <h:panelGrid columns="4">
                     <h:outputText value="Employee name:"/>
@@ -61,19 +64,15 @@
                     <h:outputText value="Employee readiness:"/>
                     <h:selectBooleanCheckbox id="eReadiness" value="#{employeeBean.employee.ready}" required="true"/>
                     <h:outputText value=" "/>
-                    <h:outputText value=" "/>
 
+                    <!--todo - Role don't set-->
                     <h:outputText value="Employee role:"/>
-                    <h:selectOneRadio id="eRole" value="#{employeeBean.employee.role.name}" required="true">
-                        <f:selectItem id="superUser" itemLabel="Super User" itemValue="false"/>
-                        <f:selectItem id="admin" itemLabel="Administrator" itemValue="false"/>
-                        <f:selectItem id="kitchenStaff" itemLabel="Kitchen Staff" itemValue="false"/>
-                        <f:selectItem id="deliveryStaff" itemLabel="Delivery Staff" itemValue="false"/>
-                        <f:selectItem id="analyst" itemLabel="Business Analyst" itemValue="false"/>
-                    </h:selectOneRadio>
-                    <h:message for="eRole" style="color:red"/>
+                    <h:selectOneMenu value="#{employeeBean.role}">
+                        <f:selectItems value="#{employeeBean.idNameRoleMap}"/>
+                    </h:selectOneMenu>
+
                 </h:panelGrid>
-                <h:form><h:commandButton value="Submit" action="#{customerBean.saveCustomer}"/></h:form>
+                <h:form><h:commandButton value="Submit" action="#{employeeBean.saveEmployee}"/></h:form>
         </ui:define>
     </ui:composition>
 </h:body>

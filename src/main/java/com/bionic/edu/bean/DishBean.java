@@ -110,6 +110,7 @@ public class DishBean implements Serializable {
         dishes = dishService.findByCategory(categoryId);
     }
 
+    // todo - SQLIntegrityConstraintViolationException: Column 'NAME'  cannot accept a NULL value
     public String saveDish() {
         dish.setCategory(idCategoryMap.get(category));
         dishService.save(dish);
@@ -124,8 +125,7 @@ public class DishBean implements Serializable {
 
     public String updateDish(String id) {
         refreshCategories();
-        int n = Integer.valueOf(id);
-        dish = dishService.findById(n);
+        dish = dishService.findById(Integer.valueOf(id));
         return "newDish";
     }
 

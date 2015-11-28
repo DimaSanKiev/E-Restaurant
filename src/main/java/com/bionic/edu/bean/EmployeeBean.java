@@ -1,6 +1,7 @@
 package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Employee;
+import com.bionic.edu.entity.Role;
 import com.bionic.edu.exception.EmployeeUnavailableException;
 import com.bionic.edu.service.EmployeeService;
 import com.bionic.edu.service.RoleService;
@@ -14,7 +15,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Named
 @Scope("session")
@@ -23,7 +26,10 @@ public class EmployeeBean implements Serializable {
 
     private String email;
     private String password;
+    private String role;
     private boolean signedIn;
+    private Map<String, String> idNameRoleMap;
+    private Map<String, Role> idRoleMap;
     private List<Employee> employees = null;
     private Employee employee = null;
     @Inject
@@ -51,12 +57,36 @@ public class EmployeeBean implements Serializable {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public boolean isSignedIn() {
         return signedIn;
     }
 
     public void setSignedIn(boolean signedIn) {
         this.signedIn = signedIn;
+    }
+
+    public Map<String, String> getIdNameRoleMap() {
+        return idNameRoleMap;
+    }
+
+    public void setIdNameRoleMap(Map<String, String> idNameRoleMap) {
+        this.idNameRoleMap = idNameRoleMap;
+    }
+
+    public Map<String, Role> getIdRoleMap() {
+        return idRoleMap;
+    }
+
+    public void setIdRoleMap(Map<String, Role> idRoleMap) {
+        this.idRoleMap = idRoleMap;
     }
 
     public List<Employee> getEmployees() {
@@ -81,18 +111,31 @@ public class EmployeeBean implements Serializable {
     }
 
     public String saveEmployee() {
+        employee.setRole(idRoleMap.get(role));
         employeeService.save(employee);
-        return "EmployeeList";
+        return "employeeList";
     }
 
     public String addEmployee() {
+        refreshRoles();
         employee = new Employee();
-        return "NewEmployee";
+        return "newEmployee";
     }
 
     public String updateEmployee(String id) {
+        refreshRoles();
         employee = employeeService.findById(Integer.valueOf(id));
-        return "NewEmployee";
+        return "newEmployee";
+    }
+
+    public void refreshRoles() {
+        idNameRoleMap = new HashMap<>();
+        idRoleMap = new HashMap<>();
+        List<Role> dishCategories = roleService.findAll();
+        for (Role dc : dishCategories) {
+            idNameRoleMap.put(dc.getName(), String.valueOf(dc.getId()));
+            idRoleMap.put(String.valueOf(dc.getId()), dc);
+        }
     }
 
     public String signIn(String email, String password) {
@@ -111,7 +154,17 @@ public class EmployeeBean implements Serializable {
         }
         signedIn = employee.getPassword().equals(password);
         if (signedIn) {
-            return "employeeMainPage";
+            if (employee.getRole().equals(roleService.findByName("SUPER_USER")))
+                return "superPanel";
+            if (employee.getRole().equals(roleService.findByName("ADMIN")))
+                return "adminPanel";
+            if (employee.getRole().equals(roleService.findByName("KITCHEN_STAFF")))
+                return "kitchen";
+            if (employee.getRole().equals(roleService.findByName("DELIVERY_STAFF")))
+                return "delivery";
+            if (employee.getRole().equals(roleService.findByName("BUSINESS_ANALYST")))
+                return "reports";
+            return null;
         } else {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));

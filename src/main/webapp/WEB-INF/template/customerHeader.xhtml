@@ -29,7 +29,7 @@
                               value="Your shopping cart: &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items, total= "/>
                 <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.updateTotalPrice()}"
                               style="font-weight: bold">
-                    <f:convertNumber currencyCode="USD" type="currency"/> <!-- todo - don't work -->
+                    <f:convertNumber currencyCode="USD" type="currency"/>
                 </h:outputText>
             </h:form>
 

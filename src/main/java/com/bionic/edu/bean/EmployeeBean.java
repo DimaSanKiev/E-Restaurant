@@ -106,10 +106,11 @@ public class EmployeeBean implements Serializable {
     }
 
 
-    public void refreshList() {
+    public void refreshEmployeeList() {
         employees = employeeService.findAll();
     }
 
+    // todo - SQLIntegrityConstraintViolationException: Column 'NAME'  cannot accept a NULL value
     public String saveEmployee() {
         employee.setRole(idRoleMap.get(role));
         employeeService.save(employee);
@@ -123,7 +124,7 @@ public class EmployeeBean implements Serializable {
     }
 
     public String updateEmployee(String id) {
-
+        refreshRoles();
         employee = employeeService.findById(Integer.valueOf(id));
         return "newEmployee";
     }
@@ -131,10 +132,10 @@ public class EmployeeBean implements Serializable {
     public void refreshRoles() {
         idNameRoleMap = new HashMap<>();
         idRoleMap = new HashMap<>();
-        List<Role> dishCategories = roleService.findAll();
-        for (Role dc : dishCategories) {
-            idNameRoleMap.put(dc.getName(), String.valueOf(dc.getId()));
-            idRoleMap.put(String.valueOf(dc.getId()), dc);
+        List<Role> employeeRoles = roleService.findAll();
+        for (Role role : employeeRoles) {
+            idNameRoleMap.put(role.getName(), String.valueOf(role.getId()));
+            idRoleMap.put(String.valueOf(role.getId()), role);
         }
     }
 
@@ -144,32 +145,33 @@ public class EmployeeBean implements Serializable {
 //            if (employee.getRole().equals(roleService.findById(2))) {
 //                if (employee.getPassword().equals(password)) {
 //                    this.employee = employee;
-//                    return "staff/dishList.xhtml?faces-redirect=true";
+//                    return "dishList.xhtml?faces-redirect=true";
 //                }
 //            } else if (employee.getRole().equals(roleService.findById(3))) {
 //                if (employee.getPassword().equals(password)) {
 //                    this.employee = employee;
-//                    return "staff/kitchen.xhtml?faces-redirect=true";
+//                    return "kitchen.xhtml?faces-redirect=true";
 //                }
 //            } else if (employee.getRole().equals(roleService.findById(1))) {
 //                if (employee.getPassword().equals(password)) {
 //                    this.employee = employee;
-//                    return "staff/superPanel.xhtml?faces-redirect=true";
+//                    return "superPanel.xhtml?faces-redirect=true";
 //                }
 //            } else if (employee.getRole().equals(roleService.findById(4))) {
 //                if (employee.getPassword().equals(password)) {
 //                    this.employee = employee;
-//                    return "staff/delivery.xhtml?faces-redirect=true";
+//                    return "delivery.xhtml?faces-redirect=true";
 //                }
 //            } else if (employee.getRole().equals(roleService.findById(5))) {
 //                if (employee.getPassword().equals(password)) {
 //                    this.employee = employee;
-//                    return "staff/reports.xhtml?faces-redirect=true";
+//                    return "reports.xhtml?faces-redirect=true";
 //                }
 //            }
 //        }
 //        return "employeeSignIn.xhtml?faces-redirect=true";
 //    }
+
     public String signIn(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
         try {
@@ -187,15 +189,15 @@ public class EmployeeBean implements Serializable {
         signedIn = employee.getPassword().equals(password);
         if (signedIn) {
             if (employee.getRole().equals(roleService.findByName("SUPER_USER")))
-                return "staff/superPanel.xhtml";
+                return "superPanel.xhtml";
             if (employee.getRole().equals(roleService.findByName("ADMIN")))
-                return "staff/adminPanel.xhtml";
+                return "adminPanel.xhtml";
             if (employee.getRole().equals(roleService.findByName("KITCHEN_STAFF")))
-                return "staff/kitchen.xhtml";
+                return "kitchen.xhtml";
             if (employee.getRole().equals(roleService.findByName("DELIVERY_STAFF")))
-                return "staff/delivery.xhtml";
+                return "delivery.xhtml";
             if (employee.getRole().equals(roleService.findByName("BUSINESS_ANALYST")))
-                return "staff/reports.xhtml";
+                return "reports.xhtml";
             return null;
         } else {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,

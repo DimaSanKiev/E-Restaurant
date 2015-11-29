@@ -15,21 +15,18 @@
     <h:form id="forUpdate">
         <div class="body">
             <h2>Please Sign In</h2>
-            <h:form>
                 <h:messages id="msg"/>
                 <h:panelGrid columns="2">
-                    <p:outputLabel styleClass="lable" for="email" value="Email: " />
+                    <p:outputLabel styleClass="lable" for="email" value="Email: "/>
                     <p:inputText id="email" value="#{employeeBean.email}" required="true" type="email"/>
 
                     <p:outputLabel styleClass="lable" for="password" value="Password: "/>
                     <p:password id="password" value="#{employeeBean.password}" required="true"/>
                 </h:panelGrid>
 
-                <p:commandButton value="Sign in"
-                                 action="#{employeeBean.signIn(employeeBean.email, employeeBean.password)}"
-                                 update="matchGrid" ajax="false"/>
+                <h:form><p:commandButton value="Sign in" update="matchGrid" ajax="false"
+                                 action="#{employeeBean.signIn(employeeBean.email, employeeBean.password)}"/></h:form>
                 <p:commandButton value="Back to menu" action="menu" immadiate="true" immediate="true"/>
-            </h:form>
         </div>
     </h:form>
 </h:body>

@@ -88,5 +88,6 @@ public class EmployeeServiceImplTest {
         Employee employee = employeeService.signIn("admin@erestaurant.com", "pass2");
         employeeService.signIn("admin@erestaurant.com", "pass2");
         assertEquals("Igor Himchenko", employee.getName());
+        assertEquals("ADMIN", employee.getRole().getName());
     }
 }

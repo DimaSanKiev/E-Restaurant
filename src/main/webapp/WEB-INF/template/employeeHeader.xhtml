@@ -13,7 +13,8 @@
             <h:form>
                 <p:outputLabel style="padding-right: 1%" rendered="#{employeeBean.signedIn == true}">
                     Hello, <b>#{employeeBean.employee.name}</b></p:outputLabel>
-                <p:button outcome="menu" id="home" value="Main Page"/>
+                
+                <p:button outcome="menu" id="home" value="Home Page"/>
                 <p:commandButton id="signOut" rendered="#{employeeBean.signedIn == true}"
                                  action="#{employeeBean.signOut}" value="Sign Out" update="matchGrid" ajax="false"/>
             </h:form>

@@ -226,19 +226,19 @@ INSERT INTO orders_status (name)
 VALUES ('DELIVERED');
 
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, customer_id)
-VALUES ('2015-10-17 15:21:10', '2015-10-17 16:21:10', 22.20, 1);
+VALUES ('2015-12-01 15:21:10', '2015-10-17 16:21:10', 22.20, 1);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, customer_id)
-VALUES ('2015-10-18 14:11:11', '2015-10-18 15:10:01', 8.00, 2);
+VALUES ('2015-12-02 14:11:11', '2015-10-18 15:10:01', 8.00, 2);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, customer_id)
-VALUES ('2015-10-19 15:59:50', '2015-10-19 16:25:04', 3.60, 3);
+VALUES ('2015-12-03 15:59:50', '2015-10-19 16:25:04', 3.60, 3);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-VALUES ('2015-10-21 15:31:11', '2015-10-21 16:11:02', 51.90, 3, 4);
+VALUES ('2015-12-04 15:31:11', '2015-10-21 16:11:02', 51.90, 3, 4);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-VALUES ('2015-10-20 12:11:19', '2015-10-16 13:34:11', 22.40, 3, 5);
+VALUES ('2015-12-05 12:11:19', '2015-10-16 13:34:11', 22.40, 3, 5);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-VALUES ('2015-10-21 14:12:19', '2015-10-21 15:33:21', 16.90, 1, 4);
+VALUES ('2015-12-06 14:12:19', '2015-10-21 15:33:21', 16.90, 1, 4);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-VALUES ('2015-10-22 01:11:09', '2015-10-21 02:03:02', 15.30, 1, 5);
+VALUES ('2015-12-07 01:11:09', '2015-10-21 02:03:02', 15.30, 1, 5);
 
 INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
 VALUES (2, 8.40, TRUE, 1, 1);

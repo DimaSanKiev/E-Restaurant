@@ -3,6 +3,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
@@ -36,7 +37,9 @@
 
                             <p:outputLabel styleClass="label" for="birthdate" value="Please enter your birthdate: "/>
                             <p:calendar id="birthdate" value="#{customerBean.customer.birthDate}" required="false"
-                                        type="date"/>
+                                        type="date">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                            </p:calendar>
                         </h:panelGrid>
 
                         <br/>

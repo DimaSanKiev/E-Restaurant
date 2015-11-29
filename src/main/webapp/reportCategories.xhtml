@@ -4,11 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
 <h:head>
     <title>Report</title>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
+
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
@@ -27,26 +30,37 @@
             <h:form>
                 <h:dataTable value="#{reportBean.reportTotals}" var="reportRow"
                              styleClass="table" headerClass="tableHeader"
-                             rowClasses="tableOddRow, tableEvenRow">
+                             columnClasses="none, center, center"
+                             rowClasses="dish_table_odd_row, dish_table_even_row">
 
                     <h:column>
-                        <f:facet name="header">Date</f:facet>
-                        #{reportRow.date}
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Date</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="date" value="#{reportRow.date}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Orders count</f:facet>
-                        #{reportRow.count}
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Quantity</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="quantity" value="#{reportRow.count}"/>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Orders total</f:facet>
-                        #{reportRow.total}
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Total price</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="total" value="#{reportRow.total}">
+                            <f:convertNumber currencyCode="USD" type="currency"/>
+                        </h:outputText>
                     </h:column>
 
                 </h:dataTable>
-
-                <h:commandButton value="Back" action="Reports"/>
+                <br/>
+                <p:commandButton value="Back" action="Reports" immadiate="true" immediate="true"/>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -3,29 +3,37 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
+<h:head>
+    <title>Reports</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
 
-    <ui:define name="content">
-        <h2>Reports</h2>
-        <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="Start Date"/>
-                <h:inputText value="#{reportBean.startDate}">
-                    <f:convertDateTime pattern="dd.MM.yyyy"/>
-                </h:inputText>
-                <h:outputText value="End Date"/>
-                <h:inputText value="#{reportBean.endDate}">
-                    <f:convertDateTime pattern="dd.MM.yyyy"/>
-                </h:inputText>
-            </h:panelGrid>
-            <h:commandButton value="Daily report" action="reportCategories"/>
-            <h:commandButton value="Category report" action="reportTotal"/>
-        </h:form>
-
-    </ui:define>
-
-</ui:composition>
+<h:body>
+    <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
+        <ui:define name="content">
+            <h2>Reports</h2>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <p:outputLabel styleClass="label" for="startDate" value="Start Date: "/>
+                    <p:calendar id="startDate" value="#{reportBean.startDate}" required="true"
+                                type="date">
+                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                    </p:calendar>
+                    <p:outputLabel styleClass="label" for="endDate" value="Start Date: "/>
+                    <p:calendar id="endDate" value="#{reportBean.endDate}" required="true"
+                                type="date">
+                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                    </p:calendar>
+                </h:panelGrid>
+                <br/>
+                <p:commandButton value="Daily report" action="reportCategories" update="matchGrid" ajax="false"/>
+                <p:commandButton value="Category report" action="reportTotal" update="matchGrid" ajax="false"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>

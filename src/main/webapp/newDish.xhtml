@@ -14,6 +14,7 @@
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
             <h2>Dish details</h2>
+            #{dishBean.refreshCategories()}
 
             <h:form>
                 <h:panelGrid columns="3">

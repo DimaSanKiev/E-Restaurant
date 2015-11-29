@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Named
-@RequestScoped
 @Scope("session")
 public class DishBean implements Serializable {
     private static final long serialVersionUID = 1308298924092691297L;
@@ -38,6 +37,10 @@ public class DishBean implements Serializable {
     private Map<String, DishCategory> idCategoryMap;
     private String category;
     private UploadedFile uploadedFile; // delete or to do in last step
+
+    public DishBean() {
+        dish = new Dish();
+    }
 
     public List<Dish> getDishes() {
         return dishes;

@@ -85,10 +85,8 @@ public class EmployeeServiceImplTest {
 
     @Test
     public void testSetReadiness() throws Exception {
-        Employee employee = employeeService.findById(3);
-        employee.setReady(false);
-        assertEquals(false, employee.isReady());
-        employeeService.setReadiness(employee, true);
-        assertEquals(true, employee.isReady());
+        Employee employee = employeeService.signIn("admin@erestaurant.com", "pass2");
+        employeeService.signIn("admin@erestaurant.com", "pass2");
+        assertEquals("Igor Himchenko", employee.getName());
     }
 }

@@ -138,6 +138,38 @@ public class EmployeeBean implements Serializable {
         }
     }
 
+//    public String signIn(String email, String password) {
+//        Employee employee = employeeService.findByEmail(email);
+//        if (employee != null) {
+//            if (employee.getRole().equals(roleService.findById(2))) {
+//                if (employee.getPassword().equals(password)) {
+//                    this.employee = employee;
+//                    return "staff/dishList.xhtml?faces-redirect=true";
+//                }
+//            } else if (employee.getRole().equals(roleService.findById(3))) {
+//                if (employee.getPassword().equals(password)) {
+//                    this.employee = employee;
+//                    return "staff/kitchen.xhtml?faces-redirect=true";
+//                }
+//            } else if (employee.getRole().equals(roleService.findById(1))) {
+//                if (employee.getPassword().equals(password)) {
+//                    this.employee = employee;
+//                    return "staff/superPanel.xhtml?faces-redirect=true";
+//                }
+//            } else if (employee.getRole().equals(roleService.findById(4))) {
+//                if (employee.getPassword().equals(password)) {
+//                    this.employee = employee;
+//                    return "staff/delivery.xhtml?faces-redirect=true";
+//                }
+//            } else if (employee.getRole().equals(roleService.findById(5))) {
+//                if (employee.getPassword().equals(password)) {
+//                    this.employee = employee;
+//                    return "staff/reports.xhtml?faces-redirect=true";
+//                }
+//            }
+//        }
+//        return "employeeSignIn.xhtml?faces-redirect=true";
+//    }
     public String signIn(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
         try {
@@ -155,15 +187,15 @@ public class EmployeeBean implements Serializable {
         signedIn = employee.getPassword().equals(password);
         if (signedIn) {
             if (employee.getRole().equals(roleService.findByName("SUPER_USER")))
-                return "superPanel";
+                return "staff/superPanel.xhtml";
             if (employee.getRole().equals(roleService.findByName("ADMIN")))
-                return "adminPanel";
+                return "staff/adminPanel.xhtml";
             if (employee.getRole().equals(roleService.findByName("KITCHEN_STAFF")))
-                return "kitchen";
+                return "staff/kitchen.xhtml";
             if (employee.getRole().equals(roleService.findByName("DELIVERY_STAFF")))
-                return "delivery";
+                return "staff/delivery.xhtml";
             if (employee.getRole().equals(roleService.findByName("BUSINESS_ANALYST")))
-                return "reports";
+                return "staff/reports.xhtml";
             return null;
         } else {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
@@ -180,3 +212,4 @@ public class EmployeeBean implements Serializable {
     }
 
 }
+

@@ -1,6 +1,7 @@
 package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.OrderDishes;
+import com.bionic.edu.entity.Orders;
 import com.bionic.edu.service.DishService;
 import com.bionic.edu.service.OrderDishesService;
 import org.springframework.context.annotation.Scope;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Named
 @Scope("session")
-public class OrderDishesBean implements Serializable {
+public class KitchenBean implements Serializable {
     private static final long serialVersionUID = -6595295070802930845L;
 
     private List<OrderDishes> orderDishesList;
@@ -22,7 +23,7 @@ public class OrderDishesBean implements Serializable {
     @Inject
     private DishService dishService;
 
-    public OrderDishesBean() {
+    public KitchenBean() {
         orderDishesList = new ArrayList<>();
     }
 
@@ -58,4 +59,5 @@ public class OrderDishesBean implements Serializable {
     public void getKitchenPendingList() {
         orderDishesList = orderDishesService.getKitchenPendingList();
     }
+
 }

@@ -102,7 +102,7 @@ VALUES ('Elena Bakhmach', 'kitchen@erestaurant.com', 'pass3', '1991-04-05', '201
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
 VALUES ('Alexander Volkov', 'delivery@erestaurant.com', 'pass4', '1993-03-03', '2014-02-28', TRUE, 4);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Khristina Tkachuk', 'business@erestaurant.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5);
+VALUES ('Bogdana Tkachuk', 'business@erestaurant.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5);
 
 INSERT INTO dish_category (name, description)
 VALUES ('SOUP',

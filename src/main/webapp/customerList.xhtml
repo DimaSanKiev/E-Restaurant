@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
@@ -18,7 +19,8 @@
 
         <h:form>
             <h:panelGrid columns="1">
-                <h:commandButton value="New customer" action="#{customerBean.addCustomer()}"/>
+                <p:commandButton value="New customer" action="#{customerBean.addCustomer()}" update="matchGrid"
+                                 ajax="false"/>
                 <br/>
             </h:panelGrid>
 

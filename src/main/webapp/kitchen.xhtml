@@ -15,8 +15,8 @@
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
             <h2>Kitchen pending screen</h2>
-            #{orderDishesBean.getKitchenPendingList()}
-            <h:dataTable value="#{orderDishesBean.orderDishesList}" var="dish"
+            #{kitchenBean.getKitchenPendingList()}
+            <h:dataTable value="#{kitchenBean.orderDishesList}" var="dish"
                          styleClass="dish_table" headerClass="table_header"
                          columnClasses="none, none, center, center"
                          rowClasses="dish_table_odd_row, dish_table_even_row">
@@ -46,7 +46,7 @@
                     <f:facet name="header">
                         <h:outputLabel styleClass="table_header">Mark</h:outputLabel>
                     </f:facet>
-                    <h:commandLink action="#{orderDishesBean.markDone(dish.order.id)}"/>
+                    <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.order.id)}"/>
                 </h:column>
 
             </h:dataTable>

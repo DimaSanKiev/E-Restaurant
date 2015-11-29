@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
@@ -14,66 +15,56 @@
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2>Employee details</h2>
             #{employeeBean.refreshRoles()}
-
             <h:form>
-                <h:panelGrid columns="4">
-                    <h:outputText value="Employee name:"/>
-                    <h:inputText id="eName"
-                                 value="#{employeeBean.employee.name}" required="true"
-                                 requiredMessage="#{msgs.nameRequired}">
-                    </h:inputText>
-                    <h:message for="eName" style="color:red"/>
-                    <h:outputText value=" "/>
+                <h2>Employee details</h2>
 
-                    <h:outputText value="Employee email:"/>
-                    <h:inputText id="eEmail"
-                                 value="#{employeeBean.employee.email}" required="true"
-                                 requiredMessage="#{msgs.emailRequired}">
-                    </h:inputText>
-                    <h:message for="eEmail" style="color:red"/>
+                <h:panelGrid columns="2">
 
-                    <!-- crypted password stores but shown encrypted -->
-                    <h:outputText value="Employee password:"/>
-                    <h:inputSecret id="ePassword"
-                                   value="#{employeeBean.employee.password}" required="true"
-                                   requiredMessage="#{msgs.passwordRequired}"
-                                   validatorMessage="#{msgs.passwordRange}">
-                        <f:validateLength minimum="4"/>
-                    </h:inputSecret>
-                    <h:message for="ePassword" style="color:red"/>
-                    <h:outputText value=" "/>
+                    <p:outputLabel styleClass="label" for="name" value="Employee name: "/>
+                    <p:inputText id="name" value="#{employeeBean.employee.name}" required="true"/>
 
-                    <h:outputText value="Employee birthdate:"/>
-                    <h:inputText id="eBirthdate"
-                                 value="#{employeeBean.employee.birthDate}" required="false"
-                                 converterMessage="#{msgs.birthDateConverter}">
-                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-                    </h:inputText>
-                    <h:message for="eBirthdate" style="color:red"/>
-                    <h:outputText value=" "/>
+                    <p:outputLabel styleClass="label" for="email" value="Employee email: "/>
+                    <p:inputText id="email" value="#{employeeBean.employee.email}" required="true"
+                                 type="email"/>
 
-                    <h:outputText value="Employee hiredate:"/>
-                    <h:inputText id="eHiredate"
-                                 value="#{employeeBean.employee.hireDate}" required="false"
-                                 converterMessage="#{msgs.birthDateConverter}">
-                        <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-                    </h:inputText>
-                    <h:message for="eHiredate" style="color:red"/>
-                    <h:outputText value=" "/>
+                    <p:outputLabel styleClass="label" for="password1" value="Employee password: "/>
+                    <p:password id="password1" value="#{employeeBean.employee.password}" required="true"
+                                type="password" match="password2"/>
 
-                    <h:outputText value="Employee readiness:"/>
-                    <h:selectBooleanCheckbox id="eReadiness" value="#{employeeBean.employee.ready}" required="true"/>
-                    <h:outputText value=" "/>
+                    <p:outputLabel styleClass="label" for="password2" value="Employee password: "/>
+                    <p:password id="password2" value="#{employeeBean.employee.password}" required="true"
+                                type="password"/>
+
+                    <p:outputLabel styleClass="label" for="birthdate" value="Employee birthdate: "/>
+                    <p:calendar id="birthdate" value="#{employeeBean.employee.birthDate}" required="false"
+                                type="date">
+                        <!--<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>-->
+                    </p:calendar>
+
+                    <p:outputLabel styleClass="label" for="hiredate" value="Employee hiredate: "/>
+                    <p:calendar id="hiredate" value="#{employeeBean.employee.hireDate}" required="false"
+                                type="date">
+                        <!--<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>-->
+                    </p:calendar>
+
+                    <p:outputLabel styleClass="label" for="birthdate" value="Employee readiness: "/>
+                    <p:selectBooleanCheckbox id="readiness" value="#{employeeBean.employee.ready}" required="true"/>
 
                     <h:outputText value="Employee role:"/>
                     <h:selectOneMenu value="#{employeeBean.role}">
                         <f:selectItems value="#{employeeBean.idNameRoleMap}"/>
                     </h:selectOneMenu>
 
+                    <!--<p:outputLabel styleClass="label" for="role" value="Employee role: "/>-->
+                    <!--<p:selectOneMenu value="#{employeeBean.role}">-->
+                    <!--<f:selectItems value="#{employeeBean.idNameRoleMap}"/>-->
+                    <!--</p:selectOneMenu>-->
+
                 </h:panelGrid>
-                <h:commandButton value="Submit" action="#{employeeBean.saveEmployee}"/></h:form>
+                <br/>
+                <p:commandButton value="Submit" action="#{employeeBean.saveEmployee}" update="matchGrid" ajax="false"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

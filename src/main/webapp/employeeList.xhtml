@@ -53,14 +53,18 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Birthdate</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="birthdate" value="#{employee.birthDate}"/>
+                        <h:outputText id="birthdate" value="#{employee.birthDate}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Hiredate</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="hiredate" value="#{employee.hireDate}"/>
+                        <h:outputText id="hiredate" value="#{employee.hireDate}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
                     </h:column>
 
                     <h:column>

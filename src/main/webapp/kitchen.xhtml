@@ -8,14 +8,48 @@
       xmlns:p="http://java.sun.com/jsf/html">
 
 <h:head>
-    <title>Employee Control Panel</title>
+    <title>Kitchen Pending Screen</title>
 </h:head>
 
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            Hello kitchen!
+            <h2>Kitchen pending screen</h2>
+            #{orderDishesBean.getKitchenPendingList()}
+            <h:dataTable value="#{orderDishesBean.orderDishesList}" var="dish"
+                         styleClass="dish_table" headerClass="table_header"
+                         columnClasses="none, none, center, center"
+                         rowClasses="dish_table_odd_row, dish_table_even_row">
 
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel styleClass="table_header">Ordered</h:outputLabel>
+                    </f:facet>
+                    <h:outputText id="dishCreated" value="#{dish.order.dateTimeTaken}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                    </f:facet>
+                    <h:outputText id="dishName" value="#{dish.dish.name}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel styleClass="table_header">Quantity</h:outputLabel>
+                    </f:facet>
+                    <h:outputText id="dishQuantity" value="#{dish.quantity}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel styleClass="table_header">Mark</h:outputLabel>
+                    </f:facet>
+                    <h:commandLink action="#{orderDishesBean.markDone(dish.order.id)}"/>
+                </h:column>
+
+            </h:dataTable>
         </ui:define>
     </ui:composition>
 </h:body>

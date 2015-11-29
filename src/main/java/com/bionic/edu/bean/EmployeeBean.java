@@ -123,7 +123,7 @@ public class EmployeeBean implements Serializable {
     }
 
     public String updateEmployee(String id) {
-        refreshRoles();
+
         employee = employeeService.findById(Integer.valueOf(id));
         return "newEmployee";
     }

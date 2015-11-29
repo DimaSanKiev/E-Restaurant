@@ -67,8 +67,8 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Readiness</h:outputLabel>
                         </f:facet>
-                        <h:outputText rendered="#{employee.ready}" class="dish_kitchen_made" value="yes"/>
-                        <h:outputText rendered="#{!employee.ready}" class="dish_kitchen_made" value="no"/>
+                        <h:outputText rendered="#{employee.ready}" class="customer_blocked_no" value="yes"/>
+                        <h:outputText rendered="#{!employee.ready}" class="customer_blocked_yes" value="no"/>
                     </h:column>
 
                     <h:column>

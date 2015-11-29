@@ -176,7 +176,7 @@ public class EmployeeBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Signed Out", "Thank you, have a good day."));
-        return "menu";
+        return "employeeSignIn";
     }
 
 }

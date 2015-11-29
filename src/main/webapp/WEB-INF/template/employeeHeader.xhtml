@@ -11,37 +11,11 @@
     <ui:composition>
         <div class="customer-menu-items">
             <h:form>
-                <p:outputLabel rendered="#{customerBean.signedIn == true}" style="padding-right: 1%">
+                <p:outputLabel style="padding-right: 1%" rendered="#{employeeBean.signedIn == true}">
                     Hello, <b>#{employeeBean.employee.name}</b></p:outputLabel>
-                <p:button outcome="menu" id="home" value="Menu"/>
-                <p:commandButton rendered="#{employeeBean.employee.role.name == 'ADMIN'}" id="signIn" action="signIn"
-                                 value="Sign In" update="matchGrid" ajax="false"/>
-                <p:commandButton rendered="#{customerBean.signedIn == false}" action="signUp" id="signUp"
-                                 value="Sign Up" update="matchGrid" ajax="false"/>
-                <p:commandButton rendered="#{employeeBean.signedIn == true}" id="signOut"
+                <p:button outcome="menu" id="home" value="Main Page"/>
+                <p:commandButton id="signOut" rendered="#{employeeBean.signedIn == true}"
                                  action="#{employeeBean.signOut}" value="Sign Out" update="matchGrid" ajax="false"/>
-            </h:form>
-        </div>
-
-        <div class="customer-menu-items">
-            <h:form rendered="#{not empty cartBean.cartMap}">
-                <h:outputText escape="false" styleClass="cart-text"
-                              value="Your shopping cart: &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items, total= "/>
-                <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.updateTotalPrice()}"
-                              style="font-weight: bold">
-                    <f:convertNumber currencyCode="USD" type="currency"/> <!-- todo - don't work -->
-                </h:outputText>
-            </h:form>
-
-            <h:form styleClass="cart-icon">
-                <h:form rendered="#{empty cartBean.cartMap}">
-                    <h:outputText styleClass="cart-text" escape="false"
-                                  value="Your shopping cart: &lt;b&gt;0&lt;/b&gt; items, total $&lt;b&gt;0.00&lt;/b&gt;"/>
-                </h:form>
-
-                <h:commandLink action="shoppingCart">
-                    <h:graphicImage value="resources/images/cart-icon.png" height="50" width="50" title="Update"/>
-                </h:commandLink>
             </h:form>
         </div>
     </ui:composition>

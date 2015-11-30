@@ -20,7 +20,6 @@
                 <h2>Employee details</h2>
 
                 <h:panelGrid columns="2">
-
                     <p:outputLabel styleClass="label" for="name" value="Employee name: "/>
                     <p:inputText id="name" value="#{employeeBean.employee.name}" required="true"/>
 
@@ -64,6 +63,7 @@
                 </h:panelGrid>
                 <br/>
                 <p:commandButton value="Submit" action="#{employeeBean.saveEmployee}" update="matchGrid" ajax="false"/>
+                <p:commandButton value="Back" action="employeeList" immadiate="true" immediate="true"/>
             </h:form>
         </ui:define>
     </ui:composition>

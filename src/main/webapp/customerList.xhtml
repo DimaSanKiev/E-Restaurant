@@ -12,76 +12,78 @@
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
-<ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
-    <ui:define name="content">
-        <h2>Customers</h2>
-        #{customerBean.refreshList()}
+<h:body>
+    <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
+        <ui:define name="content">
+            <h2>Customers</h2>
+            #{customerBean.refreshList()}
 
-        <h:form>
-            <h:panelGrid columns="1">
-                <p:commandButton value="New customer" action="#{customerBean.addCustomer()}" update="matchGrid"
-                                 ajax="false"/>
-                <br/>
-            </h:panelGrid>
+            <h:form>
+                <h:panelGrid columns="1">
+                    <p:commandButton value="New customer" action="#{customerBean.addCustomer()}" update="matchGrid"
+                                     ajax="false"/>
+                    <br/>
+                </h:panelGrid>
 
-            <h:dataTable value="#{customerBean.customers}" var="customer"
-                         styleClass="dish_table" headerClass="table_header"
-                         columnClasses="center, dish_table_name, none, center, center, center, none, center"
-                         rowClasses="dish_table_odd_row, dish_table_even_row">
+                <h:dataTable value="#{customerBean.customers}" var="customer"
+                             styleClass="dish_table" headerClass="table_header"
+                             columnClasses="center, dish_table_name, none, center, center, center, none, center"
+                             rowClasses="dish_table_odd_row, dish_table_even_row">
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Id</h:outputLabel>
-                    </f:facet>
-                    <h:outputText id="id" value="#{customer.id}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Id</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="id" value="#{customer.id}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Name</h:outputLabel>
-                    </f:facet>
-                    <h:outputText id="name" value="#{customer.name}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="name" value="#{customer.name}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Email</h:outputLabel>
-                    </f:facet>
-                    <h:outputText id="email" value="#{customer.email}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Email</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="email" value="#{customer.email}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Birthdate</h:outputLabel>
-                    </f:facet>
-                    <h:outputText id="birthdate" value="#{customer.birthDate}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Birthdate</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="birthdate" value="#{customer.birthDate}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Address</h:outputLabel>
-                    </f:facet>
-                    <h:outputText id="address" value="#{customer.address}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Address</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="address" value="#{customer.address}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Blocked</h:outputLabel>
-                    </f:facet>
-                    <h:outputText rendered="#{customer.blocked}" class="customer_blocked_yes" value="yes"/>
-                    <h:outputText rendered="#{!customer.blocked}" class="customer_blocked_no" value="no"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Blocked</h:outputLabel>
+                        </f:facet>
+                        <h:outputText rendered="#{customer.blocked}" class="customer_blocked_yes" value="yes"/>
+                        <h:outputText rendered="#{!customer.blocked}" class="customer_blocked_no" value="no"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">Edit</f:facet>
-                    <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
-                        <h:graphicImage value="resources/images/edit-icon.png" height="20" width="20" title="Update"/>
-                    </h:commandLink>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">Edit</f:facet>
+                        <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
+                            <h:graphicImage value="resources/images/edit-icon.png" height="20" width="20"
+                                            title="Update"/>
+                        </h:commandLink>
+                    </h:column>
 
-            </h:dataTable>
-        </h:form>
-    </ui:define>
-</ui:composition>
-
+                </h:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>

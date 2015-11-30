@@ -114,17 +114,16 @@ public class EmployeeBean implements Serializable {
         employee = new Employee();
     }
 
-    // todo - SQLIntegrityConstraintViolationException: Column 'NAME'  cannot accept a NULL value
+        public String addEmployee() {
+        refreshRoles();
+        employee = new Employee();
+        return "newEmployee";
+    }
+
     public String saveEmployee() {
         employee.setRole(idRoleMap.get(role));
         employeeService.save(employee);
         return "employeeList";
-    }
-
-    public String addEmployee() {
-        refreshRoles();
-        employee = new Employee();
-        return "newEmployee";
     }
 
     public String updateEmployee(String id) {

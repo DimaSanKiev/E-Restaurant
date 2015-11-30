@@ -21,16 +21,29 @@
                                  action="customerList" value="Customers" update="matchGrid" ajax="false"
                                  style="float: left"/>
 
+                <!-- Business analyst + Superuser buttons-->
+                <p:commandButton id="reports"
+                                 rendered="#{employeeBean.employee.role.name == 'SUPER_USER' or employeeBean.employee.role.name == 'BUSINESS_ANALYST'}"
+                                 action="reports" value="Reports" update="matchGrid" ajax="false"
+                                 style="float: left"/>
+
                 <!-- Superuser buttons -->
                 <p:commandButton id="employeeList"
                                  rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}"
                                  action="employeeList" value="Employees" update="matchGrid" ajax="false"
                                  style="float: left"/>
-                <p:commandButton id="reports"
-                                 rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}"
-                                 action="reports" value="Reports" update="matchGrid" ajax="false"
+
+                <!-- Kitchen sfaff buttons -->
+                <p:commandButton id="kitchen"
+                                 rendered="#{employeeBean.employee.role.name == 'KITCHEN_STAFF'}"
+                                 action="kitchen" value="Kitchen pending screen" update="matchGrid" ajax="false"
                                  style="float: left"/>
 
+                <!-- Delivery staff buttons -->
+                <p:commandButton id="delivery"
+                                 rendered="#{employeeBean.employee.role.name == 'DELIVERY_STAFF'}"
+                                 action="delivery" value="Delivery pending screen" update="matchGrid" ajax="false"
+                                 style="float: left"/>
 
                 <p:outputLabel style="padding-right: 1%" rendered="#{employeeBean.signedIn == true}">
                     Hello, <b>#{employeeBean.employee.name}</b></p:outputLabel>

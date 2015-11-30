@@ -114,7 +114,7 @@ public class EmployeeBean implements Serializable {
         employee = new Employee();
     }
 
-        public String addEmployee() {
+    public String addEmployee() {
         refreshRoles();
         employee = new Employee();
         return "newEmployee";

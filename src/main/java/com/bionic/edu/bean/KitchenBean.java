@@ -54,6 +54,7 @@ public class KitchenBean implements Serializable {
 
     public void markDone(int orderDishId) {
         orderDishesService.setDishReady(orderDishId);
+        orderDishesList.remove(orderDishId);
     }
 
     public void getKitchenPendingList() {

@@ -62,6 +62,9 @@
                 <br/>
                 <p:commandButton value="Back" action="reports" immadiate="true" immediate="true"/>
             </h:form>
+
+            <h:form><p:chart type="line" model="#{chartViewBean.lineModel}" style="height:400px;"/></h:form>
+
         </ui:define>
     </ui:composition>
 </h:body>

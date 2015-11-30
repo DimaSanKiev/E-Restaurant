@@ -3,16 +3,11 @@ package com.bionic.edu.bean;
 import com.bionic.edu.service.OrderService;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
-import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -68,19 +63,5 @@ public class ReportBean implements Serializable {
     public void refreshTotalReport() {
         reportTotals = orderService.getReportTotal(
                 new java.sql.Date(startDate.getTime()), new java.sql.Date(endDate.getTime()));
-    }
-
-
-    public void onDateSelect(SelectEvent event) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
-    }
-
-    public void click() {
-        RequestContext requestContext = RequestContext.getCurrentInstance();
-
-        requestContext.update("form:display");
-        requestContext.execute("PF('dlg').show()");
     }
 }

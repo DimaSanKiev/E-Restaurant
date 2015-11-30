@@ -54,7 +54,7 @@ public class OrderDishesDaoImpl implements OrderDishesDao {
     public List<OrderDishes> getUndoneDishesFromOrder(int orderId) {
         return em.createQuery("SELECT od FROM order_dishes od " +
                 "WHERE od.dish.kitchenmade = TRUE AND od.readiness = FALSE " +
-                "AND od.order.id = :order_id", OrderDishes.class).
+                "AND od.order.id = :order_id ORDER BY od.order.dateTimeTaken", OrderDishes.class).
                 setParameter("order_id", orderId).getResultList();
     }
 

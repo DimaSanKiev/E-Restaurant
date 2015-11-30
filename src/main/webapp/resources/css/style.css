@@ -67,6 +67,17 @@ td.center {
     background: none repeat scroll 0 0 #f0f0f0;
 }
 
+.id {
+    font-weight: bold;
+    text-align: center;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.button {
+    padding: 5px;
+}
+
 .dish_table_name {
     font-weight: bold;
     text-align: left;

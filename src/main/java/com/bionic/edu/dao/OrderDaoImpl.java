@@ -50,7 +50,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Orders> getDeliveryListByTime() {
         TypedQuery<Orders> query = em.createQuery(
-                "SELECT o FROM Orders o WHERE o.orderStatus.id = 3 " +
+                "SELECT o FROM Orders o WHERE o.orderStatus.id = 3 OR o.orderStatus.id = 4 " +
                         "ORDER BY o.dateTimeTaken ASC", Orders.class);
         return query.getResultList();
     }
@@ -58,7 +58,7 @@ public class OrderDaoImpl implements OrderDao {
     @Override
     public List<Orders> getDeliveryListByStatus() {
         TypedQuery<Orders> query = em.createQuery(
-                "SELECT o FROM Orders o WHERE o.orderStatus.id = 3 " +
+                "SELECT o FROM Orders o WHERE o.orderStatus.id = 3 OR o.orderStatus.id = 4 " +
                         "ORDER BY o.orderStatus.id", Orders.class);
         return query.getResultList();
     }

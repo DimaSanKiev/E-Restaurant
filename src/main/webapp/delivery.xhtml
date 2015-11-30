@@ -8,15 +8,52 @@
       xmlns:p="http://java.sun.com/jsf/html">
 
 <h:head>
-    <title>Employee Control Panel</title>
+    <title>Delivery Pending Screen</title>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            Hello delivery!
+            <h2>Delivery Pending List</h2>
+            <h:form>
+                <p:commandButton id="sortByTime" action="#{deliveryBean.getDeliveryListByTime()}" value="By time" update="matchGrid" ajax="false"
+                                 styleClass="button"/>
+                <p:commandButton id="sortByStatus" action="#{deliveryBean.getDeliveryListByStatus()}" value="By status" update="matchGrid" ajax="false"
+                                 styleClass="button"/>
+                <br/>
+                <h:dataTable value="#{deliveryBean.ordersList}" var="order"
+                             styleClass="dish_table" headerClass="table_header"
+                             columnClasses="id, center, center, center"
+                             rowClasses="dish_table_odd_row, dish_table_even_row">
 
+                    <h:column>
+                        <f:facet name="header">Order Id</f:facet>
+                        <h:outputText value="#{order.id}"/>
+                    </h:column>
 
+                    <h:column>
+                        <f:facet name="header">Date Time Taken</f:facet>
+                        <h:outputText value="#{order.dateTimeTaken}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
+                        </h:outputText>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Date Time Taken</f:facet>
+                        <h:outputText value="#{order.orderStatus.name}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Action</f:facet>
+                        <h:commandButton rendered="#{order.orderStatus.name == 'READY_FOR_SHIPMENT'}" value="Deliver"
+                                         action="#{deliveryBean.processOrder(order.id)}"/>
+                        <h:commandButton rendered="#{order.orderStatus.name == 'DELIVERING'}" value="Delivered"
+                                         action="#{deliveryBean.processOrder(order.id)}"/>
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

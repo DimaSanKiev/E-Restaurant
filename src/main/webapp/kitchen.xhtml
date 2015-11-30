@@ -9,47 +9,52 @@
 
 <h:head>
     <title>Kitchen Pending Screen</title>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
             <h2>Kitchen pending screen</h2>
-            #{kitchenBean.getKitchenPendingList()}
-            <h:dataTable value="#{kitchenBean.orderDishesList}" var="dish"
-                         styleClass="dish_table" headerClass="table_header"
-                         columnClasses="none, none, center, center"
-                         rowClasses="dish_table_odd_row, dish_table_even_row">
+            #{kitchenBean.refreshList()}
+            <h:form>
+                <h:dataTable value="#{kitchenBean.orderDishesList}" var="dish"
+                             styleClass="dish_table" headerClass="table_header"
+                             columnClasses="dish_table_name, center, center, center"
+                             rowClasses="dish_table_odd_row, dish_table_even_row">
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Ordered</h:outputLabel>
-                    </f:facet>
-                    <h:outputText id="dishCreated" value="#{dish.order.dateTimeTaken}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishName" value="#{dish.dish.name}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Name</h:outputLabel>
-                    </f:facet>
-                    <h:outputText id="dishName" value="#{dish.dish.name}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Quantity</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishQuantity" value="#{dish.quantity}"/>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Quantity</h:outputLabel>
-                    </f:facet>
-                    <h:outputText id="dishQuantity" value="#{dish.quantity}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Ordered</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="dishCreated" value="#{dish.order.dateTimeTaken}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
+                        </h:outputText>
+                    </h:column>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputLabel styleClass="table_header">Mark</h:outputLabel>
-                    </f:facet>
-                    <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.dish.id)}"/>
-                </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">Mark</h:outputLabel>
+                        </f:facet>
+                        <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.dish.id)}"/>
+                    </h:column>
 
-            </h:dataTable>
+                </h:dataTable>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

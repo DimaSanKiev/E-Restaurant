@@ -1,8 +1,6 @@
 package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.OrderDishes;
-import com.bionic.edu.entity.Orders;
-import com.bionic.edu.service.DishService;
 import com.bionic.edu.service.OrderDishesService;
 import org.springframework.context.annotation.Scope;
 
@@ -20,8 +18,6 @@ public class KitchenBean implements Serializable {
     private List<OrderDishes> orderDishesList;
     @Inject
     private OrderDishesService orderDishesService;
-    @Inject
-    private DishService dishService;
 
     public KitchenBean() {
         orderDishesList = new ArrayList<>();
@@ -35,30 +31,14 @@ public class KitchenBean implements Serializable {
         this.orderDishesList = orderDishesList;
     }
 
-    public OrderDishesService getOrderDishesService() {
-        return orderDishesService;
-    }
 
-    public void setOrderDishesService(OrderDishesService orderDishesService) {
-        this.orderDishesService = orderDishesService;
-    }
-
-    public DishService getDishService() {
-        return dishService;
-    }
-
-    public void setDishService(DishService dishService) {
-        this.dishService = dishService;
-    }
-
-
-    public void markDone(int orderDishId) {
-        orderDishesService.setDishReady(orderDishId);
-        orderDishesList.remove(orderDishId);
-    }
-
-    public void getKitchenPendingList() {
+    public void refreshList() {
         orderDishesList = orderDishesService.getKitchenPendingList();
     }
 
+    // todo - dishes don't delete from list
+    public String markDone(String orderDishId) {
+        orderDishesService.setDishReady(Integer.valueOf(orderDishId));
+        return "kitchen";
+    }
 }

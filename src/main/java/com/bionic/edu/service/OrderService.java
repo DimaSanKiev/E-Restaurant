@@ -25,6 +25,7 @@ public interface OrderService {
 
     void setOrderStatus(int orderId, int statusId);
 
+
     List<Orders> getDeliveryListByTime();
 
     List<Orders> getDeliveryListByStatus();
@@ -35,5 +36,4 @@ public interface OrderService {
     List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod);
 
     List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod);
-
 }

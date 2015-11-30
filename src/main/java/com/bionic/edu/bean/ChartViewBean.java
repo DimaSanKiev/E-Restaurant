@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.List;
 
 @Named
 @Scope("session")
@@ -50,15 +49,17 @@ public class ChartViewBean implements Serializable {
 
     private void createLineModel() {
         lineModel = new LineChartModel();
-        LineChartSeries series1 = new LineChartSeries();
-        List<ReportTotal> reportTotals = reportBean.getReportTotals();
-        DateAxis axis = new DateAxis("Date");
-        for (ReportTotal reportTotal : reportTotals) {
-            series1.set(reportTotal.getDate(), reportTotal.getTotal());
+        LineChartSeries series = new LineChartSeries();
+        reportBean.refreshTotalReport();
+        for (ReportTotal reportTotal : reportBean.getReportTotals()) {
+            series.set(reportTotal.getDate(), reportTotal.getTotal());
         }
-        lineModel.addSeries(series1);
+        lineModel.addSeries(series);
         lineModel.setTitle("Orders total");
         lineModel.setAnimate(true);
+        lineModel.getAxis(AxisType.Y).setLabel("Values");
+        DateAxis axis = new DateAxis("Dates");
+        axis.setTickAngle(-50);
         axis.setTickFormat("%b %#d, %y");
         lineModel.getAxes().put(AxisType.X, axis);
     }

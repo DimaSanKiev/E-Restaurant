@@ -76,17 +76,19 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     @Transactional
     @Override
     // todo - don't set readiness
-    public void setDishReady(int orderDishesId) {
-        OrderDishes orderDish = orderDishesDao.findById(orderDishesId);
+    public void setDishReady(int orderDishId) {
+        OrderDishes orderDish = orderDishesDao.findById(orderDishId);
+//        System.out.println("OrderDishesService: READINESS is " + orderDish.isReadiness());
         orderDish.setReadiness(true);
         orderDishesDao.save(orderDish);
+//        System.out.println("OrderDishesService: READINESS is " + orderDish.isReadiness());
         // checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
-        Orders order = orderDao.findById(orderDishesDao.findById(orderDish.getId()).getOrder().getId());
-        List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
-        if (undoneDishes.size() == 0) {
-            orderService.setOrderStatus(order.getId(), 3);
-            orderService.save(order);
-        }
+//        Orders order = orderDao.findById(orderDishesDao.findById(orderDish.getId()).getOrder().getId());
+//        List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
+//        if (undoneDishes.size() == 0) {
+//            orderService.setOrderStatus(order.getId(), 3);
+//            orderService.save(order);
+//        }
     }
 
     @Override

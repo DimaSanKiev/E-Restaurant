@@ -24,12 +24,22 @@
                 <br/>
                 <h:dataTable value="#{deliveryBean.ordersList}" var="order"
                              styleClass="dish_table" headerClass="table_header"
-                             columnClasses="id, center, center, center"
+                             columnClasses="id, none, none, center, center, center"
                              rowClasses="dish_table_odd_row, dish_table_even_row">
 
                     <h:column>
                         <f:facet name="header">Order Id</f:facet>
                         <h:outputText value="#{order.id}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Customer Name</f:facet>
+                        <h:outputText value="#{order.customer.name}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Customer Address</f:facet>
+                        <h:outputText value="#{order.customer.address}"/>
                     </h:column>
 
                     <h:column>
@@ -40,7 +50,7 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Date Time Taken</f:facet>
+                        <f:facet name="header">Order Status</f:facet>
                         <h:outputText value="#{order.orderStatus.name}"/>
                     </h:column>
 

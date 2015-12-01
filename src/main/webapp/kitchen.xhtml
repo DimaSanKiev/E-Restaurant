@@ -46,6 +46,22 @@
                         </h:outputText>
                     </h:column>
 
+                    <!-- test -->
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">order_id</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="orderId" value="#{dish.order.id}"/>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel styleClass="table_header">or_id</h:outputLabel>
+                        </f:facet>
+                        <h:outputText id="odId" value="#{dish.id}"/>
+                    </h:column>
+                    <!-- -->
+
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Mark</h:outputLabel>

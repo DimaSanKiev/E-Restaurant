@@ -70,6 +70,38 @@ public class Orders {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Orders)) return false;
+
+        Orders orders = (Orders) o;
+
+        if (id != orders.id) return false;
+        if (Double.compare(orders.totalPrice, totalPrice) != 0) return false;
+        if (dateTimeTaken != null ? !dateTimeTaken.equals(orders.dateTimeTaken) : orders.dateTimeTaken != null)
+            return false;
+        if (dateTimeDelivered != null ? !dateTimeDelivered.equals(orders.dateTimeDelivered) : orders.dateTimeDelivered != null)
+            return false;
+        if (orderStatus != null ? !orderStatus.equals(orders.orderStatus) : orders.orderStatus != null) return false;
+        return !(customer != null ? !customer.equals(orders.customer) : orders.customer != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + (dateTimeTaken != null ? dateTimeTaken.hashCode() : 0);
+        result = 31 * result + (dateTimeDelivered != null ? dateTimeDelivered.hashCode() : 0);
+        temp = Double.doubleToLongBits(totalPrice);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (orderStatus != null ? orderStatus.hashCode() : 0);
+        result = 31 * result + (customer != null ? customer.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +

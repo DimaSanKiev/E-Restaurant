@@ -34,9 +34,10 @@ public class KitchenBean implements Serializable {
 
     public void refreshList() {
         orderDishesList = orderDishesService.getKitchenPendingList();
+        orderDishesList.forEach(System.out::println);
     }
 
-    // todo - dishes don't delete from list
+    // todo - dishes don't set as ready
     public String markDone(String orderDishId) {
         orderDishesService.setDishReady(Integer.valueOf(orderDishId));
         return "kitchen";

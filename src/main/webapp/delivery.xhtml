@@ -16,11 +16,10 @@
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
             <h2>Delivery Pending List</h2>
-            <!-- todo - here need to refresh the page depending on sorting order -->
             <h:form rendered="#{deliveryBean.sortByStatus}">#{deliveryBean.getDeliveryListByStatus()}</h:form>
             <h:form rendered="#{deliveryBean.sortByTime}">#{deliveryBean.getDeliveryListByTime()}</h:form>
 
-            <h:form>
+            <h:form rendered="#{employeeBean.employee.role.id == 4}">
                 <p:commandButton id="sortByTime" action="#{deliveryBean.getDeliveryListByTime()}" value="By time"
                                  update="matchGrid" ajax="false" styleClass="button"/>
                 <p:commandButton id="sortByStatus" action="#{deliveryBean.getDeliveryListByStatus()}" value="By status"

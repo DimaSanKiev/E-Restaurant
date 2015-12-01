@@ -15,6 +15,7 @@
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
+            #{reportBean.refreshTotalReport()}
 
             <h2>Total daily report from
                 <h:outputText value="#{reportBean.startDate}">
@@ -25,9 +26,8 @@
                     <f:convertDateTime/>
                 </h:outputText>
             </h2>
-            #{reportBean.refreshTotalReport()}
 
-            <h:form>
+            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 5}">
                 <h:dataTable value="#{reportBean.reportTotals}" var="reportRow"
                              styleClass="table" headerClass="tableHeader"
                              columnClasses="none, center, center"

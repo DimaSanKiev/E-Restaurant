@@ -18,7 +18,7 @@
             <h2>Employees</h2>
             #{employeeBean.refreshEmployeeList()}
 
-            <h:form>
+            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 2}">
                 <h:panelGrid columns="1">
                     <p:commandButton value="New employee" action="#{employeeBean.addEmployee()}" update="matchGrid"
                                      ajax="false"/>

@@ -15,8 +15,8 @@
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2>Reports</h2>
-            <h:form>
+            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 5}">
+                <h2>Reports</h2>
                 <h:panelGrid columns="2">
                     <p:outputLabel styleClass="label" for="startDate" value="Start Date: "/>
                     <p:calendar id="startDate" value="#{reportBean.startDate}" required="true"

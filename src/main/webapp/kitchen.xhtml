@@ -15,9 +15,9 @@
 <h:body>
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2>Kitchen pending screen</h2>
             #{kitchenBean.refreshList()}
-            <h:form>
+            <h:form rendered="#{employeeBean.employee.role.id == 3}">
+                <h2>Kitchen pending screen</h2>
                 <h:dataTable value="#{kitchenBean.orderDishesList}" var="dish"
                              styleClass="dish_table" headerClass="table_header"
                              columnClasses="dish_table_name, center, center, center"

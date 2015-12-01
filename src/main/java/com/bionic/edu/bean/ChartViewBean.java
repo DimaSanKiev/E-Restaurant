@@ -23,6 +23,10 @@ public class ChartViewBean implements Serializable {
 
     @PostConstruct
     public void init() {
+        createModels();
+    }
+
+    private void createModels() {
         createPieModel();
         createLineModel();
     }

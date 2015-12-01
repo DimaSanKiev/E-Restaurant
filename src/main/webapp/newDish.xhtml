@@ -16,7 +16,7 @@
             <h2>Dish details</h2>
             #{dishBean.refreshCategories()}
 
-            <h:form>
+            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 2}">
                 <h:panelGrid columns="3">
                     <h:outputText value="Dish name:"/>
                     <h:inputText id="dName" value="#{dishBean.dish.name}" required="true">

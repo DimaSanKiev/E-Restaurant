@@ -35,6 +35,7 @@ public class EmployeeBean implements Serializable {
     private Map<String, Role> idRoleMap;
     private List<Employee> employees = null;
     private Employee employee = null;
+    private Employee newEmployee = null;
     @Inject
     private EmployeeService employeeService;
     @Inject
@@ -104,6 +105,13 @@ public class EmployeeBean implements Serializable {
         this.employee = employee;
     }
 
+    public Employee getNewEmployee() {
+        return newEmployee;
+    }
+
+    public void setNewEmployee(Employee newEmployee) {
+        this.newEmployee = newEmployee;
+    }
 
     public void refreshEmployeeList() {
         employees = employeeService.findAll();
@@ -120,9 +128,10 @@ public class EmployeeBean implements Serializable {
         return "newEmployee";
     }
 
+    // todo - don't work
     public String saveEmployee() {
-        employee.setRole(idRoleMap.get(role));
-        employeeService.save(employee);
+        newEmployee.setRole(idRoleMap.get(role));
+        employeeService.save(newEmployee);
         return "employeeList";
     }
 
@@ -178,8 +187,8 @@ public class EmployeeBean implements Serializable {
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
-                "Signed Out", "Thank you, have a good day."));
+//        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
+//                "Signed Out", "Thank you, have a good day."));
         return "employeeSignIn";
     }
 

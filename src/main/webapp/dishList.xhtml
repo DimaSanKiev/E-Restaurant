@@ -16,9 +16,9 @@
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
 
-            <h2>Dishes</h2>
             #{dishBean.refreshAvailableDishes()}
-            <h:form>
+            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 2}">
+            <h2>Dishes</h2>
                 <h:panelGrid columns="1">
                     <p:commandButton value="Add dish" action="#{dishBean.addDish()}" update="matchGrid" ajax="false"/>
                     <br/>

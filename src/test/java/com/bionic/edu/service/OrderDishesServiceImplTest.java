@@ -53,7 +53,7 @@ public class OrderDishesServiceImplTest {
         assertEquals(10.00, orderDishes.getPrice(), 0.00);
     }
 
-    // todo - SQLIntegrityConstraintViolationException: DELETE on table 'ORDERS' caused a violation of foreign key constraint 'ORDERS_FK' for key (1)
+    // SQLIntegrityConstraintViolationException: DELETE on table 'ORDERS' caused a violation of foreign key constraint 'ORDERS_FK' for key (1)
     @Ignore
     @Test
     public void testDelete() throws Exception {

@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 @Named
 @Scope("session")
@@ -54,18 +54,17 @@ public class ChartViewBean implements Serializable {
 
 
     // todo - try DateTimeFormatter
-    private void createLineModel() {
+    public void createLineModel() {
         lineModel = new LineChartModel();
         LineChartSeries series = new LineChartSeries();
-//        reportBean.refreshTotalReport();
         for (ReportTotal reportTotal : reportBean.getReportTotals()) {
-            series.set(reportTotal.getDate().toString(), reportTotal.getCount());
-            System.out.println(reportTotal);
+            series.set(reportTotal.getDate(), reportTotal.getTotal());
+            System.out.println(reportTotal.getDate());
         }
-//        series.set("2014-01-12", 65);
-//        series.set("2014-01-18", 74);
-//        series.set("2014-01-24", 24);
-//        series.set("2014-01-30", 51);
+//        series.set("2016-01-12", 65);
+//        series.set("2016-03-18", 74);
+//        series.set("2016-06-24", 24);
+//        series.set("2016-11-30", 51);
         lineModel.addSeries(series);
         lineModel.setTitle("Orders total");
         lineModel.setAnimate(true);

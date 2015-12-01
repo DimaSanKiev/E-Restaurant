@@ -63,7 +63,7 @@ public class OrderServiceImplTest {
         assertEquals("olga.romanova@gmail.com", order.getCustomer().getEmail());
     }
 
-    // todo - DELETE on table 'ORDERS' caused a violation of foreign key constraint 'ORDER_FK' for key (1)
+    // DELETE on table 'ORDERS' caused a violation of foreign key constraint 'ORDER_FK' for key (1)
     @Ignore
     @Test
     public void testDelete() throws Exception {

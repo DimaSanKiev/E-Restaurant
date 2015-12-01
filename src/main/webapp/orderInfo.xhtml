@@ -43,6 +43,7 @@
                         <h:outputText id="dishCount" value="#{dish.value}"/>
                     </h:column>
 
+                    <!--TODO-->
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Total</h:outputLabel>
@@ -53,7 +54,12 @@
                 </h:dataTable>
 
                 <br/>
-                <h:outputLabel>TOTAL ODER PRICE: $<b>#{cartBean.total}</b></h:outputLabel>
+                <h:outputText escape="false" styleClass="cart-text"
+                              value="TOTAL ODER PRICE: &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items, total= "/>
+                <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.total}"
+                              style="font-weight: bold">
+                    <f:convertNumber currencyCode="USD" pe="currency"/>
+                </h:outputText>
 
                 <p style="font-size: 20px">
                     Name:

@@ -18,8 +18,12 @@ public class DeliveryBean implements Serializable {
     private String orderStatus;
     private Orders order;
     private List<Orders> ordersList = null;
+    private boolean sortByStatus;
+    private boolean sortByTime;
     @Inject
     OrderService orderService;
+    @Inject
+    OrderStatusService orderStatusService;
 
     public String getOrderStatus() {
         return orderStatus;
@@ -45,18 +49,37 @@ public class DeliveryBean implements Serializable {
         this.order = order;
     }
 
+    public boolean isSortByStatus() {
+        return sortByStatus;
+    }
+
+    public void setSortByStatus(boolean sortByStatus) {
+        this.sortByStatus = sortByStatus;
+    }
+
+    public boolean isSortByTime() {
+        return sortByTime;
+    }
+
+    public void setSortByTime(boolean sortByTime) {
+        this.sortByTime = sortByTime;
+    }
+
     public void getDeliveryListByStatus() {
+        sortByTime = false;
+        sortByStatus = true;
         ordersList = orderService.getDeliveryListByStatus();
     }
 
     public void getDeliveryListByTime() {
+        sortByTime = true;
+        sortByStatus = false;
         ordersList = orderService.getDeliveryListByTime();
     }
 
-    // todo - order status doesn't change
     public void processOrder(int orderId) {
-        Orders order = orderService.findById(orderId);
-        orderService.setOrderStatus(orderId, order.getOrderStatus().getId() + 1);
+        order = orderService.findById(orderId);
+        order.setOrderStatus(orderStatusService.findById(order.getOrderStatus().getId() + 1));
         orderService.save(order);
     }
 }

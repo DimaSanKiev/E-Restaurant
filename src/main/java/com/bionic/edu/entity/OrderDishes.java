@@ -75,7 +75,6 @@ public class OrderDishes {
         if (id != that.id) return false;
         if (quantity != that.quantity) return false;
         if (Double.compare(that.price, price) != 0) return false;
-        if (readiness != that.readiness) return false;
         if (dish != null ? !dish.equals(that.dish) : that.dish != null) return false;
         return !(order != null ? !order.equals(that.order) : that.order != null);
 
@@ -89,7 +88,6 @@ public class OrderDishes {
         result = 31 * result + quantity;
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (readiness ? 1 : 0);
         result = 31 * result + (dish != null ? dish.hashCode() : 0);
         result = 31 * result + (order != null ? order.hashCode() : 0);
         return result;

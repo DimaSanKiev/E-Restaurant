@@ -34,7 +34,7 @@ public class KitchenBean implements Serializable {
 
     public void refreshList() {
         orderDishesList = orderDishesService.getKitchenPendingList();
-        orderDishesList.forEach(System.out::println);
+//        orderDishesList.forEach(System.out::println);
     }
 
     // todo - dishes don't set as ready

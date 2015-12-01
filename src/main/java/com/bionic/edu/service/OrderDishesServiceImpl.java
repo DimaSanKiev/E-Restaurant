@@ -62,7 +62,10 @@ public class OrderDishesServiceImpl implements OrderDishesService {
             orderDishes.setDish(dish);
             orderDishes.setOrder(order);
             orderDishes.setPrice(dish.getPrice());
-            orderDishes.setReadiness(false);
+            if (!orderDishes.getDish().isKitchenmade()) {
+                orderDishes.setReadiness(false);
+            } else
+                orderDishes.setReadiness(true);
             orderDishesDao.save(orderDishes);
         }
     }

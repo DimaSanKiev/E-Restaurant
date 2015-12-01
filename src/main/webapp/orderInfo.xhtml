@@ -48,7 +48,9 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Total</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishTotal" value="$#{dish.key.price * dish.value}"/>
+                        <h:outputText id="dishTotal2" value="#{dish.key.price * dish.value}" escape="false" styleClass="cart-text">
+                            <f:convertNumber currencyCode="USD" type="currency"/>
+                        </h:outputText>
                     </h:column>
 
                 </h:dataTable>
@@ -58,7 +60,7 @@
                               value="TOTAL ODER PRICE: &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items, total= "/>
                 <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.total}"
                               style="font-weight: bold">
-                    <f:convertNumber currencyCode="USD" pe="currency"/>
+                    <f:convertNumber currencyCode="USD" type="currency"/>
                 </h:outputText>
 
                 <p style="font-size: 20px">

@@ -34,12 +34,15 @@ public class KitchenBean implements Serializable {
 
     public void refreshList() {
         orderDishesList = orderDishesService.getKitchenPendingList();
-//        orderDishesList.forEach(System.out::println);
     }
 
-    // todo - dishes don't set as ready
     public String markDone(String orderDishId) {
-        orderDishesService.setDishReady(Integer.valueOf(orderDishId));
+//        OrderDishes orderDish = orderDishesService.findById(Integer.valueOf(orderDishId));
+//        System.out.println("****KITCHENBEAN " + orderDish.isReadiness());
+//        orderDish.setReadiness(true);
+//        System.out.println("****KITCHENBEAN " + orderDish.isReadiness());
+//        orderDishesService.save(orderDish);
+        orderDishesService.markDone(Integer.valueOf(orderDishId));
         return "kitchen";
     }
 }

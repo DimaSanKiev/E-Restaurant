@@ -26,6 +26,8 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     private OrderService orderService;
     @Inject
     private CustomerDao customerDao;
+    @Inject
+    private OrderStatusService orderStatusService;
 
     @Override
     public OrderDishes findById(int id) {
@@ -73,18 +75,18 @@ public class OrderDishesServiceImpl implements OrderDishesService {
         addOrderDishes(order, cartMap);
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
-    // todo - set readiness
-    public void setDishReady(int orderDishId) {
+    // todo - set readiness - delete?
+    public void markDone(int orderDishId) {
         OrderDishes orderDish = orderDishesDao.findById(orderDishId);
         orderDish.setReadiness(true);
-        orderDishesDao.save(orderDish);
+//        orderDishesDao.markDone(orderDishId);
         // checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
         Orders order = orderDao.findById(orderDishesDao.findById(orderDish.getId()).getOrder().getId());
         List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
         if (undoneDishes.size() == 0) {
-            orderService.setOrderStatus(order.getId(), 3); // todo - problem may be here - do with orderStatusService
+            order.setOrderStatus(orderStatusService.findById(3));
             orderService.save(order);
         }
     }

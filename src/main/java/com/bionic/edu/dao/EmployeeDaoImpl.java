@@ -2,7 +2,6 @@ package com.bionic.edu.dao;
 
 import com.bionic.edu.entity.Employee;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,7 +35,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    @Transactional
     public void save(Employee employee) {
         if (employee.getId() == 0) {
             em.persist(employee);
@@ -45,7 +43,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    @Transactional
     public void delete(int id) {
         Employee employee = em.find(Employee.class, id);
         if (employee != null) {
@@ -54,7 +51,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    @Transactional
     public void setReadiness(Employee employee, boolean isReady) {
         employee.setReady(isReady);
         em.merge(employee);

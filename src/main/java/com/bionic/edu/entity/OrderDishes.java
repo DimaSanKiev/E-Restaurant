@@ -9,7 +9,7 @@ public class OrderDishes {
     private int id;
     private int quantity;
     private double price;
-    private boolean readiness;
+    private boolean readiness = false;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dish_id")
     private Dish dish;

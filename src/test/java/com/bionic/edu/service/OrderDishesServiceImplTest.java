@@ -70,7 +70,8 @@ public class OrderDishesServiceImplTest {
     public void testSetDishReady() throws Exception {
         Orders order = orderService.findById(7);
         assertEquals(1, order.getOrderStatus().getId());
-        orderDishesService.setDishReady(18);
+        orderDishesService.markDone(18);
+        assertEquals(true, orderDishesService.findById(18).isReadiness());
 //        assertEquals(3, order.getOrderStatus().getId());  // updates only on the next check
     }
 

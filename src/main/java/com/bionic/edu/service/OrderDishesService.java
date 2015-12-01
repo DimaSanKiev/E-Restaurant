@@ -23,7 +23,8 @@ public interface OrderDishesService {
 
     void addOrderDishesCustomer(Customer customer, Orders order, Map<Dish, Integer> cartMap);
 
-    void setDishReady(int orderDishesId);
+    void markDone(int orderDishId);
+
 
     List<OrderDishes> getAllDishesFromOrder(int orderId);
 

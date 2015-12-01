@@ -18,6 +18,10 @@
             #{kitchenBean.refreshList()}
             <h:form rendered="#{employeeBean.employee.role.id == 3}">
                 <h2>Kitchen pending screen</h2>
+
+                <h3><h:outputText rendered="#{kitchenBean.orderDishesList.isEmpty()}"
+                                  value="There aren't any dishes to cook!"/></h3>
+
                 <h:dataTable value="#{kitchenBean.orderDishesList}" var="dish"
                              styleClass="dish_table" headerClass="table_header"
                              columnClasses="dish_table_name, center, center, center"

@@ -16,6 +16,8 @@
     <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
         <ui:define name="content">
             <h2>Delivery Pending List</h2>
+            <h3><h:outputText rendered="#{deliveryBean.ordersList.isEmpty()}"
+                              value="There aren't any orders to deliver!"/></h3>
             <h:form rendered="#{deliveryBean.sortByStatus}">#{deliveryBean.getDeliveryListByStatus()}</h:form>
             <h:form rendered="#{deliveryBean.sortByTime}">#{deliveryBean.getDeliveryListByTime()}</h:form>
 

@@ -51,6 +51,16 @@ public class OrderDishesServiceImpl implements OrderDishesService {
         orderDishesDao.delete(id);
     }
 
+    @Transactional
+    @Override
+    // checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
+    public void checkIfOrderReady(Orders order) {
+        List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
+        if (undoneDishes.size() == 0) {
+            order.setOrderStatus(orderStatusService.findById(3));
+            orderService.save(order);
+        }
+    }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
@@ -64,13 +74,7 @@ public class OrderDishesServiceImpl implements OrderDishesService {
             orderDishes.setPrice(dish.getPrice());
             if (!orderDishes.getDish().isKitchenmade()) {
                 orderDishes.setReadiness(true);
-
-                List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
-                if (undoneDishes.size() == 0) {
-                    order.setOrderStatus(orderStatusService.findById(3));
-                    orderService.save(order);
-
-                }
+                checkIfOrderReady(order);
             } else {
                 orderDishes.setReadiness(false);
             }
@@ -88,17 +92,11 @@ public class OrderDishesServiceImpl implements OrderDishesService {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
-    // todo - set readiness - delete?
+    // todo - set readiness
     public void markDone(int orderDishId) {
         OrderDishes orderDish = orderDishesDao.findById(orderDishId);
         orderDish.setReadiness(true);
-        // checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
-        Orders order = orderDao.findById(orderDishesDao.findById(orderDishId).getOrder().getId());
-        List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
-        if (undoneDishes.size() == 0) {
-            order.setOrderStatus(orderStatusService.findById(3));
-            orderService.save(order);
-        }
+        checkIfOrderReady(orderDao.findById(orderDishesDao.findById(orderDishId).getOrder().getId()));
     }
 
     @Override

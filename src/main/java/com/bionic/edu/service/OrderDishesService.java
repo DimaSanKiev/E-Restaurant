@@ -19,6 +19,8 @@ public interface OrderDishesService {
     void delete(int id);
 
 
+    void checkIfOrderReady(Orders order);
+
     void addOrderDishes(Orders order, Map<Dish, Integer> cartMap);
 
     void addOrderDishesCustomer(Customer customer, Orders order, Map<Dish, Integer> cartMap);

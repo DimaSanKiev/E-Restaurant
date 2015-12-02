@@ -33,22 +33,22 @@
                 </h:form>
             </div>
             <div class="dish_table">
-                <ui:repeat var="dish" value="#{dishBean.dishes}">
+                <ui:repeat var="orderDish" value="#{dishBean.dishes}">
                     <ul class="dish_block">
                         <li>
-                            <h:graphicImage styleClass="dish_photo" value="#{dish.photo_url}"/>
+                            <h:graphicImage styleClass="dish_photo" value="#{orderDish.photo_url}"/>
 
-                            <p class="dish_name">#{dish.name}</p>
+                            <p class="dish_name">#{orderDish.name}</p>
 
-                            <p class="dish_description">#{dish.description}</p>
+                            <p class="dish_description">#{orderDish.description}</p>
 
                             <p class="dish_price">
-                                <h:outputText value="#{dish.price}">
+                                <h:outputText value="#{orderDish.price}">
                                     <f:convertNumber currencyCode="USD" type="currency"/>
                                 </h:outputText>
                             </p>
                             <h:form><p:commandButton id="addToCart" value="Add to Cart" styleClass="dish_button"
-                                                     action="#{cartBean.increaseCount(dish.id)}"/></h:form>
+                                                     action="#{cartBean.increaseCount(orderDish.id)}"/></h:form>
                         </li>
                     </ul>
                 </ui:repeat>

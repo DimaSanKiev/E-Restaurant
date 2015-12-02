@@ -19,10 +19,7 @@
             <h:form rendered="#{employeeBean.employee.role.id == 3}">
                 <h2>Kitchen pending screen</h2>
 
-                <h3><h:outputText rendered="#{kitchenBean.orderDishesList.isEmpty()}"
-                                  value="There aren't any dishes to cook!"/></h3>
-
-                <h:dataTable value="#{kitchenBean.orderDishesList}" var="dish"
+                <h:dataTable value="#{kitchenBean.orderDishesList}" var="orderDish"
                              styleClass="dish_table" headerClass="table_header"
                              columnClasses="dish_table_name, center, center, center"
                              rowClasses="dish_table_odd_row, dish_table_even_row">
@@ -31,49 +28,35 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Name</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishName" value="#{dish.dish.name}"/>
+                        <h:outputText id="dishName" value="#{orderDish.dish.name}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Quantity</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishQuantity" value="#{dish.quantity}"/>
+                        <h:outputText id="dishQuantity" value="#{orderDish.quantity}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Ordered</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishCreated" value="#{dish.order.dateTimeTaken}">
+                        <h:outputText id="dishCreated" value="#{orderDish.order.dateTimeTaken}">
                             <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
                         </h:outputText>
                     </h:column>
-
-                    <!-- test -->
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">order_id</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="orderId" value="#{dish.order.id}"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">od_id</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="odId" value="#{dish.id}"/>
-                    </h:column>
-                    <!-- -->
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Mark</h:outputLabel>
                         </f:facet>
-                        <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.dish.id)}"/>
+                        <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(orderDish.id)}"/>
                     </h:column>
 
                 </h:dataTable>
+                <h3><h:outputText rendered="#{kitchenBean.orderDishesList.isEmpty()}"
+                                  value="There aren't any dishes to cook!"/></h3>
             </h:form>
         </ui:define>
     </ui:composition>

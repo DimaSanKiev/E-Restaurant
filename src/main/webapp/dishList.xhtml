@@ -24,7 +24,7 @@
                     <br/>
                 </h:panelGrid>
 
-                <h:dataTable value="#{dishBean.dishes}" var="dish"
+                <h:dataTable value="#{dishBean.dishes}" var="orderDish"
                              styleClass="dish_table" headerClass="table_header"
                              columnClasses="dish_table_name, none, column_description, center, center, center, center, center"
                              rowClasses="dish_table_odd_row, dish_table_even_row">
@@ -33,25 +33,25 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Name</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishName" value="#{dish.name}"/>
+                        <h:outputText id="dishName" value="#{orderDish.name}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Photo</f:facet>
-                        <h:graphicImage rendered="#{not empty dish.photo_url}" value="#{dish.photo_url}" width="100"/>
-                        <h:graphicImage rendered="#{empty dish.photo_url}" value="resources/images/no_image.png" width="100"/>
+                        <h:graphicImage rendered="#{not empty orderDish.photo_url}" value="#{orderDish.photo_url}" width="100"/>
+                        <h:graphicImage rendered="#{empty orderDish.photo_url}" value="resources/images/no_image.png" width="100"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Description</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishDescription" class="dish_table_description" value="#{dish.description}"/>
+                        <h:outputText id="dishDescription" class="dish_table_description" value="#{orderDish.description}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Price</f:facet>
-                        <h:outputText value="#{dish.price}">
+                        <h:outputText value="#{orderDish.price}">
                             <f:convertNumber currencyCode="USD" type="currency"/>
                         </h:outputText>
                     </h:column>
@@ -60,24 +60,24 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Kitchen made</h:outputLabel>
                         </f:facet>
-                        <h:outputText rendered="#{dish.kitchenmade}" class="dish_kitchen_made" value="yes"/>
-                        <h:outputText rendered="#{!dish.kitchenmade}" class="dish_kitchen_made" value="no"/>
+                        <h:outputText rendered="#{orderDish.kitchenmade}" class="dish_kitchen_made" value="yes"/>
+                        <h:outputText rendered="#{!orderDish.kitchenmade}" class="dish_kitchen_made" value="no"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Available</f:facet>
-                        <h:outputText rendered="#{dish.available}" value="yes" class="dish_available_yes"/>
-                        <h:outputText rendered="#{!dish.available}" value="no" class="dish_available_no"/>
+                        <h:outputText rendered="#{orderDish.available}" value="yes" class="dish_available_yes"/>
+                        <h:outputText rendered="#{!orderDish.available}" value="no" class="dish_available_no"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Category</f:facet>
-                        #{dish.category.name}
+                        #{orderDish.category.name}
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Edit</f:facet>
-                        <h:commandLink action="#{dishBean.updateDish(dish.id)}">
+                        <h:commandLink action="#{dishBean.updateDish(orderDish.id)}">
                             <h:graphicImage value="resources/images/edit-icon.png" height="20" width="20" title="Update"/>
                         </h:commandLink>
                     </h:column>

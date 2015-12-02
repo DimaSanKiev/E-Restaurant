@@ -17,7 +17,7 @@
             <h:form>
                 <h2>Please check your order</h2>
 
-                <h:dataTable id="cart" value="#{cartBean.cartMap.entrySet().toArray()}" var="dish"
+                <h:dataTable id="cart" value="#{cartBean.cartMap.entrySet().toArray()}" var="orderDish"
                              styleClass="dish_table" headerClass="table_header"
                              columnClasses="dish_table_name, center, center, center"
                              rowClasses="dish_table_odd_row, dish_table_even_row">
@@ -26,21 +26,21 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Name</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishName" value="#{dish.key.name}"/>
+                        <h:outputText id="dishName" value="#{orderDish.key.name}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Price</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishPrice" value="$#{dish.key.price}"/>
+                        <h:outputText id="dishPrice" value="$#{orderDish.key.price}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Count</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishCount" value="#{dish.value}"/>
+                        <h:outputText id="dishCount" value="#{orderDish.value}"/>
                     </h:column>
 
                     <!--TODO-->
@@ -48,7 +48,7 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Total</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishTotal2" value="#{dish.key.price * dish.value}" escape="false" styleClass="cart-text">
+                        <h:outputText id="dishTotal2" value="#{orderDish.key.price * orderDish.value}" escape="false" styleClass="cart-text">
                             <f:convertNumber currencyCode="USD" type="currency"/>
                         </h:outputText>
                     </h:column>

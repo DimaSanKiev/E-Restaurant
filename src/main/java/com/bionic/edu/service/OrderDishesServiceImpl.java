@@ -56,10 +56,11 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     // checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
     public void checkIfOrderReady(Orders order) {
         List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
-        if (undoneDishes.size() == 0) {
+        if (undoneDishes.isEmpty()) {
             order.setOrderStatus(orderStatusService.findById(3));
             orderService.save(order);
-        }
+        } else
+            order.setOrderStatus(orderStatusService.findById(2));
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -92,7 +93,6 @@ public class OrderDishesServiceImpl implements OrderDishesService {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
-    // todo - set readiness
     public void markDone(int orderDishId) {
         OrderDishes orderDish = orderDishesDao.findById(orderDishId);
         orderDish.setReadiness(true);

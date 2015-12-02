@@ -2,7 +2,6 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.OrderDishes;
 import com.bionic.edu.service.OrderDishesService;
-import com.bionic.edu.service.OrderService;
 import org.springframework.context.annotation.Scope;
 
 import javax.inject.Inject;
@@ -19,8 +18,6 @@ public class KitchenBean implements Serializable {
     private List<OrderDishes> orderDishesList;
     @Inject
     private OrderDishesService orderDishesService;
-    @Inject
-    private OrderService orderService;
 
     public KitchenBean() {
         orderDishesList = new ArrayList<>();
@@ -39,11 +36,7 @@ public class KitchenBean implements Serializable {
     }
 
     public String markDone(int orderDishId) {
-        OrderDishes orderDish = orderDishesService.findById(orderDishId);
-        orderDish.setReadiness(true);
-        orderDishesService.save(orderDish);
-        orderDishesService.checkIfOrderReady(orderService.findById(orderDishesService.findById(orderDishId).getOrder().getId()));
-//        orderDishesService.markDone(Integer.valueOf(orderDishId));
+        orderDishesService.markDone(orderDishId);
         return "kitchen";
     }
 

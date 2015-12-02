@@ -11,6 +11,12 @@ import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -105,6 +111,12 @@ public class CartBean implements Serializable {
             return "signUp";
         }
         return "orderInfo";
+    }
+
+    public String currentTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm d MMM uuuu");
+        LocalDateTime dateTime = LocalDateTime.now();
+        return dateTime.format(formatter);
     }
 
     public String submitOrder() {

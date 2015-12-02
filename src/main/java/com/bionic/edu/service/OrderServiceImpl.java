@@ -51,7 +51,6 @@ public class OrderServiceImpl implements OrderService {
         orderDao.delete(id);
     }
 
-    // todo - add logic to set 'READY' for non-kitchendone dishes
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void addFromCart(Map<Dish, Integer> cartMap, Customer customer, double sum) {

@@ -63,9 +63,17 @@ public class OrderDishesServiceImpl implements OrderDishesService {
             orderDishes.setOrder(order);
             orderDishes.setPrice(dish.getPrice());
             if (!orderDishes.getDish().isKitchenmade()) {
-                orderDishes.setReadiness(false);
-            } else
                 orderDishes.setReadiness(true);
+
+                List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
+                if (undoneDishes.size() == 0) {
+                    order.setOrderStatus(orderStatusService.findById(3));
+                    orderService.save(order);
+
+                }
+            } else {
+                orderDishes.setReadiness(false);
+            }
             orderDishesDao.save(orderDishes);
         }
     }
@@ -84,9 +92,8 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     public void markDone(int orderDishId) {
         OrderDishes orderDish = orderDishesDao.findById(orderDishId);
         orderDish.setReadiness(true);
-//        orderDishesDao.markDone(orderDishId);
         // checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
-        Orders order = orderDao.findById(orderDishesDao.findById(orderDish.getId()).getOrder().getId());
+        Orders order = orderDao.findById(orderDishesDao.findById(orderDishId).getOrder().getId());
         List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
         if (undoneDishes.size() == 0) {
             order.setOrderStatus(orderStatusService.findById(3));

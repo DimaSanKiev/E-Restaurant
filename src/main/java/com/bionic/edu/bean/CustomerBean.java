@@ -5,6 +5,8 @@ import com.bionic.edu.service.CustomerService;
 import com.bionic.edu.util.AuthorizationFilter;
 import com.bionic.edu.util.Crypto;
 import com.bionic.edu.exception.CustomerBlockedException;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
@@ -28,6 +30,8 @@ public class CustomerBean implements Serializable {
     private Customer customer = null;
     @Inject
     private CustomerService customerService;
+
+    private static final Logger logger = LogManager.getLogger(CustomerBean.class);
 
     public CustomerBean() {
         customer = new Customer();
@@ -89,6 +93,7 @@ public class CustomerBean implements Serializable {
         } catch (Exception e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign Up Error", "Current email is already used."));
+            logger.error("Sign Up Error - Current email is already used.");
             return "signUp";
         }
         signIn(customer.getEmail(), customer.getPassword());
@@ -117,13 +122,14 @@ public class CustomerBean implements Serializable {
         try {
             customer = customerService.signIn(email, decryptPass);
         } catch (NoResultException e) {
-            // logger
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
+            logger.error("Sign In Error - Incorrect email or password.");
             return "signIn";
         } catch (CustomerBlockedException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Your account is blocked."));
+            logger.error("Sign In Error - Account blocked.");
             return "signIn";
         }
         signedIn = customer.getPassword().equals(password);
@@ -132,6 +138,7 @@ public class CustomerBean implements Serializable {
         } else {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
+            logger.error("Sign In Error - Incorrect email or password.");
             return "signIn";
         }
     }
@@ -140,6 +147,7 @@ public class CustomerBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Signed Out", "Thank you for visiting ERestaurant."));
+        logger.info("Customer signed out.");
         return "menu";
     }
 

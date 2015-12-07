@@ -6,6 +6,8 @@ import com.bionic.edu.exception.EmployeeUnavailableException;
 import com.bionic.edu.service.EmployeeService;
 import com.bionic.edu.service.RoleService;
 import com.bionic.edu.util.Crypto;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
@@ -40,6 +42,8 @@ public class EmployeeBean implements Serializable {
     private EmployeeService employeeService;
     @Inject
     private RoleService roleService;
+
+    private static final Logger logger = LogManager.getLogger(EmployeeBean.class);
 
     public String getEmail() {
         return email;
@@ -156,13 +160,14 @@ public class EmployeeBean implements Serializable {
         try {
             employee = employeeService.signIn(email, decryptPass);
         } catch (NoResultException e) {
-//             logger
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
+            logger.error("Sign In Error - Incorrect email or password.");
             return "employeeSignIn";
         } catch (EmployeeUnavailableException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "You account in unavailable at the moment. Please contact SuperUser."));
+            logger.error("Sign In Error - Account unavailable.");
             return "employeeSignIn";
         }
         signedIn = employee.getPassword().equals(decryptPass);
@@ -181,6 +186,7 @@ public class EmployeeBean implements Serializable {
         } else {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
+            logger.error("Sign In Error - Incorrect email or password.");
             return "employeeSignIn";
         }
     }
@@ -189,6 +195,7 @@ public class EmployeeBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 //        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
 //                "Signed Out", "Thank you, have a good day."));
+        logger.info("Employee signed out.");
         return "employeeSignIn";
     }
 

@@ -128,11 +128,10 @@ public class EmployeeBean implements Serializable {
 
     public String addEmployee() {
         refreshRoles();
-        employee = new Employee();
+        newEmployee = new Employee();
         return "newEmployee";
     }
 
-    // todo - don't work
     public String saveEmployee() {
         newEmployee.setRole(idRoleMap.get(role));
         employeeService.save(newEmployee);
@@ -141,8 +140,8 @@ public class EmployeeBean implements Serializable {
 
     public String updateEmployee(String id) {
         refreshRoles();
-        employee = employeeService.findById(Integer.valueOf(id));
-        return "newEmployee";
+        newEmployee = employeeService.findById(Integer.valueOf(id));
+        return "editEmployee";
     }
 
     public void refreshRoles() {

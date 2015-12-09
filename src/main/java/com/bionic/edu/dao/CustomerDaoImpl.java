@@ -31,7 +31,8 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public List<Customer> findAll() {
-        TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c", Customer.class);
+        TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c " +
+                "ORDER BY c.blocked, c.id", Customer.class);
         return query.getResultList();
     }
 

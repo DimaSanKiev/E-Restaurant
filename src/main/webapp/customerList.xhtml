@@ -27,7 +27,7 @@
 
                 <h:dataTable value="#{customerBean.customers}" var="customer"
                              styleClass="dish_table" headerClass="table_header"
-                             columnClasses="center, dish_table_name, none, center, center, center, none, center"
+                             columnClasses="center, dish_table_name, none, center, none, center, center"
                              rowClasses="dish_table_odd_row, dish_table_even_row">
 
                     <h:column>
@@ -55,7 +55,9 @@
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Birthdate</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="birthdate" value="#{customer.birthDate}"/>
+                        <h:outputText id="birthdate" value="#{customer.birthDate}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
                     </h:column>
 
                     <h:column>

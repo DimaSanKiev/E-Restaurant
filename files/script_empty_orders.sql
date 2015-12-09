@@ -94,7 +94,7 @@ INSERT INTO role (name) VALUES ('DELIVERY_STAFF');
 INSERT INTO role (name) VALUES ('BUSINESS_ANALYST');
 
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
-VALUES ('Dmytro Arkheev', 'super@erestaurant.com', 'pass1', '1984-06-27', '2010-01-01', TRUE, 1);
+VALUES ('Dmytro Burdyga', 'super@erestaurant.com', 'pass1', '1984-06-27', '2010-01-01', TRUE, 1);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)
 VALUES ('Igor Himchenko', 'admin@erestaurant.com', 'pass2', '1987-07-02', '2011-06-10', TRUE, 2);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id)

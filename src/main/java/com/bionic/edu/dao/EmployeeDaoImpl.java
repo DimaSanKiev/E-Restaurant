@@ -30,7 +30,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public List<Employee> findAll() {
-        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e", Employee.class);
+        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e " +
+                "ORDER BY e.ready DESC, e.role.id", Employee.class);
         return query.getResultList();
     }
 

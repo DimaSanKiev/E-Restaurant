@@ -28,7 +28,8 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public List<Role> findAll() {
-        TypedQuery<Role> query = em.createQuery("SELECT r FROM Role r", Role.class);
+        TypedQuery<Role> query = em.createQuery("SELECT r FROM Role r " +
+                "WHERE r.id != 1", Role.class);
         return query.getResultList();
     }
 

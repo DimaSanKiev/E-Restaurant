@@ -88,7 +88,7 @@ public class OrderDishesServiceImplTest {
         List<OrderDishes> orderDishesList = orderDishesService.getUndoneDishesFromOrder(6);
         orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);
-        assertEquals(2, orderDishesList.size());
+        assertEquals(3, orderDishesList.size());
     }
 
     @Test
@@ -96,6 +96,6 @@ public class OrderDishesServiceImplTest {
         List<OrderDishes> orderDishesList = orderDishesService.getKitchenPendingList();
         orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);
-        assertEquals(4, orderDishesList.size());
+        assertEquals(16, orderDishesList.size());
     }
 }

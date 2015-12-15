@@ -36,7 +36,7 @@ public class EmployeeServiceImplTest {
         Employee employee = employeeService.findByEmail("super@erestaurant.com");
         assertNotNull(employee);
         assertEquals("super@erestaurant.com", employee.getEmail());
-        assertEquals("Dmytro Arkheev", employee.getName());
+        assertEquals("Dmytro Burdyga", employee.getName());
     }
 
     @Test

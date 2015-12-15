@@ -46,7 +46,7 @@ public class RoleServiceImplTest {
     public void testFindAll() throws Exception {
         List<Role> roles = roleService.findAll();
         assertNotNull(roles);
-        assertEquals(5, roles.size());
+        assertEquals(4, roles.size());
     }
 
     @Test

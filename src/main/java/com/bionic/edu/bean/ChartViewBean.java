@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Named
 @Scope("session")
@@ -63,7 +64,7 @@ public class ChartViewBean implements Serializable {
         lineModel.getAxis(AxisType.Y).setLabel("Values");
         DateAxis axis = new DateAxis("Dates");
         axis.setTickFormat("%b %#d, %y");
-        axis.setMax("2015-12-10");
+        axis.setMax(LocalDate.now().plusDays(1).toString());
         lineModel.getAxes().put(AxisType.X, axis);
     }
 }

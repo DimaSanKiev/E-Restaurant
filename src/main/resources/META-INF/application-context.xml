@@ -13,9 +13,8 @@
 	<context:component-scan base-package="com.bionic.edu"/>
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-        <property name="url" value="jdbc:derby:..//E-Restaurant/ERestaurant;create=true"/>
-        <!--<property name="url" value="jdbc:derby:E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\ERestaurant;create=true"/>-->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/erestaurant"/>
 	</bean>
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -29,7 +28,7 @@
 			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
 				<property value="true" name="showSql"/>
 				<property value="false" name="generateDdl"/>
-				<property name="databasePlatform" value="org.eclipse.persistence.platform.database.DerbyPlatform"/>
+				<property name="databasePlatform" value="org.eclipse.persistence.platform.database.MySQLPlatform"/>
 			</bean>
 		</property>
 		<property name="jpaPropertyMap">

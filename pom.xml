@@ -6,7 +6,7 @@
     <groupId>edu.bionic.com</groupId>
     <artifactId>e-restaurant</artifactId>
     <version>1.0.0.CI-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>E-Restaurant</name>
     <url>http://www.springframework.org</url>
     <description>This is final Java EE project in Bionic University.</description>

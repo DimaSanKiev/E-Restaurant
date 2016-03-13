@@ -3,6 +3,7 @@ package com.bionic.edu.service;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -12,6 +13,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@Ignore
 public class DishCategoryServiceImplTest {
     DishCategoryService dishCategoryService;
 

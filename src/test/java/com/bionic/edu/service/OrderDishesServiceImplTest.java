@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@Ignore
 public class OrderDishesServiceImplTest {
     OrderDishesService orderDishesService;
     OrderService orderService;

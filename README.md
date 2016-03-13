@@ -1,6 +1,6 @@
 # E-Restaurant
 
-**Summary:** users order dishes to their addresses and get it delivered after some time. 
+**Summary:** users order dishes to their addresses and get it delivered after some time.
 **Deployed:** https://erestaurant.herokuapp.com/
 
 ### Customer

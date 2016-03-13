@@ -2,15 +2,14 @@
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
-    <persistence-unit name="ERestaurant"
-                      transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="ERestaurant">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url"
-                      value="jdbc:postgresql://localhost:5432/erestaurant"/>
-            <property name="javax.persistence.jdbc.user" value="postgres"/>
-            <property name="javax.persistence.jdbc.password" value="postgres"/>
+            <property name="url"
+                      value="jdbc:postgresql://sfjlnwhqiqtaix:EwNOuYzbEbVFYNCqqsAEVaP0p_@ec2-107-21-101-67.compute-1.amazonaws.com:5432/d4ia1p32mehjv"/>
+            <property name="javax.persistence.jdbc.user" value="sfjlnwhqiqtaix"/>
+            <property name="javax.persistence.jdbc.password" value="EwNOuYzbEbVFYNCqqsAEVaP0p_"/>
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>
             <property name="eclipselink.weaving" value="static"/>
         </properties>

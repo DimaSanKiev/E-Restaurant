@@ -47,6 +47,7 @@ I tested my service methods with **JUnit** and used **Log4J** as a logging tool.
 ## Database Architecture
 Here is the structure of the database.
 ![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/db.jpg "Database structure diagram")
-Main tables are **Customer**, **Employee**, **Orders**, **Dish** and **OrderDishes** as a linking table.
+
+Main tables are **Customer**, **Employee**, **Orders**, **Dish** and **OrderDishes** (as a linking table).
 **Role**, **OrderStatus** and **DishCategory** are subsidiary tables.
 Here is shown only the main fields and relations.

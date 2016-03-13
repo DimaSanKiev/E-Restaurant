@@ -4,29 +4,35 @@
 
 ### Customer
 When customers go to main page they see the menu. They can choose dishes by category of full dishes list. Here they fill up their shopping cart when choose dish they want to order.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram1.jpg "Logo Title Text 1")
+![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram1.jpg "Customer use case diagram")
 
 ### Order
 After customers finish with choosing dishes, they can specify its quantity on the shopping cart page. They can also edit or confirm their order there. Then every kitchen-made dish goes to the kitchen.
+![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram2.jpg "Order use case diagram")
 
 ### Kitchen & Delivery Staff
 Kitchen Staff have access to kitchen pending screen page where they see all the dishes waiting to be prepared. Just when they cook it they mark it as ‘done’ and this dish disappear from kitchen pending screen.
+![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram3.jpg "Kitchen & Delivery Staff use case diagram")
 
 ### Administrator
 There is an administrator in ERestaurant. Administrator's duty is managing the menu - to add new dishes, edit existing ones, set prices, mark dishes as available/unavailable.
 Administrator also can manage customers and block them.
+![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram4.jpg "Administrator use case diagram")
 
 ### Business Analyst
 Another employee role in ERestaurant is Business Analyst. He makes reports about restaurant statistics - how many dishes were sold, what is the most profitable dish category and the total income of specified period of time.
+![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram5.jpg "Business Analyst use case diagram")
 
 ### Super User
 The Super User is the master of the restaurant. He hires and dismisses employees. There is only one Super User in ERestaurant system.
+![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram6.jpg "Super User use case diagram")
 
 ## Project Architecture
 My application is flexible and reusable because it is based on three-tier architecture:
 - *Presentation layer*,
 - *Business layer* and
 - *Persistence layer*.
+![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/structure.jpg "Project structure diagram")
 
 In Persistence layer is used **SQL** for modelling data and creating DB structure.
 Persistence layer cooperate with Business layer with **JPA**, **JP QL** and **EclipseLink**.
@@ -40,6 +46,7 @@ I tested my service methods with **JUnit** and used **Log4J** as a logging tool.
 
 ## Database Architecture
 Here is the structure of the database.
+![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/db.jpg "Database structure diagram")
 Main tables are **Customer**, **Employee**, **Orders**, **Dish** and **OrderDishes** as a linking table.
 **Role**, **OrderStatus** and **DishCategory** are subsidiary tables.
 Here is shown only the main fields and relations.

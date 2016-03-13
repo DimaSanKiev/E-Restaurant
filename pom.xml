@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.bionic.com</groupId>
     <artifactId>e-restaurant</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <packaging>war</packaging>
     <name>E-Restaurant</name>
     <url>http://www.springframework.org</url>

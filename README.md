@@ -53,3 +53,16 @@ Here is the structure of the database.
 Main tables are **Customer**, **Employee**, **Orders**, **Dish** and **OrderDishes** (as a linking table).
 **Role**, **OrderStatus** and **DishCategory** are subsidiary tables.
 Here is shown only the main fields and relations.
+
+## Accounts
+Some registered *customers' accounts*:
++ olga.romanova@gmail.com:pass1
++ igor.shevchenko@yahoo.com:pass2
++ kate.belova@gmail.com:pass3
+
+*Employees signing-in form* is available on different URL https://erestaurant.herokuapp.com/employeeSignIn.xhtml:
++ **Super User** (super@erestaurant.com:pass1)
++ **Administrator** (admin@erestaurant.com:pass2)
++ **Kitchen Staff** (kitchen@erestaurant.com:pass3)
++ **Delivery Staff** (delivery@erestaurant.com:pass4)
++ **Business Analyst** (business@erestaurant.com:pass5)

@@ -22,7 +22,10 @@ Another employee role in ERestaurant is Business Analyst. He makes reports about
 The Super User is the master of the restaurant. He hires and dismisses employees. There is only one Super User in ERestaurant system.
 
 ## Project Architecture
-My application is flexible and reusable because it is based on three-tier architecture: *Presentation layer*, *Business layer* and *Persistence layer*.
+My application is flexible and reusable because it is based on three-tier architecture:
+- *Presentation layer*,
+- *Business layer* and
+- *Persistence layer*.
 
 In Persistence layer is used **SQL** for modelling data and creating DB structure.
 Persistence layer cooperate with Business layer with **JPA**, **JP QL** and **EclipseLink**.

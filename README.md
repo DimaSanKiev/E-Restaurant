@@ -1,6 +1,7 @@
 # E-Restaurant
 
 **Summary:** users order dishes to their addresses and get it delivered after some time. 
+**Deployed:** https://erestaurant.herokuapp.com/
 
 ### Customer
 When customers go to main page they see the menu. They can choose dishes by category of full dishes list. Here they fill up their shopping cart when choose dish they want to order.

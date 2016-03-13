@@ -60,6 +60,7 @@ Some registered *customers' accounts*:
 + igor.shevchenko@yahoo.com:pass2
 + kate.belova@gmail.com:pass3
 
+
 *Employees signing-in form* is available on different URL https://erestaurant.herokuapp.com/employeeSignIn.xhtml:
 + **Super User** (super@erestaurant.com:pass1)
 + **Administrator** (admin@erestaurant.com:pass2)

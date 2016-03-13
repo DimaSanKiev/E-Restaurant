@@ -94,7 +94,7 @@ td.center {
 
 /* MENU */
 .dish_block {
-    width: 250px;
+    width: 150px;
     margin: 20px;
     float: left;
     position: relative;
@@ -105,8 +105,8 @@ td.center {
 }
 
 .dish_photo {
-    width: 230px;
-    height: 230px;
+    width: 130px;
+    height: 130px;
     float: left;
     /*margin-right: 10px;*/
 }

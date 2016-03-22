@@ -13,6 +13,7 @@ public class Dish {
     private double price;
     private boolean kitchenmade;
     private boolean available = true;
+    @Lob
     private byte[] photo;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "dish_category_id")

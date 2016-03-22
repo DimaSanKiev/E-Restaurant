@@ -149,7 +149,7 @@ VALUES ('DRINK',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Tomato Soup',
         'Tomato soup is a soup made with tomatoes as the primary ingredient. It may be served hot or cold in a bowl.',
-        4.20, TRUE, TRUE, LOAD_FILE('resources/images/01_Tomato-Soup.jpg'), 1);
+        4.20, TRUE, TRUE, LOAD_FILE('E:/Dima/Information/IT/MyProjects/toGitHub/E-Restaurant/src/main/webapp/resources/images/01_Tomato-Soup.jpg'), 1);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Cream of mushroom soup',
         'Cream of mushroom soup is a soup where a basic roux is thinned with milk and then mushrooms and mushroom broth are added.',

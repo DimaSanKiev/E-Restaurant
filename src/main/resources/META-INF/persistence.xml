@@ -5,14 +5,25 @@
     <persistence-unit name="ERestaurant">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="url"
-                      value="jdbc:postgresql://ec2-107-21-101-67.compute-1.amazonaws.com:5432/d4ia1p32mehjv?sslmode=require"/>
-            <property name="javax.persistence.jdbc.user" value="sfjlnwhqiqtaix"/>
-            <property name="javax.persistence.jdbc.password" value="EwNOuYzbEbVFYNCqqsAEVaP0p_"/>
-            <property name="sslConnection" value="true" />
+                      value="jdbc:mysql://localhost:3306/erestaurant"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>
             <property name="eclipselink.weaving" value="static"/>
         </properties>
+
+        <!-- PostgreSQL Heroku -->
+        <!--<properties>-->
+            <!--<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>-->
+            <!--<property name="url"-->
+                      <!--value="jdbc:postgresql://ec2-107-21-101-67.compute-1.amazonaws.com:5432/d4ia1p32mehjv?sslmode=require"/>-->
+            <!--<property name="javax.persistence.jdbc.user" value="sfjlnwhqiqtaix"/>-->
+            <!--<property name="javax.persistence.jdbc.password" value="EwNOuYzbEbVFYNCqqsAEVaP0p_"/>-->
+            <!--<property name="sslConnection" value="true" />-->
+            <!--<property name="eclipselink.ddl-generation.output-mode" value="database"/>-->
+            <!--<property name="eclipselink.weaving" value="static"/>-->
+        <!--</properties>-->
     </persistence-unit>
 </persistence>

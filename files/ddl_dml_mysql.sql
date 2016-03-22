@@ -1,4 +1,4 @@
---- CREATE TABLES ---
+-- CREATE TABLES --
 
 DROP TABLE order_dishes;
 DROP TABLE dish;
@@ -111,7 +111,7 @@ CREATE TABLE order_dishes (
   ENGINE = INNODB;
 
 
---- FILL TABLES ---
+-- FILL TABLES --
 
 INSERT INTO role (name) VALUES ('SUPER_USER');
 INSERT INTO role (name) VALUES ('ADMIN');

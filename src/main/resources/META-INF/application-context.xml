@@ -13,7 +13,7 @@
     <context:component-scan base-package="com.bionic.edu"/>
 
     <!-- MySQL -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="mysqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
                   value="jdbc:mysql://localhost:3306/erestaurant"/>
@@ -23,17 +23,17 @@
 
 
     <!-- PostgreSQL Heroku-->
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-        <!--<property name="url"-->
-                  <!--value="jdbc:postgresql://ec2-107-21-101-67.compute-1.amazonaws.com:5432/d4ia1p32mehjv?sslmode=require"/>-->
-        <!--<property name="username" value="sfjlnwhqiqtaix"/>-->
-        <!--<property name="password" value="EwNOuYzbEbVFYNCqqsAEVaP0p_"/>-->
-    <!--</bean>-->
+    <bean id="postgresqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url"
+                  value="jdbc:postgresql://ec2-107-21-101-67.compute-1.amazonaws.com:5432/d4ia1p32mehjv?sslmode=require"/>
+        <property name="username" value="sfjlnwhqiqtaix"/>
+        <property name="password" value="EwNOuYzbEbVFYNCqqsAEVaP0p_"/>
+    </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="packagesToScan" value="com.bionic.edu"/>
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="mysqlDataSource"/>
         <property name="persistenceUnitName" value="ERestaurant"/>
         <property name="jpaDialect">
             <bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect"/>
@@ -42,7 +42,8 @@
             <bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
                 <property value="true" name="showSql"/>
                 <property value="false" name="generateDdl"/>
-                <property name="databasePlatform" value="org.eclipse.persistence.platform.database.PostgreSQLPlatform"/>
+                <property name="databasePlatform" value="org.eclipse.persistence.platform.database.MySQLPlatform"/>
+                <!--<property name="databasePlatform" value="org.eclipse.persistence.platform.database.PostgreSQLPlatform"/>-->
             </bean>
         </property>
         <property name="jpaPropertyMap">

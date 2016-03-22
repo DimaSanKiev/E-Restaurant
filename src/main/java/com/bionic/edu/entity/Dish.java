@@ -1,6 +1,7 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @Entity
 public class Dish {
@@ -12,7 +13,7 @@ public class Dish {
     private double price;
     private boolean kitchenmade;
     private boolean available = true;
-    private String photo_url;
+    private byte[] photo;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "dish_category_id")
     private DishCategory category;
@@ -20,13 +21,13 @@ public class Dish {
     public Dish() {
     }
 
-    public Dish(String name, String description, double price, boolean kitchenmade, boolean available, String photo_url, DishCategory category) {
+    public Dish(String name, String description, double price, boolean kitchenmade, boolean available, byte[] photo, DishCategory category) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.kitchenmade = kitchenmade;
         this.available = available;
-        this.photo_url = photo_url;
+        this.photo = photo;
         this.category = category;
     }
 
@@ -78,12 +79,12 @@ public class Dish {
         this.available = available;
     }
 
-    public String getPhoto_url() {
-        return photo_url;
+    public byte[] getPhoto() {
+        return photo;
     }
 
-    public void setPhoto_url(String photo_url) {
-        this.photo_url = photo_url;
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     public DishCategory getCategory() {
@@ -107,7 +108,7 @@ public class Dish {
         if (available != dish.available) return false;
         if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
         if (description != null ? !description.equals(dish.description) : dish.description != null) return false;
-        if (photo_url != null ? !photo_url.equals(dish.photo_url) : dish.photo_url != null) return false;
+        if (photo != null ? !Arrays.equals(photo, dish.photo) : dish.photo != null) return false;
         return true;
 
     }
@@ -123,7 +124,7 @@ public class Dish {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (kitchenmade ? 1 : 0);
         result = 31 * result + (available ? 1 : 0);
-        result = 31 * result + (photo_url != null ? photo_url.hashCode() : 0);
+        result = 31 * result + (photo != null ? photo.hashCode() : 0);
         return result;
     }
 
@@ -136,7 +137,6 @@ public class Dish {
                 ", price=" + price +
                 ", kitchenmade=" + kitchenmade +
                 ", available=" + available +
-                ", photo_url='" + photo_url + '\'' +
                 ", category=" + category +
                 '}';
     }

@@ -37,9 +37,9 @@
 
                     <h:column>
                         <f:facet name="header">Photo</f:facet>
-                        <h:graphicImage rendered="#{not empty orderDish.key.photo_url}" value="#{orderDish.key.photo_url}"
+                        <h:graphicImage rendered="#{not empty orderDish.key.photo}" value="#{orderDish.key.photo}"
                                         width="100"/>
-                        <h:graphicImage rendered="#{empty orderDish.key.photo_url}" value="resources/images/no_image.png"
+                        <h:graphicImage rendered="#{empty orderDish.key.photo}" value="resources/images/no_image.png"
                                         width="100"/>
                     </h:column>
 

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<data-sources>
-	<data-source id="derby-15063935b8d-30d69fb6d43551d2" provider="generic" driver="derby" name="Derby - ERestaurant" create-date="1444779640714" save-password="true" show-system-objects="true" read-only="false">
-		<connection server="" database="/Users/Dima/Java/Projects/E-Restaurant/ERestaurant" url="jdbc:derby:/Users/Dima/Java/Projects/E-Restaurant/ERestaurant" user="" type="dev">
-			<bootstrap/>
-		</connection>
-	</data-source>
-</data-sources>

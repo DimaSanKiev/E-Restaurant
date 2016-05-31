@@ -1,0 +1,26 @@
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.h2.Driver</property>
+        <property name="connection.url">jdbc:h2:./ERestaurantDB</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- Update the database schema on application startup -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Show the queries prepared by Hibernate -->
+        <property name="show_sql">true</property>
+
+        <!-- Names the annotated entity classes -->
+        <mapping class="com.bionic.edu.entity.Customer"/>
+        <mapping class="com.bionic.edu.entity.Dish"/>
+        <mapping class="com.bionic.edu.entity.DishCategory"/>
+        <mapping class="com.bionic.edu.entity.Employee"/>
+        <mapping class="com.bionic.edu.entity.OrderDishes"/>
+        <mapping class="com.bionic.edu.entity.Orders"/>
+        <mapping class="com.bionic.edu.entity.OrderStatus"/>
+        <mapping class="com.bionic.edu.entity.Role"/>
+    </session-factory>
+</hibernate-configuration>

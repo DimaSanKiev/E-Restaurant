@@ -19,7 +19,7 @@ public class OrderDishesServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/hibernate-context.xml");
         orderDishesService = context.getBean(OrderDishesService.class);
         orderService = context.getBean(OrderService.class);
     }

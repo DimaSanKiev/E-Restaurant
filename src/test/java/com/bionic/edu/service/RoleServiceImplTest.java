@@ -21,7 +21,7 @@ public class RoleServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/hibernate-context.xml");
         roleService = context.getBean(RoleService.class);
     }
 

@@ -24,7 +24,7 @@ public class OrderServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/hibernate-context.xml");
         orderService = context.getBean(OrderService.class);
         customerService = context.getBean(CustomerService.class);
         orderStatusService = context.getBean(OrderStatusService.class);

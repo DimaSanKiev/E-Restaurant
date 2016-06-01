@@ -20,7 +20,7 @@ public class CustomerServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/hibernate-context.xml");
         customerService = context.getBean(CustomerService.class);
     }
 

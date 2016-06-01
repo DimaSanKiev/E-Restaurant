@@ -20,7 +20,7 @@ public class EmployeeServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/hibernate-context.xml");
         employeeService = context.getBean(EmployeeService.class);
         roleService = context.getBean(RoleService.class);
     }

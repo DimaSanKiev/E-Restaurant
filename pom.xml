@@ -16,6 +16,7 @@
         <spring.framework.version>4.2.1.RELEASE</spring.framework.version>
         <com.sun.faces.version>2.2.12</com.sun.faces.version>
         <org.apache.logging.log4j.version>2.4.1</org.apache.logging.log4j.version>
+        <hibernate.version>5.1.0.Final</hibernate.version>
     </properties>
 
     <dependencies>
@@ -169,19 +170,28 @@
 
         <!-- Persistence -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.1.0.Final</version>
-        </dependency>
-        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.192</version>
         </dependency>
+        <!-- Hibernate -->
         <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- Database connection pooling -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.1.1</version>
         </dependency>
 
         <!-- Logging -->

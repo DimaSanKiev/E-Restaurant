@@ -18,7 +18,7 @@ public class DishServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/application-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring/hibernate-context.xml");
         dishService = context.getBean(DishService.class);
         dishCategoryService = context.getBean(DishCategoryService.class);
     }
@@ -37,14 +37,14 @@ public class DishServiceImplTest {
         assertEquals(19, dishes.size());
     }
 
-    @Test
-    public void testAdd() throws Exception {
-        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, "photo", dishCategoryService.findById(1));
-        System.out.println(dish);
-        dishService.save(dish);
-        int id = dish.getId();
-        assertNotNull(dishService.findById(id));
-    }
+//    @Test
+//    public void testAdd() throws Exception {
+//        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, "photo", dishCategoryService.findById(1));
+//        System.out.println(dish);
+//        dishService.save(dish);
+//        int id = dish.getId();
+//        assertNotNull(dishService.findById(id));
+//    }
 
     @Test
     public void testUpdate() throws Exception {
@@ -54,14 +54,14 @@ public class DishServiceImplTest {
         assertEquals("Test Name", dish.getName());
     }
 
-    @Test
-    public void testDelete() throws Exception {
-        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategoryService.findById(1));
-        dishService.save(dish);
-        int id = dish.getId();
-        dishService.delete(id);
-        assertNull(dishService.findById(id));
-    }
+//    @Test
+//    public void testDelete() throws Exception {
+//        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategoryService.findById(1));
+//        dishService.save(dish);
+//        int id = dish.getId();
+//        dishService.delete(id);
+//        assertNull(dishService.findById(id));
+//    }
 
     @Test
     public void testFindByCategory() throws Exception {

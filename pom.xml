@@ -12,6 +12,8 @@
     <description>This is final Java EE project in Bionic University.</description>
 
     <properties>
+        <downloadSources>true</downloadSources>
+        <downloadJavadocs>true</downloadJavadocs>
         <java.version>1.8</java.version>
         <maven.test.failure.ignore>true</maven.test.failure.ignore>
         <spring.framework.version>4.2.1.RELEASE</spring.framework.version>
@@ -232,6 +234,13 @@
             <version>${org.apache.logging.log4j.version}</version>
         </dependency>
 
+        <!-- for using Reflection API -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -260,4 +269,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

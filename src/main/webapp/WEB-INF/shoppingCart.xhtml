@@ -13,7 +13,7 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="WEB-INF/template/CustomerTemplate.xhtml">
+    <ui:composition template="template/CustomerTemplate.xhtml">
         <ui:define name="content">
             <h:form>
 
@@ -39,7 +39,7 @@
                         <f:facet name="header">Photo</f:facet>
                         <h:graphicImage rendered="#{not empty orderDish.key.photo}" value="#{orderDish.key.photo}"
                                         width="100"/>
-                        <h:graphicImage rendered="#{empty orderDish.key.photo}" value="resources/images/no_image.png"
+                        <h:graphicImage rendered="#{empty orderDish.key.photo}" value="../resources/images/no_image.png"
                                         width="100"/>
                     </h:column>
 

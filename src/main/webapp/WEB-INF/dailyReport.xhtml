@@ -13,11 +13,11 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
+    <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            #{reportBean.refreshCategoryReport()}
+            #{reportBean.refreshTotalReport()}
 
-            <h2>Total report from
+            <h2>Total daily report from
                 <h:outputText value="#{reportBean.startDate}">
                     <f:convertDateTime/>
                 </h:outputText>
@@ -28,23 +28,25 @@
             </h2>
 
             <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 5}">
-                <h:dataTable value="#{reportBean.reportCategories}" var="reportRow"
+                <h:dataTable value="#{reportBean.reportTotals}" var="reportRow"
                              styleClass="table" headerClass="tableHeader"
                              columnClasses="none, center, center"
                              rowClasses="dish_table_odd_row, dish_table_even_row">
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Category</h:outputLabel>
+                            <h:outputLabel styleClass="table_header">Date</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishName" value="#{reportRow.dishCategoryName}"/>
+                        <h:outputText id="date" value="#{reportRow.date}">
+                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                        </h:outputText>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Quantity</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishCount" value="#{reportRow.count}"/>
+                        <h:outputText id="quantity" value="#{reportRow.count}"/>
                     </h:column>
 
                     <h:column>
@@ -62,7 +64,7 @@
             </h:form>
 
             <h:form>
-                <p:chart type="pie" model="#{chartViewBean.pieModel}" style="width:400px;height:300px" />
+                <p:chart type="line" model="#{chartViewBean.lineModel}" style="width:400px;height:300px"/>
             </h:form>
 
         </ui:define>

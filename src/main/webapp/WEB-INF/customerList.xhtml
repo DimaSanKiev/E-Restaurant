@@ -3,91 +3,81 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-    <title>Employee List</title>
+    <title>Customer List</title>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
 <h:body>
-    <ui:composition template="WEB-INF/template/EmployeeTemplate.xhtml">
+    <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2>Employees</h2>
-            #{employeeBean.refreshEmployeeList()}
+            <h2>Customers</h2>
+            #{customerBean.refreshList()}
 
-            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 2}">
+            <h:form>
                 <h:panelGrid columns="1">
-                    <p:commandButton value="New employee" action="#{employeeBean.addEmployee()}" update="matchGrid"
+                    <p:commandButton value="New customer" action="#{customerBean.addCustomer()}" update="matchGrid"
                                      ajax="false"/>
                     <br/>
                 </h:panelGrid>
 
-                <h:dataTable value="#{employeeBean.employees}" var="employee"
+                <h:dataTable value="#{customerBean.customers}" var="customer"
                              styleClass="dish_table" headerClass="table_header"
-                             columnClasses="center, dish_table_name, none, center, center, center, none, center"
+                             columnClasses="center, dish_table_name, none, center, none, center, center"
                              rowClasses="dish_table_odd_row, dish_table_even_row">
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Id</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="id" value="#{employee.id}"/>
+                        <h:outputText id="id" value="#{customer.id}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Name</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="name" value="#{employee.name}"/>
+                        <h:outputText id="name" value="#{customer.name}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Email</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="email" value="#{employee.email}"/>
+                        <h:outputText id="email" value="#{customer.email}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
                             <h:outputLabel styleClass="table_header">Birthdate</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="birthdate" value="#{employee.birthDate}">
+                        <h:outputText id="birthdate" value="#{customer.birthDate}">
                             <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
                         </h:outputText>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Hiredate</h:outputLabel>
+                            <h:outputLabel styleClass="table_header">Address</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="hiredate" value="#{employee.hireDate}">
-                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-                        </h:outputText>
+                        <h:outputText id="address" value="#{customer.address}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Readiness</h:outputLabel>
+                            <h:outputLabel styleClass="table_header">Blocked</h:outputLabel>
                         </f:facet>
-                        <h:outputText rendered="#{employee.ready}" class="customer_blocked_no" value="yes"/>
-                        <h:outputText rendered="#{!employee.ready}" class="customer_blocked_yes" value="no"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Role</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="role" value="#{employee.role.name}"/>
+                        <h:outputText rendered="#{customer.blocked}" class="customer_blocked_yes" value="yes"/>
+                        <h:outputText rendered="#{!customer.blocked}" class="customer_blocked_no" value="no"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Edit</f:facet>
-                        <h:commandLink action="#{employeeBean.updateEmployee(employee.id)}"
-                                rendered="${employee.role.id != 1}">
+                        <h:commandLink action="#{customerBean.updateCustomer(customer.id)}">
                             <h:graphicImage value="resources/images/edit-icon.png" height="20" width="20"
                                             title="Update"/>
                         </h:commandLink>

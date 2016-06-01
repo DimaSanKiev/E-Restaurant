@@ -1,4 +1,4 @@
-package com.bionic.edu.dao;
+package com.bionic.edu.dao.generic;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -30,7 +30,6 @@ public class GenericDao<T> implements DaoInterface<T> {
         return (List<T>) criteria.list();
     }
 
-    // todo
     @Override
     public void save(T t) {
         Session session = sessionFactory.getCurrentSession();

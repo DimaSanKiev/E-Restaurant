@@ -1,57 +1,19 @@
 package com.bionic.edu.dao;
 
+import com.bionic.edu.dao.generic.GenericDao;
 import com.bionic.edu.entity.Customer;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import java.util.List;
 
 @Repository
-public class CustomerDaoImpl implements CustomerDao {
-
-    @PersistenceContext
-    private EntityManager em;
-
-    @Override
-    public Customer findById(int id) {
-        Customer customer;
-        customer = em.find(Customer.class, id);
-        return customer;
-    }
+public class CustomerDaoImpl extends GenericDao<Customer> implements CustomerDao {
 
     @Override
     public Customer findByEmail(String email) {
-        TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c WHERE c.email = :email",
-                Customer.class).setParameter("email", email);
-        return query.getSingleResult();
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Customer WHERE email = :email");
+        query.setParameter("email", email);
+        return (Customer) query.uniqueResult();
     }
-
-    @Override
-    public List<Customer> findAll() {
-        TypedQuery<Customer> query = em.createQuery("SELECT c FROM Customer c " +
-                "ORDER BY c.blocked, c.id", Customer.class);
-        return query.getResultList();
-    }
-
-    @Override
-    @Transactional
-    public void save(Customer customer) {
-        if (customer.getId() == 0)
-            em.persist(customer);
-        else
-            em.merge(customer);
-    }
-
-    @Override
-    @Transactional
-    public void delete(int id) {
-        Customer customer = em.find(Customer.class, id);
-        if (customer != null) {
-            em.remove(customer);
-        }
-    }
-
 }

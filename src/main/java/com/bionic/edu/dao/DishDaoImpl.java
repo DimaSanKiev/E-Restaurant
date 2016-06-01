@@ -1,62 +1,31 @@
 package com.bionic.edu.dao;
 
+import com.bionic.edu.dao.generic.GenericDao;
 import com.bionic.edu.entity.Dish;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class DishDaoImpl implements DishDao {
-
-    @PersistenceContext
-    private EntityManager em;
+public class DishDaoImpl extends GenericDao<Dish> implements DishDao {
 
     @Override
-    public Dish findById(int id) {
-        return em.find(Dish.class, id);
-    }
-
-    @Override
-    public List<Dish> findAll() {
-        TypedQuery<Dish> query = em.createQuery("SELECT d FROM Dish d", Dish.class);
-        return query.getResultList();
-    }
-
-    @Override
-    public void save(Dish dish) {
-        if (dish.getId() == 0) {
-            em.persist(dish);
-        } else
-            em.merge(dish);
-    }
-
-    @Override
-    public void delete(int id) {
-        Dish dish = em.find(Dish.class, id);
-        if (dish != null) {
-            em.remove(dish);
-        }
-    }
-
-    @Override
+    @SuppressWarnings("unchecked")
     public List<Dish> findByCategory(int categoryId) {
-        TypedQuery<Dish> query = em.createQuery(
-                "SELECT d FROM Dish d WHERE d.category.id =" +
-                        ":category_id AND d.available = true", Dish.class);
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Dish WHERE category.id = :category_id AND available = TRUE");
         query.setParameter("category_id", categoryId);
-        return query.getResultList();
+        return query.list();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Dish> findByAvailability(boolean isAvailable) {
-        TypedQuery<Dish> query = em.createQuery(
-                "SELECT d FROM Dish d WHERE d.available = :availability", Dish.class).
-                setParameter("availability", isAvailable);
-        return query.getResultList();
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Dish WHERE available = :availability");
+        query.setParameter("availability", isAvailable);
+        return query.list();
     }
-
-
 }

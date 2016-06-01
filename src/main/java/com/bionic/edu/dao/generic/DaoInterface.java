@@ -1,4 +1,4 @@
-package com.bionic.edu.dao;
+package com.bionic.edu.dao.generic;
 
 import java.util.List;
 

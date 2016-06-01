@@ -1,59 +1,36 @@
 package com.bionic.edu.dao;
 
+import com.bionic.edu.dao.generic.GenericDao;
 import com.bionic.edu.entity.Employee;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class EmployeeDaoImpl implements EmployeeDao {
-
-    @PersistenceContext
-    private EntityManager em;
+public class EmployeeDaoImpl extends GenericDao<Employee> implements EmployeeDao {
 
     @Override
-    public Employee findById(int id) {
-        Employee employee;
-        employee = em.find(Employee.class, id);
-        return employee;
-    }
-
-    @Override
-    public Employee findByEmail(String email) {
-        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e WHERE e.email = :email",
-                Employee.class).setParameter("email", email);
-        return query.getSingleResult();
-    }
-
-    @Override
+    @SuppressWarnings("unchecked")
     public List<Employee> findAll() {
-        TypedQuery<Employee> query = em.createQuery("SELECT e FROM Employee e " +
-                "ORDER BY e.ready DESC, e.role.id", Employee.class);
-        return query.getResultList();
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM Employee ORDER BY ready DESC, role.id").list();
     }
 
     @Override
-    public void save(Employee employee) {
-        if (employee.getId() == 0) {
-            em.persist(employee);
-        } else
-            em.merge(employee);
+    @SuppressWarnings("unchecked")
+    public Employee findByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Employee WHERE email = :email");
+        query.setParameter("email", email);
+        return (Employee) query.uniqueResult();
     }
 
-    @Override
-    public void delete(int id) {
-        Employee employee = em.find(Employee.class, id);
-        if (employee != null) {
-            em.remove(employee);
-        }
-    }
-
+    // todo - move to service package
     @Override
     public void setReadiness(Employee employee, boolean isReady) {
         employee.setReady(isReady);
-        em.merge(employee);
+        save(employee);
     }
 }

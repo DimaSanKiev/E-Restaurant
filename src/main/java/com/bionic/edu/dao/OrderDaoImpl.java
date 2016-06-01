@@ -1,78 +1,57 @@
 package com.bionic.edu.dao;
 
+import com.bionic.edu.dao.generic.GenericDao;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.sql.Date;
 import java.util.List;
 
 @Repository
-public class OrderDaoImpl implements OrderDao {
-
-    @PersistenceContext
-    private EntityManager em;
+public class OrderDaoImpl extends GenericDao<Orders> implements OrderDao {
 
     @Override
-    public Orders findById(int id) {
-        Orders order;
-        order = em.find(Orders.class, id);
-        return order;
-    }
-
-    @Override
-    public List<Orders> findAll() {
-        TypedQuery<Orders> query = em.createQuery("SELECT o FROM Orders o", Orders.class);
-        return query.getResultList();
-    }
-
-    @Override
-    public void save(Orders order) {
-        if (order.getId() == 0) {
-            em.persist(order);
-        } else
-            em.merge(order);
-    }
-
-    @Override
-    public void delete(int id) {
-        Orders order = em.find(Orders.class, id);
-        if (order != null) {
-            em.remove(order);
-        }
-    }
-
-
-    @Override
+    @SuppressWarnings("unchecked")
     public List<Orders> getDeliveryListByTime() {
-        TypedQuery<Orders> query = em.createQuery(
-                "SELECT o FROM Orders o WHERE o.orderStatus.id = 3 OR o.orderStatus.id = 4 " +
-                        "ORDER BY o.dateTimeTaken ASC", Orders.class);
-        return query.getResultList();
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM Orders WHERE orderStatus.id = 3 OR orderStatus.id = 4 " +
+                "ORDER BY dateTimeTaken ASC").list();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Orders> getDeliveryListByStatus() {
-        TypedQuery<Orders> query = em.createQuery(
-                "SELECT o FROM Orders o WHERE o.orderStatus.id = 3 OR o.orderStatus.id = 4 " +
-                        "ORDER BY o.orderStatus.id", Orders.class);
-        return query.getResultList();
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM Orders WHERE orderStatus.id = 3 OR orderStatus.id = 4 " +
+                "ORDER BY orderStatus.id").list();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Orders> getCustomersOrder(int customerId) {
-        TypedQuery<Orders> query = em.createQuery(
-                "SELECT o FROM Orders o WHERE o.customer.id = :customerId", Orders.class).
-                setParameter("customerId", customerId);
-        return query.getResultList();
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Orders WHERE customer.id = :customerId");
+        query.setParameter("customerId", customerId);
+        return query.list();
     }
 
 
     @Override
+    public List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod) {
+        return null;
+    }
+
+    @Override
+    public List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod) {
+        return null;
+    }
+
+
+/*    @Override
     public List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod) {
         TypedQuery<ReportTotal> query = em.createQuery("SELECT new com.bionic.edu.util.ReportTotal(" +
                 "SUM(od.quantity), SUM(od.price), FUNC('DATE', od.order.dateTimeTaken)) " +
@@ -96,5 +75,5 @@ public class OrderDaoImpl implements OrderDao {
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);
         return query.getResultList();
-    }
+    }*/
 }

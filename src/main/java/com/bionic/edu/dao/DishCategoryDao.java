@@ -8,15 +8,5 @@ import java.util.List;
 
 public interface DishCategoryDao extends DaoInterface<DishCategory> {
 
-    DishCategory findById(int id);
-
-    List<DishCategory> findAll();
-
-    void save(DishCategory dishCategory);
-
-    void delete(int id);
-
-
     List<Dish> findDishes(int categoryId);
-
 }

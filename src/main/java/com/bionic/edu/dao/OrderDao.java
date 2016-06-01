@@ -1,5 +1,6 @@
 package com.bionic.edu.dao;
 
+import com.bionic.edu.dao.generic.DaoInterface;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
@@ -7,16 +8,7 @@ import com.bionic.edu.util.ReportTotal;
 import java.sql.Date;
 import java.util.List;
 
-public interface OrderDao {
-
-    Orders findById(int id);
-
-    List<Orders> findAll();
-
-    void save(Orders order);
-
-    void delete(int id);
-
+public interface OrderDao extends DaoInterface<Orders> {
 
     List<Orders> getDeliveryListByTime();
 

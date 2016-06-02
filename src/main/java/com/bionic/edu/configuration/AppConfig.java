@@ -20,7 +20,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver jsfViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
-        bean.setPrefix("/WEB-INF/");
+        bean.setPrefix("/WEB-INF/view/");
         bean.setSuffix(".xhtml");
         return bean;
     }

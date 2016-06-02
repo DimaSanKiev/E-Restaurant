@@ -39,7 +39,7 @@ CREATE TABLE dish (
   price            DECIMAL(15, 2) NOT NULL,
   kitchenmade      BOOLEAN        NOT NULL,
   available        BOOLEAN        NOT NULL,
-  photo            BLOB,
+  photo            BLOB(512000),
   dish_category_id INT,
   FOREIGN KEY (dish_category_id) REFERENCES dish_category (id) ON DELETE CASCADE
 );
@@ -125,7 +125,8 @@ VALUES ('Tomato Soup',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Cream of mushroom soup',
         'Cream of mushroom soup is a soup where a basic roux is thinned with milk and then mushrooms and mushroom broth are added.',
-        5.40, TRUE, TRUE, FILE_READ('/Users/Dima/Java/Projects/E-Restaurant/files/images/02_Cream-Of-Mushroom-Soup.jpg'), 1);
+        5.40, TRUE, TRUE,
+        FILE_READ('/Users/Dima/Java/Projects/E-Restaurant/files/images/02_Cream-Of-Mushroom-Soup.jpg'), 1);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Miso soup',
         'Miso soup is a traditional Japanese soup consisting of a stock called "dashi" into which softened miso paste is mixed.',
@@ -139,7 +140,8 @@ VALUES ('Greek Salad',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Avocado and Tuna Tapas',
         'This is a light, healthy Spanish tapa that goes best with crisp white wines and crunchy bread.',
-        7.30, TRUE, TRUE, FILE_READ('/Users/Dima/Java/Projects/E-Restaurant/files/images/05_Avocado-Tuna-Tapas.jpg'), 2);
+        7.30, TRUE, TRUE, FILE_READ('/Users/Dima/Java/Projects/E-Restaurant/files/images/05_Avocado-Tuna-Tapas.jpg'),
+        2);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo, dish_category_id)
 VALUES ('Caesar salad',
         'It is a salad of romaine lettuce and croutons dressed with parmesan cheese, lemon juice, olive oil, egg, garlic, and black pepper.',

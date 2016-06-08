@@ -29,6 +29,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
     <!-- Tomahawk -->
     <filter>
         <filter-name>MyFacesExtensionsFilter</filter-name>

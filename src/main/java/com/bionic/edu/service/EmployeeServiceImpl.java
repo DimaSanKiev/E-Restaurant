@@ -56,7 +56,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee signIn(String email, String password) throws EmployeeUnavailableException {
-        @SuppressWarnings("unchecked")
         Employee employee = employeeDao.findByEmail(email);
         if (employee != null) {
             if (!employee.isReady()) throw new EmployeeUnavailableException("Employee is not ready.");

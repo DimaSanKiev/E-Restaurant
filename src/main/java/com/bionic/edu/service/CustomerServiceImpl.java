@@ -55,7 +55,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer signIn(String email, String password) throws CustomerBlockedException {
-        @SuppressWarnings("unchecked")
         Customer customer = customerDao.findByEmail(email);
         if (customer != null) {
             if (customer.isBlocked()) throw new CustomerBlockedException("Customer is blocked");

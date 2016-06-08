@@ -1,12 +1,11 @@
 package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Customer;
-import com.bionic.edu.service.CustomerService;
-import com.bionic.edu.util.AuthorizationFilter;
-import com.bionic.edu.util.Crypto;
 import com.bionic.edu.exception.CustomerBlockedException;
-import org.apache.logging.log4j.Logger;
+import com.bionic.edu.service.CustomerService;
+import com.bionic.edu.util.Crypto;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 

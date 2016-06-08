@@ -4,23 +4,15 @@ import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
 import com.bionic.edu.service.DishCategoryService;
 import com.bionic.edu.service.DishService;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.context.annotation.Scope;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Named
 @Scope("session")

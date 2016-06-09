@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findByEmail(String email) {
         Customer customer = customerDao.findByEmail(email);
-        customer.setPassword(Crypto.encrypt(customer.getPassword()));
+//        customer.setPassword(Crypto.encrypt(customer.getPassword()));
         return customer;
     }
 

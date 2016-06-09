@@ -28,6 +28,7 @@ public class CustomerServiceImplTest {
     @Test
     public void testFindById() throws Exception {
         Customer customer = customerService.findById(1);
+        System.out.println(customer);
         assertNotNull(customer);
         assertEquals(1, customer.getId());
     }
@@ -51,6 +52,7 @@ public class CustomerServiceImplTest {
     public void testSave() throws Exception {
         Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
         customerService.save(customer);
+        System.out.println(customer);
         assertNotNull(customerService.findByEmail("testAdd@email.com"));
     }
 

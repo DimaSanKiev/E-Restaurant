@@ -7,13 +7,16 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @Ignore
 public class DishServiceImplTest {
+
     private DishService dishService;
     private DishCategoryService dishCategoryService;
 
@@ -38,14 +41,24 @@ public class DishServiceImplTest {
         assertEquals(19, dishes.size());
     }
 
-//    @Test
-//    public void testAdd() throws Exception {
-//        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, "photo", dishCategoryService.findById(1));
-//        System.out.println(dish);
-//        dishService.save(dish);
-//        int id = dish.getId();
-//        assertNotNull(dishService.findById(id));
-//    }
+    @Test
+    public void testAdd_notNull() throws Exception {
+        Path path = Paths.get("E:\\Dima\\Information\\IT\\MyProjects\\toGitHub\\E-Restaurant\\src\\main\\webapp\\resources\\images\\test_image.png");
+        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, Files.readAllBytes(path), dishCategoryService.findById(1));
+        dishService.save(dish);
+        int id = dish.getId();
+        assertNotNull(dishService.findById(id));
+    }
+
+    @Test
+    public void testAdd_listSize() throws Exception {
+        List<Dish> list1 = dishService.findAll();
+        Path path = Paths.get("E:\\Dima\\Information\\IT\\MyProjects\\toGitHub\\E-Restaurant\\src\\main\\webapp\\resources\\images\\test_image.png");
+        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, Files.readAllBytes(path), dishCategoryService.findById(1));
+        dishService.save(dish);
+        List<Dish> list2 = dishService.findAll();
+        assertEquals(list2.size() - list1.size(), 1);
+    }
 
     @Test
     public void testUpdate() throws Exception {
@@ -55,14 +68,15 @@ public class DishServiceImplTest {
         assertEquals("Test Name", dish.getName());
     }
 
-//    @Test
-//    public void testDelete() throws Exception {
-//        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, "photo", dishCategoryService.findById(1));
-//        dishService.save(dish);
-//        int id = dish.getId();
-//        dishService.delete(id);
-//        assertNull(dishService.findById(id));
-//    }
+    @Test
+    public void testDelete() throws Exception {
+        Path path = Paths.get("E:\\Dima\\Information\\IT\\MyProjects\\toGitHub\\E-Restaurant\\src\\main\\webapp\\resources\\images\\test_image.png");
+        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, Files.readAllBytes(path), dishCategoryService.findById(1));
+        dishService.save(dish);
+        int id = dish.getId();
+        dishService.delete(id);
+        assertNull(dishService.findById(id));
+    }
 
     @Test
     public void testFindByCategory() throws Exception {

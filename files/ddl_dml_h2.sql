@@ -11,7 +11,7 @@ DROP TABLE role;
 
 CREATE TABLE role (
   id   IDENTITY PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
+  name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE employee (
@@ -56,7 +56,7 @@ CREATE TABLE customer (
 
 CREATE TABLE orders_status (
   id   IDENTITY PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
+  name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE orders (

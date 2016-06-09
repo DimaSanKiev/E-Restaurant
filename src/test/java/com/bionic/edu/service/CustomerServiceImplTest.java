@@ -49,7 +49,15 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void testSave_notNull() throws Exception {
+        Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
+        customerService.save(customer);
+        int id = customer.getId();
+        assertNotNull(customerService.findById(id));
+    }
+
+    @Test
+    public void testSave_listSize() throws Exception {
         List<Customer> list1 = customerService.findAll();
         Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
         customerService.save(customer);

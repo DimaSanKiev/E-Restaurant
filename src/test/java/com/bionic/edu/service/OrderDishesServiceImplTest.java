@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 
 @Ignore
 public class OrderDishesServiceImplTest {
+
     private OrderDishesService orderDishesService;
     private OrderService orderService;
 
@@ -39,11 +40,20 @@ public class OrderDishesServiceImplTest {
     }
 
     @Test
-    public void testAdd() throws Exception {
+    public void testAdd_notNull() throws Exception {
         OrderDishes orderDishes = orderDishesService.findById(1);
         orderDishesService.save(orderDishes);
         int id = orderDishes.getId();
         assertNotNull(orderDishesService.findById(id));
+    }
+
+    @Test
+    public void testAdd_listSize() throws Exception {
+        List<OrderDishes> list1 = orderDishesService.findAll();
+        OrderDishes orderDishes = orderDishesService.findById(1);
+        orderDishesService.save(orderDishes);
+        List<OrderDishes> list2 = orderDishesService.findAll();
+        assertEquals(list2.size() - list1.size(), 1);
     }
 
     @Test
@@ -65,7 +75,6 @@ public class OrderDishesServiceImplTest {
         orderDishesService.delete(id);
         assertNull(orderDishesService.findById(id));
     }
-
 
     @Test
     public void testSetDishReady() throws Exception {

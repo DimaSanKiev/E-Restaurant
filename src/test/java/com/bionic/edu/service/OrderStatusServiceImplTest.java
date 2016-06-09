@@ -39,12 +39,21 @@ public class OrderStatusServiceImplTest {
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void testSave_notNull() throws Exception {
         OrderStatus orderStatus = new OrderStatus("REFUNDED");
         orderStatusService.save(orderStatus);
         int id = orderStatus.getId();
         assertNotNull(orderStatusService.findById(id));
         orderStatusService.delete(id);
+    }
+
+    @Test
+    public void testSave_listSize() throws Exception {
+        List<OrderStatus> list1 = orderStatusService.findAll();
+        OrderStatus orderStatus = new OrderStatus("REFUNDED");
+        orderStatusService.save(orderStatus);
+        List<OrderStatus> list2 = orderStatusService.findAll();
+        assertEquals(list2.size() - list1.size(), 1);
     }
 
     @Test

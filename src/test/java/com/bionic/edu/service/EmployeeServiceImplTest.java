@@ -2,7 +2,6 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Employee;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -13,8 +12,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@Ignore
 public class EmployeeServiceImplTest {
+
     private EmployeeService employeeService;
     private RoleService roleService;
 
@@ -49,12 +48,21 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void testSave_NotNull() throws Exception {
         Employee employee = new Employee("testName", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(1));
         employeeService.save(employee);
         int id = employee.getId();
         assertNotNull(employeeService.findById(id));
         assertNotNull(employeeService.findByEmail("testAdd@email.com"));
+    }
+
+    @Test
+    public void testSave_listSize() throws Exception {
+        Employee employee = new Employee("testName", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(1));
+        List<Employee> list1 = employeeService.findAll();
+        employeeService.save(employee);
+        List<Employee> list2 = employeeService.findAll();
+        assertEquals(list2.size() - list1.size(), 1);
     }
 
     @Test

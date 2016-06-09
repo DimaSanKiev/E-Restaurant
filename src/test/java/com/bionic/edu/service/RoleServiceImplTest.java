@@ -52,12 +52,21 @@ public class RoleServiceImplTest {
     }
 
     @Test
-    public void testSave() throws Exception {
+    public void testSave_notNull() throws Exception {
         Role role = new Role("INSPECTOR");
         roleService.save(role);
         int id = role.getId();
         assertNotNull(roleService.findById(id));
         roleService.delete(id);
+    }
+
+    @Test
+    public void testSave_listSize() throws Exception {
+        List<Role> list1 = roleService.findAll();
+        Role role = new Role("INSPECTOR");
+        roleService.save(role);
+        List<Role> list2 = roleService.findAll();
+        assertEquals(list2.size() - list1.size(), 1);
     }
 
     @Test

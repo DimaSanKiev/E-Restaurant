@@ -10,21 +10,14 @@ DROP TABLE orders_status;
 DROP TABLE employee;
 DROP TABLE role;
 
-CREATE TABLE role (id   IDENTITY PRIMARY KEY,name VARCHAR(100) NOT NULL,);
-
-CREATE TABLE employee (id        IDENTITY PRIMARY KEY,name      VARCHAR(100) NOT NULL,email     VARCHAR(100) NOT NULL UNIQUE,password  VARCHAR(100) NOT NULL,birthDate DATE,hireDate  DATE         NOT NULL,ready     BOOLEAN      NOT NULL,role_id   INT,FOREIGN KEY (role_id) REFERENCES role (id) ON UPDATE CASCADE);
-
-CREATE TABLE dish_category (id          IDENTITY PRIMARY KEY,name        VARCHAR(100) NOT NULL,description VARCHAR(500) NOT NULL,);
-
-CREATE TABLE dish (id               IDENTITY PRIMARY KEY,name             VARCHAR(100)   NOT NULL,description      VARCHAR(500)   NOT NULL,price            DECIMAL(15, 2) NOT NULL,kitchenmade      BOOLEAN        NOT NULL,available        BOOLEAN        NOT NULL,photo            BLOB(512000),dish_category_id INT,FOREIGN KEY (dish_category_id) REFERENCES dish_category (id) ON DELETE CASCADE);
-
-CREATE TABLE customer (id        IDENTITY PRIMARY KEY,name      VARCHAR(100) NOT NULL,email     VARCHAR(100) NOT NULL UNIQUE,password  VARCHAR(100) NOT NULL,address   VARCHAR(500) NOT NULL,birthDate DATE,blocked   BOOLEAN      NOT NULL DEFAULT FALSE,);
-
-CREATE TABLE orders_status (id   IDENTITY PRIMARY KEY,name VARCHAR(100) NOT NULL,);
-
-CREATE TABLE orders (id                  IDENTITY PRIMARY KEY,date_time_taken     TIMESTAMP      NOT NULL,date_time_delivered TIMESTAMP,total_price         DECIMAL(15, 2) NOT NULL,orders_status_id    INT DEFAULT 1,customer_id         INT,FOREIGN KEY (orders_status_id) REFERENCES orders_status (id) ON DELETE CASCADE,FOREIGN KEY (customer_id) REFERENCES customer (id) ON DELETE CASCADE);
-
-CREATE TABLE order_dishes (id        IDENTITY PRIMARY KEY,quantity  INT            NOT NULL DEFAULT 2,price     DECIMAL(15, 2) NOT NULL,readiness BOOLEAN        NOT NULL DEFAULT FALSE,dish_id   INT,orders_id INT,FOREIGN KEY (dish_id) REFERENCES dish (id) ON DELETE CASCADE,FOREIGN KEY (orders_id) REFERENCES orders (id) ON DELETE CASCADE);
+CREATE TABLE role (id IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL,);
+CREATE TABLE employee (id IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL UNIQUE, password VARCHAR(100) NOT NULL, birthDate DATE, hireDate DATE NOT NULL, ready BOOLEAN NOT NULL, role_id INT, FOREIGN KEY (role_id) REFERENCES role (id) ON UPDATE CASCADE);
+CREATE TABLE dish_category (id IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL, description VARCHAR(500) NOT NULL,);
+CREATE TABLE dish (id IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL, description VARCHAR(500) NOT NULL, price DECIMAL(15, 2) NOT NULL, kitchenmade BOOLEAN NOT NULL, available BOOLEAN NOT NULL, photo BLOB(512000), dish_category_id INT, FOREIGN KEY (dish_category_id) REFERENCES dish_category (id) ON DELETE CASCADE);
+CREATE TABLE customer (id IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL UNIQUE, password VARCHAR(100) NOT NULL, address VARCHAR(500) NOT NULL, birthDate DATE, blocked BOOLEAN NOT NULL DEFAULT FALSE,);
+CREATE TABLE orders_status (id IDENTITY PRIMARY KEY, name VARCHAR(100) NOT NULL,);
+CREATE TABLE orders (id IDENTITY PRIMARY KEY, date_time_taken TIMESTAMP NOT NULL, date_time_delivered TIMESTAMP, total_price DECIMAL(15, 2) NOT NULL, orders_status_id INT DEFAULT 1, customer_id INT,FOREIGN KEY (orders_status_id) REFERENCES orders_status (id) ON DELETE CASCADE, FOREIGN KEY (customer_id) REFERENCES customer (id) ON DELETE CASCADE);
+CREATE TABLE order_dishes (id IDENTITY PRIMARY KEY, quantity INT NOT NULL DEFAULT 2, price DECIMAL(15, 2) NOT NULL, readiness BOOLEAN NOT NULL DEFAULT FALSE, dish_id INT, orders_id INT, FOREIGN KEY (dish_id) REFERENCES dish (id) ON DELETE CASCADE, FOREIGN KEY (orders_id) REFERENCES orders (id) ON DELETE CASCADE);
 
 -- FILL TABLES --
 
@@ -87,57 +80,32 @@ INSERT INTO orders_status (name) VALUES ('READY_FOR_SHIPMENT');
 INSERT INTO orders_status (name) VALUES ('DELIVERING');
 INSERT INTO orders_status (name) VALUES ('DELIVERED');
 
--- INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
--- VALUES ('2015-12-01 15:21:10', '2015-10-17 16:21:10', 22.20, 5, 1);
--- INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
--- VALUES ('2015-12-02 14:11:11', '2015-10-18 15:10:01', 8.00, 5, 2);
--- INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
--- VALUES ('2015-12-03 15:59:50', '2015-10-19 16:25:04', 3.60, 5, 3);
--- INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
--- VALUES ('2015-12-04 15:31:11', '2015-10-21 16:11:02', 51.90, 5, 4);
--- INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
--- VALUES ('2015-12-05 12:11:19', '2015-10-16 13:34:11', 22.40, 5, 5);
--- INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
--- VALUES ('2015-12-06 14:12:19', '2015-10-21 15:33:21', 16.90, 5, 4);
--- INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
--- VALUES ('2015-12-07 01:11:09', '2015-10-21 02:03:02', 15.30, 5, 5);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id) VALUES ('2015-12-01 15:21:10', '2015-10-17 16:21:10', 22.20, 5, 1);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id) VALUES ('2015-12-02 14:11:11', '2015-10-18 15:10:01', 8.00, 5, 2);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id) VALUES ('2015-12-03 15:59:50', '2015-10-19 16:25:04', 3.60, 5, 3);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id) VALUES ('2015-12-04 15:31:11', '2015-10-21 16:11:02', 51.90, 5, 4);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id) VALUES ('2015-12-05 12:11:19', '2015-10-16 13:34:11', 22.40, 5, 5);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id) VALUES ('2015-12-06 14:12:19', '2015-10-21 15:33:21', 16.90, 5, 4);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id) VALUES ('2015-12-07 01:11:09', '2015-10-21 02:03:02', 15.30, 5, 5);
+
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (2, 8.40, TRUE, 1, 1);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 5.40, TRUE, 2, 1);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 5.40, TRUE, 2, 2);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 3.60, TRUE, 3, 3);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 5.50, TRUE, 4, 4);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (2, 14.60, TRUE, 8, 4);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (2, 8.60, TRUE, 6, 4);
 --
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (2, 8.40, TRUE, 1, 1);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 5.40, TRUE, 2, 1);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 5.40, TRUE, 2, 2);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 3.60, TRUE, 3, 3);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 5.50, TRUE, 4, 4);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (2, 14.60, TRUE, 8, 4);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (2, 8.60, TRUE, 6, 4);
--- --
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 4.20, TRUE, 1, 5);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 5.50, TRUE, 4, 5);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 8.20, TRUE, 8, 5);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 4.50, TRUE, 15, 5);
--- --
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 2.90, TRUE, 16, 6);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 4.30, TRUE, 9, 6);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 4.20, TRUE, 1, 6);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 5.50, TRUE, 4, 6);
--- --
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 5.50, TRUE, 1, 7);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 5.50, TRUE, 4, 7);
--- INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
--- VALUES (1, 4.30, TRUE, 6, 7);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 4.20, TRUE, 1, 5);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 5.50, TRUE, 4, 5);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 8.20, TRUE, 8, 5);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 4.50, TRUE, 15, 5);
+--
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 2.90, TRUE, 16, 6);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 4.30, TRUE, 9, 6);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 4.20, TRUE, 1, 6);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 5.50, TRUE, 4, 6);
+--
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 5.50, TRUE, 1, 7);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 5.50, TRUE, 4, 7);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id) VALUES (1, 4.30, TRUE, 6, 7);

@@ -2,16 +2,17 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.OrderStatusDao;
 import com.bionic.edu.entity.OrderStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
-@Named
+@Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class OrderStatusServiceImpl implements OrderStatusService {
 
-    @Inject
+    @Autowired
     private OrderStatusDao orderStatusDao;
 
     @Override

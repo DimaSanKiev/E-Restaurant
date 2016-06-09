@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class DishServiceImpl implements DishService {
 
     @Autowired

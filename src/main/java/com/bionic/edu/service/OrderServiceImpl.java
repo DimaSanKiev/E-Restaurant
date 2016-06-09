@@ -8,6 +8,8 @@ import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +21,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-@Named
+@Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class OrderServiceImpl implements OrderService {
 
-    @Inject
+    @Autowired
     private OrderDao orderDao;
-    @Inject
+    @Autowired
     private OrderStatusDao orderStatusDao;
-    @Inject
+    @Autowired
     private OrderDishesService orderDishesService;
 
     @Override

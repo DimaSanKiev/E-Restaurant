@@ -2,18 +2,19 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.CustomerDao;
 import com.bionic.edu.entity.Customer;
-import com.bionic.edu.util.Crypto;
 import com.bionic.edu.exception.CustomerBlockedException;
+import com.bionic.edu.util.Crypto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
-@Named
+@Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class CustomerServiceImpl implements CustomerService {
 
-    @Inject
+    @Autowired
     private CustomerDao customerDao;
 
     @Override

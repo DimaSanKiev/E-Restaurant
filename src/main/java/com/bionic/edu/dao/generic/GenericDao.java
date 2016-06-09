@@ -17,9 +17,10 @@ public class GenericDao<T> implements DaoInterface<T> {
     protected SessionFactory sessionFactory;
 
     @Override
+    @SuppressWarnings("unchecked")
     public T findById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(persistentClass, id);
+        return (T) session.get(persistentClass, id);
     }
 
     @Override
@@ -37,9 +38,10 @@ public class GenericDao<T> implements DaoInterface<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void delete(int id) {
         Session session = sessionFactory.getCurrentSession();
-        T t = session.load(persistentClass, id);
+        T t = (T) session.load(persistentClass, id);
         session.delete(t);
     }
 }

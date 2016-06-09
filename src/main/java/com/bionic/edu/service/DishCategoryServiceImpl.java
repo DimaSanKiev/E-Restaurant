@@ -3,16 +3,17 @@ package com.bionic.edu.service;
 import com.bionic.edu.dao.DishCategoryDao;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
-@Named
+@Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class DishCategoryServiceImpl implements DishCategoryService {
 
-    @Inject
+    @Autowired
     private DishCategoryDao dishCategoryDao;
 
     @Override

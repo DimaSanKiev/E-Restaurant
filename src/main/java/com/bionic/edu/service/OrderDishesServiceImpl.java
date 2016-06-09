@@ -3,31 +3,31 @@ package com.bionic.edu.service;
 import com.bionic.edu.dao.CustomerDao;
 import com.bionic.edu.dao.OrderDao;
 import com.bionic.edu.dao.OrderDishesDao;
+import com.bionic.edu.dao.OrderStatusDao;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.OrderDishes;
 import com.bionic.edu.entity.Orders;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 import java.util.Map;
 
-@Named
+@Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
 public class OrderDishesServiceImpl implements OrderDishesService {
 
-    @Inject
+    @Autowired
     private OrderDishesDao orderDishesDao;
-    @Inject
+    @Autowired
     private OrderDao orderDao;
-    @Inject
-    private OrderService orderService;
-    @Inject
+    @Autowired
     private CustomerDao customerDao;
-    @Inject
-    private OrderStatusService orderStatusService;
+    @Autowired
+    private OrderStatusDao orderStatusDao;
 
     @Override
     public OrderDishes findById(int id) {
@@ -58,16 +58,16 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     public void checkIfOrderReady(Orders order) {
         List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
         if (undoneDishes.isEmpty()) {
-            order.setOrderStatus(orderStatusService.findById(3));
-            orderService.save(order);
+            order.setOrderStatus(orderStatusDao.findById(3));
+            orderDao.save(order);
         } else
-            order.setOrderStatus(orderStatusService.findById(2));
+            order.setOrderStatus(orderStatusDao.findById(2));
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void addOrderDishes(Orders order, Map<Dish, Integer> cartMap) {
-        orderService.save(order);
+        orderDao.save(order);
         for (Dish dish : cartMap.keySet()) {
             OrderDishes orderDishes = new OrderDishes();
             orderDishes.setQuantity(cartMap.get(dish));

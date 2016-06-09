@@ -14,13 +14,14 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@Ignore
+//@Ignore
 public class CustomerServiceImplTest {
-    CustomerService customerService;
+
+    private CustomerService customerService;
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring/hibernate-context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("WEB-INF/applicationContext.xml");
         customerService = context.getBean(CustomerService.class);
     }
 

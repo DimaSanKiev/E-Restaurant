@@ -4,13 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <!-- Welcome page -->
     <welcome-file-list>
         <welcome-file>menu.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:/spring/hibernate-context.xml</param-value>
+        <param-value>WEB-INF/applicationContext.xml</param-value>
     </context-param>
 
     <context-param>
@@ -30,22 +31,18 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
-    <!-- Tomahawk -->
-    <filter>
-        <filter-name>MyFacesExtensionsFilter</filter-name>
-        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>MyFacesExtensionsFilter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
-    </filter-mapping>
-
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
+
+    <!-- Change to "Production" when ready to deploy -->
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
 
     <filter>
         <filter-name>characterEncodingFilter</filter-name>

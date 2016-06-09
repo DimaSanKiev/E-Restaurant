@@ -4,11 +4,16 @@ import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
 import com.bionic.edu.service.DishCategoryService;
 import com.bionic.edu.service.DishService;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.context.annotation.Scope;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +88,7 @@ public class DishBean implements Serializable {
     }
 
 
-    public void refreshCategories() {
+    private void refreshCategories() {
         idNameCategoryMap = new HashMap<>();
         idCategoryMap = new HashMap<>();
         List<DishCategory> dishCategories = dishCategoryService.findAll();
@@ -123,14 +128,14 @@ public class DishBean implements Serializable {
         return "newDish";
     }
 
-    /*public String refreshCategory(String id) {
+    public String refreshCategory(String id) {
         int n = Integer.valueOf(id);
         dishes = dishService.findByCategory(n);
         return "dishByCategoryList";
-    }*/
+    }
 
 
-    /*public void submit() throws IOException {
+    public void submit() throws IOException {
         String fileName = FilenameUtils.getName(uploadedFile.getName());
         String contentType = uploadedFile.getContentType();
         byte[] bytes = uploadedFile.getBytes();
@@ -139,6 +144,6 @@ public class DishBean implements Serializable {
         fos.close();
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(String.format("File '%s' of type '%s' successfully uploaded!", fileName, contentType)));
-    }*/
+    }
 
 }

@@ -2,16 +2,16 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.DishDao;
 import com.bionic.edu.entity.Dish;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
-@Named
+@Service
 public class DishServiceImpl implements DishService {
 
-    @Inject
+    @Autowired
     private DishDao dishDao;
 
     @Override

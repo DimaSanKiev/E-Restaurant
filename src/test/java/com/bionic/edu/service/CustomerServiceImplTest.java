@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.sql.Date;
 import java.util.Calendar;
@@ -21,7 +21,7 @@ public class CustomerServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("WEB-INF/applicationContext.xml");
+        ApplicationContext context = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/applicationContext.xml");
         customerService = context.getBean(CustomerService.class);
     }
 
@@ -43,6 +43,7 @@ public class CustomerServiceImplTest {
     public void testFindAll() throws Exception {
         List<Customer> customers = customerService.findAll();
         assertNotNull(customers);
+        customers.forEach(System.out::println);
         assertEquals(5, customers.size());
     }
 

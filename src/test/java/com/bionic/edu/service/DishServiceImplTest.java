@@ -5,20 +5,21 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @Ignore
 public class DishServiceImplTest {
-    DishService dishService;
-    DishCategoryService dishCategoryService;
+    private DishService dishService;
+    private DishCategoryService dishCategoryService;
 
     @Before
     public void setUp() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring/hibernate-context.xml");
+        ApplicationContext context = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/applicationContext.xml");
         dishService = context.getBean(DishService.class);
         dishCategoryService = context.getBean(DishCategoryService.class);
     }

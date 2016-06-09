@@ -211,6 +211,12 @@
             <artifactId>h2</artifactId>
             <version>1.4.192</version>
         </dependency>
+        <!-- http://mvnrepository.com/artifact/org.apache.derby/derby -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.12.1.1</version>
+        </dependency>
         <!-- Database connection pooling -->
         <dependency>
             <groupId>org.apache.commons</groupId>

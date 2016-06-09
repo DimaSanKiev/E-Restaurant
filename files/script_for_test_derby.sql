@@ -1,5 +1,4 @@
 --- CREATE TABLES ---
-
 DROP TRIGGER customer_delete;
 DROP TABLE order_dishes;
 DROP TABLE dish;

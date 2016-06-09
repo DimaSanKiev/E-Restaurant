@@ -50,10 +50,11 @@ public class CustomerServiceImplTest {
 
     @Test
     public void testSave() throws Exception {
+        List<Customer> list1 = customerService.findAll();
         Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
         customerService.save(customer);
-        System.out.println(customer);
-        assertNotNull(customerService.findByEmail("testAdd@email.com"));
+        List<Customer> list2 = customerService.findAll();
+        assertEquals(list2.size() - list1.size(), 1);
     }
 
     @Test

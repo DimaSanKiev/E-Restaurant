@@ -35,6 +35,8 @@ public class DishServiceImplTest {
     @Test
     public void testFindAll() throws Exception {
         List<Dish> dishes = dishService.findAll();
+        System.out.println("**************");
+        dishes.forEach(System.out::println);
         assertNotNull(dishes);
         assertEquals(18, dishes.size());
     }

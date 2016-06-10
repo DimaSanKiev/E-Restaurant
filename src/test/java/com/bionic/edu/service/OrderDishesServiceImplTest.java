@@ -34,6 +34,8 @@ public class OrderDishesServiceImplTest {
     @Test
     public void testFindAll() throws Exception {
         List<OrderDishes> ordersDishes = orderDishesService.findAll();
+        System.out.println("**************");
+        ordersDishes.forEach(System.out::println);
         assertNotNull(ordersDishes);
         assertEquals(18, ordersDishes.size());
     }
@@ -95,10 +97,9 @@ public class OrderDishesServiceImplTest {
 
     @Test
     public void testGetUndoneDishesFromOrder() throws Exception {
-        List<OrderDishes> orderDishesList = orderDishesService.getUndoneDishesFromOrder(6);
-        orderDishesList.forEach(System.out::println);
+        List<OrderDishes> orderDishesList = orderDishesService.getUndoneDishesFromOrder(7);
         assertNotNull(orderDishesList);
-        assertEquals(3, orderDishesList.size());
+        assertEquals(2, orderDishesList.size());
     }
 
     @Test

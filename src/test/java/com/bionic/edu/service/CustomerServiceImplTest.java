@@ -42,6 +42,7 @@ public class CustomerServiceImplTest {
     public void testFindAll() throws Exception {
         List<Customer> customers = customerService.findAll();
         assertNotNull(customers);
+        System.out.println("**************");
         customers.forEach(System.out::println);
         assertEquals(5, customers.size());
     }

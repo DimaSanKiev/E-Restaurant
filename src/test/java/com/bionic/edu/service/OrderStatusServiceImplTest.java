@@ -32,6 +32,8 @@ public class OrderStatusServiceImplTest {
     @Test
     public void testFindAll() throws Exception {
         List<OrderStatus> orderStatuses = orderStatusService.findAll();
+        System.out.println("************");
+        orderStatuses.forEach(System.out::println);
         assertNotNull(orderStatuses);
         assertEquals(5, orderStatuses.size());
     }

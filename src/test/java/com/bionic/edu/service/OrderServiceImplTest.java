@@ -42,6 +42,8 @@ public class OrderServiceImplTest {
     @Test
     public void testFindAll() throws Exception {
         List<Orders> orders = orderService.findAll();
+        System.out.println("**************");
+        orders.forEach(System.out::println);
         assertNotNull(orders);
         assertEquals(7, orders.size());
     }

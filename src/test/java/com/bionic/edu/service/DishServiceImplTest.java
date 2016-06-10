@@ -1,6 +1,7 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Dish;
+import com.bionic.edu.entity.Photo;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +16,8 @@ import static org.junit.Assert.*;
 
 public class DishServiceImplTest {
 
+    private String pathPrefixWin = "E:\\Dima\\Information\\IT\\MyProjects\\toGitHub\\E-Restaurant\\src\\main\\webapp\\resources\\images\\general\\";
+    private String pathPrefixMac = "/Users/Dima/Java/Projects/E-Restaurant/src/main/webapp/resources/images/general/";
     private DishService dishService;
     private DishCategoryService dishCategoryService;
 
@@ -43,8 +46,9 @@ public class DishServiceImplTest {
 
     @Test
     public void testAdd_notNull() throws Exception {
-        Path path = Paths.get("/Users/Dima/Java/Projects/E-Restaurant/src/main/webapp/resources/images/test_image.png");
-        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, Files.readAllBytes(path), dishCategoryService.findById(1));
+        Path path = Paths.get(pathPrefixWin + "test_image.png");
+        Photo photo = new Photo(Files.readAllBytes(path));
+        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, photo, dishCategoryService.findById(1));
         dishService.save(dish);
         int id = dish.getId();
         assertNotNull(dishService.findById(id));
@@ -53,8 +57,9 @@ public class DishServiceImplTest {
     @Test
     public void testAdd_listSize() throws Exception {
         List<Dish> list1 = dishService.findAll();
-        Path path = Paths.get("/Users/Dima/Java/Projects/E-Restaurant/src/main/webapp/resources/images/test_image.png");
-        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, Files.readAllBytes(path), dishCategoryService.findById(1));
+        Path path = Paths.get(pathPrefixWin + "test_image.png");
+        Photo photo = new Photo(Files.readAllBytes(path));
+        Dish dish = new Dish("testDishAdd", "justTestDish", 1.20, true, true, photo, dishCategoryService.findById(1));
         dishService.save(dish);
         List<Dish> list2 = dishService.findAll();
         assertEquals(list2.size() - list1.size(), 1);
@@ -70,8 +75,9 @@ public class DishServiceImplTest {
 
     @Test
     public void testDelete() throws Exception {
-        Path path = Paths.get("/Users/Dima/Java/Projects/E-Restaurant/src/main/webapp/resources/images/test_image.png");
-        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, Files.readAllBytes(path), dishCategoryService.findById(1));
+        Path path = Paths.get(pathPrefixWin + "test_image.png");
+        Photo photo = new Photo(Files.readAllBytes(path));
+        Dish dish = new Dish("testDishDelete", "justTestDish", 0.00, true, true, photo, dishCategoryService.findById(1));
         dishService.save(dish);
         int id = dish.getId();
         dishService.delete(id);

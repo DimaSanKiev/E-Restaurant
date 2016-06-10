@@ -42,7 +42,6 @@ public class OrderServiceImplTest {
     @Test
     public void testFindAll() throws Exception {
         List<Orders> orders = orderService.findAll();
-        System.out.println("**************");
         orders.forEach(System.out::println);
         assertNotNull(orders);
         assertEquals(7, orders.size());
@@ -63,7 +62,7 @@ public class OrderServiceImplTest {
         Orders order = orderService.findById(1);
         orderService.save(order);
         List<Orders> list2 = orderService.findAll();
-        assertEquals(list2.size() - list1.size(), 1);
+        assertEquals(1, list2.size() - list1.size());
     }
 
     @Test

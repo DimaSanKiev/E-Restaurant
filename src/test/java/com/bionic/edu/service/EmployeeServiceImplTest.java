@@ -6,7 +6,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,10 +36,10 @@ public class EmployeeServiceImplTest {
 
     @Test
     public void testFindByEmail() throws Exception {
-        Employee employee = employeeService.findByEmail("super@erestaurant.com");
+        Employee employee = employeeService.findByEmail("kitchen@erestaurant.com");
         assertNotNull(employee);
-        assertEquals("super@erestaurant.com", employee.getEmail());
-        assertEquals("Dmytro Burdyga", employee.getName());
+        assertEquals(3, employee.getId());
+        assertEquals("Elena Bakhmach", employee.getName());
     }
 
     @Test
@@ -49,34 +51,35 @@ public class EmployeeServiceImplTest {
 
     @Test
     public void testSave_NotNull() throws Exception {
-        Employee employee = new Employee("testName", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(1));
+        Employee employee = createTestEmployee();
         employeeService.save(employee);
-        int id = employee.getId();
-        assertNotNull(employeeService.findById(id));
-        assertNotNull(employeeService.findByEmail("testAdd@email.com"));
+        int employeeId = employee.getId();
+        assertNotNull(employeeService.findById(employeeId));
+        employeeService.delete(employeeId);
     }
 
     @Test
     public void testSave_listSize() throws Exception {
-        Employee employee = new Employee("testName", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(1));
+        Employee employee = createTestEmployee();
         List<Employee> list1 = employeeService.findAll();
         employeeService.save(employee);
+        int employeeId = employee.getId();
         List<Employee> list2 = employeeService.findAll();
-        assertEquals(list2.size() - list1.size(), 1);
+        assertEquals(1, list2.size() - list1.size());
+        employeeService.delete(employeeId);
     }
 
     @Test
     public void testUpdate() throws Exception {
         Employee employee = employeeService.findById(1);
-        employee.setName("Dima TestUpdate");
+        employee.setName("Dima_Updated");
         employeeService.save(employee);
-        assertEquals("Dima TestUpdate", employeeService.findById(1).getName());
+        assertEquals("Dima_Updated", employeeService.findById(1).getName());
     }
 
     @Test
     public void testDelete() throws Exception {
-        Employee employee = employeeService.findById(2);
-        employee.setEmail("testDelete@email.com");
+        Employee employee = createTestEmployee();
         employeeService.save(employee);
         int id = employee.getId();
         employeeService.delete(id);
@@ -99,5 +102,13 @@ public class EmployeeServiceImplTest {
         employeeService.signIn("admin@erestaurant.com", "pass2");
         assertEquals("Igor Himchenko", employee.getName());
         assertEquals("ADMIN", employee.getRole().getName());
+    }
+
+    private Employee createTestEmployee() {
+        Employee employee = new Employee("Test Employee", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(1));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd.HH:mm:ss");
+        Date date = new Date();
+        employee.setEmail("employee." + dateFormat.format(date) + "@erestaurant.com");
+        return employee;
     }
 }

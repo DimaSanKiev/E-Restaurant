@@ -45,7 +45,6 @@ public class RoleServiceImplTest {
     @Test
     public void testFindAll() throws Exception {
         List<Role> roles = roleService.findAll();
-        System.out.println("+++++++++");
         roles.forEach(System.out::println);
         assertNotNull(roles);
         assertEquals(5, roles.size());
@@ -66,7 +65,7 @@ public class RoleServiceImplTest {
         Role role = new Role("INSPECTOR");
         roleService.save(role);
         List<Role> list2 = roleService.findAll();
-        assertEquals(list2.size() - list1.size(), 1);
+        assertEquals(1, list2.size() - list1.size());
     }
 
     @Test

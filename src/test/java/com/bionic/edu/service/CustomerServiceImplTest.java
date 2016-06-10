@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -42,14 +44,13 @@ public class CustomerServiceImplTest {
     public void testFindAll() throws Exception {
         List<Customer> customers = customerService.findAll();
         assertNotNull(customers);
-        System.out.println("**************");
         customers.forEach(System.out::println);
         assertEquals(5, customers.size());
     }
 
     @Test
     public void testSave_notNull() throws Exception {
-        Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
+        Customer customer = createTestCustomer();
         customerService.save(customer);
         int id = customer.getId();
         assertNotNull(customerService.findById(id));
@@ -58,10 +59,10 @@ public class CustomerServiceImplTest {
     @Test
     public void testSave_listSize() throws Exception {
         List<Customer> list1 = customerService.findAll();
-        Customer customer = new Customer("testAdd", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
+        Customer customer = createTestCustomer();
         customerService.save(customer);
         List<Customer> list2 = customerService.findAll();
-        assertEquals(list2.size() - list1.size(), 1);
+        assertEquals(1, list2.size() - list1.size());
     }
 
     @Test
@@ -74,7 +75,7 @@ public class CustomerServiceImplTest {
 
     @Test
     public void testDelete() throws Exception {
-        Customer customer = new Customer("testDelete", "testDelete@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
+        Customer customer = createTestCustomer();
         customerService.save(customer);
         int id = customer.getId();
         customerService.delete(id);
@@ -86,5 +87,13 @@ public class CustomerServiceImplTest {
         Customer customer = customerService.signIn("kate.belova@gmail.com", "wrongPass");
         customerService.signIn("kate.belova@gmail.com", "pass3");
         assertEquals("Kate Belova", customer.getName());
+    }
+
+    private Customer createTestCustomer() {
+        Customer customer = new Customer("Test Customer", "testAdd@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd.HH:mm:ss");
+        java.util.Date date = new java.util.Date();
+        customer.setEmail("customer." + dateFormat.format(date) + "@erestaurant.com");
+        return customer;
     }
 }

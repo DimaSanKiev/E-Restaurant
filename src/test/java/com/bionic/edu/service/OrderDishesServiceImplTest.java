@@ -54,7 +54,7 @@ public class OrderDishesServiceImplTest {
         OrderDishes orderDishes = orderDishesService.findById(1);
         orderDishesService.save(orderDishes);
         List<OrderDishes> list2 = orderDishesService.findAll();
-        assertEquals(list2.size() - list1.size(), 1);
+        assertEquals(1, list2.size() - list1.size());
     }
 
     @Test

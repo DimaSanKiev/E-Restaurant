@@ -6,16 +6,15 @@ import com.bionic.edu.service.DishCategoryService;
 import com.bionic.edu.service.DishService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 import org.springframework.context.annotation.Scope;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,5 +146,4 @@ public class DishBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(String.format("File '%s' of type '%s' successfully uploaded!", fileName, contentType)));
     }
-
 }

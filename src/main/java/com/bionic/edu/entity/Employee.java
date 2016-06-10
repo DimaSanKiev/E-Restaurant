@@ -17,6 +17,9 @@ public class Employee {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id")
     private Role role;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id")
+    private Photo avatar;
 
     public Employee() {
     }
@@ -29,6 +32,17 @@ public class Employee {
         this.hireDate = hireDate;
         this.ready = ready;
         this.role = role;
+    }
+
+    public Employee(String name, String email, String password, Date birthDate, Date hireDate, boolean ready, Role role, Photo avatar) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.hireDate = hireDate;
+        this.ready = ready;
+        this.role = role;
+        this.avatar = avatar;
     }
 
     public int getId() {
@@ -93,6 +107,14 @@ public class Employee {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Photo getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Photo avatar) {
+        this.avatar = avatar;
     }
 
     @Override

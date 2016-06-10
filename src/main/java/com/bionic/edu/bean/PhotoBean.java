@@ -25,11 +25,11 @@ public class PhotoBean {
 //        session.save(person);
 //    }
 
-    public void readDishPhoto(int dishId) throws IOException {
-        Dish dish = dishService.findById(dishId);
-        byte[] photoBytes = dish.getPhoto();
-        saveBytesToFile("resources/cached_images/", photoBytes);
-    }
+//    public void readDishPhoto(int dishId) throws IOException {
+//        Dish dish = dishService.findById(dishId);
+//        byte[] photoBytes = dish.getPhoto();
+//        saveBytesToFile("resources/cached_images/", photoBytes);
+//    }
 
     private byte[] readBytesFromFile(String filePath) throws IOException {
         File inputFile = new File(filePath);

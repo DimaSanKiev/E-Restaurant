@@ -1,7 +1,6 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 public class Dish {
@@ -13,8 +12,9 @@ public class Dish {
     private double price;
     private boolean kitchenmade;
     private boolean available = true;
-    @Lob
-    private byte[] photo;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id")
+    private Photo photo;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "dish_category_id")
     private DishCategory category;
@@ -22,7 +22,16 @@ public class Dish {
     public Dish() {
     }
 
-    public Dish(String name, String description, double price, boolean kitchenmade, boolean available, byte[] photo, DishCategory category) {
+    public Dish(String name, String description, double price, boolean kitchenmade, boolean available, DishCategory category) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.kitchenmade = kitchenmade;
+        this.available = available;
+        this.category = category;
+    }
+
+    public Dish(String name, String description, double price, boolean kitchenmade, boolean available, Photo photo, DishCategory category) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -80,11 +89,11 @@ public class Dish {
         this.available = available;
     }
 
-    public byte[] getPhoto() {
+    public Photo getPhoto() {
         return photo;
     }
 
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(Photo photo) {
         this.photo = photo;
     }
 
@@ -109,7 +118,7 @@ public class Dish {
         if (available != dish.available) return false;
         if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
         if (description != null ? !description.equals(dish.description) : dish.description != null) return false;
-        if (photo != null ? !Arrays.equals(photo, dish.photo) : dish.photo != null) return false;
+        if (photo != null ? photo.equals(dish.photo) : dish.photo != null) return false;
         return true;
     }
 

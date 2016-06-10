@@ -1,9 +1,6 @@
 package com.bionic.edu.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -17,6 +14,9 @@ public class Customer {
     private String address;
     private Date birthDate;
     private boolean blocked;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id")
+    private Photo avatar;
 
     public Customer() {
     }
@@ -27,6 +27,16 @@ public class Customer {
         this.password = password;
         this.address = address;
         this.birthDate = birthDate;
+    }
+
+    public Customer(String name, String email, String password, String address, Date birthDate, boolean blocked, Photo avatar) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.birthDate = birthDate;
+        this.blocked = blocked;
+        this.avatar = avatar;
     }
 
     public int getId() {
@@ -83,6 +93,14 @@ public class Customer {
 
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
+    }
+
+    public Photo getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Photo avatar) {
+        this.avatar = avatar;
     }
 
     @Override

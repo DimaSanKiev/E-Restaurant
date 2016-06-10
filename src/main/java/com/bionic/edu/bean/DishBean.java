@@ -15,10 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.ByteArrayInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +89,7 @@ public class DishBean implements Serializable {
     }
 
 
-    private void refreshCategories() {
+    public void refreshCategories() {
         idNameCategoryMap = new HashMap<>();
         idCategoryMap = new HashMap<>();
         List<DishCategory> dishCategories = dishCategoryService.findAll();

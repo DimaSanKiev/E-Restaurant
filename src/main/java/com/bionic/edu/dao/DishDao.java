@@ -10,5 +10,4 @@ public interface DishDao extends DaoInterface<Dish> {
     List<Dish> findByCategory(int categoryId);
 
     List<Dish> findByAvailability(boolean isAvailable);
-
 }

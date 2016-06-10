@@ -111,7 +111,6 @@ public class Dish {
         if (description != null ? !description.equals(dish.description) : dish.description != null) return false;
         if (photo != null ? !Arrays.equals(photo, dish.photo) : dish.photo != null) return false;
         return true;
-
     }
 
     @Override

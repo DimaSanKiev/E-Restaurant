@@ -1,11 +1,9 @@
 package com.bionic.edu.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name = "dish_category")
+@Entity
+@Table(name = "dish_category")
 public class DishCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

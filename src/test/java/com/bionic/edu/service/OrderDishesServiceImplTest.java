@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-@Ignore
 public class OrderDishesServiceImplTest {
 
     private OrderDishesService orderDishesService;
@@ -76,6 +75,7 @@ public class OrderDishesServiceImplTest {
         assertNull(orderDishesService.findById(id));
     }
 
+    @Ignore
     @Test
     public void testSetDishReady() throws Exception {
         Orders order = orderService.findById(7);

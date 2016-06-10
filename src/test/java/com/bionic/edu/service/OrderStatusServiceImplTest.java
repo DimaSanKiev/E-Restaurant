@@ -2,7 +2,6 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.entity.OrderStatus;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -13,7 +12,6 @@ import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@Ignore
 public class OrderStatusServiceImplTest {
 
     private OrderStatusService orderStatusService;

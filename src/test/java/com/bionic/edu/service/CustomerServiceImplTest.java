@@ -2,7 +2,6 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Customer;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -14,7 +13,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-//@Ignore
 public class CustomerServiceImplTest {
 
     private CustomerService customerService;
@@ -73,7 +71,6 @@ public class CustomerServiceImplTest {
         assertEquals("Olga Kovalenko", customer.getName());
     }
 
-    @Ignore
     @Test
     public void testDelete() throws Exception {
         Customer customer = new Customer("testDelete", "testDelete@email.com", "testPass", "testAddress", new Date(Calendar.getInstance().getTime().getTime()));

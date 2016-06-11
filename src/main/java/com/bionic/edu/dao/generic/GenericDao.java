@@ -4,6 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.GenericTypeResolver;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -12,6 +13,11 @@ public class GenericDao<T> implements DaoInterface<T> {
 
     @SuppressWarnings("unchecked")
     private final Class<T> persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+
+    @SuppressWarnings("unchecked")
+    public GenericDao() {
+        Class<T> domainClass = (Class<T>) GenericTypeResolver.resolveTypeArgument(getClass(), GenericDao.class);
+    }
 
     @Autowired
     protected SessionFactory sessionFactory;

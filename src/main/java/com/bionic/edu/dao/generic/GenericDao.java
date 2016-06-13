@@ -2,7 +2,7 @@ package com.bionic.edu.dao.generic;
 
 import java.util.List;
 
-public interface DaoInterface<T> {
+public interface GenericDao<T> {
 
     T findById(int id);
 

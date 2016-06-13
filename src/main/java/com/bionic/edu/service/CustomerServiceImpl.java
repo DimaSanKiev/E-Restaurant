@@ -5,6 +5,7 @@ import com.bionic.edu.entity.Customer;
 import com.bionic.edu.exception.CustomerBlockedException;
 import com.bionic.edu.util.Crypto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
+//    @Qualifier("customerDaoImpl")
     private CustomerDao customerDao;
 
 //    public CustomerServiceImpl(){

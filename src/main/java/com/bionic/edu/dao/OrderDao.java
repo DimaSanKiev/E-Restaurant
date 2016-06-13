@@ -1,6 +1,6 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.dao.generic.DaoInterface;
+import com.bionic.edu.dao.generic.GenericDao;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
@@ -8,7 +8,7 @@ import com.bionic.edu.util.ReportTotal;
 import java.sql.Date;
 import java.util.List;
 
-public interface OrderDao extends DaoInterface<Orders> {
+public interface OrderDao extends GenericDao<Orders> {
 
     List<Orders> getDeliveryListByTime();
 

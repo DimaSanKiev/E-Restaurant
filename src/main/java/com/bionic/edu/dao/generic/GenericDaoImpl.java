@@ -9,7 +9,7 @@ import org.springframework.core.GenericTypeResolver;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class GenericDaoImpl<T> implements DaoInterface<T> {
+public class GenericDaoImpl<T> implements GenericDao<T> {
 
     @SuppressWarnings("unchecked")
     private final Class<T> persistentClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];

@@ -2,9 +2,9 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Employee;
 import com.bionic.edu.exception.EmployeeUnavailableException;
-import com.bionic.edu.service.generic.ServiceInterface;
+import com.bionic.edu.service.generic.GenericService;
 
-public interface EmployeeService extends ServiceInterface<Employee> {
+public interface EmployeeService extends GenericService<Employee> {
 
     Employee findByEmail(String email);
 

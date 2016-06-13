@@ -1,7 +1,6 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.dao.CustomerDao;
-import com.bionic.edu.dao.generic.GenericDao;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.exception.CustomerBlockedException;
 import com.bionic.edu.util.Crypto;
@@ -22,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
 //    }
 //
 //    @Autowired
-//    public CustomerServiceImpl(GenericDao<Customer> genericDao){
+//    public CustomerServiceImpl(GenericDaoImpl<Customer> genericDao){
 //        super(genericDao);
 //        this.customerDao = (CustomerDao) genericDao;
 //    }

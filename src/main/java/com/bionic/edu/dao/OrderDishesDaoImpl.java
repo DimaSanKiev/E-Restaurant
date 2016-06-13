@@ -1,6 +1,6 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.dao.generic.GenericDao;
+import com.bionic.edu.dao.generic.GenericDaoImpl;
 import com.bionic.edu.entity.OrderDishes;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class OrderDishesDaoImpl extends GenericDao<OrderDishes> implements OrderDishesDao {
+public class OrderDishesDaoImpl extends GenericDaoImpl<OrderDishes> implements OrderDishesDao {
 
     @Override
     @SuppressWarnings("unchecked")

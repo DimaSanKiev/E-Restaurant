@@ -1,6 +1,6 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.dao.generic.GenericDao;
+import com.bionic.edu.dao.generic.GenericDaoImpl;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
@@ -12,7 +12,7 @@ import java.sql.Date;
 import java.util.List;
 
 @Repository
-public class OrderDaoImpl extends GenericDao<Orders> implements OrderDao {
+public class OrderDaoImpl extends GenericDaoImpl<Orders> implements OrderDao {
 
     @Override
     @SuppressWarnings("unchecked")

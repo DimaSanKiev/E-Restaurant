@@ -4,12 +4,12 @@ import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.OrderDishes;
 import com.bionic.edu.entity.Orders;
-import com.bionic.edu.service.generic.ServiceInterface;
+import com.bionic.edu.service.generic.GenericService;
 
 import java.util.List;
 import java.util.Map;
 
-public interface OrderDishesService extends ServiceInterface<OrderDishes> {
+public interface OrderDishesService extends GenericService<OrderDishes> {
 
     void checkIfOrderReady(Orders order);
 

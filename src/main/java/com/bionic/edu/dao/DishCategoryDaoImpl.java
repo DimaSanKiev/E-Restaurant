@@ -1,6 +1,6 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.dao.generic.GenericDao;
+import com.bionic.edu.dao.generic.GenericDaoImpl;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
 import org.hibernate.Query;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class DishCategoryDaoImpl extends GenericDao<DishCategory> implements DishCategoryDao {
+public class DishCategoryDaoImpl extends GenericDaoImpl<DishCategory> implements DishCategoryDao {
 
     @Override
     @SuppressWarnings("unchecked")

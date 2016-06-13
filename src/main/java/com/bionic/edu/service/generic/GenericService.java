@@ -1,45 +1,14 @@
 package com.bionic.edu.service.generic;
 
-import com.bionic.edu.dao.generic.GenericDao;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
-@Service
-public class GenericService<T> implements ServiceInterface<T> {
+public interface GenericService<T> {
 
-    private GenericDao<T> dao;
+    T findById(int id);
 
-    public GenericService() {
-    }
+    List<T> findAll();
 
-    public GenericService(GenericDao<T> dao) {
-        this.dao = dao;
-    }
+    void save(T t);
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public T findById(int id) {
-        return dao.findById(id);
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public List<T> findAll() {
-        return dao.findAll();
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void save(T t) {
-        dao.save(t);
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void delete(int id) {
-        dao.delete(id);
-    }
+    void delete(int id);
 }

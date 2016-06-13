@@ -1,6 +1,6 @@
 package com.bionic.edu.dao;
 
-import com.bionic.edu.dao.generic.GenericDao;
+import com.bionic.edu.dao.generic.GenericDaoImpl;
 import com.bionic.edu.entity.Employee;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class EmployeeDaoImpl extends GenericDao<Employee> implements EmployeeDao {
+public class EmployeeDaoImpl extends GenericDaoImpl<Employee> implements EmployeeDao {
 
     @Override
     @SuppressWarnings("unchecked")

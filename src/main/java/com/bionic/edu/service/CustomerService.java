@@ -2,21 +2,11 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.exception.CustomerBlockedException;
+import com.bionic.edu.service.generic.ServiceInterface;
 
-import java.util.List;
-
-public interface CustomerService {
-
-    Customer findById(int id);
+public interface CustomerService extends ServiceInterface<Customer> {
 
     Customer findByEmail(String email);
-
-    List<Customer> findAll();
-
-    void save(Customer customer);
-
-    void delete(int id);
-
 
     Customer signIn(String email, String password) throws CustomerBlockedException;
 }

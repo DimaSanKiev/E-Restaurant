@@ -1,7 +1,6 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.dao.OrderDao;
-import com.bionic.edu.dao.OrderDishesDao;
 import com.bionic.edu.dao.OrderStatusDao;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

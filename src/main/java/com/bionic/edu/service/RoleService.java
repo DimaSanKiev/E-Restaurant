@@ -1,18 +1,9 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Role;
+import com.bionic.edu.service.generic.ServiceInterface;
 
-import java.util.List;
-
-public interface RoleService {
-
-    Role findById(int id);
+public interface RoleService extends ServiceInterface<Role> {
 
     Role findByName(String name);
-
-    List<Role> findAll();
-
-    void save(Role role);
-
-    void delete(int id);
 }

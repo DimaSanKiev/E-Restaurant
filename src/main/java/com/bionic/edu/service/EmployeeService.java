@@ -2,21 +2,11 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Employee;
 import com.bionic.edu.exception.EmployeeUnavailableException;
+import com.bionic.edu.service.generic.ServiceInterface;
 
-import java.util.List;
-
-public interface EmployeeService {
-
-    Employee findById(int id);
+public interface EmployeeService extends ServiceInterface<Employee> {
 
     Employee findByEmail(String email);
-
-    List<Employee> findAll();
-
-    void save(Employee employee);
-
-    void delete(int id);
-
 
     Employee signIn(String email, String password) throws EmployeeUnavailableException;
 

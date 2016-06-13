@@ -1,6 +1,7 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.dao.CustomerDao;
+import com.bionic.edu.dao.generic.GenericDao;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.exception.CustomerBlockedException;
 import com.bionic.edu.util.Crypto;
@@ -17,18 +18,20 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerDao customerDao;
 
+//    public CustomerServiceImpl(){
+//    }
+//
+//    @Autowired
+//    public CustomerServiceImpl(GenericDao<Customer> genericDao){
+//        super(genericDao);
+//        this.customerDao = (CustomerDao) genericDao;
+//    }
+
     @Override
     public Customer findById(int id) {
         Customer customer = customerDao.findById(id);
         if (customer != null)
             customer.setPassword(Crypto.encrypt(customer.getPassword()));
-        return customer;
-    }
-
-    @Override
-    public Customer findByEmail(String email) {
-        Customer customer = customerDao.findByEmail(email);
-//        customer.setPassword(Crypto.encrypt(customer.getPassword()));
         return customer;
     }
 
@@ -52,6 +55,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void delete(int id) {
         customerDao.delete(id);
+    }
+
+
+    @Override
+    public Customer findByEmail(String email) {
+        Customer customer = customerDao.findByEmail(email);
+//        customer.setPassword(Crypto.encrypt(customer.getPassword()));
+        return customer;
     }
 
     @Override

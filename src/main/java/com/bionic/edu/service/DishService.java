@@ -1,19 +1,11 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Dish;
+import com.bionic.edu.service.generic.ServiceInterface;
 
 import java.util.List;
 
-public interface DishService {
-
-    Dish findById(int id);
-
-    List<Dish> findAll();
-
-    void save(Dish dish);
-
-    void delete(int id);
-
+public interface DishService extends ServiceInterface<Dish> {
 
     List<Dish> findByCategory(int categoryId);
 

@@ -169,6 +169,7 @@ public class EmployeeBean implements Serializable {
             logger.error("Sign In Error - Account unavailable.");
             return "employeeSignIn";
         }
+//        System.out.println("-------------------------" +employee + " signed:" + signedIn);
         signedIn = employee.getPassword().equals(decryptPass);
         if (signedIn) {
             if (employee.getRole().getName().equals("SUPER_USER"))

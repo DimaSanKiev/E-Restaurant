@@ -1,22 +1,38 @@
 package com.bionic.edu.bean;
 
-import com.bionic.edu.entity.Dish;
+import com.bionic.edu.entity.Photo;
 import com.bionic.edu.service.DishService;
+import com.bionic.edu.service.PhotoService;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.context.annotation.Scope;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 @Named
 @Scope("session")
 public class PhotoBean {
 
     @Inject
-    private DishService dishService;
+    private PhotoService photoService;
+
+    public StreamedContent getPhotoContent() throws IOException {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            // So, we're rendering the HTML. Return a stub StreamedContent so that it will generate right URL.
+            return new DefaultStreamedContent();
+        } else {
+            // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
+            String photoId = context.getExternalContext().getRequestParameterMap().get("id");
+            Photo photo = photoService.findById(Integer.valueOf(photoId));
+            return new DefaultStreamedContent(new ByteArrayInputStream(photo.getContent()));
+        }
+    }
 
 //    public void saveDishPhoto(String photoFilePath) throws IOException {
 //        Person person = new Person("Tom");
@@ -45,4 +61,5 @@ public class PhotoBean {
         outputStream.write(fileBytes);
         outputStream.close();
     }
+
 }

@@ -37,7 +37,9 @@
                     <ul class="dish_block">
                         <li>
                             <p:graphicImage styleClass="dish_photo" rendered="#{not empty orderDish.photo}"
-                                            value="resources/images/general/test_image.png"/>
+                                            value="#{photoBean.photoContent}">
+                                <f:param name="id" value="#{orderDish.photo.id}"/>
+                            </p:graphicImage>
                             <p:graphicImage styleClass="dish_photo" rendered="#{empty orderDish.photo}"
                                             value="resources/images/general/no_image.png"/>
 

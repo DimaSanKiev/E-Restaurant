@@ -12,7 +12,7 @@ public class Dish {
     private double price;
     private boolean kitchenmade;
     private boolean available = true;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id")
     private Photo photo;
     @ManyToOne(cascade = CascadeType.MERGE)

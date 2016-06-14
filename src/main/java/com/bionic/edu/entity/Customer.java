@@ -14,7 +14,7 @@ public class Customer {
     private String address;
     private Date birthDate;
     private boolean blocked;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id")
     private Photo avatar;
 

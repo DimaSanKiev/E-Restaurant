@@ -105,7 +105,7 @@ public class EmployeeServiceImplTest {
     }
 
     private Employee createTestEmployee() {
-        Employee employee = new Employee("Test Employee", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(1));
+        Employee employee = new Employee("Test Employee", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(3));
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd.HH:mm:ss");
         Date date = new Date();
         employee.setEmail("employee." + dateFormat.format(date) + "@erestaurant.com");

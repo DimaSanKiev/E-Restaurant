@@ -149,6 +149,8 @@ public class EmployeeBean implements Serializable {
         idRoleMap = new HashMap<>();
         List<Role> employeeRoles = roleService.findAll();
         for (Role role : employeeRoles) {
+            if (role.getId() == 1)
+                continue;
             idNameRoleMap.put(role.getName(), String.valueOf(role.getId()));
             idRoleMap.put(String.valueOf(role.getId()), role);
         }

@@ -111,11 +111,6 @@ public class CustomerBean implements Serializable {
         return "editCustomer";
     }
 
-    public String deleteCustomer(String id) {
-        customerService.delete(Integer.valueOf(id));
-        return "customerList";
-    }
-
     public String signIn(String email, String password) {
         String decryptPass = Crypto.encrypt(password);
         try {
@@ -131,6 +126,7 @@ public class CustomerBean implements Serializable {
             logger.error("Sign In Error - Account blocked.");
             return "signIn";
         }
+        // todo - NPE here
         signedIn = customer.getPassword().equals(password);
         if (signedIn) {
             return "menu";

@@ -12,8 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class CustomerServiceImplTest {
 
@@ -26,7 +25,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testFindById() throws Exception {
+    public void findByIdNotNull() throws Exception {
         Customer customer = customerService.findById(1);
         System.out.println(customer);
         assertNotNull(customer);
@@ -34,14 +33,14 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testFindByEmail() throws Exception {
+    public void findByEmailNotNull() throws Exception {
         Customer customer = customerService.findByEmail("igor.shevchenko@yahoo.com");
         assertNotNull(customer);
         assertEquals("igor.shevchenko@yahoo.com", customer.getEmail());
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public void findAllListSize() throws Exception {
         List<Customer> customers = customerService.findAll();
         assertNotNull(customers);
         customers.forEach(System.out::println);
@@ -49,15 +48,15 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testSave_notNull() throws Exception {
+    public void addingCustomerSetsId() throws Exception {
         Customer customer = createTestCustomer();
+        int originalId = customer.getId();
         customerService.save(customer);
-        int id = customer.getId();
-        assertNotNull(customerService.findById(id));
+        assertNotEquals(originalId, customer.getId());
     }
 
     @Test
-    public void testSave_listSize() throws Exception {
+    public void addingCustomerIncreasesListSize() throws Exception {
         List<Customer> list1 = customerService.findAll();
         Customer customer = createTestCustomer();
         customerService.save(customer);
@@ -66,24 +65,26 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    public void updateCustomerName() throws Exception {
         Customer customer = customerService.findById(1);
+        String originalName = customer.getName();
         customer.setName("Olga Kovalenko");
         customerService.save(customer);
-        assertEquals("Olga Kovalenko", customer.getName());
+        assertNotEquals(originalName, customer.getName());
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public void deletedCustomerIsNull() throws Exception {
         Customer customer = createTestCustomer();
         customerService.save(customer);
         int id = customer.getId();
         customerService.delete(id);
-        assertEquals(null, customerService.findById(id));
+        assertNull(customerService.findById(id));
     }
 
     @Test
-    public void testSignIn() throws Exception {
+    public void signInWithWrongCredentialsThrowsException() throws Exception {
+        // TODO: 16.06.2016 - signing in with wrong credentials throws exception
         Customer customer = customerService.signIn("kate.belova@gmail.com", "wrongPass");
         customerService.signIn("kate.belova@gmail.com", "pass3");
         assertEquals("Kate Belova", customer.getName());

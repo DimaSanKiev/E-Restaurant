@@ -25,14 +25,14 @@ public class DishCategoryServiceImplTest {
     }
 
     @Test
-    public void testFindById() throws Exception {
+    public void findByIdNotNull() throws Exception {
         DishCategory dishCategory = dishCategoryService.findById(1);
         assertNotNull(dishCategory);
         assertEquals(1, dishCategory.getId());
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public void findAllListSize() throws Exception {
         List<Dish> dishes = dishCategoryService.findDishes(1);
         assertEquals(3, dishes.size());
     }

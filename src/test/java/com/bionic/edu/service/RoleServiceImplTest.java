@@ -11,6 +11,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class RoleServiceImplTest {
@@ -24,14 +25,14 @@ public class RoleServiceImplTest {
     }
 
     @Test
-    public void testFindById() throws Exception {
+    public void findByIdNotNull() throws Exception {
         Role role = roleService.findById(1);
         assertNotNull(role);
         assertEquals(1, role.getId());
     }
 
     @Test
-    public void testFindByName() throws Exception {
+    public void findingEachRoleByNameReturnsList() throws Exception {
         List<Role> roles = new ArrayList<>();
         roles.add(roleService.findByName("SUPER_USER"));
         roles.add(roleService.findByName("ADMIN"));
@@ -43,7 +44,15 @@ public class RoleServiceImplTest {
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public void findingRolesByNameReturnsList() throws Exception {
+        List<Role> roles = new ArrayList<>();
+        roles.addAll(roleService.findAll());
+        assertNotNull(roles);
+        assertEquals(5, roles.size());
+    }
+
+    @Test
+    public void findAllReturnsList() throws Exception {
         List<Role> roles = roleService.findAll();
         roles.forEach(System.out::println);
         assertNotNull(roles);
@@ -51,16 +60,16 @@ public class RoleServiceImplTest {
     }
 
     @Test
-    public void testSave_notNull() throws Exception {
+    public void addingNewRoleChangesId() throws Exception {
         Role role = new Role("INSPECTOR");
+        int originalId = role.getId();
         roleService.save(role);
-        int id = role.getId();
-        assertNotNull(roleService.findById(id));
-        roleService.delete(id);
+        assertNotEquals(originalId, role.getId());
+        roleService.delete(role.getId());
     }
 
     @Test
-    public void testSave_listSize() throws Exception {
+    public void addingNewRoleIncreasesListSize() throws Exception {
         List<Role> list1 = roleService.findAll();
         Role role = new Role("INSPECTOR");
         roleService.save(role);
@@ -69,7 +78,7 @@ public class RoleServiceImplTest {
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public void deletingRoleReturnsNull() throws Exception {
         Role role = new Role("AUDITOR");
         roleService.save(role);
         int id = role.getId();

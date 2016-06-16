@@ -25,23 +25,23 @@ public class OrderDishesServiceImplTest {
     }
 
     @Test
-    public void testFindById() throws Exception {
+    public void findByIdNotNull() throws Exception {
         OrderDishes orderDishes = orderDishesService.findById(1);
         assertNotNull(orderDishes);
         assertEquals(1, orderDishes.getId());
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public void findAllListSize() throws Exception {
         List<OrderDishes> ordersDishes = orderDishesService.findAll();
-        System.out.println("**************");
-        ordersDishes.forEach(System.out::println);
+//        System.out.println("**************");
+//        ordersDishes.forEach(System.out::println);
         assertNotNull(ordersDishes);
         assertEquals(18, ordersDishes.size());
     }
 
     @Test
-    public void testAdd_notNull() throws Exception {
+    public void findAllReturnsListSize() throws Exception {
         OrderDishes orderDishes = orderDishesService.findById(1);
         orderDishesService.save(orderDishes);
         int id = orderDishes.getId();
@@ -49,7 +49,7 @@ public class OrderDishesServiceImplTest {
     }
 
     @Test
-    public void testAdd_listSize() throws Exception {
+    public void addingOrderDishIncreasesListSize() throws Exception {
         List<OrderDishes> list1 = orderDishesService.findAll();
         OrderDishes orderDishes = orderDishesService.findById(1);
         orderDishesService.save(orderDishes);
@@ -58,17 +58,16 @@ public class OrderDishesServiceImplTest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    public void updatingOrderDishChangesPrice() throws Exception {
         OrderDishes orderDishes = orderDishesService.findById(1);
         orderDishes.setPrice(10.00);
         orderDishesService.save(orderDishes);
         assertEquals(10.00, orderDishes.getPrice(), 0.00);
     }
 
-    // SQLIntegrityConstraintViolationException: DELETE on table 'ORDERS' caused a violation of foreign key constraint 'ORDERS_FK' for key (1)
-    @Ignore
     @Test
     public void testDelete() throws Exception {
+        // TODO: 6/16/16 - deleting orderDish
         OrderDishes orderDishes = orderDishesService.findById(2);
         orderDishesService.save(orderDishes);
         int id = orderDishes.getId();
@@ -80,6 +79,7 @@ public class OrderDishesServiceImplTest {
     @Ignore
     @Test
     public void testSetDishReady() throws Exception {
+        // TODO: 6/16/16 - create new orderDish and test its readiness
         Orders order = orderService.findById(7);
         assertEquals(1, order.getOrderStatus().getId());
         orderDishesService.markDone(18);
@@ -88,7 +88,7 @@ public class OrderDishesServiceImplTest {
     }
 
     @Test
-    public void testGetAllDishesFromOrder() throws Exception {
+    public void gettingAllDishesFromOrderReturnsList() throws Exception {
         List<OrderDishes> orderDishesList = orderDishesService.getAllDishesFromOrder(1);
         orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);
@@ -96,14 +96,14 @@ public class OrderDishesServiceImplTest {
     }
 
     @Test
-    public void testGetUndoneDishesFromOrder() throws Exception {
+    public void gettingAllUndoneDishesFromOrderReturnsList() throws Exception {
         List<OrderDishes> orderDishesList = orderDishesService.getUndoneDishesFromOrder(7);
         assertNotNull(orderDishesList);
         assertEquals(2, orderDishesList.size());
     }
 
     @Test
-    public void testGetKitchenPendingList() throws Exception {
+    public void gettingKitchenPendingList() throws Exception {
         List<OrderDishes> orderDishesList = orderDishesService.getKitchenPendingList();
         orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);

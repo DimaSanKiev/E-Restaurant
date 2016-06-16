@@ -11,8 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class EmployeeServiceImplTest {
 
@@ -27,7 +26,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testFindById() throws Exception {
+    public void findByIdNotNull() throws Exception {
         Employee employee = employeeService.findById(1);
         assertNotNull(employee);
         System.out.println(employee);
@@ -35,7 +34,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testFindByEmail() throws Exception {
+    public void findByEmailNotNull() throws Exception {
         Employee employee = employeeService.findByEmail("kitchen@erestaurant.com");
         assertNotNull(employee);
         assertEquals(3, employee.getId());
@@ -43,23 +42,22 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public void findAllListSize() throws Exception {
         List<Employee> employees = employeeService.findAll();
         assertNotNull(employees);
         assertEquals(5, employees.size());
     }
 
     @Test
-    public void testSave_NotNull() throws Exception {
+    public void addingEmployeeSetsId() throws Exception {
         Employee employee = createTestEmployee();
+        int originalId = employee.getId();
         employeeService.save(employee);
-        int employeeId = employee.getId();
-        assertNotNull(employeeService.findById(employeeId));
-        employeeService.delete(employeeId);
+        assertNotEquals(originalId, employee.getId());
     }
 
     @Test
-    public void testSave_listSize() throws Exception {
+    public void addingCustomerIncreasesListSize() throws Exception {
         Employee employee = createTestEmployee();
         List<Employee> list1 = employeeService.findAll();
         employeeService.save(employee);
@@ -70,24 +68,26 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    public void updateEmployeeName() throws Exception {
         Employee employee = employeeService.findById(1);
-        employee.setName("Dima_Updated");
+        String originalName = employee.getName();
+        employee.setName("Dima Updated");
         employeeService.save(employee);
-        assertEquals("Dima_Updated", employeeService.findById(1).getName());
+        assertNotEquals(originalName, employee.getName());
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public void deletedCustomerIsNull() throws Exception {
         Employee employee = createTestEmployee();
         employeeService.save(employee);
         int id = employee.getId();
         employeeService.delete(id);
-        assertEquals(null, employeeService.findById(id));
+        assertNull(employeeService.findById(id));
     }
 
     @Test
-    public void testSignIn() throws Exception {
+    public void signInWithWrongCredentialsFails() throws Exception {
+        // TODO: 6/16/16 - signing in with wrong credentials throws exception
         try {
             employeeService.signIn("elena.bakhmach@gmail.com", "wrongPass");
         } catch (AssertionError er) {
@@ -97,7 +97,8 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void testSetReadiness() throws Exception {
+    public void employeeUnableToSignInWithFalseReadiness() throws Exception {
+        // TODO: 6/16/16 - sign in with false readiness
         Employee employee = employeeService.signIn("admin@erestaurant.com", "pass2");
         employeeService.signIn("admin@erestaurant.com", "pass2");
         assertEquals("Igor Himchenko", employee.getName());

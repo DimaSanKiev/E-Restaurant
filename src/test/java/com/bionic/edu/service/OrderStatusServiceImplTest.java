@@ -10,6 +10,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class OrderStatusServiceImplTest {
@@ -23,14 +24,14 @@ public class OrderStatusServiceImplTest {
     }
 
     @Test
-    public void testFindById() throws Exception {
+    public void findByIdNotNull() throws Exception {
         OrderStatus orderStatus = orderStatusService.findById(1);
         assertNotNull(orderStatus);
         assertEquals(1, orderStatus.getId());
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public void findAllReturnsListSize() throws Exception {
         List<OrderStatus> orderStatuses = orderStatusService.findAll();
         orderStatuses.forEach(System.out::println);
         assertNotNull(orderStatuses);
@@ -38,16 +39,16 @@ public class OrderStatusServiceImplTest {
     }
 
     @Test
-    public void testSave_notNull() throws Exception {
+    public void addingOrderStatusChangesId() throws Exception {
         OrderStatus orderStatus = new OrderStatus("REFUNDED");
+        int originalId = orderStatus.getId();
         orderStatusService.save(orderStatus);
-        int id = orderStatus.getId();
-        assertNotNull(orderStatusService.findById(id));
-        orderStatusService.delete(id);
+        assertNotEquals(originalId, orderStatus.getId());
+        orderStatusService.delete(orderStatus.getId());
     }
 
     @Test
-    public void testSave_listSize() throws Exception {
+    public void addingOrderStatusIncreasesListSize() throws Exception {
         List<OrderStatus> list1 = orderStatusService.findAll();
         OrderStatus orderStatus = new OrderStatus("REFUNDED");
         orderStatusService.save(orderStatus);
@@ -56,7 +57,7 @@ public class OrderStatusServiceImplTest {
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public void deletingOrderStatusReturnsNull() throws Exception {
         OrderStatus orderStatus = new OrderStatus("REJECTED");
         orderStatusService.save(orderStatus);
         int id = orderStatus.getId();

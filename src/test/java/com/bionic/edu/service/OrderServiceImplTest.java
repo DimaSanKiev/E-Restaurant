@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @Ignore
@@ -33,14 +34,14 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testFindById() throws Exception {
+    public void findByIdNotNull() throws Exception {
         Orders order = orderService.findById(1);
         assertNotNull(order);
         assertEquals(1, order.getId());
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public void findAllListSize() throws Exception {
         List<Orders> orders = orderService.findAll();
         orders.forEach(System.out::println);
         assertNotNull(orders);
@@ -48,16 +49,15 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testAdd_notNull() throws Exception {
+    public void addingOrderSetsId() throws Exception {
         Orders order = orderService.findById(1);
-        int id = order.getId();
+        int originalId = order.getId();
         orderService.save(order);
-        assertNotNull(order.getId());
-        assertEquals(id, order.getId());
+        assertNotEquals(originalId, order.getId());
     }
 
     @Test
-    public void testAdd_listSize() throws Exception {
+    public void addingOrderIncreasesListSize() throws Exception {
         List<Orders> list1 = orderService.findAll();
         Orders order = orderService.findById(1);
         orderService.save(order);
@@ -66,7 +66,7 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    public void updatingOrderChangesCustomer() throws Exception {
         Orders order = orderService.findById(1);
         order.setCustomer(customerService.findById(1));
         orderService.save(order);
@@ -74,10 +74,8 @@ public class OrderServiceImplTest {
         assertEquals("olga.romanova@gmail.com", order.getCustomer().getEmail());
     }
 
-    // DELETE on table 'ORDERS' caused a violation of foreign key constraint 'ORDER_FK' for key (1)
-    @Ignore
     @Test
-    public void testDelete() throws Exception {
+    public void deletingOrder() throws Exception {
         Orders order = orderService.findById(1);
         int id = order.getId();
         orderService.save(order);
@@ -86,7 +84,7 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testSetOrderStatus() throws Exception {
+    public void settingOrderStatus() throws Exception {
         Orders order = orderService.findById(1);
         System.out.println(order.getOrderStatus());
         orderService.setOrderStatus(1, 2);
@@ -94,7 +92,7 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testGetDeliveryListByTime() throws Exception {
+    public void gettingDeliveryListByTimeReturnsList() throws Exception {
         List<Orders> orders = orderService.getDeliveryListByTime();
         orders.forEach(System.out::println);
         assertNotNull(orders);
@@ -102,7 +100,7 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testGetDeliveryListByStatus() throws Exception {
+    public void gettingDeliveryListByStatusReturnsList() throws Exception {
         List<Orders> orders = orderService.getDeliveryListByStatus();
         orders.forEach(System.out::println);
         assertNotNull(orders);
@@ -110,14 +108,15 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testGetCustomersOrder() throws Exception {
+    public void gettingCustomerOrderReturnsList() throws Exception {
         List<Orders> orders = orderService.getCustomersOrder(3);
         assertNotNull(orders);
         assertEquals(1, orders.size());
     }
 
     @Test
-    public void testGetReportPeriod() throws Exception {
+    public void gettingTotalReport() throws Exception {
+        // TODO: 6/16/16  
         List<ReportTotal> reports = orderService.getReportTotal(Date.valueOf("2015-12-01"), Date.valueOf("2015-12-15"));
         reports.forEach(System.out::println);
         assertNotNull(reports);
@@ -125,7 +124,8 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void testGetReportCategory() throws Exception {
+    public void gettingReportByCategory() throws Exception {
+        // TODO: 6/16/16  
         List<ReportCategory> reports = orderService.getReportCategory(Date.valueOf("2015-12-01"), Date.valueOf("2015-12-15"));
         reports.forEach(System.out::println);
         assertNotNull(reports);

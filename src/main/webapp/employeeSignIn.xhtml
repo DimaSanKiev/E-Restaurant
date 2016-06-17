@@ -24,9 +24,9 @@
             </h:panelGrid>
 
             <br/>
-            <p:commandButton value="Back to menu" action="menu" immadiate="true" immediate="true"/>
             <p:commandButton value="Sign in" update="matchGrid" ajax="false"
                              action="#{employeeBean.signIn(employeeBean.email, employeeBean.password)}"/>
+            <p:commandButton value="Back to menu" action="menu" immadiate="true" immediate="true"/>
         </div>
     </h:form>
 </h:body>

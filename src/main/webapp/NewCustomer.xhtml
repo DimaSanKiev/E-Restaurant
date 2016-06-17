@@ -39,9 +39,7 @@
 
                     <p:outputLabel styleClass="label" for="birthdate" value="Customer birthdate: "/>
                     <p:calendar id="birthdate" value="#{customerBean.customer.birthDate}" required="false"
-                                type="date">
-                        <!--<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>-->
-                    </p:calendar>
+                                type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
 
                     <p:outputLabel styleClass="label" for="birthdate" value="Block customer: "/>
                     <p:selectBooleanCheckbox id="cBlock" value="#{customerBean.customer.blocked}" required="true"/>

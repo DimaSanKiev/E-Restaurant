@@ -180,6 +180,7 @@ public class EmployeeBean implements Serializable {
             return "signIn";
         }
         signedIn = true;
+        logger.info("\nEmployee ID:" + employee.getId() + "signed in successfully as " + employee.getRole().getName());
         if (employee.getRole().getName().equals("SUPER_USER"))
             return "superPanel.xhtml";
         if (employee.getRole().getName().equals("ADMIN"))
@@ -190,7 +191,6 @@ public class EmployeeBean implements Serializable {
             return "delivery.xhtml";
         if (employee.getRole().getName().equals("BUSINESS_ANALYST"))
             return "reports.xhtml";
-        logger.info("\nEmployee ID:" + employee.getId() + "signed in successfully as " + employee.getRole().getName());
         return "employeeSignIn";
     }
 

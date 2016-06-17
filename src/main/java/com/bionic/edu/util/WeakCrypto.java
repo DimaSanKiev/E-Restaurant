@@ -1,6 +1,6 @@
 package com.bionic.edu.util;
 
-public class Crypto {
+public class WeakCrypto {
 
     public static String encrypt(String password) {
 //        String cryptPassword = "";

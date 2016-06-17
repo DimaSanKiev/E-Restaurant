@@ -3,7 +3,7 @@ package com.bionic.edu.service;
 import com.bionic.edu.dao.EmployeeDao;
 import com.bionic.edu.entity.Employee;
 import com.bionic.edu.exception.EmployeeUnavailableException;
-import com.bionic.edu.util.Crypto;
+import com.bionic.edu.util.WeakCrypto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,14 +21,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee findById(int id) {
         Employee employee = employeeDao.findById(id);
         if (employee != null)
-            employee.setPassword(Crypto.encrypt(employee.getPassword()));
+            employee.setPassword(WeakCrypto.encrypt(employee.getPassword()));
         return employee;
     }
 
     @Override
     public Employee findByEmail(String email) {
         Employee employee = employeeDao.findByEmail(email);
-        employee.setPassword(Crypto.encrypt(employee.getPassword()));
+        employee.setPassword(WeakCrypto.encrypt(employee.getPassword()));
         return employee;
     }
 
@@ -36,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> findAll() {
         List<Employee> employees = employeeDao.findAll();
         for (Employee employee : employees) {
-            employee.setPassword(Crypto.encrypt(employee.getPassword()));
+            employee.setPassword(WeakCrypto.encrypt(employee.getPassword()));
         }
         return employees;
     }
@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     @Override
     public void save(Employee employee) {
-        employee.setPassword(Crypto.encrypt(employee.getPassword()));
+        employee.setPassword(WeakCrypto.encrypt(employee.getPassword()));
         employeeDao.save(employee);
     }
 

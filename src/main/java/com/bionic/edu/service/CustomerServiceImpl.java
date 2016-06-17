@@ -2,10 +2,10 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.CustomerDao;
 import com.bionic.edu.entity.Customer;
+import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.CustomerBlockedException;
-import com.bionic.edu.util.Crypto;
+import com.bionic.edu.util.WeakCrypto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer findById(int id) {
         Customer customer = customerDao.findById(id);
         if (customer != null)
-            customer.setPassword(Crypto.encrypt(customer.getPassword()));
+            customer.setPassword(WeakCrypto.encrypt(customer.getPassword()));
         return customer;
     }
 
@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> findAll() {
         List<Customer> customers = customerDao.findAll();
         for (Customer customer : customers) {
-            customer.setPassword(Crypto.encrypt(customer.getPassword()));
+            customer.setPassword(WeakCrypto.encrypt(customer.getPassword()));
         }
         return customers;
     }
@@ -48,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     @Override
     public void save(Customer customer) {
-        customer.setPassword(Crypto.encrypt(customer.getPassword()));
+        customer.setPassword(WeakCrypto.encrypt(customer.getPassword()));
         customerDao.save(customer);
     }
 
@@ -62,18 +62,19 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findByEmail(String email) {
         Customer customer = customerDao.findByEmail(email);
-//        customer.setPassword(Crypto.encrypt(customer.getPassword()));
+//        customer.setPassword(WeakCrypto.encrypt(customer.getPassword()));
         return customer;
     }
 
     @Override
-    public Customer signIn(String email, String password) throws CustomerBlockedException {
+    public Customer signIn(String email, String password) throws CustomerBlockedException, BadCredentialsException {
         Customer customer = customerDao.findByEmail(email);
-        if (customer != null) {
-            if (customer.isBlocked()) throw new CustomerBlockedException("Customer is blocked");
-            return customer;
+        if (customer == null || !customer.getPassword().equals(password)) {
+            throw new BadCredentialsException("Incorrect email or password");
+        } else if (customer.isBlocked()) {
+            throw new CustomerBlockedException("Customer is blocked");
         }
-        return null;
+        return customer;
     }
 
 }

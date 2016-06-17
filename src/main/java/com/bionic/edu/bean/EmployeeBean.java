@@ -5,7 +5,7 @@ import com.bionic.edu.entity.Role;
 import com.bionic.edu.exception.EmployeeUnavailableException;
 import com.bionic.edu.service.EmployeeService;
 import com.bionic.edu.service.RoleService;
-import com.bionic.edu.util.Crypto;
+import com.bionic.edu.util.WeakCrypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.primefaces.context.RequestContext;
@@ -157,7 +157,7 @@ public class EmployeeBean implements Serializable {
     }
 
     public String signIn(String email, String password) {
-        String decryptPass = Crypto.encrypt(password);
+        String decryptPass = WeakCrypto.encrypt(password);
         try {
             employee = employeeService.signIn(email, decryptPass);
         } catch (NoResultException e) {

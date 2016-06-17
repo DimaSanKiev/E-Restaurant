@@ -105,7 +105,7 @@ public class DishServiceImplTest {
     }
 
     private Dish createTestDishWithPhoto() throws IOException {
-        Path path = Paths.get(pathPrefixMac + "test_image.png");
+        Path path = Paths.get(pathPrefixWin + "test_image.png");
         Photo photo = new Photo(Files.readAllBytes(path));
         return new Dish("Test Dish", "Test Dish description", generateRandomPrice(), true, true, photo, dishCategoryService.findById(1));
     }

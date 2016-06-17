@@ -1,9 +1,10 @@
 package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Customer;
+import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.CustomerBlockedException;
 import com.bionic.edu.service.CustomerService;
-import com.bionic.edu.util.Crypto;
+import com.bionic.edu.util.WeakCrypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.primefaces.context.RequestContext;
@@ -13,7 +14,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -92,12 +92,13 @@ public class CustomerBean implements Serializable {
         } catch (Exception e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign Up Error", "Current email is already used."));
-            logger.error("Sign Up Error - Current email is already used.");
+            logger.error("Sign Up Error - Current email is already used.", "CustomerID:" + customer.getId());
             return "signUp";
         }
         signIn(customer.getEmail(), customer.getPassword());
         RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Sign Up Success", "You have successfully registered on ERestaurant."));
+        signedIn = true;
         return "menu";
     }
 
@@ -112,37 +113,33 @@ public class CustomerBean implements Serializable {
     }
 
     public String signIn(String email, String password) {
-        String decryptPass = Crypto.encrypt(password);
+        String decryptPass = WeakCrypto.encrypt(password);
         try {
             customer = customerService.signIn(email, decryptPass);
-        } catch (NoResultException e) {
+        } catch (BadCredentialsException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
-            logger.error("Sign In Error - Incorrect email or password.");
+            logger.error("Sign In Error - Incorrect email or password." +
+                    "\nEmail:" + email + " Password:" + password);
+            customer = null;
             return "signIn";
         } catch (CustomerBlockedException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Your account is blocked."));
-            logger.error("Sign In Error - Account blocked.");
+            logger.error("Sign In Error - Account blocked." + "\nEmail:" + email);
+            customer = null;
             return "signIn";
         }
-        // todo - NPE here
-        signedIn = customer.getPassword().equals(password);
-        if (signedIn) {
-            return "menu";
-        } else {
-            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Sign In Error", "Incorrect email or password, please try again."));
-            logger.error("Sign In Error - Incorrect email or password.");
-            return "signIn";
-        }
+        signedIn = true;
+        logger.info("Customer " + customer.getEmail() + " signed in successfully");
+        return "menu";
     }
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Signed Out", "Thank you for visiting ERestaurant."));
-        logger.info("Customer signed out.");
+        logger.info("Customer signed out.", "CustomerID:" + customer.getId() + "Email:" + customer.getEmail());
         return "menu";
     }
 

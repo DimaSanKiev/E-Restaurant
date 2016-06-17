@@ -163,41 +163,42 @@ public class EmployeeBean implements Serializable {
         } catch (BadCredentialsException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
-            logger.error("Sign In Error - Incorrect email or password.");
+            logger.error("\nEmployee sign in ERROR - Incorrect email or password." + "Email:" + email + " Password:" + password);
+            employee = null;
             return "employeeSignIn";
         } catch (EmployeeNotReadyException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "You account in unavailable at the moment. Please contact SuperUser."));
-            logger.error("Sign In Error - Account unavailable.");
+            logger.error("\nEmployee sign in ERROR - Account blocked." + " Email:" + email);
+            employee = null;
             return "employeeSignIn";
-        }
-//        System.out.println("-------------------------" +employee + " signed:" + signedIn);
-        signedIn = employee.getPassword().equals(decryptPass);
-        if (signedIn) {
-            if (employee.getRole().getName().equals("SUPER_USER"))
-                return "superPanel.xhtml";
-            if (employee.getRole().getName().equals("ADMIN"))
-                return "dishList.xhtml";
-            if (employee.getRole().getName().equals("KITCHEN_STAFF"))
-                return "kitchen.xhtml";
-            if (employee.getRole().getName().equals("DELIVERY_STAFF"))
-                return "delivery.xhtml";
-            if (employee.getRole().getName().equals("BUSINESS_ANALYST"))
-                return "reports.xhtml";
-            return null;
-        } else {
+        } catch (Exception ex) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Sign In Error", "Incorrect email or password, please try again."));
-            logger.error("Sign In Error - Incorrect email or password.");
-            return "employeeSignIn";
+                    "Sign In Error", "Unknown error."));
+            logger.error("\nEmployee sign in ERROR - Unknown error." + " Email:" + email + "\n" + ex.getMessage());
+            employee = null;
+            return "signIn";
         }
+        signedIn = true;
+        if (employee.getRole().getName().equals("SUPER_USER"))
+            return "superPanel.xhtml";
+        if (employee.getRole().getName().equals("ADMIN"))
+            return "dishList.xhtml";
+        if (employee.getRole().getName().equals("KITCHEN_STAFF"))
+            return "kitchen.xhtml";
+        if (employee.getRole().getName().equals("DELIVERY_STAFF"))
+            return "delivery.xhtml";
+        if (employee.getRole().getName().equals("BUSINESS_ANALYST"))
+            return "reports.xhtml";
+        logger.info("\nEmployee ID:" + employee.getId() + "signed in successfully as " + employee.getRole().getName());
+        return "employeeSignIn";
     }
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 //        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
 //                "Signed Out", "Thank you, have a good day."));
-        logger.info("Employee signed out.");
+        logger.info("Employee ID:" + employee.getId() + " signed out.");
         return "employeeSignIn";
     }
 

@@ -42,11 +42,11 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void findAllListSize() throws Exception {
+    public void findAllReturnsList() throws Exception {
         List<Customer> customers = customerService.findAll();
         assertNotNull(customers);
-        customers.forEach(System.out::println);
-        assertEquals(5, customers.size());
+//        customers.forEach(System.out::println);
+        assertEquals(6, customers.size());
     }
 
     @Test

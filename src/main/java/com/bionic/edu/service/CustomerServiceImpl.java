@@ -66,8 +66,9 @@ public class CustomerServiceImpl implements CustomerService {
         return customer;
     }
 
+    @Transactional(readOnly = true)
     @Override
-    public Customer signIn(String email, String password) throws CustomerBlockedException, BadCredentialsException {
+    public Customer signIn(String email, String password) throws BadCredentialsException, CustomerBlockedException {
         Customer customer = customerDao.findByEmail(email);
         if (customer == null || !customer.getPassword().equals(password)) {
             throw new BadCredentialsException("Incorrect email or password");

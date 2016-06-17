@@ -9,5 +9,5 @@ public interface CustomerService extends GenericService<Customer> {
 
     Customer findByEmail(String email);
 
-    Customer signIn(String email, String password) throws CustomerBlockedException, BadCredentialsException;
+    Customer signIn(String email, String password) throws BadCredentialsException, CustomerBlockedException;
 }

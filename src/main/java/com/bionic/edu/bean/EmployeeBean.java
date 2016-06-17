@@ -2,6 +2,7 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Employee;
 import com.bionic.edu.entity.Role;
+import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.EmployeeUnavailableException;
 import com.bionic.edu.service.EmployeeService;
 import com.bionic.edu.service.RoleService;
@@ -160,7 +161,7 @@ public class EmployeeBean implements Serializable {
         String decryptPass = WeakCrypto.encrypt(password);
         try {
             employee = employeeService.signIn(email, decryptPass);
-        } catch (NoResultException e) {
+        } catch (BadCredentialsException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
             logger.error("Sign In Error - Incorrect email or password.");

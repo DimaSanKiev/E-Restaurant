@@ -2,6 +2,7 @@ package com.bionic.edu.service;
 
 import com.bionic.edu.dao.EmployeeDao;
 import com.bionic.edu.entity.Employee;
+import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.EmployeeUnavailableException;
 import com.bionic.edu.util.WeakCrypto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,13 +57,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     @Override
-    public Employee signIn(String email, String password) throws EmployeeUnavailableException {
+    public Employee signIn(String email, String password) throws BadCredentialsException, EmployeeUnavailableException {
         Employee employee = employeeDao.findByEmail(email);
-        if (employee != null) {
-            if (!employee.isReady()) throw new EmployeeUnavailableException("Employee is not ready.");
-            return employee;
+        if (employee == null || !employee.getPassword().equals(password)) {
+            throw new BadCredentialsException("Incorrect email or password");
+        } else if (!employee.isReady()) {
+            throw new EmployeeUnavailableException("Employee is not ready");
         }
-        return null;
+        return employee;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Employee;
+import com.bionic.edu.exception.BadCredentialsException;
+import com.bionic.edu.exception.EmployeeNotReadyException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -45,7 +47,7 @@ public class EmployeeServiceImplTest {
     public void findAllListSize() throws Exception {
         List<Employee> employees = employeeService.findAll();
         assertNotNull(employees);
-        assertEquals(5, employees.size());
+        assertEquals(6, employees.size());
     }
 
     @Test
@@ -54,6 +56,7 @@ public class EmployeeServiceImplTest {
         int originalId = employee.getId();
         employeeService.save(employee);
         assertNotEquals(originalId, employee.getId());
+        employeeService.delete(employee.getId());
     }
 
     @Test
@@ -74,6 +77,8 @@ public class EmployeeServiceImplTest {
         employee.setName("Dima Updated");
         employeeService.save(employee);
         assertNotEquals(originalName, employee.getName());
+        employee.setName("Dmytro Burdyga");
+        employeeService.save(employee);
     }
 
     @Test
@@ -86,27 +91,36 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    public void signInWithWrongCredentialsFails() throws Exception {
-        // TODO: 6/16/16 - signing in with wrong credentials throws exception
+    public void signInSuccess() throws Exception {
+        Employee employee = employeeService.findById(1);
         try {
-            employeeService.signIn("elena.bakhmach@gmail.com", "wrongPass");
-        } catch (AssertionError er) {
-            assertEquals(1, 1);
+            employeeService.signIn(employee.getEmail(), employee.getPassword());
+        } catch (BadCredentialsException | EmployeeNotReadyException e) {
+            employee = null;
         }
-        employeeService.signIn("elena.bakhmach@gmail.com", "pass3");
+        assertNotNull(employee);
     }
 
-    @Test
-    public void employeeUnableToSignInWithFalseReadiness() throws Exception {
-        // TODO: 6/16/16 - sign in with false readiness
-        Employee employee = employeeService.signIn("admin@erestaurant.com", "pass2");
-        employeeService.signIn("admin@erestaurant.com", "pass2");
-        assertEquals("Igor Himchenko", employee.getName());
-        assertEquals("ADMIN", employee.getRole().getName());
+    @Test(expected = BadCredentialsException.class)
+    public void signInFailsOfWrongPassword() throws Exception {
+        Employee employee = employeeService.findById(1);
+        employeeService.signIn(employee.getEmail(), "wrongPassword");
+    }
+
+    @Test(expected = BadCredentialsException.class)
+    public void signInFailsOfWrongEmail() throws Exception {
+        Employee employee = employeeService.findById(1);
+        employeeService.signIn("wrongEmail", employee.getPassword());
+    }
+
+    @Test(expected = EmployeeNotReadyException.class)
+    public void signInFailsOfEmployeeNotReady() throws Exception {
+        Employee employee = employeeService.findById(6);
+        employeeService.signIn(employee.getEmail(), employee.getPassword());
     }
 
     private Employee createTestEmployee() {
-        Employee employee = new Employee("Test Employee", "testAdd@email.com", "testPass", new Date(1984-06-27), new Date(2013-04-02), true, roleService.findById(3));
+        Employee employee = new Employee("Test Employee", "testAdd@email.com", "testPass", new Date(1984 - 06 - 27), new Date(2013 - 04 - 02), true, roleService.findById(3));
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd.HH:mm:ss");
         Date date = new Date();
         employee.setEmail("employee." + dateFormat.format(date) + "@erestaurant.com");

@@ -71,9 +71,9 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer signIn(String email, String password) throws BadCredentialsException, CustomerBlockedException {
         Customer customer = customerDao.findByEmail(email);
         if (customer == null || !customer.getPassword().equals(password)) {
-            throw new BadCredentialsException("Incorrect email or password");
+            throw new BadCredentialsException("Incorrect email or password.");
         } else if (customer.isBlocked()) {
-            throw new CustomerBlockedException("Customer is blocked");
+            throw new CustomerBlockedException("Customer is blocked.");
         }
         return customer;
     }

@@ -3,7 +3,7 @@ package com.bionic.edu.bean;
 import com.bionic.edu.entity.Employee;
 import com.bionic.edu.entity.Role;
 import com.bionic.edu.exception.BadCredentialsException;
-import com.bionic.edu.exception.EmployeeUnavailableException;
+import com.bionic.edu.exception.EmployeeNotReadyException;
 import com.bionic.edu.service.EmployeeService;
 import com.bionic.edu.service.RoleService;
 import com.bionic.edu.util.WeakCrypto;
@@ -18,7 +18,6 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -166,7 +165,7 @@ public class EmployeeBean implements Serializable {
                     "Sign In Error", "Incorrect email or password, please try again."));
             logger.error("Sign In Error - Incorrect email or password.");
             return "employeeSignIn";
-        } catch (EmployeeUnavailableException e) {
+        } catch (EmployeeNotReadyException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "You account in unavailable at the moment. Please contact SuperUser."));
             logger.error("Sign In Error - Account unavailable.");

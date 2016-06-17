@@ -55,6 +55,7 @@ public class CustomerServiceImplTest {
         int originalId = customer.getId();
         customerService.save(customer);
         assertNotEquals(originalId, customer.getId());
+        customerService.delete(customer.getId());
     }
 
     @Test
@@ -64,6 +65,7 @@ public class CustomerServiceImplTest {
         customerService.save(customer);
         List<Customer> list2 = customerService.findAll();
         assertEquals(1, list2.size() - list1.size());
+        customerService.delete(customer.getId());
     }
 
     @Test
@@ -73,6 +75,8 @@ public class CustomerServiceImplTest {
         customer.setName("Olga Kovalenko");
         customerService.save(customer);
         assertNotEquals(originalName, customer.getName());
+        customer.setName("Olga Romanova");
+        customerService.save(customer);
     }
 
     @Test

@@ -138,15 +138,17 @@ INSERT INTO photo (content)
 VALUES (FILE_READ('/Users/Dima/Java/Projects/E-Restaurant/files/images/18_Beer.jpg'));
 
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Dmytro Burdyga', 'super@erestaurant.com', 'pass1', '1984-06-27', '2010-01-01', TRUE, 1, NULL);
+  VALUES ('Dmytro Burdyga', 'super@erestaurant.com', 'pass1', '1984-06-27', '2010-01-01', TRUE, 1, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Igor Himchenko', 'admin@erestaurant.com', 'pass2', '1987-07-02', '2011-06-10', TRUE, 2, NULL);
+  VALUES ('Igor Himchenko', 'admin@erestaurant.com', 'pass2', '1987-07-02', '2011-06-10', TRUE, 2, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Elena Bakhmach', 'kitchen@erestaurant.com', 'pass3', '1991-04-05', '2014-02-03', TRUE, 3, NULL);
+  VALUES ('Elena Bakhmach', 'kitchen@erestaurant.com', 'pass3', '1991-04-05', '2014-02-03', TRUE, 3, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Alexander Volkov', 'delivery@erestaurant.com', 'pass4', '1993-03-03', '2014-02-28', TRUE, 4, NULL);
+  VALUES ('Alexander Volkov', 'delivery@erestaurant.com', 'pass4', '1993-03-03', '2014-02-28', TRUE, 4, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Bogdana Tkachuk', 'business@erestaurant.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5, NULL);
+  VALUES ('Bogdana Tkachuk', 'business@erestaurant.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5, NULL);
+INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
+  VALUES ('Larisa Dmitrieva', 'business2@erestaurant.com', 'pass6', '1989-01-27', '2011-11-20', FALSE , 5, NULL);
 
 INSERT INTO dish_category (name, description)
 VALUES ('SOUP',
@@ -247,17 +249,17 @@ VALUES ('Beer',
         5.50, FALSE, FALSE, 18, 5);
 
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES ('Olga Romanova', 'olga.romanova@gmail.com', 'pass1', '27 Obolonsky Ave., App. 34, Kyiv', '1995-04-05', NULL);
+  VALUES ('Olga Romanova', 'olga.romanova@gmail.com', 'pass1', '27 Obolonsky Ave., App. 34, Kyiv', '1995-04-05', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES('Igor Shevchenko', 'igor.shevchenko@yahoo.com', 'pass2', '4 Khreschatik Str., App. 12, Kyiv', '1990-01-25', NULL);
+  VALUES('Igor Shevchenko', 'igor.shevchenko@yahoo.com', 'pass2', '4 Khreschatik Str., App. 12, Kyiv', '1990-01-25', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES ('Kate Belova', 'kate.belova@gmail.com', 'pass3', '3 Verbova Str., App. 7, Kyiv', '1987-01-17', NULL);
+  VALUES ('Kate Belova', 'kate.belova@gmail.com', 'pass3', '3 Verbova Str., App. 7, Kyiv', '1987-01-17', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES('Roman Karetskiy', 'roman.karetskiy@gmail.com', 'pass4', '36 Ivana Lepse Str., App. 14, Kyiv', '1989-03-07', NULL);
+  VALUES('Roman Karetskiy', 'roman.karetskiy@gmail.com', 'pass4', '36 Ivana Lepse Str., App. 14, Kyiv', '1989-03-07', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES('Oksana Alekseeva', 'oksana.alekseeva@gmail.com', 'pass5', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18', NULL);
+  VALUES('Oksana Alekseeva', 'oksana.alekseeva@gmail.com', 'pass5', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_id)
-VALUES ('Sergey Butenko', 'sergey.butenko@gmail.com', 'pass6', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18', TRUE, NULL);
+  VALUES ('Sergey Butenko', 'sergey.butenko@gmail.com', 'pass6', '2 Polarna Str., App. 67, Kyiv', '1991-08-08', TRUE, NULL);
 
 INSERT INTO orders_status (name)
 VALUES ('KITCHEN_DONE');

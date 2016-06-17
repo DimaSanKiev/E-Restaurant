@@ -10,17 +10,17 @@ DROP TABLE IF EXISTS orders_status;
 DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS photo;
 
-CREATE TABLE IF NOT EXISTS role (
+CREATE TABLE role (
   id   IDENTITY PRIMARY KEY,
   name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS photo (
+CREATE TABLE photo (
   id      IDENTITY PRIMARY KEY,
   content BLOB
 );
 
-CREATE TABLE IF NOT EXISTS employee (
+CREATE TABLE employee (
   id        IDENTITY PRIMARY KEY,
   name      VARCHAR(100) NOT NULL,
   email     VARCHAR(100) NOT NULL UNIQUE,
@@ -34,13 +34,13 @@ CREATE TABLE IF NOT EXISTS employee (
   FOREIGN KEY (photo_id) REFERENCES photo (id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS dish_category (
+CREATE TABLE dish_category (
   id          IDENTITY PRIMARY KEY,
   name        VARCHAR(100) NOT NULL,
   description VARCHAR(500) NOT NULL,
 );
 
-CREATE TABLE IF NOT EXISTS dish (
+CREATE TABLE dish (
   id               IDENTITY PRIMARY KEY,
   name             VARCHAR(100)   NOT NULL,
   description      VARCHAR(500)   NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS dish (
   FOREIGN KEY (photo_id) REFERENCES photo (id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS customer (
+CREATE TABLE customer (
   id        IDENTITY PRIMARY KEY,
   name      VARCHAR(100) NOT NULL,
   email     VARCHAR(100) NOT NULL UNIQUE,
@@ -65,12 +65,12 @@ CREATE TABLE IF NOT EXISTS customer (
   FOREIGN KEY (photo_id) REFERENCES photo (id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS orders_status (
+CREATE TABLE orders_status (
   id   IDENTITY PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
 );
 
-CREATE TABLE IF NOT EXISTS orders (
+CREATE TABLE orders (
   id                  IDENTITY PRIMARY KEY,
   date_time_taken     TIMESTAMP      NOT NULL,
   date_time_delivered TIMESTAMP,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS orders (
   FOREIGN KEY (customer_id) REFERENCES customer (id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS order_dishes (
+CREATE TABLE order_dishes (
   id        IDENTITY PRIMARY KEY,
   quantity  INT            NOT NULL DEFAULT 2,
   price     DECIMAL(15, 2) NOT NULL,
@@ -246,20 +246,18 @@ VALUES ('Beer',
         'An alcoholic drink made from yeast-fermented malt flavoured with hops.',
         5.50, FALSE, FALSE, 18, 5);
 
-
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
 VALUES ('Olga Romanova', 'olga.romanova@gmail.com', 'pass1', '27 Obolonsky Ave., App. 34, Kyiv', '1995-04-05', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES
-  ('Igor Shevchenko', 'igor.shevchenko@yahoo.com', 'pass2', '4 Khreschatik Str., App. 12, Kyiv', '1990-01-25', NULL);
+VALUES('Igor Shevchenko', 'igor.shevchenko@yahoo.com', 'pass2', '4 Khreschatik Str., App. 12, Kyiv', '1990-01-25', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
 VALUES ('Kate Belova', 'kate.belova@gmail.com', 'pass3', '3 Verbova Str., App. 7, Kyiv', '1987-01-17', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES
-  ('Roman Karetskiy', 'roman.karetskiy@gmail.com', 'pass4', '36 Ivana Lepse Str., App. 14, Kyiv', '1989-03-07', NULL);
+VALUES('Roman Karetskiy', 'roman.karetskiy@gmail.com', 'pass4', '36 Ivana Lepse Str., App. 14, Kyiv', '1989-03-07', NULL);
 INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES
-  ('Oksana Alekseeva', 'oksana.alekseeva@gmail.com', 'pass5', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18', NULL);
+VALUES('Oksana Alekseeva', 'oksana.alekseeva@gmail.com', 'pass5', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18', NULL);
+INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_id)
+VALUES ('Sergey Butenko', 'sergey.butenko@gmail.com', 'pass6', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18', TRUE, NULL);
 
 INSERT INTO orders_status (name)
 VALUES ('KITCHEN_DONE');

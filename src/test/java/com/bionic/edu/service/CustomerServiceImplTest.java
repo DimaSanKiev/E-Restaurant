@@ -1,6 +1,8 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.Customer;
+import com.bionic.edu.exception.BadCredentialsException;
+import com.bionic.edu.exception.CustomerBlockedException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -82,9 +84,22 @@ public class CustomerServiceImplTest {
         assertNull(customerService.findById(id));
     }
 
-    @Test
-    public void signInWithWrongCredentialsThrowsException() throws Exception {
-        // TODO: 16.06.2016 - signing in with wrong credentials throws exception
+    @Test(expected = BadCredentialsException.class)
+    public void signInFailsOfWrongPassword() throws Exception {
+        Customer customer = customerService.findById(1);
+        customerService.signIn(customer.getEmail(), "wrongPassword");
+    }
+
+    @Test(expected = BadCredentialsException.class)
+    public void signInFailsOfWrongEmail() throws Exception {
+        Customer customer = customerService.findById(1);
+        customerService.signIn("wrongEmail", customer.getPassword());
+    }
+
+    @Test(expected = CustomerBlockedException.class)
+    public void signInFailsOfCustomerBlocked() throws Exception {
+        Customer customer = customerService.findById(6);
+        customerService.signIn(customer.getEmail(), customer.getPassword());
     }
 
     private Customer createTestCustomer() {

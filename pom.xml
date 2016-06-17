@@ -211,7 +211,7 @@
             <artifactId>h2</artifactId>
             <version>1.4.192</version>
         </dependency>
-        <!-- http://mvnrepository.com/artifact/org.apache.derby/derby -->
+        <!-- Derby Database connector -->
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>

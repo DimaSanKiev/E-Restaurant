@@ -119,19 +119,18 @@ public class CustomerBean implements Serializable {
         } catch (BadCredentialsException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Incorrect email or password, please try again."));
-            logger.error("Sign In Error - Incorrect email or password." +
-                    "\nEmail:" + email + " Password:" + password);
+            logger.error("\nSign In Error - Incorrect email or password." + "Email:" + email + " Password:" + password);
             customer = null;
             return "signIn";
         } catch (CustomerBlockedException e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign In Error", "Your account is blocked."));
-            logger.error("Sign In Error - Account blocked." + "\nEmail:" + email);
+            logger.error("\nSign In Error - Account blocked." + " Email:" + email);
             customer = null;
             return "signIn";
         }
         signedIn = true;
-        logger.info("Customer " + customer.getEmail() + " signed in successfully");
+        logger.info("\nCustomer " + customer.getEmail() + " signed in successfully");
         return "menu";
     }
 

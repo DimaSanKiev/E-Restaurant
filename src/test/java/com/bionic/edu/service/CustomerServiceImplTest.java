@@ -84,6 +84,17 @@ public class CustomerServiceImplTest {
         assertNull(customerService.findById(id));
     }
 
+    @Test
+    public void signInSuccess() throws Exception {
+        Customer customer = customerService.findById(1);
+        try {
+            customerService.signIn(customer.getEmail(), customer.getPassword());
+        } catch (BadCredentialsException | CustomerBlockedException e) {
+            customer = null;
+        }
+        assertNotNull(customer);
+    }
+
     @Test(expected = BadCredentialsException.class)
     public void signInFailsOfWrongPassword() throws Exception {
         Customer customer = customerService.findById(1);

@@ -51,7 +51,7 @@ public class OrderDishesServiceImplTest {
     @Test
     public void addingOrderDishIncreasesListSize() throws Exception {
         List<OrderDishes> list1 = orderDishesService.findAll();
-        OrderDishes orderDishes = orderDishesService.findById(1);
+        OrderDishes orderDishes = orderDishesService.findById(3);
         orderDishesService.save(orderDishes);
         List<OrderDishes> list2 = orderDishesService.findAll();
         assertEquals(1, list2.size() - list1.size());

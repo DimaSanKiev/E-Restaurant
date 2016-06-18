@@ -1,7 +1,6 @@
 package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Photo;
-import com.bionic.edu.service.DishService;
 import com.bionic.edu.service.PhotoService;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;

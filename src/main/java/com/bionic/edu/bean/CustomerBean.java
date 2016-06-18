@@ -81,23 +81,15 @@ public class CustomerBean implements Serializable {
         this.customers = customers;
     }
 
-    // FIXME: 18.06.2016 - refactor duplicated code
-    public void sortEmployees() {
+    @SuppressWarnings("all")
+    public void sortCustomers() {
         if (sortAscending) {
             // Ascending order
-            Collections.sort(customers, (o1, o2) -> {
-                if (o1.getId() < o2.getId())
-                    return -1;
-                else return 1;
-            });
+            Collections.sort(customers, (c1, c2) -> c1.getId() < c2.getId() ? -1 : 1);
             sortAscending = false;
         } else {
             // Descending order
-            Collections.sort(customers, (o1, o2) -> {
-                if (o1.getId() > o2.getId())
-                    return -1;
-                else return 1;
-            });
+            Collections.sort(customers, (c1, c2) -> c1.getId() > c2.getId() ? -1 : 1);
             sortAscending = true;
         }
     }
@@ -107,18 +99,20 @@ public class CustomerBean implements Serializable {
         return "customerList";
     }
 
+    // TODO: 18.06.2016 - expand exceptions
     public String submitRegistration() {
         try {
             customerService.save(customer);
         } catch (Exception e) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Sign Up Error", "Current email is already used."));
-            logger.error("Sign Up Error - Current email is already used.", "CustomerID:" + customer.getId());
+            logger.error("\nSign Up ERROR - Current email is already used.", " CustomerID:" + customer.getId());
             return "signUp";
         }
         signIn(customer.getEmail(), customer.getPassword());
         RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Sign Up Success", "You have successfully registered on ERestaurant."));
+        logger.info("\nSign Up SUCCESS - Customer with CustomerID:" + customer.getId() + " signed up successfully.");
         signedIn = true;
         return "menu";
     }

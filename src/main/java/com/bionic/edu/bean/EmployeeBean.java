@@ -122,26 +122,20 @@ public class EmployeeBean implements Serializable {
         this.newEmployee = newEmployee;
     }
 
+    @SuppressWarnings("all")
     public void sortEmployees() {
         if (sortAscending) {
             // Ascending order
-            Collections.sort(employees, (o1, o2) -> {
-                if (o1.getId() < o2.getId())
-                    return -1;
-                else return 1;
-            });
+            Collections.sort(employees, (e1, e2) -> e1.getId() < e2.getId() ? -1 : 1);
             sortAscending = false;
         } else {
             // Descending order
-            Collections.sort(employees, (o1, o2) -> {
-                if (o1.getId() > o2.getId())
-                    return -1;
-                else return 1;
-            });
+            Collections.sort(employees, (e1, e2) -> e1.getId() > e2.getId() ? -1 : 1);
             sortAscending = true;
         }
     }
 
+    // TODO: 18.06.2016 - handle duplicating email exception
     public String addEmployee() {
         refreshRoles();
         newEmployee = new Employee();

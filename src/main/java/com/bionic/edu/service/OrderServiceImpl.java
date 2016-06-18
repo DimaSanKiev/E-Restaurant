@@ -66,14 +66,6 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    @Transactional
-    @Override
-    public void setOrderStatus(int orderId, int statusId) {
-        Orders order = orderDao.findById(orderId);
-        order.setOrderStatus(orderStatusDao.findById(statusId));
-        orderDao.save(order);
-    }
-
     @Override
     public List<Orders> getDeliveryListByTime() {
         return orderDao.getDeliveryListByTime();

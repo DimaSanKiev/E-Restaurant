@@ -1,5 +1,6 @@
 package com.bionic.edu.service;
 
+import com.bionic.edu.entity.OrderStatus;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportTotal;
@@ -10,13 +11,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
-@Ignore
 public class OrderServiceImplTest {
 
     private OrderService orderService;
@@ -50,45 +49,38 @@ public class OrderServiceImplTest {
 
     @Test
     public void addingOrderSetsId() throws Exception {
-        Orders order = orderService.findById(1);
+        Orders order = createTestOrder();
         int originalId = order.getId();
         orderService.save(order);
         assertNotEquals(originalId, order.getId());
+        orderService.delete(order.getId());
     }
 
     @Test
     public void addingOrderIncreasesListSize() throws Exception {
         List<Orders> list1 = orderService.findAll();
-        Orders order = orderService.findById(1);
+        Orders order = createTestOrder();
         orderService.save(order);
         List<Orders> list2 = orderService.findAll();
         assertEquals(1, list2.size() - list1.size());
+        orderService.delete(order.getId());
     }
 
     @Test
     public void updatingOrderChangesCustomer() throws Exception {
-        Orders order = orderService.findById(1);
-        order.setCustomer(customerService.findById(1));
+        Orders order = createTestOrder();
+        order.setCustomer(customerService.findById(2));
         orderService.save(order);
-        assertEquals(1, order.getCustomer().getId());
-        assertEquals("olga.romanova@gmail.com", order.getCustomer().getEmail());
+        assertEquals(2, order.getCustomer().getId());
+        assertEquals("igor.shevchenko@yahoo.com", order.getCustomer().getEmail());
     }
 
     @Test
     public void deletingOrder() throws Exception {
-        Orders order = orderService.findById(1);
-        int id = order.getId();
+        Orders order = createTestOrder();
         orderService.save(order);
-        orderService.delete(id);
-        assertEquals(null, orderService.findById(id));
-    }
-
-    @Test
-    public void settingOrderStatus() throws Exception {
-        Orders order = orderService.findById(1);
-        System.out.println(order.getOrderStatus());
-        orderService.setOrderStatus(1, 2);
-        assertEquals(2, orderService.findById(1).getOrderStatus().getId());
+        orderService.delete(order.getId());
+        assertNull(orderService.findById(order.getId()));
     }
 
     @Test
@@ -96,7 +88,7 @@ public class OrderServiceImplTest {
         List<Orders> orders = orderService.getDeliveryListByTime();
         orders.forEach(System.out::println);
         assertNotNull(orders);
-        assertEquals(5, orders.size());
+        assertEquals(2, orders.size());
     }
 
     @Test
@@ -104,7 +96,7 @@ public class OrderServiceImplTest {
         List<Orders> orders = orderService.getDeliveryListByStatus();
         orders.forEach(System.out::println);
         assertNotNull(orders);
-        assertEquals(5, orders.size());
+        assertEquals(2, orders.size());
     }
 
     @Test
@@ -116,8 +108,8 @@ public class OrderServiceImplTest {
 
     @Test
     public void gettingTotalReport() throws Exception {
-        // TODO: 6/16/16  
-        List<ReportTotal> reports = orderService.getReportTotal(Date.valueOf("2015-12-01"), Date.valueOf("2015-12-15"));
+        // TODO: 18.06.2016
+        List<ReportTotal> reports = orderService.getReportTotal(Date.valueOf("2015-12-01"), Date.valueOf("2016-06-15"));
         reports.forEach(System.out::println);
         assertNotNull(reports);
         assertEquals(0, reports.size());
@@ -125,10 +117,19 @@ public class OrderServiceImplTest {
 
     @Test
     public void gettingReportByCategory() throws Exception {
-        // TODO: 6/16/16  
-        List<ReportCategory> reports = orderService.getReportCategory(Date.valueOf("2015-12-01"), Date.valueOf("2015-12-15"));
+        // TODO: 18.06.2016
+        List<ReportCategory> reports = orderService.getReportCategory(Date.valueOf("2015-12-01"), Date.valueOf("2016-06-15"));
         reports.forEach(System.out::println);
         assertNotNull(reports);
         assertEquals(0, reports.size());
+    }
+
+    private Orders createTestOrder() {
+        Orders order = new Orders();
+        order.setCustomer(customerService.findById(1));
+        order.setDateTimeTaken(new Timestamp(new java.util.Date().getTime() - 3600 * 1000));
+        order.setDateTimeDelivered(new Timestamp(new java.util.Date().getTime()));
+        order.setOrderStatus(orderStatusService.findById(1));
+        return order;
     }
 }

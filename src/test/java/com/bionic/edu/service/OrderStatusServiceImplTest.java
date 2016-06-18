@@ -54,6 +54,7 @@ public class OrderStatusServiceImplTest {
         orderStatusService.save(orderStatus);
         List<OrderStatus> list2 = orderStatusService.findAll();
         assertEquals(1, list2.size() - list1.size());
+        orderStatusService.delete(orderStatus.getId());
     }
 
     @Test

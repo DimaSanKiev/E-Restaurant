@@ -54,7 +54,9 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     // todo - check the combined order with kitchendone and non-kitchendone dishes
     @Transactional
     @Override
-    // checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
+    /**
+     * checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
+     */
     public void checkIfOrderReady(Orders order) {
         List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
         if (undoneDishes.isEmpty()) {

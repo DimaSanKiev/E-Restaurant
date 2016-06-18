@@ -24,7 +24,7 @@ public class OrderDishesDaoImpl extends GenericDaoImpl<OrderDishes> implements O
     @SuppressWarnings("unchecked")
     public List<OrderDishes> getUndoneDishesFromOrder(int orderId) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM OrderDishes od WHERE od.order.id = :id AND od.readiness = FALSE");
+        Query query = session.createQuery("FROM OrderDishes od WHERE od.order.id = :id AND od.readiness = FALSE AND od.dish.kitchenmade = TRUE");
         query.setParameter("id", orderId);
         return query.list();
     }

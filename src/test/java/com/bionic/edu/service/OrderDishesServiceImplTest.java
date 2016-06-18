@@ -16,12 +16,14 @@ public class OrderDishesServiceImplTest {
 
     private OrderDishesService orderDishesService;
     private OrderService orderService;
+    private DishService dishService;
 
     @Before
     public void setUp() throws Exception {
         ApplicationContext context = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/applicationContext.xml");
         orderDishesService = context.getBean(OrderDishesService.class);
         orderService = context.getBean(OrderService.class);
+        dishService = context.getBean(DishService.class);
     }
 
     @Test
@@ -37,7 +39,7 @@ public class OrderDishesServiceImplTest {
 //        System.out.println("**************");
 //        ordersDishes.forEach(System.out::println);
         assertNotNull(ordersDishes);
-        assertEquals(18, ordersDishes.size());
+        assertEquals(20, ordersDishes.size());
     }
 
     @Test
@@ -51,10 +53,11 @@ public class OrderDishesServiceImplTest {
     @Test
     public void addingOrderDishIncreasesListSize() throws Exception {
         List<OrderDishes> list1 = orderDishesService.findAll();
-        OrderDishes orderDishes = orderDishesService.findById(3);
-        orderDishesService.save(orderDishes);
+        OrderDishes orderDish = createTestOrderDish(true, 6);
+        orderDishesService.save(orderDish);
         List<OrderDishes> list2 = orderDishesService.findAll();
         assertEquals(1, list2.size() - list1.size());
+        orderDishesService.delete(orderDish.getId());
     }
 
     @Test
@@ -67,8 +70,7 @@ public class OrderDishesServiceImplTest {
 
     @Test
     public void testDelete() throws Exception {
-        // TODO: 6/16/16 - deleting orderDish
-        OrderDishes orderDishes = orderDishesService.findById(2);
+        OrderDishes orderDishes = createTestOrderDish(true, 6);
         orderDishesService.save(orderDishes);
         int id = orderDishes.getId();
         System.out.println(orderDishes);
@@ -76,28 +78,22 @@ public class OrderDishesServiceImplTest {
         assertNull(orderDishesService.findById(id));
     }
 
-    @Ignore
     @Test
-    public void testSetDishReady() throws Exception {
-        // TODO: 6/16/16 - create new orderDish and test its readiness
-        Orders order = orderService.findById(7);
-        assertEquals(1, order.getOrderStatus().getId());
-        orderDishesService.markDone(18);
-        assertEquals(true, orderDishesService.findById(18).isReadiness());
-//        assertEquals(3, order.getOrderStatus().getId());  // updates only on the next check
+    public void testThatOrderReadyForShippingWhenAllItsDishesDone() throws Exception {
+        orderDishesService.markDone(20);
+        assertEquals(3, orderService.findById(7).getOrderStatus().getId());
     }
 
     @Test
     public void gettingAllDishesFromOrderReturnsList() throws Exception {
-        List<OrderDishes> orderDishesList = orderDishesService.getAllDishesFromOrder(1);
-        orderDishesList.forEach(System.out::println);
+        List<OrderDishes> orderDishesList = orderDishesService.getAllDishesFromOrder(5);
         assertNotNull(orderDishesList);
-        assertEquals(2, orderDishesList.size());
+        assertEquals(6, orderDishesList.size());
     }
 
     @Test
     public void gettingAllUndoneDishesFromOrderReturnsList() throws Exception {
-        List<OrderDishes> orderDishesList = orderDishesService.getUndoneDishesFromOrder(7);
+        List<OrderDishes> orderDishesList = orderDishesService.getUndoneDishesFromOrder(5);
         assertNotNull(orderDishesList);
         assertEquals(2, orderDishesList.size());
     }
@@ -105,8 +101,11 @@ public class OrderDishesServiceImplTest {
     @Test
     public void gettingKitchenPendingList() throws Exception {
         List<OrderDishes> orderDishesList = orderDishesService.getKitchenPendingList();
-        orderDishesList.forEach(System.out::println);
         assertNotNull(orderDishesList);
-        assertEquals(16, orderDishesList.size());
+        assertEquals(5, orderDishesList.size());
+    }
+
+    private OrderDishes createTestOrderDish(boolean readiness, int orderId) {
+        return new OrderDishes(1, 4.30, readiness, dishService.findById(9), orderService.findById(orderId));
     }
 }

@@ -15,8 +15,6 @@ public interface OrderService extends GenericService<Orders> {
 
     void addFromCart(Map<Dish, Integer> cartMap, Customer customer, double sum);
 
-    void setOrderStatus(int orderId, int statusId);
-
 
     List<Orders> getDeliveryListByTime();
 

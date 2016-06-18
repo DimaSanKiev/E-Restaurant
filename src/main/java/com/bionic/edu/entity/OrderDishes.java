@@ -18,6 +18,17 @@ public class OrderDishes {
     @JoinColumn(name = "orders_id")
     private Orders order;
 
+    public OrderDishes() {
+    }
+
+    public OrderDishes(int quantity, double price, boolean readiness, Dish dish, Orders order) {
+        this.quantity = quantity;
+        this.price = price;
+        this.readiness = readiness;
+        this.dish = dish;
+        this.order = order;
+    }
+
     public int getId() {
         return id;
     }

@@ -19,9 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Named
 @RequestScoped
@@ -33,6 +31,7 @@ public class EmployeeBean implements Serializable {
     private String password;
     private String role;
     private boolean signedIn;
+    private boolean sortAscending;
     private Map<String, String> idNameRoleMap;
     private Map<String, Role> idRoleMap;
     private List<Employee> employees = null;
@@ -44,6 +43,12 @@ public class EmployeeBean implements Serializable {
     private RoleService roleService;
 
     private static final Logger logger = LogManager.getLogger(EmployeeBean.class);
+
+    @PostConstruct
+    public void init() {
+        employee = new Employee();
+        employees = employeeService.findAll();
+    }
 
     public String getEmail() {
         return email;
@@ -117,13 +122,24 @@ public class EmployeeBean implements Serializable {
         this.newEmployee = newEmployee;
     }
 
-    public void refreshEmployeeList() {
-        employees = employeeService.findAll();
-    }
-
-    @PostConstruct
-    public void init() {
-        employee = new Employee();
+    public void sortEmployees() {
+        if (sortAscending) {
+            // Ascending order
+            Collections.sort(employees, (o1, o2) -> {
+                if (o1.getId() < o2.getId())
+                    return -1;
+                else return 1;
+            });
+            sortAscending = false;
+        } else {
+            // Descending order
+            Collections.sort(employees, (o1, o2) -> {
+                if (o1.getId() > o2.getId())
+                    return -1;
+                else return 1;
+            });
+            sortAscending = true;
+        }
     }
 
     public String addEmployee() {
@@ -180,7 +196,7 @@ public class EmployeeBean implements Serializable {
             return "signIn";
         }
         signedIn = true;
-        logger.info("\nEmployee ID:" + employee.getId() + "signed in successfully as " + employee.getRole().getName());
+        logger.info("\nEmployee ID:" + employee.getId() + " signed in successfully as " + employee.getRole().getName());
         if (employee.getRole().getName().equals("SUPER_USER"))
             return "superPanel.xhtml";
         if (employee.getRole().getName().equals("ADMIN"))

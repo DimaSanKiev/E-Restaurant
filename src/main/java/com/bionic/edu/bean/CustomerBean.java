@@ -10,11 +10,13 @@ import org.apache.logging.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 @Named
@@ -25,6 +27,7 @@ public class CustomerBean implements Serializable {
     private String email;
     private String password;
     private boolean signedIn;
+    private boolean sortAscending;
     private List<Customer> customers = null;
     private Customer customer = null;
     @Inject
@@ -32,8 +35,10 @@ public class CustomerBean implements Serializable {
 
     private static final Logger logger = LogManager.getLogger(CustomerBean.class);
 
-    public CustomerBean() {
+    @PostConstruct
+    public void init() {
         customer = new Customer();
+        customers = customerService.findAll();
     }
 
     public String getEmail() {
@@ -76,9 +81,25 @@ public class CustomerBean implements Serializable {
         this.customers = customers;
     }
 
-
-    public void refreshList() {
-        customers = customerService.findAll();
+    // FIXME: 18.06.2016 - refactor duplicated code
+    public void sortEmployees() {
+        if (sortAscending) {
+            // Ascending order
+            Collections.sort(customers, (o1, o2) -> {
+                if (o1.getId() < o2.getId())
+                    return -1;
+                else return 1;
+            });
+            sortAscending = false;
+        } else {
+            // Descending order
+            Collections.sort(customers, (o1, o2) -> {
+                if (o1.getId() > o2.getId())
+                    return -1;
+                else return 1;
+            });
+            sortAscending = true;
+        }
     }
 
     public String saveCustomer() {

@@ -29,20 +29,16 @@
 
                     <p:outputLabel styleClass="label" for="birthdate" value="Employee birthdate: "/>
                     <p:calendar id="birthdate" value="#{employeeBean.newEmployee.birthDate}" required="false"
-                                type="date">
-                        <!--<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>-->
-                    </p:calendar>
+                                locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
 
                     <p:outputLabel styleClass="label" for="hiredate" value="Employee hiredate: "/>
                     <p:calendar id="hiredate" value="#{employeeBean.newEmployee.hireDate}" required="false"
-                                type="date">
-                        <!--<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>-->
-                    </p:calendar>
+                                locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
 
-                    <p:outputLabel styleClass="label" for="birthdate" value="Employee readiness: "/>
+                    <p:outputLabel styleClass="label" value="Employee readiness: "/>
                     <p:selectBooleanCheckbox id="readiness" value="#{employeeBean.newEmployee.ready}" required="true"/>
 
-                    <h:outputText value="Employee role:"/>
+                    <p:outputLabel styleClass="label" value="Employee role:"/>
                     <h:selectOneMenu value="#{employeeBean.role}">
                         <f:selectItems value="#{employeeBean.idNameRoleMap}"/>
                     </h:selectOneMenu>

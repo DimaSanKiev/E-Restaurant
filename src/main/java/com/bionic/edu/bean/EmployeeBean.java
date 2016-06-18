@@ -171,20 +171,17 @@ public class EmployeeBean implements Serializable {
         try {
             employee = employeeService.signIn(email, decryptPass);
         } catch (BadCredentialsException e) {
-            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Sign In Error", "Incorrect email or password, please try again."));
+            addMessage("Sign In Error", "Incorrect email or password, please try again.");
             logger.error("\nEmployee sign in ERROR - Incorrect email or password." + "Email:" + email + " Password:" + password);
             employee = null;
             return "employeeSignIn";
         } catch (EmployeeNotReadyException e) {
-            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Sign In Error", "You account in unavailable at the moment. Please contact SuperUser."));
+            addMessage("Sign In Error", "You account in unavailable at the moment. Please contact SuperUser.");
             logger.error("\nEmployee sign in ERROR - Account blocked." + " Email:" + email);
             employee = null;
             return "employeeSignIn";
         } catch (Exception ex) {
-            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Sign In Error", "Unknown error."));
+            addMessage("Sign In Error", "Unknown error.");
             logger.error("\nEmployee sign in ERROR - Unknown error." + " Email:" + email + "\n" + ex.getMessage());
             employee = null;
             return "signIn";
@@ -206,10 +203,14 @@ public class EmployeeBean implements Serializable {
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-//        RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
-//                "Signed Out", "Thank you, have a good day."));
+        addMessage("Signed Out", "Thank you, have a good day.");
         logger.info("Employee ID:" + employee.getId() + " signed out.");
         return "employeeSignIn";
+    }
+
+    private void addMessage(String header, String detail) {
+        RequestContext.getCurrentInstance().showMessageInDialog(
+                new FacesMessage(FacesMessage.SEVERITY_INFO, header, detail));
     }
 
 }

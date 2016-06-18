@@ -190,3 +190,11 @@ td.center {
 .customer_blocked_no {
     text-align: center;
 }
+
+/* PrimeFaces Messages */
+.info {
+    color: darkgreen;
+}
+.error {
+    color: red;
+}

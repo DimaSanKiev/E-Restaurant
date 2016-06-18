@@ -102,8 +102,7 @@ public class CartBean implements Serializable {
 
     public String confirm(Customer customer) {
         if (customer.getId() == 0) {
-            RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Please Authorize", "Please sign in or create new account."));
+            addMessage("Please Authorize", "Please sign in or create new account.");
             return "authorize";
         }
         return "orderInfo";
@@ -121,4 +120,8 @@ public class CartBean implements Serializable {
         return "menu";
     }
 
+    private void addMessage(String header, String detail) {
+        RequestContext.getCurrentInstance().showMessageInDialog(
+                new FacesMessage(FacesMessage.SEVERITY_INFO, header, detail));
+    }
 }

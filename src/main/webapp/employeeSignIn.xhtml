@@ -14,7 +14,7 @@
     <h:form>
         <div class="body">
             <h2>Please Sign In</h2>
-            <h:messages id="msg"/>
+            <h:messages infoClass="info" errorClass="error"/>
             <h:panelGrid columns="2">
                 <p:outputLabel styleClass="label" for="email" value="Email: "/>
                 <p:inputText id="email" value="#{employeeBean.email}" required="true" type="email"/>

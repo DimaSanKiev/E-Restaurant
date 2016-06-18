@@ -118,7 +118,6 @@ public class Dish {
         if (available != dish.available) return false;
         if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
         if (description != null ? !description.equals(dish.description) : dish.description != null) return false;
-        if (photo != null ? photo.equals(dish.photo) : dish.photo != null) return false;
         return true;
     }
 
@@ -133,7 +132,6 @@ public class Dish {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (kitchenmade ? 1 : 0);
         result = 31 * result + (available ? 1 : 0);
-        result = 31 * result + (photo != null ? photo.hashCode() : 0);
         return result;
     }
 

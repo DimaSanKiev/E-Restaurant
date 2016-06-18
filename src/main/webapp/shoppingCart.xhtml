@@ -5,7 +5,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://java.sun.com/jsf/html">
+      xmlns:p="http://java.sun.com/jsf/html"
+      xmlns:p1="http://primefaces.org/ui">
 
 <h:head>
     <title>Your shopping cart</title>
@@ -37,10 +38,10 @@
 
                     <h:column>
                         <f:facet name="header">Photo</f:facet>
-                        <h:graphicImage rendered="#{not empty orderDish.key.photo}" value="#{photoBean.photoContent.stream}"
+                        <p1:graphicImage rendered="#{not empty orderDish.key.photo}" value="#{photoBean.photoContent}"
                                         width="100">
                             <f:param name="id" value="#{orderDish.key.photo.id}"/>
-                        </h:graphicImage>
+                        </p1:graphicImage>
                         <h:graphicImage rendered="#{empty orderDish.key.photo}" value="resources/images/general/no_image.png"
                                         width="100"/>
                     </h:column>
@@ -62,9 +63,9 @@
                     <h:column>
                         <f:facet name="header">Sum</f:facet>
 
-                        <h:outputText value="#{orderDish.key.price * orderDish.value}">
+                        <b> <h:outputText value="#{orderDish.key.price * orderDish.value}">
                             <f:convertNumber currencyCode="USD" type="currency"/>
-                        </h:outputText>
+                        </h:outputText> </b>
                     </h:column>
 
                     <h:column>

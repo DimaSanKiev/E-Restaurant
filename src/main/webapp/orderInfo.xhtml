@@ -56,11 +56,13 @@
 
                 <br/>
                 <h:outputText escape="false" styleClass="cart-text"
-                              value="TOTAL ODER PRICE: &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items, total= "/>
+                              value="TOTAL: "/>
                 <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.total}"
                               style="font-weight: bold">
                     <f:convertNumber currencyCode="USD" type="currency"/>
                 </h:outputText>
+                <h:outputText escape="false" styleClass="cart-text"
+                              value=" for &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items."/>
 
                 <p style="font-size: 20px">
                     Name:

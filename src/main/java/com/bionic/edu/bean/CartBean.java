@@ -104,7 +104,7 @@ public class CartBean implements Serializable {
         if (customer.getId() == 0) {
             RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Please Authorize", "Please sign in or create new account."));
-            return "signUp";
+            return "authorize";
         }
         return "orderInfo";
     }

@@ -3,8 +3,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>SignIn</title>
@@ -17,22 +16,7 @@
             <h:form id="forUpdate">
                 <div class="body">
                     <h2>Please Sign In</h2>
-                    <h:form>
-                        <h:messages id="msg"/>
-                        <h:panelGrid columns="2">
-                            <p:outputLabel styleClass="lable" for="email" value="Email: "/>
-                            <p:inputText id="email" value="#{customerBean.email}" required="true" type="email"/>
-
-                            <p:outputLabel styleClass="lable" for="password" value="Password: "/>
-                            <p:password id="password" value="#{customerBean.password}" required="true"/>
-                        </h:panelGrid>
-
-                        <br/>
-                        <p:commandButton value="Sign in"
-                                         action="#{customerBean.signIn(customerBean.email, customerBean.password)}"
-                                         update="matchGrid" ajax="false"/>
-                        <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
-                    </h:form>
+                    <ui:include src="template/signIn.xhtml"/>
                 </div>
             </h:form>
         </ui:define>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Authorize</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<ui:composition template="template/CustomerTemplate.xhtml">
+    <ui:define name="content">
+        <h:body>
+
+            <h:panelGrid columns="2">
+                <p:outputLabel><h2>Please Sign In</h2>
+                    <ui:include src="template/signIn.xhtml"/>
+                </p:outputLabel>
+
+                <br/>
+                <p:outputLabel><h2>Or create a new Account</h2>
+                    <ui:include src="template/signUp.xhtml"/>
+                </p:outputLabel>
+            </h:panelGrid>
+
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

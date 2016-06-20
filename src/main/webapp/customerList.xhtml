@@ -25,34 +25,34 @@
                 </h:panelGrid>
 
                 <h:dataTable value="#{customerBean.customers}" var="customer"
-                             styleClass="dish-table" headerClass="table_header"
-                             columnClasses="center, dish_table_name, none, center, none, center, center"
-                             rowClasses="dish_table_odd_row, dish_table_even_row">
+                             styleClass="dish-container" headerClass="table-header"
+                             columnClasses="center, dish-table-name, none, center, none, center, center"
+                             rowClasses="table-odd-row, table-even-row">
 
                     <h:column>
                         <f:facet name="header">
-                            <h:commandLink action="${customerBean.sortCustomers}" styleClass="table_header">Id</h:commandLink>
+                            <h:commandLink action="${customerBean.sortCustomers}" styleClass="table-header">Id</h:commandLink>
                         </f:facet>
                         <h:outputText id="id" value="#{customer.id}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Name</h:outputLabel>
                         </f:facet>
                         <h:outputText id="name" value="#{customer.name}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Email</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Email</h:outputLabel>
                         </f:facet>
                         <h:outputText id="email" value="#{customer.email}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Birthdate</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Birthdate</h:outputLabel>
                         </f:facet>
                         <h:outputText id="birthdate" value="#{customer.birthDate}">
                             <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
@@ -61,17 +61,17 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Address</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Address</h:outputLabel>
                         </f:facet>
                         <h:outputText id="address" value="#{customer.address}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Blocked</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Blocked</h:outputLabel>
                         </f:facet>
-                        <h:outputText rendered="#{customer.blocked}" class="customer_blocked_yes" value="yes"/>
-                        <h:outputText rendered="#{!customer.blocked}" class="customer_blocked_no" value="no"/>
+                        <h:outputText rendered="#{customer.blocked}" styleClass="customer-blocked-yes" value="yes"/>
+                        <h:outputText rendered="#{!customer.blocked}" styleClass="customer-blocked-no" value="no"/>
                     </h:column>
 
                     <h:column>

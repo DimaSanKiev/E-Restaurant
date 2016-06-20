@@ -2,34 +2,40 @@ td.center {
     text-align: center;
     padding: 5px;
 }
-
-/* USER TABLES */
-.user_table {
-    border-collapse: collapse;
-    border: 1px solid #000000;
-}
-
-.user_table_header {
+/* TABLES */
+.table-header {
     text-align: center;
-    background: none repeat scroll 0 0 #B5B5B5;
-    border-bottom: 1px solid #000000;
-    padding: 2px;
+    font-size: 13pt;
+    font-weight: bold;
+    background: none repeat scroll 0 0 #d9d9d9;
+    padding: 10px;
 }
 
-.user_table_odd_row {
+.table-odd-row {
     text-align: left;
     background: none repeat scroll 0 0 #FFFFFF;
 }
 
-.user_table_even_row {
+.table-even-row {
     text-align: left;
-    background: none repeat scroll 0 0 #e2e2e2;
+    background: none repeat scroll 0 0 #f0f0f0;
 }
 
-.user_table_columns {
+.id {
+    font-weight: bold;
     text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.button {
+    padding: 5px;
+}
+
+.dish-column-description {
+    text-align: justify;
+    width: 30%;
+    padding-right: 2%;
 }
 
 /* DISH LIST */
@@ -46,54 +52,15 @@ td.center {
     color: red;
 }
 
-.dish-table {
-    border-collapse: collapse;
-}
-
-.table_header {
-    text-align: center;
-    font-size: 13pt;
-    font-weight: bold;
-    background: none repeat scroll 0 0 #d9d9d9;
-    padding: 10px;
-}
-
-.dish_table_odd_row {
-    text-align: left;
-    background: none repeat scroll 0 0 #FFFFFF;
-}
-
-.dish_table_even_row {
-    text-align: left;
-    background: none repeat scroll 0 0 #f0f0f0;
-}
-
-.id {
-    font-weight: bold;
-    text-align: center;
-    padding-left: 2%;
-    padding-right: 2%;
-}
-
-.button {
-    padding: 5px;
-}
-
-.dish_table_name {
+.dish-table-name {
     font-weight: bold;
     text-align: left;
     padding-left: 2%;
-    padding-right: 2%;
-}
-
-.column_description {
-    text-align: justify;
-    width: 30%;
     padding-right: 2%;
 }
 
 /* MENU */
-.dish-table {
+.dish-container {
     max-width: 80%;
     display: table;
     border-collapse: collapse;
@@ -181,12 +148,12 @@ td.center {
 }
 
 /* CUSTOMER LIST */
-.customer_blocked_yes {
+.customer-blocked-yes {
     text-align: center;
     color: red;
 }
 
-.customer_blocked_no {
+.customer-blocked-no {
     text-align: center;
 }
 

@@ -25,28 +25,30 @@
                 </h:panelGrid>
 
                 <h:dataTable value="#{dishBean.dishes}" var="orderDish"
-                             styleClass="dish-table" headerClass="table_header"
-                             columnClasses="dish_table_name, none, column_description, center, center, center, center, center"
-                             rowClasses="dish_table_odd_row, dish_table_even_row">
+                             styleClass="dish-container" headerClass="table-header"
+                             columnClasses="dish-table-name, none, dish-column-description, center, center, center, center, center"
+                             rowClasses="table-odd-row, table-even-row">
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Name</h:outputLabel>
                         </f:facet>
                         <h:outputText id="dishName" value="#{orderDish.name}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">Photo</f:facet>
-                        <!--<h:graphicImage rendered="#{not empty orderDish.photo}" value="#{orderDish.photo}" width="100"/>-->
-                        <!--<h:graphicImage rendered="#{empty orderDish.photo}" value="resources/images/general/no_image.png" width="100"/>-->
+                        <p:graphicImage rendered="#{not empty orderDish.photo}" value="#{photoBean.photoContent}" width="100">
+                            <f:param name="id" value="#{orderDish.photo.id}"/>
+                        </p:graphicImage>
+                        <h:graphicImage rendered="#{empty orderDish.photo}" value="resources/images/general/no_image.png" width="100"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Description</h:outputLabel>
+                            <h:outputLabel>Description</h:outputLabel>
                         </f:facet>
-                        <h:outputText id="dishDescription" class="dish_table_description" value="#{orderDish.description}"/>
+                        <h:outputText id="dishDescription" value="#{orderDish.description}"/>
                     </h:column>
 
                     <h:column>
@@ -58,7 +60,7 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Kitchen made</h:outputLabel>
+                            <h:outputLabel>Kitchen made</h:outputLabel>
                         </f:facet>
                         <h:outputText rendered="#{orderDish.kitchenmade}" class="dish_kitchen_made" value="yes"/>
                         <h:outputText rendered="#{!orderDish.kitchenmade}" class="dish_kitchen_made" value="no"/>

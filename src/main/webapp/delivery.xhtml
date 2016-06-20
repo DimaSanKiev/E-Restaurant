@@ -27,9 +27,9 @@
                                  update="matchGrid" ajax="false" styleClass="button"/>
                 <br/>
                 <h:dataTable value="#{deliveryBean.ordersList}" var="order"
-                             styleClass="dish-table" headerClass="table_header"
+                             styleClass="dish-container" headerClass="table-header"
                              columnClasses="id, none, none, center, center, center"
-                             rowClasses="dish_table_odd_row, dish_table_even_row">
+                             rowClasses="table-odd-row, table-even-row">
 
                     <h:column>
                         <f:facet name="header">Order Id</f:facet>

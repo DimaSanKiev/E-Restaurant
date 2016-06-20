@@ -25,13 +25,13 @@
 
                 <h:dataTable rendered="#{not empty cartBean.cartMap}"
                              value="#{cartBean.cartMap.entrySet().toArray()}" var="orderDish"
-                             styleClass="dish-table" headerClass="table_header"
-                             columnClasses="dish_table_name, none, center, center, center, center"
-                             rowClasses="dish_table_odd_row, dish_table_even_row">
+                             styleClass="dish-container" headerClass="table-header"
+                             columnClasses="dish-table-name, none, center, center, center, center"
+                             rowClasses="table-odd-row, table-even-row">
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Name</h:outputLabel>
                         </f:facet>
                         <h:outputText id="dishName" value="#{orderDish.key.name}"/>
                     </h:column>

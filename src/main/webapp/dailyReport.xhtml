@@ -31,11 +31,11 @@
                 <h:dataTable value="#{reportBean.reportTotals}" var="reportRow"
                              styleClass="table" headerClass="tableHeader"
                              columnClasses="none, center, center"
-                             rowClasses="dish_table_odd_row, dish_table_even_row">
+                             rowClasses="table-odd-row, table-even-row">
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Date</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Date</h:outputLabel>
                         </f:facet>
                         <h:outputText id="date" value="#{reportRow.date}">
                             <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
@@ -44,14 +44,14 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Quantity</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Quantity</h:outputLabel>
                         </f:facet>
                         <h:outputText id="quantity" value="#{reportRow.count}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Total price</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Total price</h:outputLabel>
                         </f:facet>
                         <h:outputText id="total" value="#{reportRow.total}">
                             <f:convertNumber currencyCode="USD" type="currency"/>

@@ -25,34 +25,34 @@
                 </h:panelGrid>
 
                 <h:dataTable value="#{employeeBean.employees}" var="employee"
-                             styleClass="dish-table" headerClass="table_header"
-                             columnClasses="center, dish_table_name, none, center, center, center, none, center"
-                             rowClasses="dish_table_odd_row, dish_table_even_row">
+                             styleClass="dish-container" headerClass="table-header"
+                             columnClasses="center, dish-table-name, none, center, center, center, none, center"
+                             rowClasses="table-odd-row, table-even-row">
 
                     <h:column>
                         <f:facet name="header">
-                            <h:commandLink action="#{employeeBean.sortEmployees()}" styleClass="table_header">Id</h:commandLink>
+                            <h:commandLink action="#{employeeBean.sortEmployees()}" styleClass="table-header">Id</h:commandLink>
                         </f:facet>
                         <h:outputText id="id" value="#{employee.id}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Name</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Name</h:outputLabel>
                         </f:facet>
                         <h:outputText id="name" value="#{employee.name}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Email</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Email</h:outputLabel>
                         </f:facet>
                         <h:outputText id="email" value="#{employee.email}"/>
                     </h:column>
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Birthdate</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Birthdate</h:outputLabel>
                         </f:facet>
                         <h:outputText id="birthdate" value="#{employee.birthDate}">
                             <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
@@ -61,7 +61,7 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Hiredate</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Hiredate</h:outputLabel>
                         </f:facet>
                         <h:outputText id="hiredate" value="#{employee.hireDate}">
                             <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
@@ -70,7 +70,7 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Readiness</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Readiness</h:outputLabel>
                         </f:facet>
                         <h:outputText rendered="#{employee.ready}" class="customer_blocked_no" value="yes"/>
                         <h:outputText rendered="#{!employee.ready}" class="customer_blocked_yes" value="no"/>
@@ -78,7 +78,7 @@
 
                     <h:column>
                         <f:facet name="header">
-                            <h:outputLabel styleClass="table_header">Role</h:outputLabel>
+                            <h:outputLabel styleClass="table-header">Role</h:outputLabel>
                         </f:facet>
                         <h:outputText id="role" value="#{employee.role.name}"/>
                     </h:column>

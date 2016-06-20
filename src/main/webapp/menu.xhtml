@@ -55,8 +55,9 @@
                                     <f:convertNumber currencyCode="USD" type="currency"/>
                                 </h:outputText>
                             </p>
-                            <h:form><p:commandButton id="addToCart" value="Add to Cart" styleClass="dish-button"
-                                                     action="#{cartBean.increaseCount(orderDish.id)}"/></h:form>
+                            <p class="dish-button">
+                                <h:form><p:commandButton action="#{cartBean.increaseCount(orderDish.id)}"
+                                                         value="Add to Cart"/></h:form></p>
                         </li>
                     </ul>
                 </ui:repeat>

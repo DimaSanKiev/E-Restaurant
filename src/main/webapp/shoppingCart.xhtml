@@ -25,8 +25,8 @@
 
                 <h:dataTable rendered="#{not empty cartBean.cartMap}"
                              value="#{cartBean.cartMap.entrySet().toArray()}" var="orderDish"
-                             styleClass="dish-container" headerClass="table-header"
-                             columnClasses="dish-table-name, none, center, center, center, center"
+                             styleClass="cart-container" headerClass="table-header"
+                             columnClasses="table-name, none, center, center, center, center"
                              rowClasses="table-odd-row, table-even-row">
 
                     <h:column>

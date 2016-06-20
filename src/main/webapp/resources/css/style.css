@@ -11,6 +11,13 @@ td.center {
     padding: 10px;
 }
 
+.table-name {
+    font-weight: bold;
+    text-align: left;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
 .table-odd-row {
     text-align: left;
     background: none repeat scroll 0 0 #FFFFFF;
@@ -38,32 +45,22 @@ td.center {
     padding-right: 2%;
 }
 
-/* DISH LIST */
-.column_center {
-    text-align: right;
-}
-
-.dish_available_yes {
+.element-black {
     text-align: center;
 }
 
-.dish_available_no {
+.element-red {
     text-align: center;
     color: red;
 }
 
-.dish-table-name {
-    font-weight: bold;
-    text-align: left;
-    padding-left: 2%;
-    padding-right: 2%;
-}
-
 /* MENU */
 .dish-container {
-    max-width: 80%;
+    max-width: 90%;
     display: table;
-    border-collapse: collapse;
+    border: 4px double #d9d9d9;
+    border-radius: 5px;
+    margin: auto;
 }
 
 .dish-block {
@@ -109,7 +106,6 @@ td.center {
 
 .dish-button {
     position: absolute;
-    float: right;
 }
 
 .menu-text {
@@ -117,10 +113,17 @@ td.center {
     padding: 1%;
 }
 
+/* SHOPPING CART */
+.cart-container {
+    max-width: 90%;
+    display: table;
+    border: 2px solid #d9d9d9;
+}
+
 /* TEMPLATES */
 .customer-menu-items {
     position: relative;
-    margin-right: 15%;
+    /*margin-right: 15%;*/
     text-align: right;
 }
 
@@ -130,7 +133,7 @@ td.center {
 }
 
 .category-menu-buttons {
- padding: 10px;
+    padding: 10px;
 }
 
 .cart-icon {
@@ -144,16 +147,6 @@ td.center {
 .footer {
     padding-top: 3%;
     font-size: medium;
-    text-align: center;
-}
-
-/* CUSTOMER LIST */
-.customer-blocked-yes {
-    text-align: center;
-    color: red;
-}
-
-.customer-blocked-no {
     text-align: center;
 }
 

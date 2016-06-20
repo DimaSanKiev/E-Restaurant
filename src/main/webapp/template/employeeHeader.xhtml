@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:body>
@@ -21,6 +20,10 @@
                 <p:commandButton id="reports"
                                  rendered="#{employeeBean.employee.role.name == 'SUPER_USER' or employeeBean.employee.role.name == 'BUSINESS_ANALYST'}"
                                  action="reports" value="Reports" update="matchGrid" ajax="false"
+                                 style="float: left"/>
+                <p:commandButton id="viewDishList"
+                                 rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}"
+                                 action="dishList" value="Dish List" update="matchGrid" ajax="false"
                                  style="float: left"/>
 
                 <!-- Admin + Superuser buttons -->

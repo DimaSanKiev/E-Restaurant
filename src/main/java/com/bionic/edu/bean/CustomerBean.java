@@ -95,8 +95,16 @@ public class CustomerBean implements Serializable {
     }
 
     public String saveCustomer() {
-        customerService.save(customer);
-        return "customerList";
+        try {
+            customerService.save(customer);
+        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+            addMessage("Saving Error", "Current email is already used. Please choose different one.", FacesMessage.SEVERITY_ERROR);
+            logger.error("\nSaving customer ERROR - Current email is already used.", " CustomerID:" + customer.getId());
+            return null;
+        }
+        addMessage("Saved successfully", "Customer's data was successfully saved.", FacesMessage.SEVERITY_INFO);
+//        return "customerList";
+        return null;
     }
 
     // TODO: 18.06.2016 - expand exceptions

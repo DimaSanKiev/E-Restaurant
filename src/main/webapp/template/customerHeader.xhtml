@@ -12,7 +12,9 @@
         <div class="customer-menu-items">
             <h:form>
                 <p:outputLabel rendered="#{customerBean.signedIn == true}" style="padding-right: 1%">
-                    Hello, <b>#{customerBean.customer.name}</b></p:outputLabel>
+                    Hello, <a href="../updateCustomerInfo.xhtml"><b>#{customerBean.customer.name}</b></a>
+                </p:outputLabel>
+
                 <p:button outcome="menu" id="home" value="Menu"/>
                 <p:commandButton rendered="#{customerBean.signedIn == false}" id="signIn" action="signIn"
                                  value="Sign In" update="matchGrid" ajax="false"/>

@@ -2,6 +2,11 @@ td.center {
     text-align: center;
     padding: 5px;
 }
+
+h2.header-center {
+    text-align: center;
+}
+
 /* TABLES */
 .table-header {
     text-align: center;
@@ -152,10 +157,10 @@ td.center {
 
 /* Not Used */
 .ui-growl {
-    position:fixed;
+    position: fixed;
     top: 40%;
     left: 37%;
     width: 360px;
     height: 110px;
-    z-index:9999;
+    z-index: 9999;
 }

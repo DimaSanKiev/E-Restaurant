@@ -14,24 +14,24 @@
 <h:body>
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 5}">
-                <h2>Reports</h2>
-                <h:panelGrid columns="2">
-                    <p:outputLabel styleClass="label" for="startDate" value="Start Date: "/>
-                    <p:calendar id="startDate" value="#{reportBean.startDate}" required="true"
-                                type="date">
-                        <!--<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>-->
-                    </p:calendar>
-                    <p:outputLabel styleClass="label" for="endDate" value="Start Date: "/>
-                    <p:calendar id="endDate" value="#{reportBean.endDate}" required="true"
-                                type="date">
-                        <!--<f:convertDateTime type="date" pattern="dd.MM.yyyy"/>-->
-                    </p:calendar>
-                </h:panelGrid>
-                <br/>
-                <p:commandButton value="Daily report" action="dailyReport" update="matchGrid" ajax="false"/>
-                <p:commandButton value="Category report" action="categoryReport" update="matchGrid" ajax="false"/>
-            </h:form>
+            <ui:include src="template/page403.xhtml"/>
+            <h:panelGroup layout="block"
+                          rendered="#{employeeBean.employee.role.name == 'SUPER_USER' or employeeBean.employee.role.name == 'BUSINESS_ANALYST'}">
+                <h:form>
+                    <h2>Reports</h2>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel styleClass="label" for="startDate" value="Start Date: "/>
+                        <p:calendar id="startDate" value="#{reportBean.startDate}" required="true"
+                                    type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
+                        <p:outputLabel styleClass="label" for="endDate" value="Start Date: "/>
+                        <p:calendar id="endDate" value="#{reportBean.endDate}" required="true"
+                                    type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
+                    </h:panelGrid>
+                    <br/>
+                    <p:commandButton value="Daily report" action="dailyReport" update="matchGrid" ajax="false"/>
+                    <p:commandButton value="Category report" action="categoryReport" update="matchGrid" ajax="false"/>
+                </h:form>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>

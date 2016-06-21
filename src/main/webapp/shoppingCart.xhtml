@@ -19,8 +19,9 @@
             <h:form>
 
                 <h2>Your shopping cart</h2>
-                <h:outputText rendered="#{empty cartBean.cartMap}"
-                              value="Please add dishes to your shopping cart"/>
+                <h:outputLabel rendered="#{empty cartBean.cartMap}">
+                    Your shopping cart is empty. Please select dishes from <a href="menu.xhtml">menu</a>.
+                </h:outputLabel>
 
 
                 <h:dataTable rendered="#{not empty cartBean.cartMap}"

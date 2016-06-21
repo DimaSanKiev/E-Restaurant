@@ -13,49 +13,51 @@
 <h:body>
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2>Dish details</h2>
-            #{dishBean.refreshCategories()}
+            <ui:include src="template/page403.xhtml"/>
+            <h:panelGroup layout="block" rendered="#{employeeBean.employee.role.name == 'KITCHEN_STAFF'}">
+                <h2>Dish details</h2>
+                #{dishBean.refreshCategories()}
 
-            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 2}">
-                <h:panelGrid columns="3">
-                    <h:outputText value="Dish name:"/>
-                    <h:inputText id="dName" value="#{dishBean.dish.name}" required="true">
-                    </h:inputText>
-                    <h:message for="dName" style="color:red"/>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Dish name:"/>
+                        <h:inputText id="dName" value="#{dishBean.dish.name}" required="true">
+                        </h:inputText>
+                        <h:message for="dName" style="color:red"/>
 
-                    <h:outputText value="Dish description:"/>
-                    <h:inputText id="dDescription" value="#{dishBean.dish.description}" required="false"/>
-                    <h:message for="dDescription" style="color:red"/>
+                        <h:outputText value="Dish description:"/>
+                        <h:inputText id="dDescription" value="#{dishBean.dish.description}" required="false"/>
+                        <h:message for="dDescription" style="color:red"/>
 
-                    <h:outputText value="Price:"/>
-                    <h:inputText id="dPrice" value="#{dishBean.dish.price}" required="true">
-                        <f:convertNumber minFractionDigits="2"/>
-                        <f:validateDoubleRange minimum="0.00" maximum="100.00"/>
-                    </h:inputText>
-                    <h:message for="dPrice" style="color:red"/>
+                        <h:outputText value="Price:"/>
+                        <h:inputText id="dPrice" value="#{dishBean.dish.price}" required="true">
+                            <f:convertNumber minFractionDigits="2"/>
+                            <f:validateDoubleRange minimum="0.00" maximum="100.00"/>
+                        </h:inputText>
+                        <h:message for="dPrice" style="color:red"/>
 
-                    <h:outputText value="Kitchen made:"/>
-                    <h:selectBooleanCheckbox id="kitchenMade" value="#{dishBean.dish.kitchenmade}"/>
-                    <h:outputText value=" "/>
+                        <h:outputText value="Kitchen made:"/>
+                        <h:selectBooleanCheckbox id="kitchenMade" value="#{dishBean.dish.kitchenmade}"/>
+                        <h:outputText value=" "/>
 
-                    <h:outputText value="Available:"/>
-                    <h:selectBooleanCheckbox id="activated" value="#{dishBean.dish.available}"/>
-                    <h:outputText value=" "/>
+                        <h:outputText value="Available:"/>
+                        <h:selectBooleanCheckbox id="activated" value="#{dishBean.dish.available}"/>
+                        <h:outputText value=" "/>
 
-                    <h:outputText value="Dish category:"/>
-                    <h:selectOneMenu value="#{dishBean.category}">
-                        <f:selectItems value="#{dishBean.idNameCategoryMap}"/>
-                    </h:selectOneMenu>
-                    <h:outputText value=" "/>
+                        <h:outputText value="Dish category:"/>
+                        <h:selectOneMenu value="#{dishBean.category}">
+                            <f:selectItems value="#{dishBean.idNameCategoryMap}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value=" "/>
 
-                    <h:outputText value="Dish photo URL:"/>
-                    <h:inputText id="dPhoto" value="#{dishBean.dish.photo}" required="false">
-                    </h:inputText>
+                        <h:outputText value="Dish photo URL:"/>
+                        <h:inputText id="dPhoto" value="#{dishBean.dish.photo}" required="false">
+                        </h:inputText>
+                    </h:panelGrid>
 
-                </h:panelGrid>
-
-                <br/><h:commandButton value="Submit" action="#{dishBean.saveDish}"/>
-            </h:form>
+                    <br/><h:commandButton value="Submit" action="#{dishBean.saveDish}"/>
+                </h:form>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 

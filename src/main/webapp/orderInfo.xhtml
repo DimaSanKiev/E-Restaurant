@@ -14,79 +14,87 @@
 <h:body class="front">
     <ui:composition template="template/CustomerTemplate.xhtml">
         <ui:define name="content">
-            <h:form>
-                <h2>Please check your order</h2>
 
-                <h:dataTable id="cart" value="#{cartBean.cartMap.entrySet().toArray()}" var="orderDish"
-                             styleClass="dish-container" headerClass="table-header"
-                             columnClasses="table-name, center, center, center"
-                             rowClasses="table-odd-row, table-even-row">
+            <h:panelGroup rendered="#{empty cartBean.cartMap}">
+                <h3>Please make your order first. Go to <a href="menu.xhtml">menu</a>.</h3>
+            </h:panelGroup>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Name</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="dishName" value="#{orderDish.key.name}"/>
-                    </h:column>
+            <h:panelGroup layout="block" rendered="#{not empty cartBean.cartMap}">
+                <h:form>
+                    <h2>Please check your order</h2>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Price</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="dishPrice" value="$#{orderDish.key.price}"/>
-                    </h:column>
+                    <h:dataTable id="cart" value="#{cartBean.cartMap.entrySet().toArray()}" var="orderDish"
+                                 styleClass="cart-container" headerClass="table-header"
+                                 columnClasses="table-name, center, center, center"
+                                 rowClasses="table-odd-row, table-even-row">
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Count</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="dishCount" value="#{orderDish.value}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Name</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="dishName" value="#{orderDish.key.name}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Total</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="dishTotal2" value="#{orderDish.key.price * orderDish.value}" escape="false" styleClass="cart-text">
-                            <f:convertNumber currencyCode="USD" type="currency"/>
-                        </h:outputText>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Price</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="dishPrice" value="$#{orderDish.key.price}"/>
+                        </h:column>
 
-                </h:dataTable>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Count</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="dishCount" value="#{orderDish.value}"/>
+                        </h:column>
 
-                <br/>
-                <h:outputText escape="false" styleClass="cart-text"
-                              value="TOTAL: "/>
-                <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.total}"
-                              style="font-weight: bold">
-                    <f:convertNumber currencyCode="USD" type="currency"/>
-                </h:outputText>
-                <h:outputText escape="false" styleClass="cart-text"
-                              value=" for &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items."/>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Total</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="dishTotal2" value="#{orderDish.key.price * orderDish.value}"
+                                          escape="false" styleClass="cart-text">
+                                <f:convertNumber currencyCode="USD" type="currency"/>
+                            </h:outputText>
+                        </h:column>
 
-                <p style="font-size: 20px">
-                    Name:
-                    <h:outputText escape="false" value="&lt;b&gt;#{customerBean.customer.name}&lt;/b&gt;"/><br/>
-                    Address:
-                    <h:outputText escape="false" value="&lt;b&gt;#{customerBean.customer.address}&lt;/b&gt;"/>
+                    </h:dataTable>
+
                     <br/>
-                    Order time:
-                    <h:outputText escape="false" value="&lt;b&gt;#{cartBean.currentTime()}&lt;/b&gt;"/>
-                </p>
+                    <h:outputText escape="false" styleClass="cart-text"
+                                  value="TOTAL: "/>
+                    <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.total}"
+                                  style="font-weight: bold">
+                        <f:convertNumber currencyCode="USD" type="currency"/>
+                    </h:outputText>
+                    <h:outputText escape="false" styleClass="cart-text"
+                                  value=" for &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items."/>
+
+                    <p style="font-size: 20px">
+                        Name:
+                        <h:outputText escape="false" value="&lt;b&gt;#{customerBean.customer.name}&lt;/b&gt;"/><br/>
+                        Address:
+                        <h:outputText escape="false" value="&lt;b&gt;#{customerBean.customer.address}&lt;/b&gt;"/>
+                        <br/>
+                        Order time:
+                        <h:outputText escape="false" value="&lt;b&gt;#{cartBean.currentTime()}&lt;/b&gt;"/>
+                    </p>
 
 
-                <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
-                                 actionListener="#{cartBean.submitOrder()}"/>
+                    <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
+                                     actionListener="#{cartBean.submitOrder()}"/>
 
-                <p:commandButton value="Back to Cart" action="shoppingCart"/>
+                    <p:commandButton value="Back to Cart" action="shoppingCart"/>
 
-                <p:dialog widgetVar="confirm" header="Your order was confirmed successfully. Please wait for delivery."
-                          modal="true" showEffect="fade" hideEffect="fade" resizable="true">
-                    <p:commandButton action="menu" value="OK"/>
-                </p:dialog>
+                    <p:dialog widgetVar="confirm"
+                              header="Your order was confirmed successfully. Please wait for delivery."
+                              modal="true" showEffect="fade" hideEffect="fade" resizable="true">
+                        <p:commandButton action="menu" value="OK"/>
+                    </p:dialog>
 
-            </h:form>
-
+                </h:form>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>

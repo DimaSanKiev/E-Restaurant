@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
     <title>Kitchen Pending Screen</title>
@@ -15,49 +14,52 @@
 <h:body>
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            #{kitchenBean.refreshList()}
-            <h:form rendered="#{employeeBean.employee.role.id == 3}">
-                <h2>Kitchen pending screen</h2>
+            <ui:include src="template/page403.xhtml"/>
+            <h:panelGroup layout="block" rendered="#{employeeBean.employee.role.name == 'KITCHEN_STAFF'}">
+                #{kitchenBean.refreshList()}
+                <h:form>
+                    <h2>Kitchen pending screen</h2>
 
-                <h:dataTable value="#{kitchenBean.orderDishesList}" var="orderDish"
-                             styleClass="dish-container" headerClass="table-header"
-                             columnClasses="table-name, center, center, center"
-                             rowClasses="table-odd-row, table-even-row">
+                    <h:dataTable value="#{kitchenBean.orderDishesList}" var="orderDish"
+                                 styleClass="dish-container" headerClass="table-header"
+                                 columnClasses="table-name, center, center, center"
+                                 rowClasses="table-odd-row, table-even-row">
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Name</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="dishName" value="#{orderDish.dish.name}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Name</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="dishName" value="#{orderDish.dish.name}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Quantity</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="dishQuantity" value="#{orderDish.quantity}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Quantity</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="dishQuantity" value="#{orderDish.quantity}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Ordered</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="dishCreated" value="#{orderDish.order.dateTimeTaken}">
-                            <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
-                        </h:outputText>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Ordered</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="dishCreated" value="#{orderDish.order.dateTimeTaken}">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
+                            </h:outputText>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Mark</h:outputLabel>
-                        </f:facet>
-                        <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(orderDish.id)}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Mark</h:outputLabel>
+                            </f:facet>
+                            <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(orderDish.id)}"/>
+                        </h:column>
 
-                </h:dataTable>
-                <h3><h:outputText rendered="#{kitchenBean.orderDishesList.isEmpty()}"
-                                  value="There aren't any dishes to cook!"/></h3>
-            </h:form>
+                    </h:dataTable>
+                    <h3><h:outputText rendered="#{kitchenBean.orderDishesList.isEmpty()}"
+                                      value="There aren't any dishes to cook!"/></h3>
+                </h:form>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>

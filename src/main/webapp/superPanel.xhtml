@@ -3,9 +3,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
     <title>Superuser Control Panel</title>
@@ -14,7 +12,10 @@
 <h:body>
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2 style="text-align: center">Welcome to Superuser control panel</h2>
+            <ui:include src="template/page403.xhtml"/>
+            <h:outputText rendered="#{employeeBean.signedIn == true}">
+                <h2 style="text-align: center">Welcome to Superuser control panel</h2>
+            </h:outputText>
         </ui:define>
     </ui:composition>
 </h:body>

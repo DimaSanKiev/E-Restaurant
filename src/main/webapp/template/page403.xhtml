@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:body>
+    <h:outputLabel rendered="#{employeeBean.signedIn == false}">
+        <h2 style="text-align: center">Please <a href="../employeeSignIn.xhtml">authorize as employee</a> to see this page.</h2>
+        <h2 style="text-align: center">Or <a href="../menu.xhtml">visit E-Restaurant</a> as a customer.</h2>
+    </h:outputLabel>
+</h:body>
+</html>

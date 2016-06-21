@@ -15,63 +15,68 @@
 <h:body>
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2>Delivery Pending List</h2>
+            <ui:include src="template/page403.xhtml"/>
+            <h:panelGroup layout="block" rendered="#{employeeBean.employee.role.name == 'DELIVERY_STAFF'}">
+                <h2>Delivery Pending List</h2>
 
-            <h:form rendered="#{deliveryBean.sortByStatus}">#{deliveryBean.getDeliveryListByStatus()}</h:form>
-            <h:form rendered="#{deliveryBean.sortByTime}">#{deliveryBean.getDeliveryListByTime()}</h:form>
+                <h:form rendered="#{deliveryBean.sortByStatus}">#{deliveryBean.getDeliveryListByStatus()}</h:form>
+                <h:form rendered="#{deliveryBean.sortByTime}">#{deliveryBean.getDeliveryListByTime()}</h:form>
 
-            <h:form rendered="#{employeeBean.employee.role.id == 4}">
-                <p:commandButton id="sortByTime" action="#{deliveryBean.getDeliveryListByTime()}" value="By time"
-                                 update="matchGrid" ajax="false" styleClass="button"/>
-                <p:commandButton id="sortByStatus" action="#{deliveryBean.getDeliveryListByStatus()}" value="By status"
-                                 update="matchGrid" ajax="false" styleClass="button"/>
-                <br/>
-                <h:dataTable value="#{deliveryBean.ordersList}" var="order"
-                             styleClass="dish-container" headerClass="table-header"
-                             columnClasses="id, none, none, center, center, center"
-                             rowClasses="table-odd-row, table-even-row">
+                <h:form>
+                    <p:commandButton id="sortByTime" action="#{deliveryBean.getDeliveryListByTime()}" value="By time"
+                                     update="matchGrid" ajax="false" styleClass="button"/>
+                    <p:commandButton id="sortByStatus" action="#{deliveryBean.getDeliveryListByStatus()}"
+                                     value="By status"
+                                     update="matchGrid" ajax="false" styleClass="button"/>
+                    <br/>
+                    <h:dataTable value="#{deliveryBean.ordersList}" var="order"
+                                 styleClass="dish-container" headerClass="table-header"
+                                 columnClasses="id, none, none, center, center, center"
+                                 rowClasses="table-odd-row, table-even-row">
 
-                    <h:column>
-                        <f:facet name="header">Order Id</f:facet>
-                        <h:outputText value="#{order.id}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">Order Id</f:facet>
+                            <h:outputText value="#{order.id}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Customer Name</f:facet>
-                        <h:outputText value="#{order.customer.name}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">Customer Name</f:facet>
+                            <h:outputText value="#{order.customer.name}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Customer Address</f:facet>
-                        <h:outputText value="#{order.customer.address}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">Customer Address</f:facet>
+                            <h:outputText value="#{order.customer.address}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Date Time Taken</f:facet>
-                        <h:outputText value="#{order.dateTimeTaken}">
-                            <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
-                        </h:outputText>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">Date Time Taken</f:facet>
+                            <h:outputText value="#{order.dateTimeTaken}">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
+                            </h:outputText>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Order Status</f:facet>
-                        <h:outputText value="#{order.orderStatus.name}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">Order Status</f:facet>
+                            <h:outputText value="#{order.orderStatus.name}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Action</f:facet>
-                        <h:commandButton rendered="#{order.orderStatus.name == 'READY_FOR_SHIPMENT'}" value="Deliver"
-                                         action="#{deliveryBean.processOrder(order.id)}"/>
-                        <h:commandButton rendered="#{order.orderStatus.name == 'DELIVERING'}" value="Delivered"
-                                         action="#{deliveryBean.processOrder(order.id)}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton rendered="#{order.orderStatus.name == 'READY_FOR_SHIPMENT'}"
+                                             value="Deliver"
+                                             action="#{deliveryBean.processOrder(order.id)}"/>
+                            <h:commandButton rendered="#{order.orderStatus.name == 'DELIVERING'}" value="Delivered"
+                                             action="#{deliveryBean.processOrder(order.id)}"/>
+                        </h:column>
 
-                </h:dataTable>
+                    </h:dataTable>
 
-                <h3><h:outputText rendered="#{deliveryBean.ordersList.isEmpty()}"
-                                  value="There aren't any orders to deliver!"/></h3>
+                    <h3><h:outputText rendered="#{deliveryBean.ordersList.isEmpty()}"
+                                      value="There aren't any orders to deliver!"/></h3>
 
-            </h:form>
+                </h:form>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>

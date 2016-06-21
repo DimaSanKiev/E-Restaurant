@@ -15,9 +15,9 @@
 <h:body>
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            <h2>Customers</h2>
-
-            <h:form>
+            <ui:include src="template/page403.xhtml"/>
+            <h:form rendered="#{employeeBean.employee.role.name == 'ADMIN' or employeeBean.employee.role.name == 'SUPER_USER'}">
+                <h2>Customers</h2>
                 <h:panelGrid columns="1">
                     <p:commandButton value="New customer" action="#{customerBean.addCustomer()}" update="matchGrid"
                                      ajax="false"/>

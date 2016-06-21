@@ -15,39 +15,43 @@
 <h:body>
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
-            #{employeeBean.refreshRoles()}
-            <h:form rendered="#{employeeBean.employee.role.id == 1}">
-                <h2>Employee details</h2>
+            <ui:include src="template/page403.xhtml"/>
+            <h:panelGroup layout="block" rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}">
+                #{employeeBean.refreshRoles()}
+                <h:form>
+                    <h2>Employee details</h2>
 
-                <h:panelGrid columns="2">
-                    <p:outputLabel styleClass="label" for="name" value="Employee name: "/>
-                    <p:inputText id="name" value="#{employeeBean.newEmployee.name}" required="true"/>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel styleClass="label" for="name" value="Employee name: "/>
+                        <p:inputText id="name" value="#{employeeBean.newEmployee.name}" required="true"/>
 
-                    <p:outputLabel styleClass="label" for="email" value="Employee email: "/>
-                    <p:inputText id="email" value="#{employeeBean.newEmployee.email}" required="true"
-                                 type="email"/>
+                        <p:outputLabel styleClass="label" for="email" value="Employee email: "/>
+                        <p:inputText id="email" value="#{employeeBean.newEmployee.email}" required="true"
+                                     type="email"/>
 
-                    <p:outputLabel styleClass="label" for="birthdate" value="Employee birthdate: "/>
-                    <p:calendar id="birthdate" value="#{employeeBean.newEmployee.birthDate}" required="false"
-                                locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
+                        <p:outputLabel styleClass="label" for="birthdate" value="Employee birthdate: "/>
+                        <p:calendar id="birthdate" value="#{employeeBean.newEmployee.birthDate}" required="false"
+                                    locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
 
-                    <p:outputLabel styleClass="label" for="hiredate" value="Employee hiredate: "/>
-                    <p:calendar id="hiredate" value="#{employeeBean.newEmployee.hireDate}" required="false"
-                                locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
+                        <p:outputLabel styleClass="label" for="hiredate" value="Employee hiredate: "/>
+                        <p:calendar id="hiredate" value="#{employeeBean.newEmployee.hireDate}" required="false"
+                                    locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
 
-                    <p:outputLabel styleClass="label" value="Employee readiness: "/>
-                    <p:selectBooleanCheckbox id="readiness" value="#{employeeBean.newEmployee.ready}" required="true"/>
+                        <p:outputLabel styleClass="label" value="Employee readiness: "/>
+                        <p:selectBooleanCheckbox id="readiness" value="#{employeeBean.newEmployee.ready}"
+                                                 required="true"/>
 
-                    <p:outputLabel styleClass="label" value="Employee role:"/>
-                    <h:selectOneMenu value="#{employeeBean.role}">
-                        <f:selectItems value="#{employeeBean.idNameRoleMap}"/>
-                    </h:selectOneMenu>
+                        <p:outputLabel styleClass="label" value="Employee role:"/>
+                        <h:selectOneMenu value="#{employeeBean.role}">
+                            <f:selectItems value="#{employeeBean.idNameRoleMap}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <br/>
 
-                </h:panelGrid>
-                <br/>
-                <p:commandButton value="Submit" action="#{employeeBean.saveEmployee}" update="matchGrid" ajax="false"/>
-                <p:commandButton value="Back" action="employeeList" immadiate="true" immediate="true"/>
-            </h:form>
+                    <p:commandButton value="Submit" action="#{employeeBean.saveEmployee}" update="matchGrid" ajax="false"/>
+                    <p:commandButton value="Back" action="employeeList" immadiate="true" immediate="true"/>
+                </h:form>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>

@@ -151,6 +151,7 @@ public class EmployeeBean implements Serializable {
         return "employeeList";
     }
 
+    // FIXME: 6/21/16 - this doesn't update an employee info in the employeeList.xhtml
     public String updateEmployee(String id) {
         refreshRoles();
         newEmployee = employeeService.findById(Integer.valueOf(id));

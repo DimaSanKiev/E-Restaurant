@@ -15,85 +15,86 @@
 <h:body>
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
+            <ui:include src="template/page403.xhtml"/>
+            <h:panelGroup layout="block" rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}">
+                <h:form>
+                    <h2>Employees</h2>
+                    <h:panelGrid columns="1">
+                        <p:commandButton value="New employee" action="#{employeeBean.addEmployee()}" update="matchGrid"
+                                         ajax="false"/>
+                        <br/>
+                    </h:panelGrid>
 
-            <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 2}">
-                <h2>Employees</h2>
-                <h:panelGrid columns="1">
-                    <p:commandButton value="New employee" action="#{employeeBean.addEmployee()}" update="matchGrid"
-                                     ajax="false"/>
-                    <br/>
-                </h:panelGrid>
+                    <h:dataTable value="#{employeeBean.employees}" var="employee"
+                                 styleClass="dish-container" headerClass="table-header"
+                                 columnClasses="center, table-name, none, center, center, center, none, center"
+                                 rowClasses="table-odd-row, table-even-row">
 
-                <h:dataTable value="#{employeeBean.employees}" var="employee"
-                             styleClass="dish-container" headerClass="table-header"
-                             columnClasses="center, table-name, none, center, center, center, none, center"
-                             rowClasses="table-odd-row, table-even-row">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:commandLink action="#{employeeBean.sortEmployees()}"
+                                               styleClass="table-header">Id</h:commandLink>
+                            </f:facet>
+                            <h:outputText id="id" value="#{employee.id}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:commandLink action="#{employeeBean.sortEmployees()}" styleClass="table-header">Id</h:commandLink>
-                        </f:facet>
-                        <h:outputText id="id" value="#{employee.id}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Name</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="name" value="#{employee.name}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Name</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="name" value="#{employee.name}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Email</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="email" value="#{employee.email}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Email</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="email" value="#{employee.email}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Birthdate</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="birthdate" value="#{employee.birthDate}">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                            </h:outputText>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Birthdate</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="birthdate" value="#{employee.birthDate}">
-                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-                        </h:outputText>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Hiredate</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="hiredate" value="#{employee.hireDate}">
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
+                            </h:outputText>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Hiredate</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="hiredate" value="#{employee.hireDate}">
-                            <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-                        </h:outputText>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Readiness</h:outputLabel>
+                            </f:facet>
+                            <h:outputText rendered="#{employee.ready}" styleClass="element-black" value="yes"/>
+                            <h:outputText rendered="#{!employee.ready}" styleClass="element-red" value="no"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Readiness</h:outputLabel>
-                        </f:facet>
-                        <h:outputText rendered="#{employee.ready}" class="customer_blocked_no" value="yes"/>
-                        <h:outputText rendered="#{!employee.ready}" class="customer_blocked_yes" value="no"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputLabel styleClass="table-header">Role</h:outputLabel>
+                            </f:facet>
+                            <h:outputText id="role" value="#{employee.role.name}"/>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputLabel styleClass="table-header">Role</h:outputLabel>
-                        </f:facet>
-                        <h:outputText id="role" value="#{employee.role.name}"/>
-                    </h:column>
+                        <h:column>
+                            <f:facet name="header">Edit</f:facet>
+                            <h:commandLink>
+                                <h:graphicImage value="resources/images/icon/edit-icon.png" height="20" width="20" title="Update"/>
+                            </h:commandLink>
+                        </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Edit</f:facet>
-                        <h:commandLink action="#{employeeBean.updateEmployee(employee.id)}"
-                                rendered="${employee.role.id != 1}">
-                            <h:graphicImage value="resources/images/icon/edit-icon.png" height="20" width="20"
-                                            title="Update"/>
-                        </h:commandLink>
-                    </h:column>
-
-                </h:dataTable>
-            </h:form>
+                    </h:dataTable>
+                </h:form>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </h:body>

@@ -2,6 +2,7 @@ package com.bionic.edu.util;
 
 public class WeakCrypto {
 
+    // TODO: 6/21/16 - add password encryption
     public static String encrypt(String password) {
 //        String cryptPassword = "";
 //        for (char c : password.toCharArray()) {

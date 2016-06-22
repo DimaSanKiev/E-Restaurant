@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="WARN">
-    <appenders>
+<configuration status="INFO">
+    <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
@@ -14,7 +14,7 @@
             </Policies>
             <DefaultRolloverStrategy min="1" max="4"/>
         </RollingFile>
-    </appenders>
+    </Appenders>
     <loggers>
         <root level="debug">
             <appender-ref ref="Console"/>

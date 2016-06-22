@@ -50,12 +50,12 @@
 
                             <p class="dish-description">#{orderDish.description}</p>
 
-                            <p class="dish-price">
-                                <h:outputText value="#{orderDish.price}">
+                            <p>
+                                <h:outputText styleClass="dish-price" value="#{orderDish.price}">
                                     <f:convertNumber currencyCode="USD" type="currency"/>
                                 </h:outputText>
                             </p>
-                            <p class="dish-button">
+                            <p>
                                 <h:form><p:commandButton action="#{cartBean.increaseCount(orderDish.id)}"
                                                          value="Add to Cart"/></h:form></p>
                         </li>

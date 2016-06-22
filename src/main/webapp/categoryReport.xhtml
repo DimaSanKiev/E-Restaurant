@@ -32,13 +32,12 @@
                         </h:outputText>
                     </h2>
                     <h:form>
-                        <h:dataTable value="#{reportBean.reportCategories}" var="reportRow"
-                                     headerClass="table-header" columnClasses="none, center, center"
-                                     rowClasses="table-odd-row, table-even-row">
+                        <h:dataTable value="#{reportBean.reportCategories}" var="reportRow" headerClass="table-header"
+                                     columnClasses="none, center, center" rowClasses="table-odd-row, table-even-row">
 
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputLabel id="header">Category</h:outputLabel>
+                                    <h:outputLabel>Category</h:outputLabel>
                                 </f:facet>
                                 <h:outputText id="dishName" value="#{reportRow.dishCategoryName}"/>
                             </h:column>

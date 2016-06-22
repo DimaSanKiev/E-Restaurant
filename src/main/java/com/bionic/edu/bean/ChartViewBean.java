@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Named
 @Scope("session")
@@ -45,7 +46,7 @@ public class ChartViewBean implements Serializable {
         for (ReportCategory category : reportBean.getReportCategories()) {
             pieModel.set(category.getDishCategoryName(), category.getTotal());
         }
-        pieModel.setTitle("Categories Diagram");
+        pieModel.setTitle("Categories diagram");
         pieModel.setLegendPosition("e");
         pieModel.setFill(false);
         pieModel.setShowDataLabels(true);
@@ -56,16 +57,17 @@ public class ChartViewBean implements Serializable {
         lineModel = new LineChartModel();
         LineChartSeries series = new LineChartSeries();
         reportBean.refreshTotalReport();
-        for (ReportTotal reportTotal : reportBean.getReportTotals()) {
+        List<ReportTotal> reportTotals = reportBean.getReportTotals();
+        for (ReportTotal reportTotal : reportTotals) {
             series.set(reportTotal.getDate().toString(), reportTotal.getTotal());
         }
         lineModel.addSeries(series);
-        lineModel.setTitle("Orders total");
+        lineModel.setTitle("Order's Total diagram");
         lineModel.setAnimate(true);
         lineModel.getAxis(AxisType.Y).setLabel("Values");
         DateAxis axis = new DateAxis("Dates");
         axis.setTickFormat("%b %#d, %y");
-        axis.setMax(LocalDate.now().plusDays(1).toString());
+//        axis.setMax(LocalDate.now().plusDays(1).toString());
         lineModel.getAxes().put(AxisType.X, axis);
     }
 }

@@ -15,16 +15,18 @@
     <ui:define name="content">
         <h:body>
 
-            <h:panelGrid columns="2">
+            <!--<h:panelGrid columns="2">-->
                 <p:outputLabel><h2>Please Sign In</h2>
                     <ui:include src="template/signIn.xhtml"/>
                 </p:outputLabel>
+
+                <p:separator/>
 
                 <br/>
                 <p:outputLabel><h2>Or create a new Account</h2>
                     <ui:include src="template/signUp.xhtml"/>
                 </p:outputLabel>
-            </h:panelGrid>
+            <!--</h:panelGrid>-->
 
         </h:body>
     </ui:define>

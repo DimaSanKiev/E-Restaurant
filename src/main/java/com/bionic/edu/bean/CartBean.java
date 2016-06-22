@@ -101,7 +101,7 @@ public class CartBean implements Serializable {
     }
 
     public String confirm(Customer customer) {
-        if (customer.getId() == 0) {
+        if (customer == null || customer.getId() == 0) {
             addMessage("Please Authorize", "Please sign in or create new account.", FacesMessage.SEVERITY_WARN);
             return "authorize";
         }

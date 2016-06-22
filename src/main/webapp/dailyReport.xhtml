@@ -32,7 +32,12 @@
                         </h:outputText>
                     </h2>
 
-                    <h:form>
+                    <h:form rendered="${empty reportBean.reportTotals}">
+                        There weren't any orders during this period.
+                        <br/> <br/>
+                    </h:form>
+
+                    <h:form rendered="#{not empty reportBean.reportTotals}">
                         <h:dataTable value="#{reportBean.reportTotals}" var="reportRow" headerClass="table-header"
                                      columnClasses="none, center, center" rowClasses="table-odd-row, table-even-row">
 
@@ -65,7 +70,7 @@
                         <br/>
                     </h:form>
 
-                    <h:form>
+                    <h:form rendered="#{not empty reportBean.reportTotals}">
                         <p:chart type="line" model="#{chartViewBean.lineModel}" style="width:400px;height:300px"/>
                     </h:form>
 

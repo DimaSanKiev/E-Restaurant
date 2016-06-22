@@ -9,6 +9,8 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -53,6 +55,7 @@ public class ChartViewBean implements Serializable {
         pieModel.setDiameter(150);
     }
 
+    // TODO: 6/23/16 - update charts - http://stackoverflow.com/questions/12929125/primefaces-charts-not-updating-when-submit-a-new-request
     private void createLineModel() {
         lineModel = new LineChartModel();
         LineChartSeries series = new LineChartSeries();
@@ -64,10 +67,12 @@ public class ChartViewBean implements Serializable {
         lineModel.addSeries(series);
         lineModel.setTitle("Order's Total diagram");
         lineModel.setAnimate(true);
-        lineModel.getAxis(AxisType.Y).setLabel("Values");
+        lineModel.getAxis(AxisType.Y).setLabel("Income, USD");
         DateAxis axis = new DateAxis("Dates");
         axis.setTickFormat("%b %#d, %y");
-//        axis.setMax(LocalDate.now().plusDays(1).toString());
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        axis.setMax(df.format(reportBean.getEndDate()));
+        axis.setMin(df.format(reportBean.getStartDate()));
         lineModel.getAxes().put(AxisType.X, axis);
     }
 }

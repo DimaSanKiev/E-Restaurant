@@ -55,6 +55,7 @@ public class ChartViewBean implements Serializable {
     private void createLineModel() {
         lineModel = new LineChartModel();
         LineChartSeries series = new LineChartSeries();
+        reportBean.refreshTotalReport();
         for (ReportTotal reportTotal : reportBean.getReportTotals()) {
             series.set(reportTotal.getDate().toString(), reportTotal.getTotal());
         }

@@ -21,57 +21,56 @@
 
                 #{reportBean.refreshCategoryReport()}
 
-                <h2>Total report from
-                    <h:outputText value="#{reportBean.startDate}">
-                        <f:convertDateTime/>
-                    </h:outputText>
-                    to
-                    <h:outputText value="#{reportBean.endDate}">
-                        <f:convertDateTime/>
-                    </h:outputText>
-                </h2>
+                <div class="report-container">
+                    <h2>Total report from
+                        <h:outputText value="#{reportBean.startDate}" styleClass="report-digits">
+                            <f:convertDateTime pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                        to
+                        <h:outputText value="#{reportBean.endDate}" styleClass="report-digits">
+                            <f:convertDateTime pattern="dd.MM.yyyy"/>
+                        </h:outputText>
+                    </h2>
+                    <h:form>
+                        <h:dataTable value="#{reportBean.reportCategories}" var="reportRow"
+                                     headerClass="table-header" columnClasses="none, center, center"
+                                     rowClasses="table-odd-row, table-even-row">
 
-                <h:form rendered="#{employeeBean.employee.role.id == 1 or employeeBean.employee.role.id == 5}">
-                    <h:dataTable value="#{reportBean.reportCategories}" var="reportRow"
-                                 styleClass="table" headerClass="tableHeader"
-                                 columnClasses="none, center, center"
-                                 rowClasses="table-odd-row, table-even-row">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel id="header">Category</h:outputLabel>
+                                </f:facet>
+                                <h:outputText id="dishName" value="#{reportRow.dishCategoryName}"/>
+                            </h:column>
 
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputLabel styleClass="table-header">Category</h:outputLabel>
-                            </f:facet>
-                            <h:outputText id="dishName" value="#{reportRow.dishCategoryName}"/>
-                        </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel>Quantity</h:outputLabel>
+                                </f:facet>
+                                <h:outputText id="dishCount" value="#{reportRow.count}"/>
+                            </h:column>
 
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputLabel styleClass="table-header">Quantity</h:outputLabel>
-                            </f:facet>
-                            <h:outputText id="dishCount" value="#{reportRow.count}"/>
-                        </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputLabel>Total price</h:outputLabel>
+                                </f:facet>
+                                <h:outputText id="total" value="#{reportRow.total}">
+                                    <f:convertNumber currencyCode="USD" type="currency"/>
+                                </h:outputText>
+                            </h:column>
 
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputLabel styleClass="table-header">Total price</h:outputLabel>
-                            </f:facet>
-                            <h:outputText id="total" value="#{reportRow.total}">
-                                <f:convertNumber currencyCode="USD" type="currency"/>
-                            </h:outputText>
-                        </h:column>
+                        </h:dataTable>
+                        <br/>
+                    </h:form>
 
-                    </h:dataTable>
-                    <br/>
-                    <p:commandButton value="Back" action="reports" immadiate="true" immediate="true"/>
-                </h:form>
+                    <h:form>
+                        <p:chart type="pie" model="#{chartViewBean.pieModel}" style="width:400px;height:300px"/>
+                    </h:form>
 
-                <h:form>
-                    <p:chart type="pie" model="#{chartViewBean.pieModel}" style="width:400px;height:300px"/>
-                </h:form>
-
+                    <p:commandButton value="Back" action="reports" immadiate="true"/>
+                </div>
             </h:panelGroup>
         </ui:define>
-        <ui:include src="template/page403.xhtml"/>
     </ui:composition>
 </h:body>
 </html>

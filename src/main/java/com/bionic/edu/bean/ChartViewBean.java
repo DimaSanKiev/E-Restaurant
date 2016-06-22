@@ -39,7 +39,7 @@ public class ChartViewBean implements Serializable {
         return lineModel;
     }
 
-    public void createPieModel() {
+    private void createPieModel() {
         pieModel = new PieChartModel();
         reportBean.refreshCategoryReport();
         for (ReportCategory category : reportBean.getReportCategories()) {
@@ -52,7 +52,7 @@ public class ChartViewBean implements Serializable {
         pieModel.setDiameter(150);
     }
 
-    public void createLineModel() {
+    private void createLineModel() {
         lineModel = new LineChartModel();
         LineChartSeries series = new LineChartSeries();
         for (ReportTotal reportTotal : reportBean.getReportTotals()) {

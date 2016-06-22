@@ -46,10 +46,10 @@ public class OrderDaoImpl extends GenericDaoImpl<Orders> implements OrderDao {
     public List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("SELECT new com.bionic.edu.util.ReportTotal(" +
-                "SUM(od.quantity), SUM(od.price), FUNCTION('DATE', od.order.dateTimeTaken)) " +
+                "SUM(od.quantity), SUM(od.price), od.order.dateTimeTaken) " +
                 "FROM OrderDishes od WHERE od.order.orderStatus.id = :status " +
-                "AND FUNCTION('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
-                "GROUP BY FUNCTION('DATE', od.order.dateTimeTaken)");
+                "AND od.order.dateTimeTaken BETWEEN :start AND :finish " +
+                "GROUP BY od.order.dateTimeTaken");
         query.setParameter("status", 5);
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);
@@ -63,7 +63,7 @@ public class OrderDaoImpl extends GenericDaoImpl<Orders> implements OrderDao {
         Query query = session.createQuery("SELECT new com.bionic.edu.util.ReportCategory(" +
                 "od.dish.category.name, COUNT(od.order.id), SUM(od.price)) " +
                 "FROM OrderDishes od WHERE od.order.orderStatus.id = :status " +
-                "AND FUNCTION('DATE', od.order.dateTimeTaken) BETWEEN :start AND :finish " +
+                "AND od.order.dateTimeTaken BETWEEN :start AND :finish " +
                 "GROUP BY od.dish.category.name");
         query.setParameter("status", 5);
         query.setParameter("start", startPeriod);

@@ -130,7 +130,14 @@ public class CustomerBean implements Serializable {
 
     public String updateCustomer(String id) {
         customer = customerService.findById(Integer.valueOf(id));
+        customers = customerService.findAll();
         return "editCustomer";
+    }
+
+    public String deleteCustomer(String id) {
+        customerService.delete(Integer.valueOf(id));
+        customers = customerService.findAll();
+        return "customerList";
     }
 
     public String signIn(String email, String password) {

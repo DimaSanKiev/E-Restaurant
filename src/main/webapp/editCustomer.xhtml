@@ -18,7 +18,7 @@
             <h:panelGroup layout="block"
                           rendered="#{employeeBean.employee.role.name == 'ADMIN' or employeeBean.employee.role.name == 'SUPER_USER'}">
                 <h:form>
-                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:growl id="growl" showDetail="true" life="1000"/>
                     <h2>Customer details</h2>
                     <h:panelGrid columns="2">
                         <p:outputLabel styleClass="label" for="name" value="Customer name: "/>

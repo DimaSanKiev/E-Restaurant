@@ -18,6 +18,7 @@
             <h:panelGroup layout="block"
                           rendered="#{employeeBean.employee.role.name == 'ADMIN' or employeeBean.employee.role.name == 'SUPER_USER'}">
                 <h:form>
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
                     <h2>Customer details</h2>
 
                     <h:panelGrid columns="2">
@@ -48,7 +49,7 @@
 
                     </h:panelGrid>
                     <br/>
-                    <p:commandButton value="Submit" action="#{customerBean.saveCustomer}" update="matchGrid" ajax="false"/>
+                    <p:commandButton value="Submit" actionListener="#{customerBean.saveCustomer}" update="growl"/>
                     <p:commandButton value="Back" action="customerList" immadiate="true" immediate="true"/>
                 </h:form>
             </h:panelGroup>

@@ -15,6 +15,7 @@
     <ui:composition template="template/CustomerTemplate.xhtml">
         <ui:define name="content">
             <h:form id="forUpdate">
+                <p:growl id="growl" showDetail="true" sticky="true"/>
                 <div class="body">
                     <h2>Please edit your personal info</h2>
 
@@ -49,7 +50,7 @@
                         </h:panelGrid>
 
                         <br/>
-                        <p:commandButton value="Confirm" action="#{customerBean.saveCustomer()}"
+                        <p:commandButton value="Confirm" actionListener="#{customerBean.saveCustomer()}"
                                          update="matchGrid" ajax="false"/>
                         <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
                     </h:form>

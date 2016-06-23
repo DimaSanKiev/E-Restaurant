@@ -138,6 +138,10 @@ public class EmployeeBean implements Serializable {
         }
     }
 
+    public void refreshEmployeeList() {
+        employees = employeeService.findAll();
+    }
+
     // TODO: 18.06.2016 - handle duplicating email exception
     public String addEmployee() {
         refreshRoles();

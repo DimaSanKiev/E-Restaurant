@@ -18,6 +18,7 @@
             <ui:include src="template/page403.xhtml"/>
             <h:panelGroup layout="block" rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}">
                 <h:form>
+                    #{employeeBean.refreshEmployeeList()}
                     <h2>Employees</h2>
                     <h:panelGrid columns="1">
                         <p:commandButton value="New employee" action="#{employeeBean.addEmployee()}" update="matchGrid"
@@ -88,7 +89,8 @@
                         <h:column>
                             <f:facet name="header">Edit</f:facet>
                             <h:commandLink>
-                                <h:graphicImage value="resources/images/icon/edit-icon.png" height="20" width="20" title="Update"/>
+                                <h:graphicImage value="resources/images/icon/edit-icon.png" height="20" width="20"
+                                                title="Update"/>
                             </h:commandLink>
                         </h:column>
 

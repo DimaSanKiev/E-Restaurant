@@ -101,41 +101,41 @@ INSERT INTO role (name) VALUES ('DELIVERY_STAFF');
 INSERT INTO role (name) VALUES ('BUSINESS_ANALYST');
 
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\01_Tomato-Soup.jpg'));
+VALUES (FILE_READ('./files/images/01_Tomato-Soup.jpg'));
+INSERT INTO photo (content) VALUES
+  (FILE_READ('./files/images/02_Cream-Of-Mushroom-Soup.jpg'));
 INSERT INTO photo (content)
-  VALUES(FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\02_Cream-Of-Mushroom-Soup.jpg'));
+VALUES (FILE_READ('./files/images/03_Miso-Soup.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\03_Miso-Soup.jpg'));
+VALUES (FILE_READ('./files/images/04_Greek-Salad.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\04_Greek-Salad.jpg'));
+VALUES (FILE_READ('./files/images/05_Avocado-Tuna-Tapas.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\05_Avocado-Tuna-Tapas.jpg'));
+VALUES (FILE_READ('./files/images/06_Caesar-Salad.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\06_Caesar-Salad.jpg'));
+VALUES (FILE_READ('./files/images/07_Baked-Spaghetti.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\07_Baked-Spaghetti.jpg'));
+VALUES (FILE_READ('./files/images/08_Beef-Bourguignon.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\08_Beef-Bourguignon.jpg'));
+VALUES (FILE_READ('./files/images/09_Wild-Salmon.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\09_Wild-Salmon.jpg'));
+VALUES (FILE_READ('./files/images/10_Chocolate-Fondue.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\10_Chocolate-Fondue.jpg'));
+VALUES (FILE_READ('./files/images/11_Tapioca-Pudding.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\11_Tapioca-Pudding.jpg'));
+VALUES (FILE_READ('./files/images/12_Fruit-Salad.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\12_Fruit-Salad.jpg'));
+VALUES (FILE_READ('./files/images/13_Latte.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\13_Latte.jpg'));
+VALUES (FILE_READ('./files/images/14_Tea.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\14_Tea.jpg'));
+VALUES (FILE_READ('./files/images/15_Juice.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\15_Juice.jpg'));
+VALUES (FILE_READ('./files/images/16_Cola.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\16_Cola.jpg'));
+VALUES (FILE_READ('./files/images/17_Mineral-Water.jpg'));
 INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\17_Mineral-Water.jpg'));
-INSERT INTO photo (content)
-  VALUES (FILE_READ('E:\Dima\Information\IT\MyProjects\toGitHub\E-Restaurant\files\images\18_Beer.jpg'));
+VALUES (FILE_READ('./files/images/18_Beer.jpg'));
 
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
   VALUES ('Dmytro Burdyga', 'super@erestaurant.com', 'pass1', '1984-06-27', '2010-01-01', TRUE, 1, NULL);
@@ -262,12 +262,72 @@ INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_
   VALUES ('Sergey Butenko', 'sergey.butenko@gmail.com', 'pass6', '2 Polarna Str., App. 67, Kyiv', '1991-08-08', TRUE, NULL);
 
 INSERT INTO orders_status (name)
-  VALUES ('KITCHEN_DONE');
+VALUES ('KITCHEN_DONE');
 INSERT INTO orders_status (name)
-  VALUES ('NON-KITCHEN_DONE');
+VALUES ('NON-KITCHEN_DONE');
 INSERT INTO orders_status (name)
-  VALUES ('READY_FOR_SHIPMENT');
+VALUES ('READY_FOR_SHIPMENT');
 INSERT INTO orders_status (name)
-  VALUES ('DELIVERING');
+VALUES ('DELIVERING');
 INSERT INTO orders_status (name)
-  VALUES ('DELIVERED');
+VALUES ('DELIVERED');
+
+
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES ('2016-06-01 15:21:10', '2016-06-17 16:21:10', 22.20, 5, 1);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES ('2016-06-02 14:11:11', '2016-06-18 15:10:01', 8.00, 5, 2);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES ('2016-06-03 15:59:50', '2016-06-19 16:25:04', 3.60, 5, 3);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES ('2016-06-04 15:31:11', '2016-06-21 16:11:02', 51.90, 5, 4);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES ('2016-06-05 12:11:19', '2016-06-16 13:34:11', 22.40, 4, 5);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES ('2016-06-06 14:12:19', '2016-06-21 15:33:21', 16.90, 3, 4);
+INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES ('2016-06-07 01:11:09', '2016-06-21 02:03:02', 15.30, 2, 5);
+
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 8.40, TRUE, 1, 1);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.40, FALSE, 2, 1);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.40, FALSE, 2, 2);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 3.60, TRUE, 3, 3);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 4, 4);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 14.60, TRUE, 8, 4);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 8.60, TRUE, 6, 4);
+--
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.20, TRUE, 1, 5);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 4, 5);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 8.20, TRUE, 8, 5);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 3.50, FALSE, 14, 5);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.50, FALSE, 18, 5);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, FALSE, 15, 5);
+--
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 2.90, TRUE, 16, 6);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.30, TRUE, 9, 6);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.20, TRUE, 1, 6);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 4, 6);
+--
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 1, 7);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 4, 7);
+INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.30, FALSE, 6, 7);

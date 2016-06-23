@@ -20,8 +20,7 @@ import static org.junit.Assert.*;
 
 public class DishServiceImplTest {
 
-    private String pathPrefixWin = "E:\\Dima\\Information\\IT\\MyProjects\\toGitHub\\E-Restaurant\\src\\main\\webapp\\resources\\images\\general\\";
-    private String pathPrefixMac = "/Users/Dima/Java/Projects/E-Restaurant/src/main/webapp/resources/images/general/";
+    private String pathPrefix = "./files/images/general/";
     private DishService dishService;
     private DishCategoryService dishCategoryService;
 
@@ -105,7 +104,7 @@ public class DishServiceImplTest {
     }
 
     private Dish createTestDishWithPhoto() throws IOException {
-        Path path = Paths.get(pathPrefixMac + "test_image.png");
+        Path path = Paths.get(pathPrefix + "test_image.png");
         Photo photo = new Photo(Files.readAllBytes(path));
         return new Dish("Test Dish", "Test Dish description", generateRandomPrice(), true, true, photo, dishCategoryService.findById(1));
     }

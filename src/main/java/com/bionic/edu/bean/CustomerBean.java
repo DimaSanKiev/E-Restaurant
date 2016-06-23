@@ -30,7 +30,6 @@ public class CustomerBean implements Serializable {
     private boolean sortAscending;
     private List<Customer> customers = null;
     private Customer customer = null;
-    private Customer newCustomer = null;
     @Inject
     private CustomerService customerService;
 
@@ -95,9 +94,12 @@ public class CustomerBean implements Serializable {
         }
     }
 
+    public void refreshCustomerList() {
+        customers = customerService.findAll();
+    }
+
     public void blockUnblockCustomer(int id) {
         customerService.blockUnblockCustomer(id);
-        customers = customerService.findAll();
     }
 
     public String saveCustomer() {
@@ -108,7 +110,7 @@ public class CustomerBean implements Serializable {
             logger.error("\nSaving customer ERROR - Current email is already used.", " CustomerID:" + customer.getId());
             return null;
         }
-        addMessage("Saved successfully", "Customer's data was successfully saved.", FacesMessage.SEVERITY_INFO);
+        showGrowlMessage("Saved successfully", "Customer's data was successfully saved.");
 //        return "customerList";
         return null;
     }
@@ -129,20 +131,19 @@ public class CustomerBean implements Serializable {
         return "menu";
     }
 
+    // TODO: 24.06.2016 - create a NEW customer instead of updating
     public String addCustomer() {
-        newCustomer = new Customer();
+        customer = new Customer();
         return "newCustomer";
     }
 
     public String updateCustomer(String id) {
         customer = customerService.findById(Integer.valueOf(id));
-        customers = customerService.findAll();
         return "editCustomer";
     }
 
     public String deleteCustomer(String id) {
         customerService.delete(Integer.valueOf(id));
-        customers = customerService.findAll();
         return "customerList";
     }
 
@@ -181,6 +182,11 @@ public class CustomerBean implements Serializable {
     private void addMessage(String header, String detail, FacesMessage.Severity severity) {
         RequestContext.getCurrentInstance().showMessageInDialog(
                 new FacesMessage(severity, header, detail));
+    }
+
+    private void showGrowlMessage(String header, String detail) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(header, detail));
     }
 
 }

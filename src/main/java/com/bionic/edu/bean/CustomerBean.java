@@ -30,6 +30,7 @@ public class CustomerBean implements Serializable {
     private boolean sortAscending;
     private List<Customer> customers = null;
     private Customer customer = null;
+    private Customer newCustomer = null;
     @Inject
     private CustomerService customerService;
 
@@ -94,6 +95,11 @@ public class CustomerBean implements Serializable {
         }
     }
 
+    public void blockUnblockCustomer(int id) {
+        customerService.blockUnblockCustomer(id);
+        customers = customerService.findAll();
+    }
+
     public String saveCustomer() {
         try {
             customerService.save(customer);
@@ -124,7 +130,7 @@ public class CustomerBean implements Serializable {
     }
 
     public String addCustomer() {
-        customer = new Customer();
+        newCustomer = new Customer();
         return "newCustomer";
     }
 

@@ -59,6 +59,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
+    @Transactional
+    @Override
+    public void blockUnblockCustomer(int customerId) {
+        Customer customer = customerDao.findById(customerId);
+        customer.setBlocked(!customer.isBlocked());
+    }
+
     @Override
     public Customer findByEmail(String email) {
         Customer customer = customerDao.findByEmail(email);

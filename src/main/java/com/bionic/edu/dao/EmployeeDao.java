@@ -6,6 +6,4 @@ import com.bionic.edu.entity.Employee;
 public interface EmployeeDao extends GenericDao<Employee> {
 
     Employee findByEmail(String email);
-
-    void setReadiness(Employee employee, boolean isReady);
 }

@@ -29,7 +29,7 @@
 
                     <h:dataTable value="#{dishBean.dishes}" var="orderDish"
                                  styleClass="dish-container" headerClass="table-header"
-                                 columnClasses="table-name, none, dish-column-description, center, center, center, center, center"
+                                 columnClasses="table-name, center, dish-column-description, center, center, center, center, center"
                                  rowClasses="table-odd-row, table-even-row">
 
                         <h:column>
@@ -42,11 +42,11 @@
                         <h:column>
                             <f:facet name="header">Photo</f:facet>
                             <p:graphicImage rendered="#{not empty orderDish.photo}" value="#{photoBean.photoContent}"
-                                            width="100">
+                                            width="120">
                                 <f:param name="id" value="#{orderDish.photo.id}"/>
                             </p:graphicImage>
                             <h:graphicImage rendered="#{empty orderDish.photo}"
-                                            value="resources/images/general/no_image.png" width="100"/>
+                                            value="resources/images/general/no_image.png" width="120"/>
                         </h:column>
 
                         <h:column>

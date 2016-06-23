@@ -66,10 +66,4 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employee;
     }
-
-    @Override
-    public void setReadiness(Employee employee, boolean isReady) {
-        employeeDao.setReadiness(employee, isReady);
-    }
-
 }

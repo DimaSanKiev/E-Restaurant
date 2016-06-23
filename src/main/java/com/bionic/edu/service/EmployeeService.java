@@ -11,5 +11,4 @@ public interface EmployeeService extends GenericService<Employee> {
 
     Employee signIn(String email, String password) throws BadCredentialsException, EmployeeNotReadyException;
 
-    void setReadiness(Employee employee, boolean isReady);
 }

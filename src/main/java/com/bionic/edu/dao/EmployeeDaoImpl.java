@@ -26,11 +26,4 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee> implements Employe
         query.setParameter("email", email);
         return (Employee) query.uniqueResult();
     }
-
-    // todo - move to service package
-    @Override
-    public void setReadiness(Employee employee, boolean isReady) {
-        employee.setReady(isReady);
-        save(employee);
-    }
 }

@@ -264,6 +264,7 @@ div#template-customer-bar-icon {
 div#template-customer-bar-text {
     margin-top: 15px;
     float: left;
+    font-size: 14pt;
 }
 
 div#template-customer-bar-buttons {
@@ -273,10 +274,11 @@ div#template-customer-bar-buttons {
     float: right;
 }
 
-.cart-text {
-    font-size: 14pt;
+.template-customer-bar-greeting {
+    margin-right: 10px;
 }
 
+/* FOOTER */
 .footer {
     padding-top: 3%;
     font-size: medium;

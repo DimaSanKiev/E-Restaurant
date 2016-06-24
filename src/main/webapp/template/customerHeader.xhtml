@@ -36,7 +36,7 @@
 
                 <div id="template-customer-bar-buttons">
                     <h:form>
-                        <p:outputLabel rendered="#{customerBean.signedIn == true}" style="padding-right: 1%">
+                        <p:outputLabel rendered="#{customerBean.signedIn == true}" styleClass="template-customer-bar-greeting">
                             Hello, <a href="../updateCustomerInfo.xhtml"><b>#{customerBean.customer.name}</b></a>
                         </p:outputLabel>
 

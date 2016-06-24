@@ -10,8 +10,8 @@
 <h:body>
     <ui:composition>
         <div id="template-customer-bar-wrapper">
-            <!--<h:panelGroup id="customerBar" styleClass="template-customer-bar">-->
-                <div id="template-customer-bar-icon">
+            <h:panelGroup id="customerBar" styleClass="template-customer-bar">
+                <div id="template-customer-bar-cart-icon">
                     <h:form>
                         <h:commandLink action="shoppingCart">
                             <h:graphicImage value="resources/images/icon/cart-icon.png" height="50" width="50"
@@ -19,7 +19,7 @@
                         </h:commandLink>
                     </h:form>
                 </div>
-                <div id="template-customer-bar-text">
+                <div id="template-customer-bar-cart-text">
                     <h:form rendered="#{empty cartBean.cartMap}">
                         <h:outputText styleClass="cart-text"
                                       value="Your shopping cart is empty"/>
@@ -34,10 +34,13 @@
                     </h:form>
                 </div>
 
-                <div id="template-customer-bar-buttons">
+                <div id="template-customer-bar-controls">
                     <h:form>
                         <p:outputLabel rendered="#{customerBean.signedIn == true}" styleClass="template-customer-bar-greeting">
-                            Hello, <a href="../updateCustomerInfo.xhtml"><b>#{customerBean.customer.name}</b></a>
+                            Hello <a href="../updateCustomerInfo.xhtml"><b>#{customerBean.customer.name}</b></a>
+                        </p:outputLabel>
+                        <p:outputLabel rendered="#{customerBean.signedIn == false}" styleClass="template-customer-bar-greeting">
+                            Hello guest! Welcome to E-Restaurant!
                         </p:outputLabel>
 
                         <p:button outcome="menu" id="home" value="Menu"/>
@@ -50,9 +53,9 @@
                                          ajax="false"/>
                     </h:form>
                 </div>
-            <!--</h:panelGroup>-->
+            </h:panelGroup>
         </div>
-        <!--<p:sticky target="customerBar"/>-->
+        <p:sticky target="customerBar"/>
     </ui:composition>
 </h:body>
 </html>

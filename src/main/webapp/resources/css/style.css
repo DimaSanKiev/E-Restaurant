@@ -61,20 +61,19 @@ h2.header-center {
 
 /* MENU */
 .dish-container {
-    max-width: 90%;
-    display: table;
+    max-width: 85%;
     border: 4px double #d9d9d9;
     border-radius: 5px;
     margin: auto;
+    text-align: justify;
 }
 
 .dish-block {
     border: solid lightgray 1px;
     border-radius: 10px;
     width: 240px;
-    float: left;
-    position: relative;
-    list-style-type: none;
+    display: inline-block;
+    vertical-align: top;
     padding: 5px;
     margin: 3px;
 }
@@ -94,26 +93,28 @@ h2.header-center {
     font-size: 20px;
     font-weight: 600;
     color: #333333;
-    margin-bottom: 10px;
+    margin: 10px 5px 10px 10px;
 }
 
 .dish-description {
     font-size: 14px;
-    font-weight: 400;
     color: #666666;
     text-align: justify;
     word-wrap: break-word;
     word-break: keep-all;
+    margin: 5px;
 }
 
 .dish-price {
     font-size: 18px;
     font-weight: 600;
     color: #333333;
+    margin: 5px;
 }
 
 .dish-button {
-    position: absolute;
+    margin: auto;
+    font-weight: 800;
 }
 
 .dish-button:hover {

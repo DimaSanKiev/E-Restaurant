@@ -37,27 +37,27 @@
             <div class="dish-container">
                 <ui:repeat var="orderDish" value="#{dishBean.dishes}">
                     <div class="dish-block">
-                        <p class="dish-photo">
+                        <div class="dish-photo">
                             <p1:graphicImage styleClass="dish-photo" rendered="#{not empty orderDish.photo}"
                                              value="#{photoBean.photoContent}">
                                 <f:param name="id" value="#{orderDish.photo.id}"/>
                             </p1:graphicImage>
                             <p:graphicImage styleClass="dish-photo" rendered="#{empty orderDish.photo}"
                                             value="resources/images/general/no_image.png"/>
-                        </p>
+                        </div>
 
-                        <p class="dish-name">#{orderDish.name}</p>
+                        <div class="dish-name">#{orderDish.name}</div>
 
-                        <p class="dish-description">#{orderDish.description}</p>
+                        <div class="dish-description">#{orderDish.description}</div>
 
-                        <p>
+                        <div>
                             <h:outputText styleClass="dish-price" value="#{orderDish.price}">
                                 <f:convertNumber currencyCode="USD" type="currency"/>
                             </h:outputText>
-                        </p>
-                        <p>
+                        </div>
+                        <div>
                             <h:form><p:commandButton action="#{cartBean.increaseCount(orderDish.id)}"
-                                                     value="Add to Cart"/></h:form></p>
+                                                     value="Add to Cart"/></h:form></div>
                     </div>
                 </ui:repeat>
             </div>

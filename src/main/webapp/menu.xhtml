@@ -17,21 +17,21 @@
     <ui:composition template="template/CustomerTemplate.xhtml">
         <ui:define name="content">
 
-            <div class="category-menu-items" style="padding: 1%">
+            <div class="menu-category-button-wrapper">
                 <h:outputLabel styleClass="menu-text"><h2>Please select dish by category:</h2></h:outputLabel>
                 <h:form>
                     <p:commandButton id="allCategories" value="All Dishes" update="matchGrid" ajax="false"
-                                     action="#{dishBean.refreshAvailableDishes}" styleClass="category-menu-buttons"/>
+                                     action="#{dishBean.refreshAvailableDishes}" styleClass="menu-category-button"/>
                     <p:commandButton id="soup" value="Soups" update="matchGrid" ajax="false"
-                                     action="#{dishBean.refreshCategory(1)}" styleClass="category-menu-buttons"/>
+                                     action="#{dishBean.refreshCategory(1)}" styleClass="menu-category-button"/>
                     <p:commandButton id="salad" value="Salads" update="matchGrid" ajax="false"
-                                     action="#{dishBean.refreshCategory(2)}" styleClass="category-menu-buttons"/>
+                                     action="#{dishBean.refreshCategory(2)}" styleClass="menu-category-button"/>
                     <p:commandButton id="mainCourse" value="Main Course" update="matchGrid" ajax="false"
-                                     action="#{dishBean.refreshCategory(3)}" styleClass="category-menu-buttons"/>
+                                     action="#{dishBean.refreshCategory(3)}" styleClass="menu-category-button"/>
                     <p:commandButton id="dessert" value="Desserts" update="matchGrid" ajax="false"
-                                     action="#{dishBean.refreshCategory(4)}" styleClass="category-menu-buttons"/>
+                                     action="#{dishBean.refreshCategory(4)}" styleClass="menu-category-button"/>
                     <p:commandButton id="drink" value="Drinks" update="matchGrid" ajax="false"
-                                     action="#{dishBean.refreshCategory(5)}" styleClass="category-menu-buttons"/>
+                                     action="#{dishBean.refreshCategory(5)}" styleClass="menu-category-button"/>
                 </h:form>
             </div>
             <div class="dish-container">
@@ -55,9 +55,9 @@
                                 <f:convertNumber currencyCode="USD" type="currency"/>
                             </h:outputText>
                         </div>
-                        <div>
+                        <div class="dish-button-wrapper">
                             <h:form><p:commandButton action="#{cartBean.increaseCount(orderDish.id)}"
-                                                     value="Add to Cart"/></h:form></div>
+                                                     value="Add to Cart" styleClass="dish-button"/></h:form></div>
                     </div>
                 </ui:repeat>
             </div>

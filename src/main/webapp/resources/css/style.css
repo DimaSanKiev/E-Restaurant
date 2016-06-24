@@ -71,11 +71,12 @@ h2.header-center {
 .dish-block {
     border: solid lightgray 1px;
     border-radius: 10px;
-    width: 250px;
-    margin: 1%;
+    width: 240px;
     float: left;
     position: relative;
     list-style-type: none;
+    padding: 5px;
+    margin: 3px;
 }
 
 .dish-block:hover {
@@ -83,9 +84,10 @@ h2.header-center {
 }
 
 .dish-photo {
+    margin: auto;
+    padding-top: 2px;
     width: 220px;
     height: 220px;
-    float: left;
 }
 
 .dish-name {
@@ -102,15 +104,12 @@ h2.header-center {
     text-align: justify;
     word-wrap: break-word;
     word-break: keep-all;
-    margin-bottom: 10px;
-    margin-right: 10px;
 }
 
 .dish-price {
     font-size: 18px;
     font-weight: 600;
     color: #333333;
-    margin-bottom: 10px;
 }
 
 .dish-button {

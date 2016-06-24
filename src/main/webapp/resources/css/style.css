@@ -3,7 +3,7 @@ h1 {
     text-align: center;
     color: #555555;
     font-family: Cambria, Georgia, serif;
-    font-size: 24px;
+    font-size: 36px;
     font-style: normal;
     font-variant: normal;
     font-weight: 600;
@@ -12,7 +12,7 @@ h1 {
 
 h2 {
     font-family: Cambria, Georgia, serif;
-    font-size: 18px;
+    font-size: 24px;
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
@@ -21,7 +21,7 @@ h2 {
 
 h3 {
     font-family: Cambria, Georgia, serif;
-    font-size: 14px;
+    font-size: 18px;
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
@@ -273,6 +273,7 @@ div#template-customer-bar-cart-icon {
 div#template-customer-bar-cart-text {
     margin-top: 15px;
     float: left;
+    font-family: Cambria, Georgia, serif;
     font-size: 14pt;
 }
 
@@ -280,11 +281,15 @@ div#template-customer-bar-controls {
     margin-top: 5px;
     margin-right: 10px;
     padding: 5px;
+    font-family: Cambria, Georgia, serif;
+    font-size: 16px;
     float: right;
 }
 
 .template-customer-bar-greeting {
     margin-right: 10px;
+    font-family: Cambria, Georgia, serif;
+    font-size: 18px;
 }
 
 /* FOOTER */

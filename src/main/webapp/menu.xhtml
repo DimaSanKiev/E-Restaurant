@@ -17,8 +17,8 @@
     <ui:composition template="template/CustomerTemplate.xhtml">
         <ui:define name="content">
 
+            <h1>Please select dish by category:</h1>
             <div class="menu-category-button-wrapper">
-                <h:outputLabel styleClass="menu-text"><h2>Please select dish by category:</h2></h:outputLabel>
                 <h:form>
                     <p:commandButton id="allCategories" value="All Dishes" update="matchGrid" ajax="false"
                                      action="#{dishBean.refreshAvailableDishes}" styleClass="menu-category-button"/>

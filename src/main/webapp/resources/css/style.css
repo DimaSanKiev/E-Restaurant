@@ -1,10 +1,49 @@
-td.center {
+/* FONTS*/
+h1 {
     text-align: center;
-    padding: 5px;
+    color: #555555;
+    font-family: Cambria, Georgia, serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 600;
+    line-height: 26.4px;
 }
 
-h2.header-center {
-    text-align: center;
+h2 {
+    font-family: Cambria, Georgia, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 15.4px;
+}
+
+p {
+    font-family: Cambria, Georgia, serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+blockquote {
+    font-family: Cambria, Georgia, serif;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+pre {
+    font-family: Cambria, Georgia, serif;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5714px;
 }
 
 /* TABLES */
@@ -12,7 +51,7 @@ h2.header-center {
     text-align: center;
     font-size: 13pt;
     font-weight: bold;
-    background: none repeat scroll 0 0 #d9d9d9;
+    background: #d9d9d9;
     padding: 10px;
 }
 
@@ -59,9 +98,70 @@ h2.header-center {
     color: red;
 }
 
-/* MENU */
+/* MENU HEADER */
+/*.menu-header {*/
+/*font-size: large;*/
+/*text-align: center;*/
+/*font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;*/
+/*}*/
+
+.menu-category-button-wrapper {
+    text-align: center;
+    padding: 1%;
+}
+
+.menu-category-button {
+    -moz-box-shadow: inset 0 1px 0 0 #ffffff;
+    -webkit-box-shadow: inset 0 1px 0 0 #ffffff;
+    box-shadow: inset 0 1px 0 0 #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+    background: -moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: -ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9', GradientType=0);
+    background-color: #f9f9f9;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    margin-right: 10px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffffff;
+}
+
+.menu-category-button:focus {
+    outline: 0;
+}
+
+.menu-category-button:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+    background: -moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+    background: -webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+    background: -o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+    background: -ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9', GradientType=0);
+    background-color: #e9e9e9;
+    transform: scale(1.1);
+}
+
+.menu-category-button:active {
+    position: relative;
+    top: 1px;
+}
+
+/* MENU MAIN*/
 .dish-container {
-    max-width: 85%;
+    max-width: 70%;
     border: 4px double #d9d9d9;
     border-radius: 5px;
     margin: auto;
@@ -120,69 +220,12 @@ h2.header-center {
 }
 
 .dish-button {
-    background-color: white;
+    background-color: #f0f0f0;
     color: black;
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     padding: 10px 15px;
     font-size: 14px;
-}
-
-.menu-text {
-    font-size: large;
-    padding: 1%;
-}
-
-.menu-category-button-wrapper {
-    text-align: center;
-    padding: 1%;
-}
-
-.menu-category-button {
-    -moz-box-shadow: inset 0 1px 0 0 #ffffff;
-    -webkit-box-shadow: inset 0 1px 0 0 #ffffff;
-    box-shadow: inset 0 1px 0 0 #ffffff;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
-    background: -moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-    background: -webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-    background: -o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-    background: -ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9', GradientType=0);
-    background-color: #f9f9f9;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
-    border: 1px solid #dcdcdc;
-    display: inline-block;
-    cursor: pointer;
-    color: #666666;
-    font-family: Arial;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 6px 24px;
-    text-decoration: none;
-    text-shadow: 0 1px 0 #ffffff;
-}
-
-.menu-category-button:focus {
-    outline: 0;
-}
-
-.menu-category-button:hover {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
-    background: -moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-    background: -webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-    background: -o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-    background: -ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9', GradientType=0);
-    background-color: #e9e9e9;
-}
-
-.menu-category-button:active {
-    position: relative;
-    top: 1px;
 }
 
 /* SHOPPING CART */
@@ -204,9 +247,13 @@ h2.header-center {
 }
 
 /* TEMPLATES */
+.template-customer-bar {
+    background-color: #e9e9e9;
+}
+
 .customer-menu-items {
+    margin: 3px;
     position: relative;
-    /*margin-right: 15%;*/
     text-align: right;
 }
 

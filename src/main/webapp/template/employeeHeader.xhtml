@@ -10,7 +10,7 @@
     <ui:composition>
         <div class="customer-menu-items">
             <h:form>
-                <p:growl id="growl" showDetail="true" life="1500" autoUpdate="true"/>
+                <p:growl id="growl" showDetail="true" life="3000" autoUpdate="true"/>
                 <!-- Admin buttons -->
                 <p:commandButton id="dishList"
                                  rendered="#{employeeBean.employee.role.name == 'ADMIN'}"

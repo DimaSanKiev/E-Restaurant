@@ -4,11 +4,8 @@ import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.service.DishService;
 import com.bionic.edu.service.OrderService;
-import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -16,6 +13,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.bionic.edu.util.GlowlMessenger.addMessage;
+import static javax.faces.application.FacesMessage.SEVERITY_WARN;
 
 @Named
 @Scope("session")
@@ -101,10 +101,9 @@ public class CartBean implements Serializable {
         }
     }
 
-    // FIXME: 25.06.2016 - don't redirect after showing message
     public String confirm(Customer customer) {
         if (customer == null || customer.getId() == 0) {
-            showGrowlMessage("Please Authorize", "Please sign in or create a new account.");
+            addMessage("Please Authorize", "Please sign in or create a new account.", SEVERITY_WARN);
             return "authorize";
         }
         return "orderInfo";
@@ -120,12 +119,6 @@ public class CartBean implements Serializable {
         orderService.addFromCart(cartMap, customerBean.getCustomer(), total);
         cartMap = new HashMap<>();
         return "menu";
-    }
-
-    private void showGrowlMessage(String header, String detail) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.getExternalContext().getFlash().setKeepMessages(true);
-        context.addMessage(null, new FacesMessage(header, detail));
     }
 
 }

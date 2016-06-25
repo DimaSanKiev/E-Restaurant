@@ -136,6 +136,7 @@ public class DishBean implements Serializable {
 
 
     // TODO - implement photos uploading
+    // TODO: 25.06.2016 - Refactor message
     public void submit() throws IOException {
         String fileName = FilenameUtils.getName(uploadedFile.getName());
         String contentType = uploadedFile.getContentType();

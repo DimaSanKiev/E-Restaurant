@@ -55,7 +55,7 @@ public class ChartViewBean implements Serializable {
         pieModel.setDiameter(150);
     }
 
-    // TODO: 6/23/16 - update charts - http://stackoverflow.com/questions/12929125/primefaces-charts-not-updating-when-submit-a-new-request
+    // TODO: 6/23/16 - update charts - see http://stackoverflow.com/questions/12929125/primefaces-charts-not-updating-when-submit-a-new-request
     private void createLineModel() {
         lineModel = new LineChartModel();
         LineChartSeries series = new LineChartSeries();

@@ -9,7 +9,6 @@ import com.bionic.edu.service.RoleService;
 import com.bionic.edu.util.WeakCrypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
@@ -23,6 +22,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.bionic.edu.util.GlowlMessenger.addMessage;
 
 @Named
 @RequestScoped
@@ -179,7 +180,7 @@ public class EmployeeBean implements Serializable {
         try {
             employee = employeeService.signIn(email, decryptPass);
         } catch (BadCredentialsException e) {
-            addMessage("Sign In Error", "Incorrect email or password, please try again.", FacesMessage.SEVERITY_ERROR);
+            addMessage("Sign In Error", "Incorrect email or password. \nPlease try again.", FacesMessage.SEVERITY_ERROR);
             logger.error("\nEmployee sign in ERROR - Incorrect email or password." + "Email:" + email + " Password:" + password);
             employee = null;
             return "employeeSignIn";
@@ -211,20 +212,9 @@ public class EmployeeBean implements Serializable {
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        showGrowlMessage("Signed Out", "Thank you, have a good day.");
+        addMessage("Signed Out", "Thank you, have a good day.", FacesMessage.SEVERITY_INFO);
         logger.info("Employee ID:" + employee.getId() + " signed out.");
         return "employeeSignIn?faces-redirect=true";
-    }
-
-    private void addMessage(String header, String detail, FacesMessage.Severity severity) {
-        RequestContext.getCurrentInstance().showMessageInDialog(
-                new FacesMessage(severity, header, detail));
-    }
-
-    private void showGrowlMessage(String header, String detail) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.getExternalContext().getFlash().setKeepMessages(true);
-        context.addMessage(null, new FacesMessage(header, detail));
     }
 
 }

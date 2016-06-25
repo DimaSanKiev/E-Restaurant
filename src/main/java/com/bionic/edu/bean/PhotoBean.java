@@ -52,6 +52,7 @@ public class PhotoBean {
         }
     }
 
+    // TODO: 25.06.2016 - Set filename and path
     public void handleFileUpload(FileUploadEvent event) throws IOException {
         UploadedFile file = event.getFile();
         String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");

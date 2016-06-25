@@ -6,35 +6,37 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:body>
-    <h:form>
-        <h:panelGrid columns="2">
-            <p:outputLabel styleClass="label" for="name" value="Please enter your name: "/>
-            <p:inputText id="name" value="#{customerBean.customer.name}" required="true"/>
+    <div class="content-container">
+        <h:form>
+            <h:panelGrid columns="2">
+                <p:outputLabel styleClass="label" for="name" value="Please enter your name: "/>
+                <p:inputText id="name" value="#{customerBean.customer.name}" required="true"/>
 
-            <p:outputLabel styleClass="label" for="email" value="Please enter your email: "/>
-            <p:inputText id="email" value="#{customerBean.customer.email}" required="true"
-                         type="email"/>
+                <p:outputLabel styleClass="label" for="email" value="Please enter your email: "/>
+                <p:inputText id="email" value="#{customerBean.customer.email}" required="true"
+                             type="email"/>
 
-            <p:outputLabel styleClass="label" for="password1" value="Please enter your password"/>
-            <p:password id="password1" value="#{customerBean.customer.password}" required="true"
-                        redisplay="true" match="password2"/>
+                <p:outputLabel styleClass="label" for="password1" value="Please enter your password"/>
+                <p:password id="password1" value="#{customerBean.customer.password}" required="true"
+                            redisplay="true" match="password2"/>
 
-            <p:outputLabel styleClass="label" for="password2" value="Please repeat your password"/>
-            <p:password id="password2" value="#{customerBean.customer.password}" required="true"
-                        redisplay="true"/>
+                <p:outputLabel styleClass="label" for="password2" value="Please repeat your password"/>
+                <p:password id="password2" value="#{customerBean.customer.password}" required="true"
+                            redisplay="true"/>
 
-            <p:outputLabel styleClass="label" for="address" value="Please enter your address: "/>
-            <p:inputText id="address" value="#{customerBean.customer.address}" required="true"/>
+                <p:outputLabel styleClass="label" for="address" value="Please enter your address: "/>
+                <p:inputText id="address" value="#{customerBean.customer.address}" required="true"/>
 
-            <p:outputLabel styleClass="label" for="birthdate" value="Please enter your birthdate: "/>
-            <p:calendar id="birthdate" value="#{customerBean.customer.birthDate}" required="false"
-                        type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
-        </h:panelGrid>
+                <p:outputLabel styleClass="label" for="birthdate" value="Please enter your birthdate: "/>
+                <p:calendar id="birthdate" value="#{customerBean.customer.birthDate}" required="false"
+                            type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
+            </h:panelGrid>
 
-        <br/>
-        <p:commandButton value="Confirm" action="#{customerBean.submitRegistration()}"
-                         update="matchGrid" ajax="false"/>
-        <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
-    </h:form>
+            <br/>
+            <p:commandButton value="Confirm" action="#{customerBean.submitRegistration()}"
+                             update="matchGrid" ajax="false"/>
+            <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
+        </h:form>
+    </div>
 </h:body>
 </html>

@@ -6,20 +6,22 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:body>
-    <h:form>
-        <h:messages id="msg"/>
-        <h:panelGrid columns="2">
-            <p:outputLabel styleClass="lable" for="email" value="Email: "/>
-            <p:inputText id="email" value="#{customerBean.email}" required="true" type="email"/>
+    <div class="content-container">
+        <h:form>
+            <h:messages id="msg"/>
+            <h:panelGrid columns="2">
+                <p:outputLabel styleClass="lable" for="email" value="Email: "/>
+                <p:inputText id="email" value="#{customerBean.email}" required="true" type="email"/>
 
-            <p:outputLabel styleClass="lable" for="password" value="Password: "/>
-            <p:password id="password" value="#{customerBean.password}" required="true"/>
-        </h:panelGrid>
+                <p:outputLabel styleClass="lable" for="password" value="Password: "/>
+                <p:password id="password" value="#{customerBean.password}" required="true"/>
+            </h:panelGrid>
 
-        <br/>
-        <p:commandButton value="Sign in" update="matchGrid" ajax="false"
-                         action="#{customerBean.signIn(customerBean.email, customerBean.password)}"/>
-        <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
-    </h:form>
+            <br/>
+            <p:commandButton value="Sign in" update="matchGrid" ajax="false"
+                             action="#{customerBean.signIn(customerBean.email, customerBean.password)}"/>
+            <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
+        </h:form>
+    </div>
 </h:body>
 </html>

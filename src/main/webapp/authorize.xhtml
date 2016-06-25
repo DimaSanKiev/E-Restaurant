@@ -14,21 +14,22 @@
 <ui:composition template="template/CustomerTemplate.xhtml">
     <ui:define name="content">
         <h:body>
+            <div class="content-container">
 
-            <!--<h:panelGrid columns="2">-->
                 <p:outputLabel><h2>Please Sign In</h2>
                     <ui:include src="template/signIn.xhtml"/>
                 </p:outputLabel>
 
-                <p:separator/>
+                <p:separator style="width: 80%; margin-top: 40px; border-color: #d9d9d9"/>
 
                 <br/>
                 <p:outputLabel><h2>Or create a new Account</h2>
                     <ui:include src="template/signUp.xhtml"/>
                 </p:outputLabel>
-            <!--</h:panelGrid>-->
 
+            </div>
         </h:body>
     </ui:define>
+    <p:growl id="growl" showDetail="true" life="1500"/>
 </ui:composition>
 </html>

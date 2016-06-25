@@ -12,51 +12,59 @@
 </h:head>
 
 <h:body>
-    <ui:composition template="template/CustomerTemplate.xhtml">
-        <ui:define name="content">
-            <h:form id="forUpdate">
-                <p:growl id="growl" showDetail="true" life="1000"/>
-                <div class="body">
-                    <h2>Please edit your personal info</h2>
+    <div class="content-container">
+        <ui:composition template="template/CustomerTemplate.xhtml">
+            <ui:define name="content">
+                <h:form id="forUpdate">
+                    <p:growl id="growl" showDetail="true" life="1000"/>
+                    <div class="body">
+                        <h2>Please edit your personal info</h2>
 
-                    <h:form>
-                        <p:messages id="messages" showDetail="true" autoUpdate="true"/>
-                        <h:panelGrid columns="2">
-                            <p:outputLabel styleClass="label" for="name" value="Please enter your name: "/>
-                            <p:inputText id="name" value="#{customerBean.customer.name}" required="true"/>
+                        <h:form>
+                            <p:messages id="messages" showDetail="true" autoUpdate="true"/>
+                            <h:panelGrid columns="2">
+                                <p:outputLabel styleClass="label" for="name" value="Please enter your name: "/>
+                                <p:inputText id="name" value="#{customerBean.customer.name}" required="true"/>
 
-                            <p:outputLabel styleClass="label" for="email" value="Please enter your email: "/>
-                            <p:inputText id="email" value="#{customerBean.customer.email}" required="true"
-                                         type="email"/>
+                                <p:outputLabel styleClass="label" for="email" value="Please enter your email: "/>
+                                <p:inputText id="email" value="#{customerBean.customer.email}" required="true"
+                                             type="email"/>
 
-                            <p:outputLabel styleClass="label" for="currentPassword" value="Please enter your current password"/>
-                            <p:password id="currentPassword" value="#{customerBean.customer.password}" required="true"
-                                        redisplay="true" match="currentPassword" label="Current Password"/>
+                                <p:outputLabel styleClass="label" for="currentPassword"
+                                               value="Please enter your current password"/>
+                                <p:password id="currentPassword" value="#{customerBean.customer.password}"
+                                            required="true"
+                                            redisplay="true" match="currentPassword" label="Current Password"/>
 
-                            <p:outputLabel styleClass="label" for="newPassword" value="Please enter your new password"/>
-                            <p:password id="newPassword" value="#{customerBean.customer.password}" required="true"
-                                        redisplay="true" match="repeatedPassword" label="New Password"/>
+                                <p:outputLabel styleClass="label" for="newPassword"
+                                               value="Please enter your new password"/>
+                                <p:password id="newPassword" value="#{customerBean.customer.password}" required="true"
+                                            redisplay="true" match="repeatedPassword" label="New Password"/>
 
-                            <p:outputLabel styleClass="label" for="repeatedPassword" value="Please re-enter your new password"/>
-                            <p:password id="repeatedPassword" value="#{customerBean.customer.password}" required="true"
-                                        redisplay="true" label="Repeated New Password"/>
+                                <p:outputLabel styleClass="label" for="repeatedPassword"
+                                               value="Please re-enter your new password"/>
+                                <p:password id="repeatedPassword" value="#{customerBean.customer.password}"
+                                            required="true"
+                                            redisplay="true" label="Repeated New Password"/>
 
-                            <p:outputLabel styleClass="label" for="address" value="Please enter your address: "/>
-                            <p:inputText id="address" value="#{customerBean.customer.address}" required="true"/>
+                                <p:outputLabel styleClass="label" for="address" value="Please enter your address: "/>
+                                <p:inputText id="address" value="#{customerBean.customer.address}" required="true"/>
 
-                            <p:outputLabel styleClass="label" for="birthdate" value="Please enter your birthdate: "/>
-                            <p:calendar id="birthdate" value="#{customerBean.customer.birthDate}" required="false"
-                                        type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
-                        </h:panelGrid>
+                                <p:outputLabel styleClass="label" for="birthdate"
+                                               value="Please enter your birthdate: "/>
+                                <p:calendar id="birthdate" value="#{customerBean.customer.birthDate}" required="false"
+                                            type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
+                            </h:panelGrid>
 
-                        <br/>
-                        <p:commandButton value="Confirm" actionListener="#{customerBean.saveCustomer()}"
-                                         update="matchGrid" ajax="false"/>
-                        <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
-                    </h:form>
-                </div>
-            </h:form>
-        </ui:define>
-    </ui:composition>
+                            <br/>
+                            <p:commandButton value="Confirm" actionListener="#{customerBean.saveCustomer()}"
+                                             update="matchGrid" ajax="false"/>
+                            <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
+                        </h:form>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </div>
 </h:body>
 </html>

@@ -64,6 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void blockUnblockCustomer(int customerId) {
         Customer customer = customerDao.findById(customerId);
         customer.setBlocked(!customer.isBlocked());
+        customerDao.save(customer);
     }
 
     @Override

@@ -38,7 +38,7 @@
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
 
-    <!-- Change to "Production" when ready to deploy -->
+    <!-- todo - Change to "Production" when ready to deploy -->
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>

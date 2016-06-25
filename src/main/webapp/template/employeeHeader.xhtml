@@ -8,6 +8,7 @@
 
 <h:body>
     <ui:composition>
+        <h:panelGroup rendered="#{employeeBean.signedIn == true}">
         <div id="template-employee-bar-wrapper">
             <h:form>
                 <p:growl id="growl" showDetail="true" life="3000" autoUpdate="true"/>
@@ -63,6 +64,7 @@
                 </div>
             </h:form>
         </div>
+        </h:panelGroup>
     </ui:composition>
 </h:body>
 </html>

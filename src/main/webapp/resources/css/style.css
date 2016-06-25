@@ -1,4 +1,9 @@
 /* FONTS*/
+body {
+    font-size: 100%;
+    font-family: Cambria, Georgia, serif;
+}
+
 h1 {
     text-align: center;
     color: #555555;
@@ -7,7 +12,7 @@ h1 {
     font-style: normal;
     font-variant: normal;
     font-weight: 600;
-    line-height: 26.4px;
+    line-height: 26px;
 }
 
 h2 {
@@ -16,7 +21,7 @@ h2 {
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
-    line-height: 15.4px;
+    line-height: 15px;
 }
 
 h3 {
@@ -25,7 +30,7 @@ h3 {
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
-    line-height: 15.4px;
+    line-height: 15px;
 }
 
 p {
@@ -52,7 +57,7 @@ pre {
     font-style: normal;
     font-variant: normal;
     font-weight: 400;
-    line-height: 18.5714px;
+    line-height: 19px;
 }
 
 /* GENERAL */
@@ -68,9 +73,13 @@ pre {
     font-weight: bold;
     background: #d9d9d9;
     padding: 10px;
+    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+    font-style: normal;
+    font-variant: normal;
 }
 
 .table-name {
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
     font-weight: bold;
     text-align: left;
     padding-left: 2px;
@@ -352,4 +361,14 @@ div#template-employee-bar-name {
     font-style: normal;
     font-variant: normal;
     font-weight: 500;
+}
+
+/* 403 PAGE */
+.page403 {
+    text-align: center;
+    padding: 50px;
+}
+
+.page403 h2 {
+    padding: 10px;
 }

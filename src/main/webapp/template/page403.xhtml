@@ -5,9 +5,12 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <h:body>
-    <h:outputLabel rendered="#{employeeBean.signedIn == false}">
-        <h2 style="text-align: center">Please <a href="../employeeSignIn.xhtml">authorize as employee</a> to see this page.</h2>
-        <h2 style="text-align: center">Or <a href="../menu.xhtml">visit E-Restaurant</a> as a customer.</h2>
-    </h:outputLabel>
+    <h:panelGroup styleClass="page403">
+        <h:outputLabel rendered="#{employeeBean.signedIn == false}">
+            <h2>Please <a
+                    href="../employeeSignIn.xhtml">authorize as an employee</a> to see this page.</h2>
+            <h2>Or <a href="../menu.xhtml">visit E-Restaurant</a> as a customer to order dishes.</h2>
+        </h:outputLabel>
+    </h:panelGroup>
 </h:body>
 </html>

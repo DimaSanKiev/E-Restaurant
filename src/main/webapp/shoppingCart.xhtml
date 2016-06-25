@@ -58,9 +58,9 @@
 
                         <h:column>
                             <f:facet name="header">Quantity</f:facet>
-                            <h:commandButton value="-" action="#{cartBean.decreaseCount(dish.key.id)}"/>
+                            <h:commandButton value="–" action="#{cartBean.decreaseCount(dish.key.id)}" styleClass="cart-button"/>
                             <b> <h:outputText value=" #{dish.value} "/> </b>
-                            <h:commandButton value="+" action="#{cartBean.increaseCount(dish.key.id)}"/>
+                            <h:commandButton value="+" action="#{cartBean.increaseCount(dish.key.id)}" styleClass="cart-button"/>
                         </h:column>
 
                         <h:column>

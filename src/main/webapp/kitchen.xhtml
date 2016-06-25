@@ -20,7 +20,7 @@
                 <h:form>
                     <h2>Kitchen pending screen</h2>
 
-                    <h:dataTable value="#{kitchenBean.orderDishesList}" var="orderDish"
+                    <h:dataTable value="#{kitchenBean.orderDishesList}" var="dish"
                                  styleClass="dish-container" headerClass="table-header"
                                  columnClasses="table-name, center, center, center"
                                  rowClasses="table-odd-row, table-even-row">
@@ -29,21 +29,21 @@
                             <f:facet name="header">
                                 <h:outputLabel styleClass="table-header">Name</h:outputLabel>
                             </f:facet>
-                            <h:outputText id="dishName" value="#{orderDish.dish.name}"/>
+                            <h:outputText id="dishName" value="#{dish.dish.name}"/>
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel styleClass="table-header">Quantity</h:outputLabel>
                             </f:facet>
-                            <h:outputText id="dishQuantity" value="#{orderDish.quantity}"/>
+                            <h:outputText id="dishQuantity" value="#{dish.quantity}"/>
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel styleClass="table-header">Ordered</h:outputLabel>
                             </f:facet>
-                            <h:outputText id="dishCreated" value="#{orderDish.order.dateTimeTaken}">
+                            <h:outputText id="dishCreated" value="#{dish.order.dateTimeTaken}">
                                 <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
                             </h:outputText>
                         </h:column>
@@ -52,7 +52,7 @@
                             <f:facet name="header">
                                 <h:outputLabel styleClass="table-header">Mark</h:outputLabel>
                             </f:facet>
-                            <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(orderDish.id)}"/>
+                            <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.id)}"/>
                         </h:column>
 
                     </h:dataTable>

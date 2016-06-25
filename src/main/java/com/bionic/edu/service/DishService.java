@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface DishService extends GenericService<Dish> {
 
+    void changeAvailability(int dishId);
+
     List<Dish> findByCategory(int categoryId);
 
     List<Dish> findByAvailability(boolean isAvailable);

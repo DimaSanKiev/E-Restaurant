@@ -27,25 +27,25 @@
                         <br/>
                     </h:panelGrid>
 
-                    <h:dataTable value="#{dishBean.dishes}" var="orderDish"
+                    <h:dataTable value="#{dishBean.dishes}" var="dish"
                                  styleClass="dish-container" headerClass="table-header"
-                                 columnClasses="table-name, center, dish-column-description, center, center, center, center, center"
+                                 columnClasses="table-name, center, dish-column-description, center, center, center, center, center, center"
                                  rowClasses="table-odd-row, table-even-row">
 
                         <h:column>
                             <f:facet name="header">
                                 <h:outputLabel styleClass="table-header">Name</h:outputLabel>
                             </f:facet>
-                            <h:outputText id="dishName" value="#{orderDish.name}"/>
+                            <h:outputText id="dishName" value="#{dish.name}"/>
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Photo</f:facet>
-                            <p:graphicImage rendered="#{not empty orderDish.photo}" value="#{photoBean.photoContent}"
+                            <p:graphicImage rendered="#{not empty dish.photo}" value="#{photoBean.photoContent}"
                                             width="120">
-                                <f:param name="id" value="#{orderDish.photo.id}"/>
+                                <f:param name="id" value="#{dish.photo.id}"/>
                             </p:graphicImage>
-                            <h:graphicImage rendered="#{empty orderDish.photo}"
+                            <h:graphicImage rendered="#{empty dish.photo}"
                                             value="resources/images/general/no_image.png" width="120"/>
                         </h:column>
 
@@ -53,12 +53,12 @@
                             <f:facet name="header">
                                 <h:outputLabel>Description</h:outputLabel>
                             </f:facet>
-                            <h:outputText id="dishDescription" value="#{orderDish.description}"/>
+                            <h:outputText id="dishDescription" value="#{dish.description}"/>
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Price</f:facet>
-                            <h:outputText value="#{orderDish.price}">
+                            <h:outputText value="#{dish.price}">
                                 <f:convertNumber currencyCode="USD" type="currency"/>
                             </h:outputText>
                         </h:column>
@@ -67,27 +67,41 @@
                             <f:facet name="header">
                                 <h:outputLabel>Kitchen made</h:outputLabel>
                             </f:facet>
-                            <h:outputText rendered="#{orderDish.kitchenmade}" class="dish_kitchen_made" value="yes"/>
-                            <h:outputText rendered="#{!orderDish.kitchenmade}" class="dish_kitchen_made" value="no"/>
+                            <h:outputText rendered="#{dish.kitchenmade}" class="dish_kitchen_made" value="yes"/>
+                            <h:outputText rendered="#{!dish.kitchenmade}" class="dish_kitchen_made" value="no"/>
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Available</f:facet>
-                            <h:outputText rendered="#{orderDish.available}" value="yes" styleClass="element-black"/>
-                            <h:outputText rendered="#{!orderDish.available}" value="no" styleClass="element-red"/>
+                            <h:outputText rendered="#{dish.available}" value="yes" styleClass="element-black"/>
+                            <h:outputText rendered="#{!dish.available}" value="no" styleClass="element-red"/>
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Category</f:facet>
-                            #{orderDish.category.name}
+                            #{dish.category.name}
                         </h:column>
 
                         <h:column rendered="#{employeeBean.employee.role.name != 'SUPER_USER'}">
                             <f:facet name="header">Edit</f:facet>
-                            <h:commandLink action="#{dishBean.updateDish(orderDish.id)}">
+                            <h:commandLink action="#{dishBean.updateDish(dish.id)}">
                                 <h:graphicImage value="resources/images/icon/edit-icon.png" height="20" width="20"
                                                 title="Update"/>
                             </h:commandLink>
+                        </h:column>
+
+                        <h:column rendered="#{employeeBean.employee.role.name != 'SUPER_USER'}">
+                            <f:facet name="header">Exist</f:facet>
+                            <p:commandLink action="#{dishBean.changeAvailability(dish.id)}" ajax="false"
+                                           rendered="#{dish.available == false}">
+                                <p:graphicImage value="resources/images/icon/block-icon.png" height="20" width="20"
+                                                title="Set available"/>
+                            </p:commandLink>
+                            <p:commandLink action="#{dishBean.changeAvailability(dish.id)}" ajax="false"
+                                           rendered="#{dish.available == true}">
+                                <p:graphicImage value="resources/images/icon/unblock-icon.png" height="20" width="20"
+                                                title="Set unavailable"/>
+                            </p:commandLink>
                         </h:column>
 
                     </h:dataTable>

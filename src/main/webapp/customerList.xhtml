@@ -83,12 +83,12 @@
                         <h:column>
                             <f:facet name="header">Block</f:facet>
                             <p:commandLink action="#{customerBean.blockUnblockCustomer(customer.id)}" ajax="false"
-                                           rendered="${customer.blocked == false}" update="customerTable">
+                                           rendered="#{customer.blocked == false}" update="customerTable">
                                 <p:graphicImage value="resources/images/icon/unblock-icon.png" height="20" width="20"
                                                 title="Block" rendered="${customer.blocked == false}"/>
                             </p:commandLink>
                             <p:commandLink action="#{customerBean.blockUnblockCustomer(customer.id)}" ajax="false"
-                                           rendered="${customer.blocked == true}" update="customerTable">
+                                           rendered="#{customer.blocked == true}" update="customerTable">
                                 <p:graphicImage value="resources/images/icon/block-icon.png" height="20" width="20"
                                                 title="Unblock" rendered="${customer.blocked == true}"/>
                             </p:commandLink>
@@ -98,7 +98,7 @@
                             <f:facet name="header">Edit</f:facet>
                             <p:commandLink action="#{customerBean.updateCustomer(customer.id)}" ajax="false"
                                            update="customerTable">
-                                <h:graphicImage value="resources/images/icon/edit-icon.png" height="20" width="20"
+                                <p:graphicImage value="resources/images/icon/edit-icon.png" height="20" width="20"
                                                 title="Update"/>
                             </p:commandLink>
                         </h:column>

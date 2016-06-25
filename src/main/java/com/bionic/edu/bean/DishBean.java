@@ -124,6 +124,10 @@ public class DishBean implements Serializable {
         return "dishList";
     }
 
+    public void changeAvailability(int dishId) {
+        dishService.changeAvailability(dishId);
+    }
+
     public String addDish() {
         refreshCategories();
         dish = new Dish();

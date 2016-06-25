@@ -35,28 +35,28 @@
                 </h:form>
             </div>
             <div class="dish-container">
-                <ui:repeat var="orderDish" value="#{dishBean.dishes}">
+                <ui:repeat var="dish" value="#{dishBean.dishes}">
                     <div class="dish-block">
                         <div class="dish-photo">
-                            <p1:graphicImage styleClass="dish-photo" rendered="#{not empty orderDish.photo}"
+                            <p1:graphicImage styleClass="dish-photo" rendered="#{not empty dish.photo}"
                                              value="#{photoBean.photoContent}">
-                                <f:param name="id" value="#{orderDish.photo.id}"/>
+                                <f:param name="id" value="#{dish.photo.id}"/>
                             </p1:graphicImage>
-                            <p:graphicImage styleClass="dish-photo" rendered="#{empty orderDish.photo}"
+                            <p:graphicImage styleClass="dish-photo" rendered="#{empty dish.photo}"
                                             value="resources/images/general/no_image.png"/>
                         </div>
 
-                        <div class="dish-name">#{orderDish.name}</div>
+                        <div class="dish-name">#{dish.name}</div>
 
-                        <div class="dish-description">#{orderDish.description}</div>
+                        <div class="dish-description">#{dish.description}</div>
 
                         <div>
-                            <h:outputText styleClass="dish-price" value="#{orderDish.price}">
+                            <h:outputText styleClass="dish-price" value="#{dish.price}">
                                 <f:convertNumber currencyCode="USD" type="currency"/>
                             </h:outputText>
                         </div>
                         <div class="dish-button-wrapper">
-                            <h:form><p:commandButton action="#{cartBean.increaseCount(orderDish.id)}"
+                            <h:form><p:commandButton action="#{cartBean.increaseCount(dish.id)}"
                                                      value="Add to Cart" styleClass="dish-button"/></h:form></div>
                     </div>
                 </ui:repeat>

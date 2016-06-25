@@ -92,7 +92,7 @@ pre {
 
 .table-odd-row {
     text-align: left;
-    background: none repeat scroll 0 0 #FFFFFF;
+    background: none repeat scroll 0 0 #f9f9f9;
 }
 
 .table-even-row {
@@ -269,14 +269,14 @@ pre {
 
 /* CUSTOMER TEMPLATE */
 div#template-customer-bar-wrapper {
-    background-color: #e9e9e9;
+    background-color: #d9d9d9;
     border-radius: 5px;
     height: 70px;
     width: 100%;
 }
 
 .template-customer-bar {
-    background-color: #e9e9e9;
+    background-color: #d9d9d9;
     border-radius: 5px;
 }
 
@@ -313,7 +313,7 @@ div#template-customer-bar-controls {
 
 /* EMPLOYEE TEMPLATE */
 div#template-employee-bar-wrapper {
-    background-color: #e9e9e9;
+    background-color: #d9d9d9;
     border-radius: 5px;
     height: 55px;
     width: 100%;

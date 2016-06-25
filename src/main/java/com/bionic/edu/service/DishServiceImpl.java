@@ -38,6 +38,14 @@ public class DishServiceImpl implements DishService {
     }
 
 
+    @Transactional
+    @Override
+    public void changeAvailability(int dishId) {
+        Dish dish = dishDao.findById(dishId);
+        dish.setAvailable(!dish.isAvailable());
+        dishDao.save(dish);
+    }
+
     @Override
     public List<Dish> findByCategory(int categoryId) {
         return dishDao.findByCategory(categoryId);

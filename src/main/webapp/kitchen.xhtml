@@ -18,7 +18,7 @@
             <h:panelGroup layout="block" rendered="#{employeeBean.employee.role.name == 'KITCHEN_STAFF'}">
                 #{kitchenBean.refreshList()}
                 <h:form>
-                    <h2>Kitchen pending screen</h2>
+                    <h2 class="center">Kitchen pending screen</h2>
 
                     <h:dataTable value="#{kitchenBean.orderDishesList}" var="dish"
                                  styleClass="dish-container" headerClass="table-header"
@@ -44,7 +44,7 @@
                                 <h:outputLabel styleClass="table-header">Ordered</h:outputLabel>
                             </f:facet>
                             <h:outputText id="dishCreated" value="#{dish.order.dateTimeTaken}">
-                                <f:convertDateTime type="date" pattern="dd.MM.yyyy hh:mm:ss"/>
+                                <f:convertDateTime type="date" pattern="dd.MM.yyyy | hh:mm:ss"/>
                             </h:outputText>
                         </h:column>
 
@@ -52,7 +52,7 @@
                             <f:facet name="header">
                                 <h:outputLabel styleClass="table-header">Mark</h:outputLabel>
                             </f:facet>
-                            <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.id)}"/>
+                            <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.id)}" styleClass="kitchen-button"/>
                         </h:column>
 
                     </h:dataTable>

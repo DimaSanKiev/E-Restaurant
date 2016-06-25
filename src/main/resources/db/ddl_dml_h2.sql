@@ -138,17 +138,17 @@ INSERT INTO photo (content)
 VALUES (FILE_READ('./files/images/18_Beer.jpg'));
 
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Dmytro Burdyga', 'super@erestaurant.com', 'pass1', '1984-06-27', '2010-01-01', TRUE, 1, NULL);
+  VALUES ('Dmytro Burdyga', 'super@erestaurant.com', 'pass1', '1984-06-27', '2010-01-01', TRUE, 1, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Igor Himchenko', 'admin@erestaurant.com', 'pass2', '1987-07-02', '2011-06-10', TRUE, 2, NULL);
+  VALUES ('Bogdana Tishkina', 'admin@erestaurant.com', 'pass2', '1987-07-02', '2011-06-10', TRUE, 2, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Elena Bakhmach', 'kitchen@erestaurant.com', 'pass3', '1991-04-05', '2014-02-03', TRUE, 3, NULL);
+  VALUES ('Elena Bakhmach', 'kitchen@erestaurant.com', 'pass3', '1991-04-05', '2014-02-03', TRUE, 3, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Alexander Volkov', 'delivery@erestaurant.com', 'pass4', '1993-03-03', '2014-02-28', TRUE, 4, NULL);
+  VALUES ('Igor Himchenko', 'delivery@erestaurant.com', 'pass4', '1993-03-03', '2014-02-28', TRUE, 4, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Bogdana Tkachuk', 'business@erestaurant.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5, NULL);
+  VALUES ('Olga Tkachuk', 'business@erestaurant.com', 'pass5', '1979-11-15', '2010-01-20', TRUE, 5, NULL);
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
-VALUES ('Larisa Dmitrieva', 'business2@erestaurant.com', 'pass6', '1989-01-27', '2011-11-20', FALSE, 5, NULL);
+  VALUES ('Larisa Dmitrieva', 'business2@erestaurant.com', 'pass6', '1989-01-27', '2011-11-20', FALSE, 5, NULL);
 
 INSERT INTO dish_category (name, description)
 VALUES ('SOUP',

@@ -16,24 +16,26 @@
     <ui:composition template="template/EmployeeTemplate.xhtml">
         <ui:define name="content">
             <ui:include src="template/page403.xhtml"/>
-            <h:panelGroup layout="block"
+            <h:panelGroup layout="block" styleClass="center"
                           rendered="#{employeeBean.employee.role.name == 'SUPER_USER' or employeeBean.employee.role.name == 'BUSINESS_ANALYST'}">
-                <!-- todo: JavaScript: block dates before startDate -->
+
                 <h:form>
                     <h2>Reports</h2>
-                    <h:panelGrid columns="2">
+                    <div style="margin: 10px 0">
+                    <h:panelGrid columns="2" style="margin: 0 auto">
                         <p:outputLabel styleClass="label" for="startDate" value="Start Date: "/>
                         <p:calendar id="startDate" value="#{reportBean.startDate}" required="true"
                                     type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
-                        <p:outputLabel styleClass="label" for="endDate" value="Start Date: "/>
+                        <p:outputLabel styleClass="label" for="endDate" value="End Date: "/>
                         <p:calendar id="endDate" value="#{reportBean.endDate}" required="true"
                                     type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
                     </h:panelGrid>
+                    </div>
                     <br/>
                     <p:commandButton value="Daily report" action="dailyReport" update="matchGrid" ajax="false"
-                                     icon="fa fa-calendar"/>
+                                     icon="fa fa-calendar" styleClass="report-button" style="margin-right: 10px"/>
                     <p:commandButton value="Category report" action="categoryReport" update="matchGrid" ajax="false"
-                                     icon="fa fa-calendar"/>
+                                     icon="fa fa-bar-chart" styleClass="report-button" style="margin-left: 10px"/>
                 </h:form>
             </h:panelGroup>
         </ui:define>

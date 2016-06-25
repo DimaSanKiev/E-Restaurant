@@ -15,7 +15,6 @@ import java.util.List;
 public class DeliveryBean implements Serializable {
     private static final long serialVersionUID = 525430134521610706L;
 
-    private String orderStatus;
     private Orders order;
     private List<Orders> ordersList = null;
     private boolean sortByStatus;
@@ -24,14 +23,6 @@ public class DeliveryBean implements Serializable {
     OrderService orderService;
     @Inject
     OrderStatusService orderStatusService;
-
-    public String getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
 
     public List<Orders> getOrdersList() {
         return ordersList;

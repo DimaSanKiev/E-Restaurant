@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://java.sun.com/jsf/html">
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>Delivery Pending Screen</title>
@@ -17,23 +17,25 @@
         <ui:define name="content">
             <ui:include src="template/page403.xhtml"/>
             <h:panelGroup layout="block" rendered="#{employeeBean.employee.role.name == 'DELIVERY_STAFF'}">
-                <h2>Delivery Pending List</h2>
+                <h2 class="center">Delivery Pending List</h2>
 
                 <h:form rendered="#{deliveryBean.sortByStatus}">#{deliveryBean.getDeliveryListByStatus()}</h:form>
                 <h:form rendered="#{deliveryBean.sortByTime}">#{deliveryBean.getDeliveryListByTime()}</h:form>
 
                 <h:form>
-                    <p:commandButton id="sortByTime" action="#{deliveryBean.getDeliveryListByTime()}" value="By time"
-                                     update="matchGrid" ajax="false" styleClass="button"/>
-                    <p:commandButton id="sortByStatus" action="#{deliveryBean.getDeliveryListByStatus()}"
-                                     value="By status"
-                                     update="matchGrid" ajax="false" styleClass="button"/>
-                    <br/>
+                    <div class="center">
+                        <p:commandButton id="sortByTime" action="#{deliveryBean.getDeliveryListByTime()}"
+                                         value="By time" style="width: 120px; margin-right: 10px; margin-bottom: 20px"
+                                         update="matchGrid" ajax="false"/>
+                        <p:commandButton id="sortByStatus" action="#{deliveryBean.getDeliveryListByStatus()}"
+                                         value="By status" style="width: 120px"
+                                         update="matchGrid" ajax="false"/>
+                    </div>
+
                     <h:dataTable value="#{deliveryBean.ordersList}" var="order"
                                  styleClass="dish-container" headerClass="table-header"
                                  columnClasses="id, none, none, center, center, center"
                                  rowClasses="table-odd-row, table-even-row">
-
                         <h:column>
                             <f:facet name="header">Order Id</f:facet>
                             <h:outputText value="#{order.id}"/>
@@ -45,7 +47,7 @@
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Customer Address</f:facet>
+                            <f:facet name="header">Delivery Address</f:facet>
                             <h:outputText value="#{order.customer.address}"/>
                         </h:column>
 
@@ -63,11 +65,12 @@
 
                         <h:column>
                             <f:facet name="header">Action</f:facet>
-                            <h:commandButton rendered="#{order.orderStatus.name == 'READY_FOR_SHIPMENT'}"
-                                             value="Deliver"
-                                             action="#{deliveryBean.processOrder(order.id)}"/>
-                            <h:commandButton rendered="#{order.orderStatus.name == 'DELIVERING'}" value="Delivered"
-                                             action="#{deliveryBean.processOrder(order.id)}"/>
+                            <h:commandButton rendered="#{order.orderStatus.name == 'READY_FOR_SHIPMENT'}" value="Take"
+                                             action="#{deliveryBean.processOrder(order.id)}"
+                                             styleClass="delivery-button" style="color: orange"/>
+                            <h:commandButton rendered="#{order.orderStatus.name == 'DELIVERING'}" value="Deliver"
+                                             action="#{deliveryBean.processOrder(order.id)}"
+                                             styleClass="delivery-button" style="color: green"/>
                         </h:column>
 
                     </h:dataTable>

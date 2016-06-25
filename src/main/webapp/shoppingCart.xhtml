@@ -17,7 +17,7 @@
         <ui:define name="content">
             <div class="content-container">
                 <h:form>
-
+                    <p:growl id="growl" showDetail="true" life="1500" autoUpdate="true"/>
                     <h2>Your shopping cart</h2>
                     <h:outputLabel rendered="#{empty cartBean.cartMap}">
                         Your shopping cart is empty. Please select dishes from <a href="menu.xhtml">menu</a>.
@@ -83,8 +83,8 @@
                 </h:form>
 
                 <br/><h:form><p:commandButton rendered="#{not empty cartBean.cartMap}" value="Submit"
-                                              styleClass="button"
-                                              action="#{cartBean.confirm(customerBean.customer)}"/></h:form><br/>
+                                              action="#{cartBean.confirm(customerBean.customer)}"
+                                              update="matchGrid" ajax="false"/></h:form><br/>
             </div>
         </ui:define>
     </ui:composition>

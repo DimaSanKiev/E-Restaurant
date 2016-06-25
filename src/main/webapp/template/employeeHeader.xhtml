@@ -10,7 +10,7 @@
     <ui:composition>
         <div class="customer-menu-items">
             <h:form>
-                <p:growl id="growl" showDetail="true" life="1500"/>
+                <p:growl id="growl" showDetail="true" life="1500" autoUpdate="true"/>
                 <!-- Admin buttons -->
                 <p:commandButton id="dishList"
                                  rendered="#{employeeBean.employee.role.name == 'ADMIN'}"
@@ -55,7 +55,7 @@
                 <p:outputLabel style="padding-right: 1%" rendered="#{employeeBean.signedIn == true}">
                     Hello, <b>#{employeeBean.employee.name}</b></p:outputLabel>
                 <p:commandButton id="signOut" rendered="#{employeeBean.signedIn == true}"
-                                 actionListener="#{employeeBean.signOut}" value="Sign Out" update="matchGrid" ajax="false"/>
+                                 action="#{employeeBean.signOut}" value="Sign Out" update="matchGrid" ajax="false"/>
             </h:form>
         </div>
     </ui:composition>

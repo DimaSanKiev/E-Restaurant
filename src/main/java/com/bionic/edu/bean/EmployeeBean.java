@@ -213,7 +213,7 @@ public class EmployeeBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         showGrowlMessage("Signed Out", "Thank you, have a good day.");
         logger.info("Employee ID:" + employee.getId() + " signed out.");
-        return "employeeSignIn";
+        return "employeeSignIn?faces-redirect=true";
     }
 
     private void addMessage(String header, String detail, FacesMessage.Severity severity) {
@@ -223,6 +223,7 @@ public class EmployeeBean implements Serializable {
 
     private void showGrowlMessage(String header, String detail) {
         FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
         context.addMessage(null, new FacesMessage(header, detail));
     }
 

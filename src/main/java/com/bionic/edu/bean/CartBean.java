@@ -8,6 +8,7 @@ import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -100,9 +101,10 @@ public class CartBean implements Serializable {
         }
     }
 
+    // FIXME: 25.06.2016 - don't redirect after showing message
     public String confirm(Customer customer) {
         if (customer == null || customer.getId() == 0) {
-            addMessage("Please Authorize", "Please sign in or create new account.", FacesMessage.SEVERITY_WARN);
+            showGrowlMessage("Please Authorize", "Please sign in or create a new account.");
             return "authorize";
         }
         return "orderInfo";
@@ -120,9 +122,10 @@ public class CartBean implements Serializable {
         return "menu";
     }
 
-    private void addMessage(String header, String detail, FacesMessage.Severity severity) {
-        RequestContext.getCurrentInstance().showMessageInDialog(
-                new FacesMessage(severity, header, detail));
+    private void showGrowlMessage(String header, String detail) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        context.addMessage(null, new FacesMessage(header, detail));
     }
 
 }

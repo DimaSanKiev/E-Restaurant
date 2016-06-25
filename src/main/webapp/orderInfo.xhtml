@@ -16,7 +16,7 @@
         <ui:define name="content">
 
             <h:panelGroup rendered="#{empty cartBean.cartMap}">
-                <h3>Please make your order first. <br/> Go to <a href="menu.xhtml">menu</a>.</h3>
+                <h3>Please make your order first. <br/><br/> Go to <a href="menu.xhtml">menu</a>.</h3>
             </h:panelGroup>
 
             <h:panelGroup layout="block" rendered="#{not empty cartBean.cartMap}">
@@ -83,7 +83,7 @@
 
 
                     <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
-                                     actionListener="#{cartBean.submitOrder()}"/>
+                                     action="#{cartBean.submitOrder()}"/>
 
                     <p:commandButton value="Back to Cart" action="shoppingCart"/>
 

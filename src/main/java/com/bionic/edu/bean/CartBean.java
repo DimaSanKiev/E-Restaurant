@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.bionic.edu.util.GlowlMessenger.addMessage;
+import static javax.faces.application.FacesMessage.SEVERITY_INFO;
 import static javax.faces.application.FacesMessage.SEVERITY_WARN;
 
 @Named
@@ -118,6 +119,7 @@ public class CartBean implements Serializable {
     public String submitOrder() {
         orderService.addFromCart(cartMap, customerBean.getCustomer(), total);
         cartMap = new HashMap<>();
+        addMessage("Order Submitted", "Your order was confirmed successfully. Please wait for delivery.", SEVERITY_INFO);
         return "menu";
     }
 

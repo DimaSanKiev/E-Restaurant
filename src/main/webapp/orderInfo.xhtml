@@ -81,17 +81,9 @@
                         <h:outputText escape="false" value="&lt;b&gt;#{cartBean.currentTime()}&lt;/b&gt;"/>
                     </p>
 
-
-                    <p:commandButton value="Confirm" oncomplete="PF('confirm').show()"
-                                     action="#{cartBean.submitOrder()}"/>
+                    <p:commandButton value="Confirm" action="#{cartBean.submitOrder()}" update="matchGrid" ajax="false"/>
 
                     <p:commandButton value="Back to Cart" action="shoppingCart"/>
-
-                    <p:dialog widgetVar="confirm"
-                              header="Your order was confirmed successfully. Please wait for delivery."
-                              modal="true" showEffect="fade" hideEffect="fade" resizable="true">
-                        <p:commandButton action="menu" value="OK"/>
-                    </p:dialog>
 
                 </h:form>
             </h:panelGroup>

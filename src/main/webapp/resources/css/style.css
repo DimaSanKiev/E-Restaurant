@@ -307,8 +307,7 @@ div#template-customer-bar-controls {
 
 /* GROWL MESSAGES */
 .ui-growl {
-    position: absolute;
-    top: 40%;
+    margin-top: 20%;
     left: 40%;
     z-index:9999;
 }

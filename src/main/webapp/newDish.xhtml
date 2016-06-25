@@ -42,6 +42,7 @@
 
                         <p:outputLabel value="Dish category:" styleClass="label"/>
                         <p:selectOneMenu value="#{dishBean.category}">
+                            <f:selectItem itemLabel="-Select-" itemValue="#{null}"/>
                             <f:selectItems value="#{dishBean.idNameCategoryMap}"/>
                         </p:selectOneMenu>
 

@@ -51,6 +51,7 @@
 
                         <p:outputLabel styleClass="label" value="Employee role:"/>
                         <p:selectOneMenu value="#{employeeBean.role}">
+                            <f:selectItem itemLabel="-Select-" value="#{null}"/>
                             <f:selectItems value="#{employeeBean.idNameRoleMap}"/>
                         </p:selectOneMenu>
 

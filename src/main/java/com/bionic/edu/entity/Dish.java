@@ -16,7 +16,7 @@ public class Dish {
     @JoinColumn(name = "photo_id")
     private Photo photo;
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "dish_category_id")
+    @JoinColumn(name = "dish_category_id", nullable = false)
     private DishCategory category;
 
     public Dish() {

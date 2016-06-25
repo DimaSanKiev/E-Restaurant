@@ -6,6 +6,7 @@ import com.bionic.edu.service.DishCategoryService;
 import com.bionic.edu.service.DishService;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
+import org.hibernate.PropertyValueException;
 import org.springframework.context.annotation.Scope;
 
 import javax.faces.application.FacesMessage;
@@ -18,6 +19,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.bionic.edu.util.GlowlMessenger.addMessage;
 
 @Named
 @Scope("session")
@@ -112,7 +115,12 @@ public class DishBean implements Serializable {
 
     public String saveDish() {
         dish.setCategory(idCategoryMap.get(category));
-        dishService.save(dish);
+        try {
+            dishService.save(dish);
+        } catch (PropertyValueException ex) {
+            addMessage("Category is required", "Please select dish category.", FacesMessage.SEVERITY_ERROR);
+            return null;
+        }
         return "dishList";
     }
 

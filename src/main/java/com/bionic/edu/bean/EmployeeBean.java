@@ -9,6 +9,7 @@ import com.bionic.edu.service.RoleService;
 import com.bionic.edu.util.WeakCrypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.PropertyValueException;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
@@ -152,7 +153,12 @@ public class EmployeeBean implements Serializable {
 
     public String saveEmployee() {
         newEmployee.setRole(idRoleMap.get(role));
-        employeeService.save(newEmployee);
+        try {
+            employeeService.save(newEmployee);
+        } catch (PropertyValueException ex) {
+            addMessage("Role is required", "Please select employee's role.", FacesMessage.SEVERITY_ERROR);
+            return null;
+        }
         return "employeeList";
     }
 
@@ -180,7 +186,7 @@ public class EmployeeBean implements Serializable {
         try {
             employee = employeeService.signIn(email, decryptPass);
         } catch (BadCredentialsException e) {
-            addMessage("Sign In Error", "Incorrect email or password. \nPlease try again.", FacesMessage.SEVERITY_ERROR);
+            addMessage("Sign In Error", "Incorrect email or password. Please try again.", FacesMessage.SEVERITY_ERROR);
             logger.error("\nEmployee sign in ERROR - Incorrect email or password." + "Email:" + email + " Password:" + password);
             employee = null;
             return "employeeSignIn";

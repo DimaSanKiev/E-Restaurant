@@ -150,7 +150,7 @@ pre {
     display: inline-block;
     cursor: pointer;
     color: #666666;
-    font-family: Arial;
+    font-family: Arial, serif;
     font-size: 15px;
     font-weight: bold;
     padding: 6px 24px;
@@ -344,7 +344,7 @@ div#template-employee-bar-name {
 .ui-growl {
     margin-top: 20%;
     left: 40%;
-    z-index:9999;
+    z-index: 9999;
 }
 
 .ui-growl-title {

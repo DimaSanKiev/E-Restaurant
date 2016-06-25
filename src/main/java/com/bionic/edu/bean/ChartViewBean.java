@@ -11,7 +11,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 
 @Named

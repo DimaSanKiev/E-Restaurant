@@ -73,8 +73,12 @@ pre {
 .table-name {
     font-weight: bold;
     text-align: left;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.center {
+    text-align: center;
 }
 
 .table-odd-row {
@@ -296,6 +300,28 @@ div#template-customer-bar-controls {
     margin-right: 10px;
     font-family: Cambria, Georgia, serif;
     font-size: 18px;
+}
+
+/* EMPLOYEE TEMPLATE */
+div#template-employee-bar-wrapper {
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    height: 55px;
+    width: 100%;
+}
+
+div#template-employee-bar-buttons {
+    margin-top: 5px;
+    margin-right: 10px;
+    padding: 5px;
+    float: left;
+}
+
+div#template-employee-bar-name {
+    margin-top: 5px;
+    margin-right: 10px;
+    padding: 5px;
+    float: right;
 }
 
 /* FOOTER */

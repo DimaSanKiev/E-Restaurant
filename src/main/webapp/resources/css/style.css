@@ -298,3 +298,13 @@ div#template-customer-bar-controls {
     font-size: medium;
     text-align: center;
 }
+
+/* GROWL MESSAGES */
+.ui-growl {
+    background-color: #333333;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    /*width:301px;*/
+    /*z-index: 9999;*/
+}

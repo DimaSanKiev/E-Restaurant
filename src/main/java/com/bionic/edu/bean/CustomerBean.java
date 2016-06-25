@@ -174,7 +174,7 @@ public class CustomerBean implements Serializable {
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        addMessage("Signed Out", "Thank you for visiting ERestaurant.", FacesMessage.SEVERITY_INFO);
+        showGrowlMessage("Signed Out", "Thank you for visiting ERestaurant.");
         logger.info("Customer signed out.", "CustomerID:" + customer.getId() + "Email:" + customer.getEmail());
         return "menu";
     }

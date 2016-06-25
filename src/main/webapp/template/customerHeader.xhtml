@@ -9,6 +9,7 @@
 
 <h:body>
     <ui:composition>
+        <p:growl id="growl" showDetail="true" life="1500"/>
         <div id="template-customer-bar-wrapper">
             <h:panelGroup id="customerBar" styleClass="template-customer-bar">
                 <div id="template-customer-bar-cart-icon">
@@ -50,7 +51,7 @@
                         <p:commandButton rendered="#{customerBean.signedIn == false}" action="signUp" id="signUp"
                                          value="Sign Up" update="matchGrid" ajax="false"/>
                         <p:commandButton rendered="#{customerBean.signedIn == true}" id="signOut"
-                                         action="#{customerBean.signOut}" value="Sign Out" update="matchGrid"
+                                         actionListener="#{customerBean.signOut}" value="Sign Out" update="matchGrid"
                                          ajax="false"/>
                     </h:form>
                 </div>

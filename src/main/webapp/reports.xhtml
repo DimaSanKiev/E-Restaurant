@@ -9,6 +9,7 @@
 <h:head>
     <title>Reports</title>
     <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet name="webjars/font-awesome/4.6.3/css/font-awesome.css"/>
 </h:head>
 
 <h:body>
@@ -29,8 +30,10 @@
                                     type="date" locale="uk" navigator="true" pattern="dd.MM.yyyy"/>
                     </h:panelGrid>
                     <br/>
-                    <p:commandButton value="Daily report" action="dailyReport" update="matchGrid" ajax="false" icon="fa-calendar"/>
-                    <p:commandButton value="Category report" action="categoryReport" update="matchGrid" ajax="false"/>
+                    <p:commandButton value="Daily report" action="dailyReport" update="matchGrid" ajax="false"
+                                     icon="fa fa-calendar"/>
+                    <p:commandButton value="Category report" action="categoryReport" update="matchGrid" ajax="false"
+                                     icon="fa fa-calendar"/>
                 </h:form>
             </h:panelGroup>
         </ui:define>

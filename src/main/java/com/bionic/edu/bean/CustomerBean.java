@@ -28,6 +28,7 @@ public class CustomerBean implements Serializable {
 
     private String email;
     private String password;
+    private String currentPassword = null;
     private boolean signedIn;
     private boolean sortAscending;
     private List<Customer> customers = null;
@@ -57,6 +58,14 @@ public class CustomerBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
     }
 
     public boolean isSignedIn() {
@@ -104,6 +113,18 @@ public class CustomerBean implements Serializable {
         customerService.blockUnblockCustomer(id);
     }
 
+    // FIXME: 27.06.2016 - don't executed
+    public String confirmChanges() {
+        if (currentPassword.equals(customer.getPassword())) {
+            logger.info("\nCustomer updating SUCCESS.", " CustomerID:" + customer.getId());
+            addMessage("Updating Success", "Your information was successfully updated.", SEVERITY_INFO);
+            saveCustomer();
+        }
+        addMessage("Updating Error", "Your password is wrong please try again.", SEVERITY_ERROR);
+        currentPassword = null;
+        return null;
+    }
+
     public String saveCustomer() {
         try {
             customerService.save(customer);
@@ -113,8 +134,7 @@ public class CustomerBean implements Serializable {
             return null;
         }
         addMessage("Saved successfully", "Customer's data was successfully saved.", SEVERITY_INFO);
-//        return "customerList";
-        return null;
+        return "menu";
     }
 
     // TODO: 18.06.2016 - expand exceptions

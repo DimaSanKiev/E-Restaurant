@@ -116,9 +116,9 @@ public class CustomerBean implements Serializable {
     // FIXME: 27.06.2016 - don't executed
     public String confirmChanges() {
         if (currentPassword.equals(customer.getPassword())) {
+            saveCustomer();
             logger.info("\nCustomer updating SUCCESS.", " CustomerID:" + customer.getId());
             addMessage("Updating Success", "Your information was successfully updated.", SEVERITY_INFO);
-            saveCustomer();
         }
         addMessage("Updating Error", "Your password is wrong please try again.", SEVERITY_ERROR);
         currentPassword = null;

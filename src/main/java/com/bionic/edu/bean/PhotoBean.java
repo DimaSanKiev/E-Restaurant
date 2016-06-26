@@ -2,6 +2,7 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Photo;
 import com.bionic.edu.service.PhotoService;
+import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -13,8 +14,6 @@ import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Named
 @Scope("session")
@@ -37,40 +36,30 @@ public class PhotoBean {
         }
     }
 
-    public void uploadPhoto(FileUploadEvent event) throws IOException {
-        String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        String name = dateFormat.format(new Date()) + event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-        File file = new File(path + "resources/images/upload/" + name);
-
-        try (InputStream is = event.getFile().getInputstream(); OutputStream out = new FileOutputStream(file)) {
-            byte buf[] = new byte[1024];
-            int len;
-            while ((len = is.read(buf)) > 0) {
-                out.write(buf, 0, len);
-            }
-        }
-    }
-
-    // TODO: 25.06.2016 - Set filename and path
     public void handleFileUpload(FileUploadEvent event) throws IOException {
         UploadedFile file = event.getFile();
-        String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-//        String name = dateFormat.format(file.getFileName() + new Date()) + event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+        photoService.save(new Photo(IOUtils.toByteArray(file.getInputstream())));
 
-//        String fileName = path + "resources/images/upload/" + name;
-        String fileName = file.getFileName();
-        try (InputStream myInputStream = file.getInputstream();
-             OutputStream out = new FileOutputStream(fileName)) {
-            //Save myInputStream in a directory of your choice and store that path in DB
-            byte buf[] = new byte[1024];
-            int len;
-            while ((len = myInputStream.read(buf)) > 0) {
-                out.write(buf, 0, len);
-            }
-        }
     }
+
+    /* working */
+//    public void handleFileUpload(FileUploadEvent event) throws IOException {
+//        UploadedFile file = event.getFile();
+//        String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//        String name = dateFormat.format(new Date()) + event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
+//
+//        String fileName = path + "/resources/images/upload/" + name;
+//        try (InputStream myInputStream = file.getInputstream();
+//             OutputStream out = new FileOutputStream(fileName)) {
+//            //Save myInputStream in a directory of your choice and store that path in DB
+//            byte buf[] = new byte[1024];
+//            int len;
+//            while ((len = myInputStream.read(buf)) > 0) {
+//                out.write(buf, 0, len);
+//            }
+//        }
+//    }
 
 
 //    public void saveDishPhoto(String photoFilePath) throws IOException {

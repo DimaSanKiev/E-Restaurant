@@ -20,8 +20,9 @@
                           rendered="#{employeeBean.employee.role.name == 'ADMIN' or employeeBean.employee.role.name == 'SUPER_USER'}">
                 #{dishBean.refreshAllDishes()}
                 <h:form>
-                    <h2>Dishes</h2>
-                    <h:panelGrid columns="1" rendered="#{employeeBean.employee.role.name != 'SUPER_USER'}">
+                    <h2 class="center">Dishes</h2>
+
+                    <h:panelGrid columns="1" rendered="#{employeeBean.employee.role.name != 'SUPER_USER'}" styleClass="center-button">
                         <p:commandButton value="Add dish" action="#{dishBean.addDish()}" update="matchGrid"
                                          ajax="false"/>
                         <br/>

@@ -133,17 +133,6 @@ public class CustomerBean implements Serializable {
         return "menu";
     }
 
-    // TODO: 24.06.2016 - create a NEW customer instead of updating
-    public String addCustomer() {
-        customer = new Customer();
-        return "newCustomer";
-    }
-
-    public String updateCustomer(String id) {
-        customer = customerService.findById(Integer.valueOf(id));
-        return "editCustomer";
-    }
-
     public String deleteCustomer(String id) {
         customerService.delete(Integer.valueOf(id));
         return "customerList";

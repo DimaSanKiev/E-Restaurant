@@ -22,16 +22,11 @@
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                     #{customerBean.refreshCustomerList()}
                     <p:growl id="message" showDetail="true"/>
-                    <h2>Customers</h2>
-                    <h:panelGrid columns="1">
-                        <p:commandButton value="New customer" action="#{customerBean.addCustomer()}" update="matchGrid"
-                                         ajax="false"/>
-                        <br/>
-                    </h:panelGrid>
+                    <h2 class="center">Customers</h2>
 
                     <h:dataTable value="#{customerBean.customers}" id="customerTable" var="customer"
                                  styleClass="dish-container" headerClass="table-header"
-                                 columnClasses="center, table-name, none, center, none, center, center, center, center"
+                                 columnClasses="center, table-name, none, center, none, center, center, center"
                                  rowClasses="table-odd-row, table-even-row">
 
                         <h:column>
@@ -91,15 +86,6 @@
                                            rendered="#{customer.blocked == true}" update="customerTable">
                                 <p:graphicImage value="resources/images/icon/block-icon.png" height="20" width="20"
                                                 title="Unblock" rendered="${customer.blocked == true}"/>
-                            </p:commandLink>
-                        </h:column>
-
-                        <h:column rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}">
-                            <f:facet name="header">Edit</f:facet>
-                            <p:commandLink action="#{customerBean.updateCustomer(customer.id)}" ajax="false"
-                                           update="customerTable">
-                                <p:graphicImage value="resources/images/icon/edit-icon.png" height="20" width="20"
-                                                title="Update"/>
                             </p:commandLink>
                         </h:column>
 

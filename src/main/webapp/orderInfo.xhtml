@@ -62,26 +62,43 @@
                     </h:dataTable>
 
                     <br/>
-                    <h:outputText escape="false" styleClass="cart-text"
-                                  value="TOTAL: "/>
-                    <h:outputText escape="false" styleClass="cart-text" value="#{cartBean.total}"
-                                  style="font-weight: bold">
-                        <f:convertNumber currencyCode="USD" type="currency"/>
-                    </h:outputText>
-                    <h:outputText escape="false" styleClass="cart-text"
-                                  value=" for &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items."/>
+                    <div style="font-size: large">
+                        <h:outputText escape="false" value="TOTAL: "/>
+                        <h:outputText escape="false" value="#{cartBean.total}" style="font-weight: bold">
+                            <f:convertNumber currencyCode="USD" type="currency"/>
+                        </h:outputText>
+                        <h:outputText escape="false"
+                                      value=" for &lt;b&gt;#{cartBean.cartDishesCount}&lt;/b&gt; items."/>
+                    </div>
 
-                    <p style="font-size: 20px">
-                        Name:
-                        <h:outputText escape="false" value="&lt;b&gt;#{customerBean.customer.name}&lt;/b&gt;"/><br/>
-                        Address:
-                        <h:outputText escape="false" value="&lt;b&gt;#{customerBean.customer.address}&lt;/b&gt;"/>
-                        <br/>
-                        Order time:
-                        <h:outputText escape="false" value="&lt;b&gt;#{cartBean.currentTime()}&lt;/b&gt;"/>
-                    </p>
+                    <table border="0" class="order-info-table">
+                        <col width="115"/>
+                        <col width="600"/>
+                        <tr>
+                            <td>Name:</td>
+                            <td><h:outputText escape="false"
+                                              value="&lt;b&gt;#{customerBean.customer.name}&lt;/b&gt;"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td><h:outputText escape="false"
+                                              value="&lt;b&gt;#{customerBean.customer.address}&lt;/b&gt;"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td>Order time:</td>
+                            <td><h:outputText escape="false" value="&lt;b&gt;#{cartBean.currentTime()}&lt;/b&gt;"/></td>
+                        </tr>
+                        <tr>
+                            <td>Amount:</td>
+                            <td>
+                                <h:outputText escape="false" value="#{cartBean.total}" style="font-weight: bold">
+                                    <f:convertNumber currencyCode="USD" type="currency"/>
+                                </h:outputText></td>
+                        </tr>
+                    </table>
 
-                    <p:commandButton value="Confirm" action="#{cartBean.submitOrder()}" update="matchGrid" ajax="false"/>
+                    <p:commandButton value="Confirm" action="#{cartBean.submitOrder()}" update="matchGrid"
+                                     ajax="false"/>
 
                     <p:commandButton value="Back to Cart" action="shoppingCart"/>
 

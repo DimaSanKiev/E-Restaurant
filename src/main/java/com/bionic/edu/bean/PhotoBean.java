@@ -38,8 +38,9 @@ public class PhotoBean {
 
     public void handleFileUpload(FileUploadEvent event) throws IOException {
         UploadedFile file = event.getFile();
-        photoService.save(new Photo(IOUtils.toByteArray(file.getInputstream())));
-
+        Photo photo = new Photo(IOUtils.toByteArray(file.getInputstream()));
+        photoService.save(photo);
+        System.out.println("=======PhotoID:" +photo.getId());
     }
 
     /* working */

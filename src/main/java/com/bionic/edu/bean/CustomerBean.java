@@ -118,7 +118,7 @@ public class CustomerBean implements Serializable {
             saveCustomer();
             logger.info("\nCustomer updating SUCCESS.", " CustomerID:" + customer.getId());
         } else {
-            addMessage("Updating Error", "Your password is wrong please try again.", SEVERITY_ERROR);
+            addMessage("Updating Error", "Your password is wrong, please try again.", SEVERITY_ERROR);
         }
         currentPassword = null;
         return null;

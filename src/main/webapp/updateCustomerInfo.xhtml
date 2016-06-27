@@ -47,22 +47,20 @@
                             </h:panelGrid>
 
                             <br/>
-                            <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
+                            <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="confirm">
                                 <p:commandButton value="Submit" title="Submit"/>
                             </h:outputLink>
 
                             <p:commandButton value="Back" action="menu" immadiate="true" immediate="true"/>
 
-                            <p:dialog header="Confirm changes:" global="true" widgetVar="dlg" resizable="false"
-                                      showEffect="fade" hideEffect="fade">
-                                <p:outputLabel value="Please enter your password to confirm changes:"/><br/>
-                                <p:password value="#{customerBean.currentPassword}"
-                                            redisplay="true" label="Current Password"/>
+                            <p:dialog header="Confirm changes:" widgetVar="dlg" resizable="false">
+                                <p:outputLabel value="Please enter your password to confirm:"/><br/>
+                                <p:password value="#{customerBean.currentPassword}" label="Current Password"/>
                                 <f:facet name="footer">
                                     <p:commandButton value="Confirm" update="growl"
                                                      actionListener="#{customerBean.confirmChanges}"
                                                      oncomplete="handleConfirmRequest(xhr, status, args)"/>
-                                    <p:commandButton onclick="break" value="Cancel"/>
+                                    <p:commandButton onclick="hide()" value="Cancel"/>
                                 </f:facet>
 
                             </p:dialog>
@@ -75,7 +73,7 @@
                                     }
                                     else {
                                         PF('dlg').hide();
-                                        $('#loginLink').fadeOut();
+                                        $('#confirmLink').fadeOut();
                                     }
                                 }
                             </script>

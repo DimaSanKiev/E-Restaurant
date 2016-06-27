@@ -512,6 +512,12 @@ div#template-employee-bar-name {
     z-index: 9999;
 }
 
+.ui-growl.growl-password {
+    margin-top: 10%;
+    left: 10%;
+    z-index: 9999;
+}
+
 .ui-growl-title {
     font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
     font-size: 20px;

@@ -46,8 +46,10 @@
                             <f:selectItems value="#{dishBean.idNameCategoryMap}"/>
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="Dish photo URL:" for="dPhoto" styleClass="label"/>
-                        <p:inputText id="dPhoto" value="#{dishBean.dish.photo}" required="false"/>
+                        <p:outputLabel value="Add photo:" for="dPhoto" styleClass="label"/>
+                        <p:fileUpload id="dPhoto" fileUploadListener="#{photoBean.handleFileUpload}" auto="true"
+                                      skinSimple="true" sizeLimit="512000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+
 
                     </h:panelGrid>
 

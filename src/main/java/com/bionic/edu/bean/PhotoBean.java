@@ -21,6 +21,15 @@ public class PhotoBean {
 
     @Inject
     private PhotoService photoService;
+    private Photo photo;
+
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
 
     public StreamedContent getPhotoContent() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -36,59 +45,11 @@ public class PhotoBean {
         }
     }
 
-    public void handleFileUpload(FileUploadEvent event) throws IOException {
+    public int handleFileUpload(FileUploadEvent event) throws IOException {
         UploadedFile file = event.getFile();
-        Photo photo = new Photo(IOUtils.toByteArray(file.getInputstream()));
+        photo = new Photo(IOUtils.toByteArray(file.getInputstream()));
         photoService.save(photo);
-        System.out.println("=======PhotoID:" +photo.getId());
-    }
-
-    /* working */
-//    public void handleFileUpload(FileUploadEvent event) throws IOException {
-//        UploadedFile file = event.getFile();
-//        String path = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-//        String name = dateFormat.format(new Date()) + event.getFile().getFileName().substring(event.getFile().getFileName().lastIndexOf('.'));
-//
-//        String fileName = path + "/resources/images/upload/" + name;
-//        try (InputStream myInputStream = file.getInputstream();
-//             OutputStream out = new FileOutputStream(fileName)) {
-//            //Save myInputStream in a directory of your choice and store that path in DB
-//            byte buf[] = new byte[1024];
-//            int len;
-//            while ((len = myInputStream.read(buf)) > 0) {
-//                out.write(buf, 0, len);
-//            }
-//        }
-//    }
-
-
-//    public void saveDishPhoto(String photoFilePath) throws IOException {
-//        Person person = new Person("Tom");
-//        byte[] photoBytes = readBytesFromFile(photoFilePath);
-//        person.setPhoto(photoBytes);
-//        session.save(person);
-//    }
-
-//    public void readDishPhoto(int dishId) throws IOException {
-//        Dish dish = dishService.findById(dishId);
-//        byte[] photoBytes = dish.getPhoto();
-//        saveBytesToFile("resources/cached_images/", photoBytes);
-//    }
-
-    private byte[] readBytesFromFile(String filePath) throws IOException {
-        File inputFile = new File(filePath);
-        FileInputStream inputStream = new FileInputStream(inputFile);
-        byte[] fileBytes = new byte[(int) inputFile.length()];
-        inputStream.read(fileBytes);
-        inputStream.close();
-        return fileBytes;
-    }
-
-    private void saveBytesToFile(String filePath, byte[] fileBytes) throws IOException {
-        FileOutputStream outputStream = new FileOutputStream(filePath);
-        outputStream.write(fileBytes);
-        outputStream.close();
+        return photo.getId();
     }
 
 }

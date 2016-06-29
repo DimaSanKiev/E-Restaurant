@@ -2,19 +2,16 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
+import com.bionic.edu.entity.Photo;
 import com.bionic.edu.service.DishCategoryService;
 import com.bionic.edu.service.DishService;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.myfaces.custom.fileupload.UploadedFile;
+import com.bionic.edu.service.PhotoService;
 import org.hibernate.PropertyValueException;
 import org.springframework.context.annotation.Scope;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -31,12 +28,14 @@ public class DishBean implements Serializable {
     private DishService dishService;
     @Inject
     private DishCategoryService dishCategoryService;
+    @Inject
+    private PhotoBean photoBean;
     private List<Dish> dishes;
     private Dish dish;
     private Map<String, String> idNameCategoryMap;
     private Map<String, DishCategory> idCategoryMap;
     private String category;
-    private UploadedFile uploadedFile; // delete or to do in last step
+    private Photo dishPhoto;
 
     public DishBean() {
         dish = new Dish();
@@ -82,15 +81,6 @@ public class DishBean implements Serializable {
         this.category = category;
     }
 
-    public UploadedFile getUploadedFile() {
-        return uploadedFile;
-    }
-
-    public void setUploadedFile(UploadedFile uploadedFile) {
-        this.uploadedFile = uploadedFile;
-    }
-
-
     public void refreshCategories() {
         idNameCategoryMap = new HashMap<>();
         idCategoryMap = new HashMap<>();
@@ -115,6 +105,7 @@ public class DishBean implements Serializable {
 
     public String saveDish() {
         dish.setCategory(idCategoryMap.get(category));
+        dish.setPhoto(photoBean.getPhoto());
         try {
             dishService.save(dish);
         } catch (PropertyValueException ex) {
@@ -146,17 +137,4 @@ public class DishBean implements Serializable {
         return "dishByCategoryList";
     }
 
-
-    // TODO - implement photos uploading
-    // TODO: 25.06.2016 - Refactor message
-    public void submit() throws IOException {
-        String fileName = FilenameUtils.getName(uploadedFile.getName());
-        String contentType = uploadedFile.getContentType();
-        byte[] bytes = uploadedFile.getBytes();
-        FileOutputStream fos = new FileOutputStream("resources/images/" + fileName + ".jpg");
-        fos.write(bytes);
-        fos.close();
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(String.format("File '%s' of type '%s' successfully uploaded!", fileName, contentType)));
-    }
 }

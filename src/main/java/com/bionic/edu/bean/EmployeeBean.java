@@ -10,7 +10,9 @@ import com.bionic.edu.util.WeakCrypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.PropertyValueException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.annotation.Scope;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -25,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.bionic.edu.util.GlowlMessenger.addMessage;
+import static javax.faces.application.FacesMessage.SEVERITY_INFO;
 
 @Named
 @RequestScoped
@@ -153,12 +156,18 @@ public class EmployeeBean implements Serializable {
 
     public String saveEmployee() {
         newEmployee.setRole(idRoleMap.get(role));
-        try {
-            employeeService.save(newEmployee);
-        } catch (PropertyValueException ex) {
+        if (newEmployee.getRole() == null) {
             addMessage("Role is required", "Please select employee's role.", FacesMessage.SEVERITY_ERROR);
             return null;
         }
+        try {
+            employeeService.save(newEmployee);
+        } catch (DataIntegrityViolationException | ConstraintViolationException ex) {   // <--- workaround
+            addMessage("Saving Error", "This email is already used. Please choose different one.", FacesMessage.SEVERITY_ERROR);
+            logger.error("\nSaving employee ERROR - Current email is already used.", " EmployeeID:" + newEmployee.getId());
+            return null;
+        }
+        addMessage("Saved successfully", "Customer's data was successfully saved.", SEVERITY_INFO);
         return "employeeList";
     }
 

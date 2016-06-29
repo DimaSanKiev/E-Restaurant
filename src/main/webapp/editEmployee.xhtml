@@ -42,9 +42,10 @@
                                                  required="true"/>
 
                         <p:outputLabel styleClass="label" value="Employee role:"/>
-                        <h:selectOneMenu value="#{employeeBean.role}">
+                        <p:selectOneMenu value="#{employeeBean.role}">
+                            <f:selectItem itemLabel="-Select-" value="#{null}"/>
                             <f:selectItems value="#{employeeBean.idNameRoleMap}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                     </h:panelGrid>
                     <br/>
 

@@ -132,7 +132,7 @@ public class CustomerBean implements Serializable {
             logger.error("\nSaving customer ERROR - Current email is already used.", " CustomerID:" + customer.getId());
             return null;
         }
-        addMessage("Saved successfully", "Customer's data was successfully saved.", SEVERITY_INFO);
+        addMessage("Saved successfully", "Employees's data was successfully saved.", SEVERITY_INFO);
         return "menu";
     }
 

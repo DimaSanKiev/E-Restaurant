@@ -115,19 +115,22 @@ public class CustomerBean implements Serializable {
         customerService.blockUnblockCustomer(id);
     }
 
+    // FIXME: 6/30/16 - saving customer in and case
     public String confirmChanges() {
         RequestContext context = RequestContext.getCurrentInstance();
         boolean confirmed;
-        if (currentPassword != null && currentPassword.equals(customer.getPassword())) {
+        if (currentPassword.equals(customer.getPassword())) {
             try {
                 saveCustomer();
             } catch (EmailUsedException e) {
+                FacesContext.getCurrentInstance().validationFailed();
                 return null;
             }
             confirmed = true;
             logger.info("\nCustomer updating SUCCESS.", " CustomerID:" + customer.getId());
         } else {
             confirmed = false;
+            FacesContext.getCurrentInstance().validationFailed();
             addMessage("Updating Error", "Your password is wrong, please try again.", SEVERITY_ERROR);
         }
         context.addCallbackParam("confirmed", confirmed);

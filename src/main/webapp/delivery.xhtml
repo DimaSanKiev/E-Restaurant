@@ -75,8 +75,10 @@
 
                     </h:dataTable>
 
-                    <h3><h:outputText rendered="#{deliveryBean.ordersList.isEmpty()}"
-                                      value="There aren't any orders to deliver!"/></h3>
+                    <h3 class="center">
+                        <h:outputText rendered="#{deliveryBean.ordersList.isEmpty()}"
+                                      value="There aren't any orders to deliver!"/>
+                    </h3>
 
                 </h:form>
             </h:panelGroup>

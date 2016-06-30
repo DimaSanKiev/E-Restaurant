@@ -34,10 +34,12 @@ public class ChartViewBean implements Serializable {
     }
 
     public PieChartModel getPieModel() {
+        createPieModel();
         return pieModel;
     }
 
     public LineChartModel getLineModel() {
+        createLineModel();
         return lineModel;
     }
 

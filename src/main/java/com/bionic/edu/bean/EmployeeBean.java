@@ -147,7 +147,6 @@ public class EmployeeBean implements Serializable {
         employees = employeeService.findAll();
     }
 
-    // TODO: 18.06.2016 - handle duplicating email exception
     public String addEmployee() {
         refreshRoles();
         newEmployee = new Employee();
@@ -171,7 +170,6 @@ public class EmployeeBean implements Serializable {
         return "employeeList";
     }
 
-    // FIXME: 6/21/16 - this doesn't update an employee info in the employeeList.xhtml
     public String updateEmployee(String id) {
         refreshRoles();
         newEmployee = employeeService.findById(Integer.valueOf(id));

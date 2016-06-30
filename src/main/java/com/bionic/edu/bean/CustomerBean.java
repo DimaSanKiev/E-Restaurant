@@ -3,10 +3,12 @@ package com.bionic.edu.bean;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.CustomerBlockedException;
+import com.bionic.edu.exception.EmailUsedException;
 import com.bionic.edu.service.CustomerService;
 import com.bionic.edu.util.WeakCrypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.primefaces.context.RequestContext;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
@@ -114,23 +116,32 @@ public class CustomerBean implements Serializable {
     }
 
     public String confirmChanges() {
-        if (currentPassword.equals(customer.getPassword())) {
-            saveCustomer();
+        RequestContext context = RequestContext.getCurrentInstance();
+        boolean confirmed;
+        if (currentPassword != null && currentPassword.equals(customer.getPassword())) {
+            try {
+                saveCustomer();
+            } catch (EmailUsedException e) {
+                return null;
+            }
+            confirmed = true;
             logger.info("\nCustomer updating SUCCESS.", " CustomerID:" + customer.getId());
         } else {
+            confirmed = false;
             addMessage("Updating Error", "Your password is wrong, please try again.", SEVERITY_ERROR);
         }
+        context.addCallbackParam("confirmed", confirmed);
         currentPassword = null;
         return null;
     }
 
-    public String saveCustomer() {
+    public String saveCustomer() throws EmailUsedException {
         try {
             customerService.save(customer);
         } catch (org.springframework.dao.DataIntegrityViolationException ex) {
             addMessage("Saving Error", "Current email is already used. Please choose different one.", SEVERITY_ERROR);
             logger.error("\nSaving customer ERROR - Current email is already used.", " CustomerID:" + customer.getId());
-            return null;
+            throw new EmailUsedException("This email is already used.");
         }
         addMessage("Saved successfully", "Employees's data was successfully saved.", SEVERITY_INFO);
         return "menu";

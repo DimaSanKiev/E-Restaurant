@@ -59,15 +59,15 @@
                                 <f:facet name="footer">
                                     <p:commandButton value="Confirm" update="growl-password"
                                                      actionListener="#{customerBean.confirmChanges}"
-                                                     oncomplete="handleConfirmRequest(xhr, status, args)"/>
+                                                     oncomplete="handleConfirmRequest(args)"/>
                                 </f:facet>
 
                             </p:dialog>
 
 
                             <script type="text/javascript">
-                                function handleConfirmRequest(xhr, status, args) {
-                                    if (args.validationFailed || !args.confirmed) {
+                                function handleConfirmRequest(args) {
+                                    if (!args.confirmed) {
                                         PF('dlg').jq.effect("shake", {times: 5}, 100);
                                     }
                                     else {

@@ -10,6 +10,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Named
 @Scope("session")
@@ -57,11 +58,11 @@ public class ReportBean implements Serializable {
 
     public void refreshCategoryReport() {
         reportCategories = orderService.getReportCategory(
-                new java.sql.Date(startDate.getTime()), new java.sql.Date(endDate.getTime()));
+                new java.sql.Date(startDate.getTime()), new java.sql.Date(endDate.getTime() + TimeUnit.DAYS.toMillis(1)));
     }
 
     public void refreshTotalReport() {
         reportTotals = orderService.getReportTotal(
-                new java.sql.Date(startDate.getTime()), new java.sql.Date(endDate.getTime()));
+                new java.sql.Date(startDate.getTime()), new java.sql.Date(endDate.getTime() + TimeUnit.DAYS.toMillis(1)));
     }
 }

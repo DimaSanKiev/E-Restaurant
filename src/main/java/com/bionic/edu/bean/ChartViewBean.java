@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Named
 @Scope("session")
@@ -56,7 +57,6 @@ public class ChartViewBean implements Serializable {
         pieModel.setDiameter(150);
     }
 
-    // TODO: 6/23/16 - update charts - see http://stackoverflow.com/questions/12929125/primefaces-charts-not-updating-when-submit-a-new-request
     private void createLineModel() {
         lineModel = new LineChartModel();
         LineChartSeries series = new LineChartSeries();
@@ -72,7 +72,7 @@ public class ChartViewBean implements Serializable {
         DateAxis axis = new DateAxis("Dates");
         axis.setTickFormat("%b %#d, %y");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        axis.setMax(df.format(reportBean.getEndDate()));
+        axis.setMax(df.format(reportBean.getEndDate().getTime() + TimeUnit.DAYS.toMillis(1)));
         axis.setMin(df.format(reportBean.getStartDate()));
         lineModel.getAxes().put(AxisType.X, axis);
     }

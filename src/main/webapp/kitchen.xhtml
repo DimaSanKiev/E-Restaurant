@@ -52,12 +52,17 @@
                             <f:facet name="header">
                                 <h:outputLabel styleClass="table-header">Mark</h:outputLabel>
                             </f:facet>
-                            <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.id)}" styleClass="kitchen-button"/>
+                            <h:commandButton value="Mark as Done" action="#{kitchenBean.markDone(dish.id)}"
+                                             styleClass="kitchen-button"/>
                         </h:column>
 
                     </h:dataTable>
-                    <h3><h:outputText rendered="#{kitchenBean.orderDishesList.isEmpty()}"
-                                      value="There aren't any dishes to cook!"/></h3>
+
+                    <h3 class="center">
+                        <h:outputText rendered="#{kitchenBean.orderDishesList.isEmpty()}"
+                                      value="There aren't any dishes to cook!"/>
+                    </h3>
+
                 </h:form>
             </h:panelGroup>
         </ui:define>

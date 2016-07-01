@@ -115,7 +115,7 @@ public class CustomerBean implements Serializable {
         customerService.blockUnblockCustomer(id);
     }
 
-    // FIXME: 6/30/16 - saving customer in and case
+    // FIXME: 6/30/16 - saving customer in any case
     public String confirmChanges() {
         RequestContext context = RequestContext.getCurrentInstance();
         boolean confirmed;

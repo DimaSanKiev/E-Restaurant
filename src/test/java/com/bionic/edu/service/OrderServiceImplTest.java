@@ -3,6 +3,7 @@ package com.bionic.edu.service;
 import com.bionic.edu.entity.OrderStatus;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -120,6 +121,14 @@ public class OrderServiceImplTest {
         reports.forEach(System.out::println);
         assertNotNull(reports);
         assertEquals(3, reports.size());
+    }
+
+    @Test
+    public void gettingReportByDishes() throws Exception {
+        List<ReportDish> reports = orderService.getReportDish(Date.valueOf("2016-06-01"), Date.valueOf("2016-06-22"));
+        reports.forEach(System.out::println);
+        assertNotNull(reports);
+        assertEquals(6, reports.size());
     }
 
     private Orders createTestOrder() {

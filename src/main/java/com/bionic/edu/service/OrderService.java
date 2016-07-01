@@ -5,6 +5,7 @@ import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.service.generic.GenericService;
 import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
 
 import java.sql.Date;
@@ -26,4 +27,6 @@ public interface OrderService extends GenericService<Orders> {
     List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod);
 
     List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod);
+
+    List<ReportDish> getReportDish(Date startPeriod, Date endPeriod);
 }

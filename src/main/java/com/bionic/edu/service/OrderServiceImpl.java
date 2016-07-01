@@ -6,6 +6,7 @@ import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,5 +91,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod) {
         return orderDao.getReportCategory(startPeriod, endPeriod);
+    }
+
+    @Override
+    public List<ReportDish> getReportDish(Date startPeriod, Date endPeriod) {
+        return orderDao.getReportDish(startPeriod, endPeriod);
     }
 }

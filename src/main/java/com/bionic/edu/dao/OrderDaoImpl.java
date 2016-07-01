@@ -3,6 +3,7 @@ package com.bionic.edu.dao;
 import com.bionic.edu.dao.generic.GenericDaoImpl;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -64,6 +65,21 @@ public class OrderDaoImpl extends GenericDaoImpl<Orders> implements OrderDao {
                 "FROM OrderDishes od WHERE od.order.orderStatus.id = :status " +
                 "AND od.order.dateTimeTaken BETWEEN :start AND :finish " +
                 "GROUP BY od.dish.category.name");
+        query.setParameter("status", 5);
+        query.setParameter("start", startPeriod);
+        query.setParameter("finish", endPeriod);
+        return query.list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<ReportDish> getReportDish(Date startPeriod, Date endPeriod) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("SELECT new com.bionic.edu.util.ReportDish(" +
+                "od.dish.name, COUNT(od.dish.id), SUM(od.price)) " +
+                "FROM OrderDishes od WHERE od.order.orderStatus.id = :status " +
+                "AND od.order.dateTimeTaken BETWEEN :start AND :finish " +
+                "GROUP BY od.dish.name");
         query.setParameter("status", 5);
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);

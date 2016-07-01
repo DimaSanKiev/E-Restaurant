@@ -3,6 +3,7 @@ package com.bionic.edu.dao;
 import com.bionic.edu.dao.generic.GenericDao;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
 
 import java.sql.Date;
@@ -20,4 +21,6 @@ public interface OrderDao extends GenericDao<Orders> {
     List<ReportTotal> getReportTotal(Date startPeriod, Date endPeriod);
 
     List<ReportCategory> getReportCategory(Date startPeriod, Date endPeriod);
+
+    List<ReportDish> getReportDish(Date startPeriod, Date endPeriod);
 }

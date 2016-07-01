@@ -1,6 +1,6 @@
 package com.bionic.edu.util;
 
-public class ReportDish {
+public class ReportDish implements Comparable<ReportDish> {
     private String dishName;
     private long count;
     private double total;
@@ -33,6 +33,14 @@ public class ReportDish {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    @Override
+    public int compareTo(ReportDish dish) {
+        if (this.total == dish.total)
+            return 0;
+        else
+            return this.total > dish.total ? 1 : -1;
     }
 
     @Override

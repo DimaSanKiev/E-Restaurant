@@ -12,6 +12,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -91,6 +92,7 @@ public class ChartViewBean implements Serializable {
     private void createHBarModel() {
         hBarModel = new HorizontalBarChartModel();
         reportBean.refreshDishesReport();
+        Collections.sort(reportBean.getReportDishes());
         ChartSeries series = new ChartSeries();
         series.setLabel("Dishes");
         List<ReportDish> reportDishes = reportBean.getReportDishes();
@@ -100,7 +102,6 @@ public class ChartViewBean implements Serializable {
 
         hBarModel.addSeries(series);
         hBarModel.setTitle("Dishes diagram");
-        hBarModel.setLegendPosition("e");
         hBarModel.setStacked(true);
 
         Axis xAxis = hBarModel.getAxis(AxisType.X);

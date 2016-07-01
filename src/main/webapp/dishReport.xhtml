@@ -68,8 +68,8 @@
                         <br/>
                     </h:form>
 
-                    <h:form rendered="#{not empty reportBean.reportTotals}">
-                        <p:chart type="line" model="#{chartViewBean.HBarModel}" style="width:400px;height:300px"/>
+                    <h:form rendered="#{not empty reportBean.reportDishes}">
+                        <p:chart type="bar" model="#{chartViewBean.HBarModel}" style="width: 800px"/>
                     </h:form>
 
                     <p:commandButton value="Back" action="reports" immadiate="true"/>

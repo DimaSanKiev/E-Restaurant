@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 
 @Named
 @Scope("session")
-public class UserLoginView {
+public class _UserLoginView {
 
     private String username;
 

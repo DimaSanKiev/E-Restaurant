@@ -2,6 +2,7 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.service.OrderService;
 import com.bionic.edu.util.ReportCategory;
+import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
 import org.springframework.context.annotation.Scope;
 
@@ -21,6 +22,7 @@ public class ReportBean implements Serializable {
     private OrderService orderService;
     private List<ReportCategory> reportCategories = null;
     private List<ReportTotal> reportTotals = null;
+    private List<ReportDish> reportDishes = null;
     private Date startDate;
     private Date endDate;
 
@@ -38,6 +40,14 @@ public class ReportBean implements Serializable {
 
     public void setReportTotals(List<ReportTotal> reportTotals) {
         this.reportTotals = reportTotals;
+    }
+
+    public List<ReportDish> getReportDishes() {
+        return reportDishes;
+    }
+
+    public void setReportDishes(List<ReportDish> reportDishes) {
+        this.reportDishes = reportDishes;
     }
 
     public Date getStartDate() {
@@ -63,6 +73,11 @@ public class ReportBean implements Serializable {
 
     public void refreshTotalReport() {
         reportTotals = orderService.getReportTotal(
+                new java.sql.Date(startDate.getTime()), new java.sql.Date(endDate.getTime() + TimeUnit.DAYS.toMillis(1)));
+    }
+
+    public void refreshDishesReport() {
+        reportDishes = orderService.getReportDish(
                 new java.sql.Date(startDate.getTime()), new java.sql.Date(endDate.getTime() + TimeUnit.DAYS.toMillis(1)));
     }
 }

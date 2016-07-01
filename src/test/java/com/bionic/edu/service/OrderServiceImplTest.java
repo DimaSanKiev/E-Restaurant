@@ -1,12 +1,10 @@
 package com.bionic.edu.service;
 
-import com.bionic.edu.entity.OrderStatus;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;

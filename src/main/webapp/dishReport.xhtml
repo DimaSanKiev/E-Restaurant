@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Daily Report</title>
+    <title>Dish Report</title>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
@@ -19,10 +19,10 @@
             <h:panelGroup layout="block"
                           rendered="#{employeeBean.employee.role.name == 'SUPER_USER' or employeeBean.employee.role.name == 'BUSINESS_ANALYST'}">
 
-                #{reportBean.refreshTotalReport()}
+                #{reportBean.refreshDishesReport()}
 
                 <div class="report-container">
-                    <h2>Daily report from
+                    <h2>Dish report from
                         <h:outputText value="#{reportBean.startDate}" styleClass="report-digits">
                             <f:convertDateTime pattern="dd.MM.yyyy"/>
                         </h:outputText>
@@ -32,22 +32,20 @@
                         </h:outputText>
                     </h2>
 
-                    <h:form rendered="${empty reportBean.reportTotals}">
+                    <h:form rendered="${empty reportBean.reportDishes}">
                         There weren't any orders during this period.
                         <br/> <br/>
                     </h:form>
 
-                    <h:form rendered="#{not empty reportBean.reportTotals}">
-                        <h:dataTable value="#{reportBean.reportTotals}" var="reportRow" headerClass="table-header"
+                    <h:form rendered="#{not empty reportBean.reportDishes}">
+                        <h:dataTable value="#{reportBean.reportDishes}" var="reportRow" headerClass="table-header"
                                      columnClasses="none, center, center" rowClasses="table-odd-row, table-even-row">
 
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputLabel>Date</h:outputLabel>
+                                    <h:outputLabel>Dish Name</h:outputLabel>
                                 </f:facet>
-                                <h:outputText id="date" value="#{reportRow.date}">
-                                    <f:convertDateTime type="date" pattern="dd.MM.yyyy"/>
-                                </h:outputText>
+                                <h:outputText id="date" value="#{reportRow.dishName}"/>
                             </h:column>
 
                             <h:column>
@@ -71,7 +69,7 @@
                     </h:form>
 
                     <h:form rendered="#{not empty reportBean.reportTotals}">
-                        <p:chart type="line" model="#{chartViewBean.lineModel}" style="width:400px;height:300px"/>
+                        <p:chart type="line" model="#{chartViewBean.HBarModel}" style="width:400px;height:300px"/>
                     </h:form>
 
                     <p:commandButton value="Back" action="reports" immadiate="true"/>

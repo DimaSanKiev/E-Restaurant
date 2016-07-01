@@ -79,7 +79,7 @@ public class OrderDaoImpl extends GenericDaoImpl<Orders> implements OrderDao {
                 "od.dish.name, COUNT(od.dish.id), SUM(od.price)) " +
                 "FROM OrderDishes od WHERE od.order.orderStatus.id = :status " +
                 "AND od.order.dateTimeTaken BETWEEN :start AND :finish " +
-                "GROUP BY od.dish.name");
+                "GROUP BY od.dish.name ORDER BY SUM(od.price) DESC");
         query.setParameter("status", 5);
         query.setParameter("start", startPeriod);
         query.setParameter("finish", endPeriod);

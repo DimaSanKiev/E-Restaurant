@@ -6,6 +6,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
+<h:head>
+    <h:outputStylesheet name="webjars/font-awesome/4.6.3/css/font-awesome.css"/>
+</h:head>
 <h:body>
     <ui:composition>
         <h:panelGroup rendered="#{employeeBean.signedIn == true}">
@@ -21,7 +24,7 @@
                                      style="float: left"/>
 
                     <!-- Business analyst + Superuser buttons-->
-                    <p:commandButton id="reports"
+                    <p:commandButton id="reports" icon="fa fa-calendar"
                                      rendered="#{employeeBean.employee.role.name == 'SUPER_USER' or employeeBean.employee.role.name == 'BUSINESS_ANALYST'}"
                                      action="reports" value="Reports" update="matchGrid" ajax="false"
                                      style="float: left"/>

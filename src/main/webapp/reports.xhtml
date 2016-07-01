@@ -33,9 +33,12 @@
                     </div>
                     <br/>
                     <p:commandButton value="Daily report" action="dailyReport" update="matchGrid" ajax="false"
-                                     icon="fa fa-calendar" styleClass="report-button" style="margin-right: 10px"/>
+                                     icon="fa fa-line-chart" styleClass="report-button" style="margin-right: 10px"/>
+                    <p:commandButton value="Dish report" action="dishReport" update="matchGrid" ajax="false"
+                                     icon="fa fa-bar-chart" styleClass="report-button" style="margin-right: 10px"/>
                     <p:commandButton value="Category report" action="categoryReport" update="matchGrid" ajax="false"
-                                     icon="fa fa-bar-chart" styleClass="report-button" style="margin-left: 10px"/>
+                                     icon="fa fa-pie-chart" styleClass="report-button"/>
+
                 </h:form>
             </h:panelGroup>
         </ui:define>

@@ -528,6 +528,12 @@ div#template-employee-bar-name {
     font-weight: 500;
 }
 
+/* BUTTON ICONS */
+.ui-icon {
+    border-radius: 0 !important;
+    padding: 0 4px 0 0;
+}
+
 /* 403 PAGE */
 .page403 {
     text-align: center;

@@ -16,16 +16,19 @@
         <div class="body">
             <h1>E-Restaurant Staff Authorization Page</h1>
             <h2>Please Sign In</h2>
+                <div class="content-container">
             <h:panelGrid columns="2">
-                <p:outputLabel styleClass="label" for="email" value="Email: "/>
-                <p:inputText id="email" value="#{employeeBean.email}" required="true" type="email"/>
+                    <p:outputLabel styleClass="label" for="email" value="Email: "/>
+                    <p:inputText id="email" value="#{employeeBean.email}" required="true" type="email"/>
 
-                <p:outputLabel styleClass="label" for="password" value="Password: "/>
-                <p:password id="password" value="#{employeeBean.password}" required="true"/>
+                    <p:outputLabel styleClass="label" for="password" value="Password: "/>
+                    <p:password id="password" value="#{employeeBean.password}" required="true"/>
             </h:panelGrid>
+                </div>
 
             <br/>
-            <p:commandButton value="Sign in" update="matchGrid" ajax="false" style="margin-right: 5px" icon="fa fa-sign-in"
+            <p:commandButton value="Sign in" update="matchGrid" ajax="false" style="margin-right: 5px"
+                             icon="fa fa-sign-in"
                              action="#{employeeBean.signIn(employeeBean.email, employeeBean.password)}"/>
             <p:commandButton value="Back to menu" action="menu" immadiate="true" immediate="true" icon="fa fa-cutlery"/>
         </div>

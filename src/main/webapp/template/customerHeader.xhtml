@@ -52,6 +52,9 @@
                         <p:commandButton rendered="#{customerBean.signedIn == true}" id="signOut"
                                          action="#{customerBean.signOut}" value="Sign Out" update="matchGrid"
                                          ajax="false" icon="fa fa-sign-out"/>
+                        <p:commandButton rendered="#{customerBean.signedIn == false}" id="employeeSignIn"
+                                         action="employeeSignIn.xhtml" update="matchGrid"
+                                         ajax="false" icon="fa fa-user-secret"/>
                     </h:form>
                 </div>
             </h:panelGroup>

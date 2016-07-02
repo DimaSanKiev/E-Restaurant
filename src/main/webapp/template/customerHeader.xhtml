@@ -46,12 +46,12 @@
 
                         <p:button outcome="menu" id="home" value="Menu"/>
                         <p:commandButton rendered="#{customerBean.signedIn == false}" id="signIn" action="signIn"
-                                         value="Sign In" update="matchGrid" ajax="false"/>
+                                         value="Sign In" update="matchGrid" ajax="false" icon="fa fa-sign-in"/>
                         <p:commandButton rendered="#{customerBean.signedIn == false}" action="signUp" id="signUp"
-                                         value="Sign Up" update="matchGrid" ajax="false"/>
+                                         value="Sign Up" update="matchGrid" ajax="false" icon="fa fa-user-plus"/>
                         <p:commandButton rendered="#{customerBean.signedIn == true}" id="signOut"
                                          action="#{customerBean.signOut}" value="Sign Out" update="matchGrid"
-                                         ajax="false"/>
+                                         ajax="false" icon="fa fa-sign-out"/>
                     </h:form>
                 </div>
             </h:panelGroup>

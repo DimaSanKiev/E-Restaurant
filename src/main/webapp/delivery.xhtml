@@ -25,11 +25,11 @@
                 <h:form>
                     <div class="center">
                         <p:commandButton id="sortByTime" action="#{deliveryBean.getDeliveryListByTime()}"
-                                         value="By time" style="width: 120px; margin-right: 10px; margin-bottom: 20px"
-                                         update="matchGrid" ajax="false"/>
+                                         value="By time" style="width: 140px; margin-right: 10px; margin-bottom: 20px"
+                                         update="matchGrid" ajax="false" icon="fa fa-clock-o"/>
                         <p:commandButton id="sortByStatus" action="#{deliveryBean.getDeliveryListByStatus()}"
-                                         value="By status" style="width: 120px"
-                                         update="matchGrid" ajax="false"/>
+                                         value="By status" style="width: 140px"
+                                         update="matchGrid" ajax="false" icon="fa fa-check-square-o"/>
                     </div>
 
                     <h:dataTable value="#{deliveryBean.ordersList}" var="order"

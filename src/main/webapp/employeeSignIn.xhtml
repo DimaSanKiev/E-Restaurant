@@ -25,9 +25,9 @@
             </h:panelGrid>
 
             <br/>
-            <p:commandButton value="Sign in" update="matchGrid" ajax="false"
+            <p:commandButton value="Sign in" update="matchGrid" ajax="false" style="margin-right: 5px" icon="fa fa-sign-in"
                              action="#{employeeBean.signIn(employeeBean.email, employeeBean.password)}"/>
-            <p:commandButton value="Back to menu" action="menu" immadiate="true" immediate="true"/>
+            <p:commandButton value="Back to menu" action="menu" immadiate="true" immediate="true" icon="fa fa-cutlery"/>
         </div>
     </h:form>
 </h:body>

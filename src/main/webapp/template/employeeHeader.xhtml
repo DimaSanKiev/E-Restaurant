@@ -28,31 +28,31 @@
                                      rendered="#{employeeBean.employee.role.name == 'SUPER_USER' or employeeBean.employee.role.name == 'BUSINESS_ANALYST'}"
                                      action="reports" value="Reports" update="matchGrid" ajax="false"
                                      style="float: left"/>
-                    <p:commandButton id="viewDishList"
+                    <p:commandButton id="viewDishList" icon="fa fa-cutlery"
                                      rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}"
                                      action="dishList" value="Dish List" update="matchGrid" ajax="false"
                                      style="float: left"/>
 
                     <!-- Admin + Superuser buttons -->
-                    <p:commandButton id="customerList"
+                    <p:commandButton id="customerList" icon="fa fa-users"
                                      rendered="#{employeeBean.employee.role.name == 'ADMIN' or employeeBean.employee.role.name == 'SUPER_USER'}"
                                      action="customerList" value="Customers" update="matchGrid" ajax="false"
                                      style="float: left"/>
 
                     <!-- Kitchen sfaff buttons -->
-                    <p:commandButton id="kitchen"
+                    <p:commandButton id="kitchen" icon="fa fa-refresh"
                                      rendered="#{employeeBean.employee.role.name == 'KITCHEN_STAFF'}"
                                      action="kitchen" value="Kitchen pending screen" update="matchGrid" ajax="false"
                                      style="float: left"/>
 
                     <!-- Delivery staff buttons -->
-                    <p:commandButton id="delivery"
+                    <p:commandButton id="delivery" icon="fa fa-refresh"
                                      rendered="#{employeeBean.employee.role.name == 'DELIVERY_STAFF'}"
                                      action="delivery" value="Delivery pending screen" update="matchGrid" ajax="false"
                                      style="float: left"/>
 
                     <!-- Superuser buttons -->
-                    <p:commandButton id="employeeList"
+                    <p:commandButton id="employeeList" icon="fa fa-user-md"
                                      rendered="#{employeeBean.employee.role.name == 'SUPER_USER'}"
                                      action="employeeList" value="Employees" update="matchGrid" ajax="false"
                                      style="float: left"/>

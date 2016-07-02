@@ -529,9 +529,13 @@ div#template-employee-bar-name {
 }
 
 /* BUTTON ICONS */
+.ui-button-icon-left {
+    padding: 1px 3px 5px 0;
+}
+
 .ui-icon {
     border-radius: 0 !important;
-    padding: 0 4px 0 0;
+    background-position: top right;
 }
 
 /* 403 PAGE */

@@ -2,12 +2,9 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
-import com.bionic.edu.entity.Photo;
 import com.bionic.edu.service.DishCategoryService;
 import com.bionic.edu.service.DishService;
-import org.hibernate.PropertyValueException;
 import org.springframework.context.annotation.Scope;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
@@ -35,7 +32,6 @@ public class DishBean implements Serializable {
     private Map<String, String> idNameCategoryMap;
     private Map<String, DishCategory> idCategoryMap;
     private String category;
-    private Photo dishPhoto;
 
     public DishBean() {
         dish = new Dish();
@@ -105,11 +101,13 @@ public class DishBean implements Serializable {
 
     public String saveDish() {
         dish.setCategory(idCategoryMap.get(category));
+        dish.setPhoto(photoBean.getPhoto());
         if (dish.getCategory() == null) {
             addMessage("Category is required", "Please select dish category.", FacesMessage.SEVERITY_ERROR);
             return null;
         }
         dishService.save(dish);
+        photoBean.setPhoto(null);
         return "dishList";
     }
 

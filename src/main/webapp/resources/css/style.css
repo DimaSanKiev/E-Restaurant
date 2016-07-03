@@ -216,6 +216,13 @@ pre {
     height: 220px;
 }
 
+.dish-photo-prev {
+    margin: auto;
+    padding-top: 2px;
+    width: 150px;
+    height: 150px;
+}
+
 .dish-name {
     font-size: 20px;
     font-weight: 600;

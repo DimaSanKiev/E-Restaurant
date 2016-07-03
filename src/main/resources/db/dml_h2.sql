@@ -1,141 +1,27 @@
--- CREATE TABLES --
-
-DROP TABLE IF EXISTS order_dishes;
-DROP TABLE IF EXISTS dish;
-DROP TABLE IF EXISTS dish_category;
-DROP TABLE IF EXISTS employee;
-DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS orders_status;
-DROP TABLE IF EXISTS customer;
-DROP TABLE IF EXISTS photo;
-
-CREATE TABLE role (
-  id   IDENTITY PRIMARY KEY,
-  name VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE photo (
-  id      IDENTITY PRIMARY KEY,
-  content BLOB
-);
-
-CREATE TABLE employee (
-  id        IDENTITY PRIMARY KEY,
-  name      VARCHAR(100) NOT NULL,
-  email     VARCHAR(100) NOT NULL UNIQUE,
-  password  VARCHAR(100) NOT NULL,
-  birthDate DATE,
-  hireDate  DATE         NOT NULL,
-  ready     BOOLEAN      NOT NULL,
-  role_id   INT          NOT NULL,
-  photo_id  INT,
-  FOREIGN KEY (role_id) REFERENCES role (id) ON UPDATE CASCADE,
-  FOREIGN KEY (photo_id) REFERENCES photo (id) ON DELETE CASCADE
-);
-
-CREATE TABLE dish_category (
-  id          IDENTITY PRIMARY KEY,
-  name        VARCHAR(100) NOT NULL,
-  description VARCHAR(500) NOT NULL,
-);
-
-CREATE TABLE dish (
-  id               IDENTITY PRIMARY KEY,
-  name             VARCHAR(100)   NOT NULL,
-  description      VARCHAR(500)   NOT NULL,
-  price            DECIMAL(15, 2) NOT NULL,
-  kitchenmade      BOOLEAN        NOT NULL,
-  available        BOOLEAN        NOT NULL,
-  photo_id         INT,
-  dish_category_id INT            NOT NULL,
-  FOREIGN KEY (dish_category_id) REFERENCES dish_category (id) ON DELETE CASCADE,
-  FOREIGN KEY (photo_id) REFERENCES photo (id) ON DELETE CASCADE
-);
-
-CREATE TABLE customer (
-  id        IDENTITY PRIMARY KEY,
-  name      VARCHAR(100) NOT NULL,
-  email     VARCHAR(100) NOT NULL UNIQUE,
-  password  VARCHAR(100) NOT NULL,
-  address   VARCHAR(500) NOT NULL,
-  birthDate DATE,
-  blocked   BOOLEAN      NOT NULL DEFAULT FALSE,
-  photo_id  INT,
-  FOREIGN KEY (photo_id) REFERENCES photo (id) ON DELETE CASCADE
-);
-
-CREATE TABLE orders_status (
-  id   IDENTITY PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-);
-
-CREATE TABLE orders (
-  id                  IDENTITY PRIMARY KEY,
-  date_time_taken     TIMESTAMP      NOT NULL,
-  date_time_delivered TIMESTAMP,
-  total_price         DECIMAL(15, 2) NOT NULL,
-  orders_status_id    INT DEFAULT 1,
-  customer_id         INT,
-  FOREIGN KEY (orders_status_id) REFERENCES orders_status (id) ON DELETE CASCADE,
-  FOREIGN KEY (customer_id) REFERENCES customer (id) ON DELETE CASCADE
-);
-
-CREATE TABLE order_dishes (
-  id        IDENTITY PRIMARY KEY,
-  quantity  INT            NOT NULL DEFAULT 1,
-  price     DECIMAL(15, 2) NOT NULL,
-  readiness BOOLEAN        NOT NULL DEFAULT FALSE,
-  dish_id   INT,
-  orders_id INT,
-  FOREIGN KEY (dish_id) REFERENCES dish (id) ON DELETE CASCADE,
-  FOREIGN KEY (orders_id) REFERENCES orders (id) ON DELETE CASCADE
-);
-
--- FILL TABLES --
-
 INSERT INTO role (name) VALUES ('SUPER_USER');
 INSERT INTO role (name) VALUES ('ADMIN');
 INSERT INTO role (name) VALUES ('KITCHEN_STAFF');
 INSERT INTO role (name) VALUES ('DELIVERY_STAFF');
 INSERT INTO role (name) VALUES ('BUSINESS_ANALYST');
 
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/01_Tomato-Soup.jpg'));
-INSERT INTO photo (content) VALUES
-  (FILE_READ('./files/images/02_Cream-Of-Mushroom-Soup.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/03_Miso-Soup.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/04_Greek-Salad.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/05_Avocado-Tuna-Tapas.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/06_Caesar-Salad.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/07_Baked-Spaghetti.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/08_Beef-Bourguignon.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/09_Wild-Salmon.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/10_Chocolate-Fondue.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/11_Tapioca-Pudding.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/12_Fruit-Salad.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/13_Latte.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/14_Tea.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/15_Juice.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/16_Cola.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/17_Mineral-Water.jpg'));
-INSERT INTO photo (content)
-VALUES (FILE_READ('./files/images/18_Beer.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/01_Tomato-Soup.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/02_Cream-Of-Mushroom-Soup.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/03_Miso-Soup.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/04_Greek-Salad.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/05_Avocado-Tuna-Tapas.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/06_Caesar-Salad.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/07_Baked-Spaghetti.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/08_Beef-Bourguignon.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/09_Wild-Salmon.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/10_Chocolate-Fondue.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/11_Tapioca-Pudding.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/12_Fruit-Salad.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/13_Latte.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/14_Tea.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/15_Juice.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/16_Cola.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/17_Mineral-Water.jpg'));
+INSERT INTO photo (content) VALUES (FILE_READ('./files/images/18_Beer.jpg'));
 
 INSERT INTO employee (name, email, password, birthdate, hiredate, ready, role_id, photo_id)
   VALUES ('Dmytro Burdyga', 'super@erestaurant.com', 'pass1', '1984-06-27', '2010-01-01', TRUE, 1, NULL);
@@ -248,19 +134,19 @@ VALUES ('Beer',
         'An alcoholic drink made from yeast-fermented malt flavoured with hops.',
         5.50, FALSE, FALSE, 18, 5);
 
-INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES ('Olga Romanova', 'olga.romanova@gmail.com', 'pass1', '27 Obolonsky Ave., App. 34, Kyiv', '1995-04-05', NULL);
-INSERT INTO customer (name, email, password, address, birthDate, photo_id)
+INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_id)
+VALUES ('Olga Romanova', 'olga.romanova@gmail.com', 'pass1', '27 Obolonsky Ave., App. 34, Kyiv', '1995-04-05', FALSE, NULL);
+INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_id)
 VALUES
-  ('Igor Shevchenko', 'igor.shevchenko@yahoo.com', 'pass2', '4 Khreschatik Str., App. 12, Kyiv', '1990-01-25', NULL);
-INSERT INTO customer (name, email, password, address, birthDate, photo_id)
-VALUES ('Kate Belova', 'kate.belova@gmail.com', 'pass3', '3 Verbova Str., App. 7, Kyiv', '1987-01-17', NULL);
-INSERT INTO customer (name, email, password, address, birthDate, photo_id)
+  ('Igor Shevchenko', 'igor.shevchenko@yahoo.com', 'pass2', '4 Khreschatik Str., App. 12, Kyiv', '1990-01-25', FALSE, NULL);
+INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_id)
+VALUES ('Kate Belova', 'kate.belova@gmail.com', 'pass3', '3 Verbova Str., App. 7, Kyiv', '1987-01-17', FALSE, NULL);
+INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_id)
 VALUES
-  ('Roman Karetskiy', 'roman.karetskiy@gmail.com', 'pass4', '36 Ivana Lepse Str., App. 14, Kyiv', '1989-03-07', NULL);
-INSERT INTO customer (name, email, password, address, birthDate, photo_id)
+  ('Roman Karetskiy', 'roman.karetskiy@gmail.com', 'pass4', '36 Ivana Lepse Str., App. 14, Kyiv', '1989-03-07', FALSE, NULL);
+INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_id)
 VALUES
-  ('Oksana Alekseeva', 'oksana.alekseeva@gmail.com', 'pass5', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18', NULL);
+  ('Oksana Alekseeva', 'oksana.alekseeva@gmail.com', 'pass5', '29 Verkhniy Val Str., App. 4, Kyiv', '1982-02-18', FALSE, NULL);
 INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_id)
 VALUES
   ('Sergey Butenko', 'sergey.butenko@gmail.com', 'pass6', '2 Polarna Str., App. 67, Kyiv', '1991-08-08', TRUE, NULL);

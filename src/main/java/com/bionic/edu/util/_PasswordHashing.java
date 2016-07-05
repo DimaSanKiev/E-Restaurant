@@ -5,13 +5,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PasswordHashing {
+public class _PasswordHashing {
 
     Map<String, String> DB = new HashMap<String, String>();
     public static final String SALT = "my-salt-text";
 
     public static void main(String args[]) {
-        PasswordHashing demo = new PasswordHashing();
+        _PasswordHashing demo = new _PasswordHashing();
         demo.signup("john", "dummy123");
 
         // login should succeed.

@@ -4,7 +4,7 @@ import com.bionic.edu.dao.EmployeeDao;
 import com.bionic.edu.entity.Employee;
 import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.EmployeeNotReadyException;
-import com.bionic.edu.util.WeakCrypto;
+import com.bionic.edu.util.Crypto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,32 +20,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findById(int id) {
-        Employee employee = employeeDao.findById(id);
-        if (employee != null)
-            employee.setPassword(WeakCrypto.encrypt(employee.getPassword()));
-        return employee;
+        return employeeDao.findById(id);
     }
 
     @Override
     public Employee findByEmail(String email) {
-        Employee employee = employeeDao.findByEmail(email);
-        employee.setPassword(WeakCrypto.encrypt(employee.getPassword()));
-        return employee;
+        return employeeDao.findByEmail(email);
     }
 
     @Override
     public List<Employee> findAll() {
-        List<Employee> employees = employeeDao.findAll();
-        for (Employee employee : employees) {
-            employee.setPassword(WeakCrypto.encrypt(employee.getPassword()));
-        }
-        return employees;
+        return employeeDao.findAll();
     }
 
     @Transactional
     @Override
     public void save(Employee employee) {
-        employee.setPassword(WeakCrypto.encrypt(employee.getPassword()));
+        employee.setPassword(Crypto.encrypt(employee.getPassword()));
         employeeDao.save(employee);
     }
 

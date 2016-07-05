@@ -5,7 +5,7 @@ import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.CustomerBlockedException;
 import com.bionic.edu.exception.EmailUsedException;
 import com.bionic.edu.service.CustomerService;
-import com.bionic.edu.util.WeakCrypto;
+import com.bionic.edu.util.Crypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.primefaces.context.RequestContext;
@@ -150,9 +150,9 @@ public class CustomerBean implements Serializable {
         return "menu";
     }
 
-    // TODO: 18.06.2016 - expand exceptions
     public String submitRegistration() {
         try {
+            customer.setPassword(Crypto.encrypt(customer.getPassword()));
             customerService.save(customer);
         } catch (Exception e) {
             addMessage("Sign Up Error", "Current email is already used.", SEVERITY_ERROR);
@@ -172,7 +172,7 @@ public class CustomerBean implements Serializable {
     }
 
     public String signIn(String email, String password) {
-        String decryptPass = WeakCrypto.encrypt(password);
+        String decryptPass = Crypto.encrypt(password);
         try {
             customer = customerService.signIn(email, decryptPass);
         } catch (BadCredentialsException e) {

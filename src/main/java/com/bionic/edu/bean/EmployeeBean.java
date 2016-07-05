@@ -6,10 +6,9 @@ import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.EmployeeNotReadyException;
 import com.bionic.edu.service.EmployeeService;
 import com.bionic.edu.service.RoleService;
-import com.bionic.edu.util.WeakCrypto;
+import com.bionic.edu.util.Crypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.PropertyValueException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -189,7 +188,7 @@ public class EmployeeBean implements Serializable {
     }
 
     public String signIn(String email, String password) {
-        String decryptPass = WeakCrypto.encrypt(password);
+        String decryptPass = Crypto.encrypt(password);
         try {
             employee = employeeService.signIn(email, decryptPass);
         } catch (BadCredentialsException e) {

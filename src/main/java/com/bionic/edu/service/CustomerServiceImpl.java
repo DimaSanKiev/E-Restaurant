@@ -4,7 +4,7 @@ import com.bionic.edu.dao.CustomerDao;
 import com.bionic.edu.entity.Customer;
 import com.bionic.edu.exception.BadCredentialsException;
 import com.bionic.edu.exception.CustomerBlockedException;
-import com.bionic.edu.util.WeakCrypto;
+import com.bionic.edu.util.Crypto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,25 +30,18 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findById(int id) {
-        Customer customer = customerDao.findById(id);
-        if (customer != null)
-            customer.setPassword(WeakCrypto.encrypt(customer.getPassword()));
-        return customer;
+        return customerDao.findById(id);
     }
 
     @Override
     public List<Customer> findAll() {
-        List<Customer> customers = customerDao.findAll();
-        for (Customer customer : customers) {
-            customer.setPassword(WeakCrypto.encrypt(customer.getPassword()));
-        }
-        return customers;
+        return customerDao.findAll();
     }
 
     @Transactional
     @Override
     public void save(Customer customer) {
-        customer.setPassword(WeakCrypto.encrypt(customer.getPassword()));
+        customer.setPassword(Crypto.encrypt(customer.getPassword()));
         customerDao.save(customer);
     }
 
@@ -69,9 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findByEmail(String email) {
-        Customer customer = customerDao.findByEmail(email);
-//        customer.setPassword(WeakCrypto.encrypt(customer.getPassword()));
-        return customer;
+        return customerDao.findByEmail(email);
     }
 
     @Transactional(readOnly = true)

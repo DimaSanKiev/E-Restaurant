@@ -538,9 +538,6 @@ div#template-employee-bar-name {
 /* BUTTON ICONS */
 .ui-button-icon-left {
     padding: 1px 3px 5px 0;
-}
-
-.ui-icon {
     border-radius: 0 !important;
     background-position: top right;
 }

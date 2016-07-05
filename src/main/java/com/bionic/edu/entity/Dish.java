@@ -1,13 +1,17 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull
     private String name;
+    @Size(min = 20, max = 200)
     private String description;
     private double price;
     private boolean kitchenmade;

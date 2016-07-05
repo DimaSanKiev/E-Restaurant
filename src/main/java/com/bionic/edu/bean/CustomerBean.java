@@ -151,15 +151,15 @@ public class CustomerBean implements Serializable {
     }
 
     public String submitRegistration() {
+        String password = customer.getPassword();
         try {
-            customer.setPassword(Crypto.encrypt(customer.getPassword()));
             customerService.save(customer);
         } catch (Exception e) {
             addMessage("Sign Up Error", "Current email is already used.", SEVERITY_ERROR);
             logger.error("\nSign Up ERROR - Current email is already used.", " CustomerID:" + customer.getId());
             return "signUp";
         }
-        signIn(customer.getEmail(), customer.getPassword());
+        signIn(customer.getEmail(), password);
         addMessage("Sign Up Success", "You have successfully registered on ERestaurant.", SEVERITY_INFO);
         logger.info("\nSign Up SUCCESS - Customer with CustomerID:" + customer.getId() + " signed up successfully.");
         signedIn = true;

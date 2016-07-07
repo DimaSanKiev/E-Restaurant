@@ -5,8 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://java.sun.com/jsf/html"
-      xmlns:p1="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>Menu</title>
@@ -38,10 +37,10 @@
                 <ui:repeat var="dish" value="#{dishBean.dishes}">
                     <div class="dish-block">
                         <div class="dish-photo">
-                            <p1:graphicImage styleClass="dish-photo" rendered="#{not empty dish.photo}"
+                            <p:graphicImage styleClass="dish-photo" rendered="#{not empty dish.photo}"
                                              value="#{photoBean.photoContent}">
                                 <f:param name="id" value="#{dish.photo.id}"/>
-                            </p1:graphicImage>
+                            </p:graphicImage>
                             <p:graphicImage styleClass="dish-photo" rendered="#{empty dish.photo}"
                                             value="resources/images/general/no_image.png"/>
                         </div>

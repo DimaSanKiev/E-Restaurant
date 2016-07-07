@@ -32,7 +32,7 @@
         <spring.framework.version>4.2.6.RELEASE</spring.framework.version>
         <com.sun.faces.version>2.2.13</com.sun.faces.version>
         <org.apache.logging.log4j.version>2.4.1</org.apache.logging.log4j.version>
-        <hibernate.version>4.3.11.Final</hibernate.version>
+        <hibernate.version>5.2.1.Final</hibernate.version>
     </properties>
 
     <dependencies>
@@ -164,6 +164,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring.framework.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -210,6 +216,20 @@
             <artifactId>javassist</artifactId>
             <version>3.20.0-GA</version>
         </dependency>
+
+        <!-- Java Transaction API -->
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jta_1.1_spec</artifactId>
+            <version>1.1.1</version>
+            <scope>compile</scope>
+        </dependency>
+
 
         <!-- H2 Database connector -->
         <dependency>

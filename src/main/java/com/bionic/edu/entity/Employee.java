@@ -1,6 +1,8 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -8,15 +10,31 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
     private String name;
+
+    @NotNull
+    @Column(unique = true)
     private String email;
+
+    @NotNull
+    @Size(min = 8, message = "{password.message}")
     private String password;
+
     private Date birthDate;
+
+    @NotNull
     private Date hireDate;
+
+    @NotNull
     private boolean ready;
+
+    @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id")
     private Role role;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id")
     private Photo avatar;

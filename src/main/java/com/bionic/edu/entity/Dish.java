@@ -9,16 +9,27 @@ public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @NotNull
     private String name;
+
+    @NotNull
     @Size(min = 20, max = 200)
     private String description;
+
+    @NotNull
     private double price;
+
+    @NotNull
     private boolean kitchenmade;
+
+    @NotNull
     private boolean available = true;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id")
     private Photo photo;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "dish_category_id")
     private DishCategory category;

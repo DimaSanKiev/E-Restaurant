@@ -1,6 +1,7 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "dish_category")
@@ -8,7 +9,12 @@ public class DishCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
     private String name;
+
+    @NotNull
+    private String description;
 
     public int getId() {
         return id;
@@ -26,11 +32,20 @@ public class DishCategory {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "DishCategory{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

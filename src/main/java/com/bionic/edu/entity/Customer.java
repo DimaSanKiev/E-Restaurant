@@ -1,6 +1,8 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -8,12 +10,26 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private String email;
+
+    @NotNull
+    @Size(min = 8, message = "{password.message}")
     private String password;
+
+    @NotNull
     private String address;
+
     private Date birthDate;
+
+    @NotNull
+    @Column(name = "blocked", columnDefinition = "boolean(1) default false")
     private boolean blocked;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id")
     private Photo avatar;

@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -58,8 +57,9 @@ public class OrderServiceImpl implements OrderService {
         Orders order = new Orders();
         order.setCustomer(customer);
         order.setTotalPrice(sum);
-        order.setDateTimeTaken(Timestamp.valueOf(LocalDateTime.now()));
+        order.setDateTimeTaken(new Timestamp(new java.util.Date().getTime()));
         order.setOrderStatus(orderStatusDao.findById(1));
+//        orderDishesService.checkIfOrderReady(order);
         if (customer.getId() == 0) {
             orderDishesService.addOrderDishes(order, cartMap);
         } else {

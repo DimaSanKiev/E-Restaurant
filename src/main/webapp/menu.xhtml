@@ -55,7 +55,7 @@
                             </h:outputText>
                         </div>
                         <div class="dish-button-wrapper">
-                            <h:form><p:commandButton action="#{cartBean.increaseCount(dish.id)}"
+                            <h:form><p:commandButton action="#{cartBean.increaseCount(dish.id)}" ajax="false"
                                                      value="Add to Cart" styleClass="dish-button"/></h:form></div>
                     </div>
                 </ui:repeat>

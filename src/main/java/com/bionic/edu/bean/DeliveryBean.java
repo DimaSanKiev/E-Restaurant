@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Scope;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -20,9 +22,9 @@ public class DeliveryBean implements Serializable {
     private boolean sortByStatus;
     private boolean sortByTime;
     @Inject
-    OrderService orderService;
+    private OrderService orderService;
     @Inject
-    OrderStatusService orderStatusService;
+    private OrderStatusService orderStatusService;
 
     public List<Orders> getOrdersList() {
         return ordersList;
@@ -71,6 +73,7 @@ public class DeliveryBean implements Serializable {
     public void processOrder(int orderId) {
         order = orderService.findById(orderId);
         order.setOrderStatus(orderStatusService.findById(order.getOrderStatus().getId() + 1));
+        order.setDateTimeDelivered(new Timestamp(new Date().getTime()));
         orderService.save(order);
     }
 }

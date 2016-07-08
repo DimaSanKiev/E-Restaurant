@@ -59,7 +59,6 @@ public class OrderServiceImpl implements OrderService {
         order.setTotalPrice(sum);
         order.setDateTimeTaken(new Timestamp(new java.util.Date().getTime()));
         order.setOrderStatus(orderStatusDao.findById(1));
-//        orderDishesService.checkIfOrderReady(order);
         if (customer.getId() == 0) {
             orderDishesService.addOrderDishes(order, cartMap);
         } else {

@@ -52,7 +52,10 @@ public class OrderDishesServiceImpl implements OrderDishesService {
     }
 
     /**
-     * Method checks if there are any undone dishes from the same order, if no - changes order_status to "READY_FOR_SHIPMENT"
+     * Method checks if the order is ready for shipping.
+     * Are there any undone kithenmade dishes from the same order:
+     *  - if yes, then order is not completed - status changes to "NON_KITCHEN_DONE";
+     *  - if no, then order is completed - changes order_status to "READY_FOR_SHIPMENT".
      */
     @Transactional
     @Override
@@ -60,9 +63,10 @@ public class OrderDishesServiceImpl implements OrderDishesService {
         List<OrderDishes> undoneDishes = getUndoneDishesFromOrder(order.getId());
         if (undoneDishes.isEmpty()) {
             order.setOrderStatus(orderStatusDao.findById(3));
-            orderDao.save(order);
-        } else
+        } else {
             order.setOrderStatus(orderStatusDao.findById(2));
+        }
+        orderDao.save(order);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)

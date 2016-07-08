@@ -48,7 +48,7 @@
 
                         <p:outputLabel value="Add photo:" for="dPhoto" styleClass="label"/>
                         <p:fileUpload id="dPhoto" fileUploadListener="#{photoBean.handleFileUpload}" auto="true"
-                                      update="photoPrev" skinSimple="true" sizeLimit="512000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                      update="photoPrev" skinSimple="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                         <div class="dish-photo-prev">
                             <p:graphicImage id="photoPrev" styleClass="dish-photo-prev"
                                             rendered="#{photoBean.photo != null}"

@@ -1,6 +1,7 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "orders_status")
@@ -8,6 +9,8 @@ public class OrderStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
     private String name;
 
     public OrderStatus() {

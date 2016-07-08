@@ -18,6 +18,8 @@ public class Dish {
     private String description;
 
     @NotNull
+    @Column(precision = 10, scale = 2)
+    @Size(min = 1, message = "dish isn't free")
     private double price;
 
     @NotNull

@@ -56,7 +56,7 @@ VALUES ('DRINK',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Tomato Soup',
         'Tomato soup is a soup made with tomatoes as the primary ingredient. It may be served hot or cold in a bowl.',
-        4.20, TRUE, TRUE, 1, 1);
+        4.25, TRUE, TRUE, 1, 1);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Cream of mushroom soup',
         'Cream of mushroom soup is a soup where a basic roux is thinned with milk and then mushrooms and mushroom broth are added.',
@@ -64,7 +64,7 @@ VALUES ('Cream of mushroom soup',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Miso soup',
         'Miso soup is a traditional Japanese soup consisting of a stock called "dashi" into which softened miso paste is mixed.',
-        3.60, TRUE, TRUE, 3, 1);
+        3.65, TRUE, TRUE, 3, 1);
 
 -- salads --
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
@@ -74,7 +74,7 @@ VALUES ('Greek Salad',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Avocado and Tuna Tapas',
         'This is a light, healthy Spanish tapa that goes best with crisp white wines and crunchy bread.',
-        7.30, TRUE, TRUE, 5, 2);
+        7.35, TRUE, TRUE, 5, 2);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Caesar salad',
         'It is a salad of romaine lettuce and croutons dressed with parmesan cheese, lemon juice, olive oil, egg, garlic, and black pepper.',
@@ -84,11 +84,11 @@ VALUES ('Caesar salad',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Baked Spaghetti',
         'Casserole of thin spaghetti pasta, sausage, mushroom, and tomato sauce, ricotta, Parmesan, and Mozzarella cheeses.',
-        7.20, TRUE, TRUE, 7, 3);
+        7.25, TRUE, TRUE, 7, 3);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Beef Bourguignon',
         'Luxurious beef bourguignon, or beef Burgundy, with beef chuck, carrots, pearl onions, mushrooms, and coated with a deeply flavored, silky sauce.',
-        8.20, TRUE, TRUE, 8, 3);
+        8.25, TRUE, TRUE, 8, 3);
 INSERT INTO dish (NAME, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Wild Salmon',
         'Grilled whole wild salmon, stuffed with a relish made of preserved lemons, parsley, dill, and shallots.',
@@ -98,7 +98,7 @@ VALUES ('Wild Salmon',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Chocolate Fondue',
         'Chocolate fondue is easy and fun to make, a party favorite.  Dip fresh fruit and other dippables into the hot, melted creamy chocolate mixture.',
-        5.10, TRUE, TRUE, 10, 4);
+        5.15, TRUE, TRUE, 10, 4);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Tapioca Pudding',
         'One of our favorite desserts growing up! This tapioca pudding recipe uses small pearl tapioca, milk, sugar, eggs, and vanilla.',
@@ -116,7 +116,7 @@ VALUES ('Latte',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Tea',
         'Aromatic beverage prepared by pouring hot water over cured leaves of tea leaves.',
-        3.40, TRUE, TRUE, 14, 5);
+        3.45, TRUE, TRUE, 14, 5);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Fresh Juice',
         'Natural and healthy juices from different fruits and vegetables. Can be mixed in different variations.',
@@ -124,7 +124,7 @@ VALUES ('Fresh Juice',
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Cola',
         'A typical brown carbonated drink that is flavoured with an extract of cola nuts, or with a similar flavouring.',
-        2.90, FALSE, TRUE, 16, 5);
+        2.95, FALSE, TRUE, 16, 5);
 INSERT INTO dish (name, description, price, kitchenmade, available, photo_id, dish_category_id)
 VALUES ('Mineral water',
         'Water that contains mineral salts and natural carbon dioxide.',

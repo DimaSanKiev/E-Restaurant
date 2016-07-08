@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;

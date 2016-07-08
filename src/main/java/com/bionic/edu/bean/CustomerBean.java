@@ -119,7 +119,7 @@ public class CustomerBean implements Serializable {
     public String confirmChanges() {
         RequestContext context = RequestContext.getCurrentInstance();
         boolean confirmed;
-        if (currentPassword.equals(customer.getPassword())) {
+        if (Crypto.encrypt(currentPassword).equals(customer.getPassword())) {
             try {
                 saveCustomer();
             } catch (EmailUsedException e) {

@@ -1,6 +1,8 @@
 package com.bionic.edu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "order_dishes")
@@ -8,12 +10,23 @@ public class OrderDishes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotNull
+    @Size(min = 1)
     private int quantity;
+
+    @NotNull
+    @Column(precision = 10, scale = 2)
     private double price;
+
+    @NotNull
+    @Column(columnDefinition = "")
     private boolean readiness = false;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "dish_id")
     private Dish dish;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "orders_id")
     private Orders order;

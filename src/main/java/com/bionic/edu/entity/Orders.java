@@ -8,15 +8,20 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "date_time_taken")
     private Timestamp dateTimeTaken;
+
     @Column(name = "date_time_delivered")
     private Timestamp dateTimeDelivered;
-    @Column(name = "total_price")
+
+    @Column(name = "total_price", precision = 10, scale = 2)
     private double totalPrice;
+
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "orders_status_id")
+    @JoinColumn(name = "orders_status_id", columnDefinition = "INTEGER(10) default 1")
     private OrderStatus orderStatus;
+
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "customer_id")
     private Customer customer;

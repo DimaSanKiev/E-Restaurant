@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Scope;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +32,7 @@ public class DishBean implements Serializable {
     private Map<String, String> idNameCategoryMap;
     private Map<String, DishCategory> idCategoryMap;
     private String category;
+    private DishCategory dishCategory;
 
     public DishBean() {
         dish = new Dish();
@@ -78,13 +78,21 @@ public class DishBean implements Serializable {
         this.category = category;
     }
 
+    public DishCategory getDishCategory() {
+        return dishCategory;
+    }
+
+    public void setDishCategory(DishCategory dishCategory) {
+        this.dishCategory = dishCategory;
+    }
+
     public void refreshCategories() {
         idNameCategoryMap = new HashMap<>();
         idCategoryMap = new HashMap<>();
         List<DishCategory> dishCategories = dishCategoryService.findAll();
-        for (DishCategory dc : dishCategories) {
-            idNameCategoryMap.put(dc.getName(), String.valueOf(dc.getId()));
-            idCategoryMap.put(String.valueOf(dc.getId()), dc);
+        for (DishCategory dishCategory : dishCategories) {
+            idNameCategoryMap.put(dishCategory.getName(), String.valueOf(dishCategory.getId()));
+            idCategoryMap.put(String.valueOf(dishCategory.getId()), dishCategory);
         }
     }
 
@@ -94,10 +102,12 @@ public class DishBean implements Serializable {
 
     public void refreshAvailableDishes() {
         dishes = dishService.findByAvailability(true);
+        dishCategory = null;
     }
 
     public void refreshCategory(int categoryId) {
         dishes = dishService.findByCategory(categoryId);
+        dishCategory = dishCategoryService.findById(categoryId);
     }
 
     public String saveDish() {

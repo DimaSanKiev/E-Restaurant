@@ -33,12 +33,20 @@
                                      action="#{dishBean.refreshCategory(5)}" styleClass="menu-category-button"/>
                 </h:form>
             </div>
+
+            <h:outputLabel rendered="#{dishBean.dishCategory != null}">
+                <div class="category-description">#{dishBean.dishCategory.description}</div>
+            </h:outputLabel>
+            <h:outputLabel rendered="#{dishBean.dishCategory == null}">
+                <div class="category-description" style="font-size: 28px">Please choose a dish you want</div>
+            </h:outputLabel>
+
             <div class="dish-container">
                 <ui:repeat var="dish" value="#{dishBean.dishes}">
                     <div class="dish-block">
                         <div class="dish-photo">
                             <p:graphicImage styleClass="dish-photo" rendered="#{not empty dish.photo}"
-                                             value="#{photoBean.photoContent}">
+                                            value="#{photoBean.photoContent}">
                                 <f:param name="id" value="#{dish.photo.id}"/>
                             </p:graphicImage>
                             <p:graphicImage styleClass="dish-photo" rendered="#{empty dish.photo}"

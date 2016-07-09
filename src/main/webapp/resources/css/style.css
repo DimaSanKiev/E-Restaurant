@@ -185,6 +185,16 @@ pre {
 }
 
 /* MENU MAIN*/
+.category-description {
+    margin: auto auto 15px;
+    text-align: center;
+    color: darkseagreen;
+    max-width: 70%;
+    font-family: Cambria, Georgia, serif;
+    font-size: 22px;
+    font-style: normal;
+}
+
 .dish-container {
     max-width: 80%;
     border: 4px double #d9d9d9;

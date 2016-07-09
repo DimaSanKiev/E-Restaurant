@@ -15,7 +15,7 @@ public class DishCategory {
     private String name;
 
     @NotNull
-    @Size(min = 20, max = 200)
+    @Size(min = 20, max = 500)
     private String description;
 
     public int getId() {

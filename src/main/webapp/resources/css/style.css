@@ -531,13 +531,14 @@ div#template-employee-bar-name {
     background-size: 30px 30px;
     opacity: .5;
     transition: all .25s;
+    filter: grayscale(100%); /* Standard CSS */
+    -webkit-filter: grayscale(100%); /* CSS for Webkit Browsers */
 }
 
 .social:hover {
+    filter: grayscale(0);
+    -webkit-filter: grayscale(0); /* Old WebKit */
     opacity: 1;
-}
-.clearfix {
-    clear: both;
 }
 
 /* GROWL MESSAGES */

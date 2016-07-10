@@ -12,20 +12,16 @@
 
 <body>
 <ui:composition>
-    <h:form>
-        <a href="https://ua.linkedin.com/in/dmytro-burdyga-7110b3100">
-            <h:graphicImage value="resources/images/icon/linkedin.svg" height="50" width="50"
-                            title="LinkedIn" styleClass="social linkedin"/>
-        </a>
-        <a href="https://github.com/DimaSanKiev">
-            <h:graphicImage value="resources/images/icon/github.svg" height="50" width="50"
-                            title="GitHub" styleClass="social github"/>
-        </a>
-    </h:form>
+    <div>
+        <a href="https://ua.linkedin.com/in/dmytro-burdyga-7110b3100" target="_blank" title="LinkedIn">
+            <img src="resources/images/icon/linkedin.svg" alt="LinkedIn" class="social"/></a>
+        <a href="https://github.com/DimaSanKiev" class="github" target="_blank" title="GitHub">
+            <img src="resources/images/icon/github.svg" alt="GitHub" class="social"/></a>
+    </div>
     <div>
         &copy; Dmytro Burdyga
         <h:outputText value="#{session.lastAccessedTime}">
-            <f:convertDateTime pattern="yyyy" type="date" />
+            <f:convertDateTime pattern="yyyy" type="date"/>
         </h:outputText>
     </div>
 </ui:composition>

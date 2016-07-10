@@ -522,6 +522,24 @@ div#template-employee-bar-name {
     text-align: center;
 }
 
+.social {
+    display: inline-block;
+    text-indent: -9999px;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    opacity: .5;
+    transition: all .25s;
+}
+
+.social:hover {
+    opacity: 1;
+}
+.clearfix {
+    clear: both;
+}
+
 /* GROWL MESSAGES */
 .ui-growl {
     margin-top: 20%;

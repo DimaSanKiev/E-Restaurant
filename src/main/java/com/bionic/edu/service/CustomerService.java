@@ -7,6 +7,8 @@ import com.bionic.edu.service.generic.GenericService;
 
 public interface CustomerService extends GenericService<Customer> {
 
+    void update(Customer customer);
+
     void blockUnblockCustomer(int customerId);
 
     Customer findByEmail(String email);

@@ -141,7 +141,7 @@ public class CustomerBean implements Serializable {
     public String saveCustomer() throws EmailUsedException {
         try {
             customerService.save(customer);
-        } catch (org.springframework.dao.DataIntegrityViolationException ex) {
+        } catch (org.springframework.dao.DataIntegrityViolationException | javax.persistence.PersistenceException ex) {
             addMessage("Saving Error", "Current email is already used. Please choose different one.", SEVERITY_ERROR);
             logger.error("\nSaving customer ERROR - Current email is already used.", " CustomerID:" + customer.getId());
             throw new EmailUsedException("This email is already used.");

@@ -160,7 +160,7 @@ public class EmployeeBean implements Serializable {
         }
         try {
             employeeService.save(newEmployee);
-        } catch (DataIntegrityViolationException | ConstraintViolationException ex) {   // <--- workaround
+        } catch (DataIntegrityViolationException | javax.persistence.PersistenceException ex) {   // <--- workaround
             addMessage("Saving Error", "This email is already used. Please choose different one.", FacesMessage.SEVERITY_ERROR);
             logger.error("\nSaving employee ERROR - Current email is already used.", " EmployeeID:" + newEmployee.getId());
             return null;

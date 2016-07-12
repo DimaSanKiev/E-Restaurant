@@ -115,7 +115,7 @@ public class CustomerBean implements Serializable {
         customerService.blockUnblockCustomer(id);
     }
 
-    // FIXME: 6/30/16 - saving customer in any case
+    // FIXME: 7/12/16 - customer's password changes to encrypted password
     public String confirmChanges() {
         RequestContext context = RequestContext.getCurrentInstance();
         boolean confirmed;
@@ -127,7 +127,7 @@ public class CustomerBean implements Serializable {
                 return null;
             }
             confirmed = true;
-            logger.info("\nCustomer updating SUCCESS.", " CustomerID:" + customer.getId());
+            logger.info("\nCustomer updating SUCCESS. CustomerID:" + customer.getId());
         } else {
             confirmed = false;
             FacesContext.getCurrentInstance().validationFailed();
@@ -146,7 +146,7 @@ public class CustomerBean implements Serializable {
             logger.error("\nSaving customer ERROR - Current email is already used.", " CustomerID:" + customer.getId());
             throw new EmailUsedException("This email is already used.");
         }
-        addMessage("Saved successfully", "Employees's data was successfully saved.", SEVERITY_INFO);
+        addMessage("Saved successfully", "Customer's data was successfully saved.", SEVERITY_INFO);
         return "menu";
     }
 
@@ -177,7 +177,7 @@ public class CustomerBean implements Serializable {
             customer = customerService.signIn(email, decryptPass);
         } catch (BadCredentialsException e) {
             addMessage("Sign In Error", "Incorrect email or password, please try again.", SEVERITY_ERROR);
-            logger.error("\nCustomer sign in ERROR - Incorrect email or password." + "Email:" + email + " Password:" + password);
+            logger.error("\nCustomer sign in ERROR - Incorrect email or password." + " Typed email:" + email + " Typed password:" + password);
             customer = null;
             return "signIn";
         } catch (CustomerBlockedException e) {

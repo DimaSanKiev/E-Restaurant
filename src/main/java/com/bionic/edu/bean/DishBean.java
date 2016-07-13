@@ -118,7 +118,7 @@ public class DishBean implements Serializable {
             return null;
         }
         dishService.save(dish);
-        photoBean.setPhoto(null);
+        addMessage("Success", "Dish saved successfully!", FacesMessage.SEVERITY_INFO);
         return "dishList";
     }
 
@@ -128,6 +128,7 @@ public class DishBean implements Serializable {
 
     public String addDish() {
         refreshCategories();
+        photoBean.setPhoto(null);
         dish = new Dish();
         return "newDish";
     }
@@ -135,6 +136,9 @@ public class DishBean implements Serializable {
     public String updateDish(String id) {
         refreshCategories();
         dish = dishService.findById(Integer.valueOf(id));
+        if (dish != null) {
+            photoBean.setPhoto(dish.getPhoto());
+        }
         return "newDish";
     }
 

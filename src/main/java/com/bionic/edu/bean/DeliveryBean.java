@@ -3,6 +3,8 @@ package com.bionic.edu.bean;
 import com.bionic.edu.entity.Orders;
 import com.bionic.edu.service.OrderService;
 import com.bionic.edu.service.OrderStatusService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 
 import javax.inject.Inject;
@@ -25,6 +27,10 @@ public class DeliveryBean implements Serializable {
     private OrderService orderService;
     @Inject
     private OrderStatusService orderStatusService;
+    @Inject
+    private EmployeeBean employeeBean;
+
+    private static final Logger logger = LogManager.getLogger(DeliveryBean.class);
 
     public List<Orders> getOrdersList() {
         return ordersList;
@@ -75,5 +81,6 @@ public class DeliveryBean implements Serializable {
         order.setOrderStatus(orderStatusService.findById(order.getOrderStatus().getId() + 1));
         order.setDateTimeDelivered(new Timestamp(new Date().getTime()));
         orderService.save(order);
+        logger.warn("\nOrder with ID:" + orderId + " changed status to " + orderService.findById(orderId).getOrderStatus().getName() + " by " + employeeBean.getEmployee().getName() + ", ID:" + employeeBean.getEmployee().getId());
     }
 }

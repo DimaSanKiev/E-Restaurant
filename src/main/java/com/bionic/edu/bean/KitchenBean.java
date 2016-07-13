@@ -2,6 +2,8 @@ package com.bionic.edu.bean;
 
 import com.bionic.edu.entity.OrderDishes;
 import com.bionic.edu.service.OrderDishesService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 
 import javax.inject.Inject;
@@ -18,6 +20,10 @@ public class KitchenBean implements Serializable {
     private List<OrderDishes> orderDishesList;
     @Inject
     private OrderDishesService orderDishesService;
+    @Inject
+    private EmployeeBean employeeBean;
+
+    private static final Logger logger = LogManager.getLogger(KitchenBean.class);
 
     public KitchenBean() {
         orderDishesList = new ArrayList<>();
@@ -37,6 +43,7 @@ public class KitchenBean implements Serializable {
 
     public String markDone(int orderDishId) {
         orderDishesService.markDone(orderDishId);
+        logger.warn("\nOrderDish with ID:" + orderDishId + " marked as done by " + employeeBean.getEmployee().getName() + ", ID:" + employeeBean.getEmployee().getId());
         return "kitchen";
     }
 

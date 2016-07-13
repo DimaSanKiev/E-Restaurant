@@ -3,6 +3,8 @@ package com.bionic.edu.bean;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.primefaces.model.chart.*;
 import org.springframework.context.annotation.Scope;
 
@@ -26,6 +28,10 @@ public class ChartViewBean implements Serializable {
     private HorizontalBarChartModel hBarModel;
     @Inject
     private ReportBean reportBean;
+    @Inject
+    private EmployeeBean employeeBean;
+
+    private static final Logger logger = LogManager.getLogger(ChartViewBean.class);
 
     @PostConstruct
     public void init() {
@@ -65,6 +71,7 @@ public class ChartViewBean implements Serializable {
         pieModel.setFill(false);
         pieModel.setShowDataLabels(true);
         pieModel.setDiameter(150);
+        logger.warn("Categories diagram was requested by employee " + employeeBean.getEmployee().getName() + " with ID:" + employeeBean.getEmployee().getId() + " and role as " + employeeBean.getEmployee().getRole().getName() + ".");
     }
 
     private void createLineModel() {
@@ -87,6 +94,7 @@ public class ChartViewBean implements Serializable {
         axis.setMax(df.format(reportBean.getEndDate().getTime() + TimeUnit.DAYS.toMillis(1)));
         axis.setMin(df.format(reportBean.getStartDate()));
         lineModel.getAxes().put(AxisType.X, axis);
+        logger.warn("Daily Orders diagram was requested by employee " + employeeBean.getEmployee().getName() + " with ID:" + employeeBean.getEmployee().getId() + " and role as " + employeeBean.getEmployee().getRole().getName() + ".");
     }
 
     private void createHBarModel() {
@@ -108,5 +116,6 @@ public class ChartViewBean implements Serializable {
         xAxis.setLabel("Income, USD");
         Axis yAxis = hBarModel.getAxis(AxisType.Y);
         yAxis.setLabel("Dish");
+        logger.warn("Dishes diagram was requested by employee " + employeeBean.getEmployee().getName() + " with ID:" + employeeBean.getEmployee().getId() + " and role as " + employeeBean.getEmployee().getRole().getName() + ".");
     }
 }

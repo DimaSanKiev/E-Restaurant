@@ -127,7 +127,7 @@ public class CustomerBean implements Serializable {
                 return null;
             }
             confirmed = true;
-            logger.info("\nCustomer updating SUCCESS. CustomerID:" + customer.getId());
+            logger.warn("\nCustomer updating SUCCESS. CustomerID:" + customer.getId());
         } else {
             confirmed = false;
             FacesContext.getCurrentInstance().validationFailed();
@@ -143,9 +143,10 @@ public class CustomerBean implements Serializable {
             customerService.update(customer);
         } catch (org.springframework.dao.DataIntegrityViolationException | javax.persistence.PersistenceException ex) {
             addMessage("Saving Error", "Current email is already used. Please choose different one.", SEVERITY_ERROR);
-            logger.error("\nSaving customer ERROR - Current email is already used.", " CustomerID:" + customer.getId());
+            logger.error("\nSaving customer ERROR - Current email is already used." + " CustomerID:" + customer.getId());
             throw new EmailUsedException("This email is already used.");
         }
+            logger.warn("\nSaving customer SUCCESS." + " CustomerID:" + customer.getId());
         addMessage("Saved successfully", "Customer's data was successfully saved.", SEVERITY_INFO);
         return "menu";
     }
@@ -161,7 +162,7 @@ public class CustomerBean implements Serializable {
         }
         signIn(customer.getEmail(), password);
         addMessage("Sign Up Success", "You have successfully registered on ERestaurant.", SEVERITY_INFO);
-        logger.info("\nSign Up SUCCESS - Customer with CustomerID:" + customer.getId() + " signed up successfully.");
+        logger.warn("\nSign Up SUCCESS - Customer with CustomerID:" + customer.getId() + " signed up successfully.");
         signedIn = true;
         return "menu";
     }
@@ -192,14 +193,14 @@ public class CustomerBean implements Serializable {
             return "signIn";
         }
         signedIn = true;
-        logger.info("\nCustomer " + customer.getEmail() + " signed in successfully");
+        logger.warn("\nCustomer " + customer.getEmail() + " signed in successfully");
         return "menu";
     }
 
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         addMessage("Signed Out", "Thank you for visiting ERestaurant.", SEVERITY_INFO);
-        logger.info("Customer signed out.", "CustomerID:" + customer.getId() + "Email:" + customer.getEmail());
+        logger.warn("\nCustomer signed out.", "CustomerID:" + customer.getId() + "Email:" + customer.getEmail());
         return "menu";
     }
 

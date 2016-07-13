@@ -9,7 +9,6 @@ import com.bionic.edu.service.RoleService;
 import com.bionic.edu.util.Crypto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -208,7 +207,7 @@ public class EmployeeBean implements Serializable {
             return "signIn";
         }
         signedIn = true;
-        logger.info("\nEmployee ID:" + employee.getId() + " signed in successfully as " + employee.getRole().getName());
+        logger.warn("\nEmployee " + employee.getName() + " with ID:" + employee.getId() + " signed in successfully as " + employee.getRole().getName());
         if (employee.getRole().getName().equals("SUPER_USER"))
             return "superPanel.xhtml";
         if (employee.getRole().getName().equals("ADMIN"))
@@ -225,7 +224,7 @@ public class EmployeeBean implements Serializable {
     public String signOut() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         addMessage("Signed Out", "Thank you, have a good day.", FacesMessage.SEVERITY_INFO);
-        logger.info("Employee ID:" + employee.getId() + " signed out.");
+        logger.warn("\nEmployee ID:" + employee.getId() + " signed out.");
         return "employeeSignIn?faces-redirect=true";
     }
 

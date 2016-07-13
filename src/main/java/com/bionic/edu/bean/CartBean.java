@@ -4,6 +4,8 @@ import com.bionic.edu.entity.Customer;
 import com.bionic.edu.entity.Dish;
 import com.bionic.edu.service.DishService;
 import com.bionic.edu.service.OrderService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 
 import javax.inject.Inject;

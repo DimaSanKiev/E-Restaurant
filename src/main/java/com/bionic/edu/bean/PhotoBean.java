@@ -3,6 +3,8 @@ package com.bionic.edu.bean;
 import com.bionic.edu.entity.Photo;
 import com.bionic.edu.service.PhotoService;
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -23,6 +25,8 @@ public class PhotoBean {
     private PhotoService photoService;
     private Photo photo;
     private boolean newPhoto;
+
+    private static final Logger logger = LogManager.getLogger(PhotoBean.class);
 
     public Photo getPhoto() {
         return photo;
@@ -59,6 +63,7 @@ public class PhotoBean {
         UploadedFile file = event.getFile();
         photo = new Photo(IOUtils.toByteArray(file.getInputstream()));
         photoService.save(photo);
+        logger.warn("\nPhoto with ID:" + photo.getId() + " was uploaded to database with size of " + photo.getContent().length + " bytes.");
         return photo.getId();
     }
 

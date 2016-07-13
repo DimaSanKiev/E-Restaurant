@@ -4,6 +4,8 @@ import com.bionic.edu.entity.Dish;
 import com.bionic.edu.entity.DishCategory;
 import com.bionic.edu.service.DishCategoryService;
 import com.bionic.edu.service.DishService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 
 import javax.faces.application.FacesMessage;
@@ -27,12 +29,16 @@ public class DishBean implements Serializable {
     private DishCategoryService dishCategoryService;
     @Inject
     private PhotoBean photoBean;
+    @Inject
+    private EmployeeBean employeeBean;
     private List<Dish> dishes;
     private Dish dish;
     private Map<String, String> idNameCategoryMap;
     private Map<String, DishCategory> idCategoryMap;
     private String category;
     private DishCategory dishCategory;
+
+    private static final Logger logger = LogManager.getLogger(DishBean.class);
 
     public DishBean() {
         dish = new Dish();
@@ -119,6 +125,7 @@ public class DishBean implements Serializable {
         }
         dishService.save(dish);
         addMessage("Success", "Dish saved successfully!", FacesMessage.SEVERITY_INFO);
+        logger.warn("Dish with ID:" + dish.getId() + " was saved by employee with ID:" + employeeBean.getEmployee().getId());
         return "dishList";
     }
 

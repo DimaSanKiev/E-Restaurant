@@ -41,6 +41,7 @@ public class PhotoBean {
             // So, browser is requesting the image. Return a real StreamedContent with the image bytes.
             String photoId = context.getExternalContext().getRequestParameterMap().get("id");
             Photo photo = photoService.findById(Integer.valueOf(photoId));
+            this.photo = photo;
             return new DefaultStreamedContent(new ByteArrayInputStream(photo.getContent()));
         }
     }

@@ -37,4 +37,11 @@ public class Photo {
     public void setContent(byte[] content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "id=" + id +
+                '}';
+    }
 }

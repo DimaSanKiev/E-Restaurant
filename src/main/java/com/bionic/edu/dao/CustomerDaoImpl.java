@@ -2,7 +2,7 @@ package com.bionic.edu.dao;
 
 import com.bionic.edu.dao.generic.GenericDaoImpl;
 import com.bionic.edu.entity.Customer;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 

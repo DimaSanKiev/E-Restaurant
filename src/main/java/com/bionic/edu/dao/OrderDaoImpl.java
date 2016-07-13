@@ -5,7 +5,7 @@ import com.bionic.edu.entity.Orders;
 import com.bionic.edu.util.ReportCategory;
 import com.bionic.edu.util.ReportDish;
 import com.bionic.edu.util.ReportTotal;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 

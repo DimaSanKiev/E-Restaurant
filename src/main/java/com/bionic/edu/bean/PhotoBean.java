@@ -24,7 +24,6 @@ public class PhotoBean {
     @Inject
     private PhotoService photoService;
     private Photo photo;
-    private boolean newPhoto;
 
     private static final Logger logger = LogManager.getLogger(PhotoBean.class);
 
@@ -34,14 +33,6 @@ public class PhotoBean {
 
     public void setPhoto(Photo photo) {
         this.photo = photo;
-    }
-
-    public boolean isNewPhoto() {
-        return newPhoto;
-    }
-
-    public void setNewPhoto(boolean newPhoto) {
-        this.newPhoto = newPhoto;
     }
 
     public StreamedContent getPhotoContent() throws IOException {

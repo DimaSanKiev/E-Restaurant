@@ -126,9 +126,10 @@ public class DishBean implements Serializable {
         dishService.changeAvailability(dishId);
     }
 
+    // TODO: 7/13/16 - uploaded file preview renders only after page refresh
     public String addDish() {
         refreshCategories();
-        photoBean.setPhoto(null);
+        photoBean.setPhoto(!photoBean.isNewPhoto() ? null : photoBean.getPhoto());
         dish = new Dish();
         return "newDish";
     }
@@ -139,6 +140,7 @@ public class DishBean implements Serializable {
         if (dish != null) {
             photoBean.setPhoto(dish.getPhoto());
         }
+        photoBean.setNewPhoto(false);
         return "newDish";
     }
 

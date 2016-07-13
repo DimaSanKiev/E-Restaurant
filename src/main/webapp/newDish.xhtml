@@ -47,7 +47,7 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel value="Add photo:" for="dPhoto" styleClass="label"/>
-                        <p:fileUpload id="dPhoto" fileUploadListener="#{photoBean.handleFileUpload}" auto="true"
+                        <p:fileUpload id="dPhoto" fileUploadListener="#{photoBean.handleFileUpload}" auto="true" previewWidth="2"
                                       update="photoPrev" skinSimple="true" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                         <div class="dish-photo-prev">
                             <p:graphicImage id="photoPrev" styleClass="dish-photo-prev"

@@ -38,10 +38,11 @@
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
 
+    <!-- todo - Change to "Development" when development is in progress -->
     <!-- todo - Change to "Production" when ready to deploy -->
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
+        <param-value>Production</param-value>
     </context-param>
 
     <!-- for primefaces icons -->

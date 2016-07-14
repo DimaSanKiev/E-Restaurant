@@ -6,35 +6,35 @@
 
 ### Customer
 When customers go to main page they see the menu. They can choose dishes by category of full dishes list. Here they fill up their shopping cart when choose dish they want to order.
-![alt text](https://cloud.githubusercontent.com/assets/11503436/16850422/c2facff2-4a07-11e6-9ba1-a182bded5651.png "Customer use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16852436/cfee8ee8-4a10-11e6-8c3b-72ca1370e0ff.png "Customer use case diagram")
 
 ### Order
-After customers finish with choosing dishes, they can specify its quantity on the shopping cart page. They can also edit or confirm their order there. Then every kitchen-made dish goes to the kitchen.
-![alt text](https://cloud.githubusercontent.com/assets/11503436/16850489/13abb18c-4a08-11e6-8338-889747c73447.png "Order use case diagram")
+After customers finish with choosing dishes, they can specify its quantity on the shopping cart page. They can also edit or confirm their order there. When customer confirms order every kitchen-made dish goes to the kitchen and waiting to be done by kitchen staff.
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16852466/f1f77c52-4a10-11e6-8f73-0c350bd7f692.png "Order use case diagram")
 
 ### Kitchen & Delivery Staff
 Kitchen Staff have access to kitchen pending screen page where they see all the dishes waiting to be prepared. Just when they cook it they mark it as ‘done’ and this dish disappear from kitchen pending screen.
-![alt text](https://cloud.githubusercontent.com/assets/11503436/16850727/272a2c60-4a09-11e6-95c4-67340164e867.png "Kitchen & Delivery Staff use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16852543/398cb776-4a11-11e6-8028-129e5067b7ee.png "Kitchen & Delivery Staff use case diagram")
 
 ### Administrator
 There is an administrator in ERestaurant. Administrator's duty is managing the menu - to add new dishes, edit existing ones, set prices, mark dishes as available/unavailable.
 Administrator also can manage customers and block them.
-![alt text](https://cloud.githubusercontent.com/assets/11503436/16850912/cdd2ccc0-4a09-11e6-99f6-d6ce877dc351.png "Administrator use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16851919/5dec5fe8-4a0e-11e6-842a-bbbb36ec66f5.png "Administrator use case diagram")
 
 ### Business Analyst
 Another employee role in ERestaurant is Business Analyst. He makes reports about restaurant statistics - how many dishes were sold, what is the most profitable dish category and the total income of specified period of time.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram5.jpg "Business Analyst use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16852070/1924da6a-4a0f-11e6-9413-8bd01f60316b.png "Business Analyst use case diagram")
 
 ### Super User
 The Super User is the master of the restaurant. He hires and dismisses employees. There is only one Super User in ERestaurant system.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram6.jpg "Super User use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16852645/9e0d445e-4a11-11e6-81af-b07efcccb33f.png "Super User use case diagram")
 
 ## Project Architecture
 My application is flexible and reusable because it is based on three-tier architecture:
 - *Presentation layer*,
 - *Business layer* and
 - *Persistence layer*.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/structure.jpg "Project structure diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16853194/1a5b80c8-4a14-11e6-860f-37db835b54e5.png "Project structure diagram")
 
 In Persistence layer is used **SQL** for modelling data and creating DB structure.
 Persistence layer cooperate with Business layer with **JPA**, **JP QL** and **EclipseLink**.
@@ -48,7 +48,7 @@ I tested my service methods with **JUnit** and used **Log4J** as a logging tool.
 
 ## Database Architecture
 Here is the structure of the database.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/db.jpg "Database structure diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16853481/2a75409c-4a15-11e6-931b-9af95045457f.png "Database structure diagram")
 
 Main tables are **Customer**, **Employee**, **Orders**, **Dish** and **OrderDishes** (as a linking table).
 **Role**, **OrderStatus** and **DishCategory** are subsidiary tables.

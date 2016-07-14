@@ -6,20 +6,20 @@
 
 ### Customer
 When customers go to main page they see the menu. They can choose dishes by category of full dishes list. Here they fill up their shopping cart when choose dish they want to order.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram1.jpg "Customer use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16850422/c2facff2-4a07-11e6-9ba1-a182bded5651.png "Customer use case diagram")
 
 ### Order
 After customers finish with choosing dishes, they can specify its quantity on the shopping cart page. They can also edit or confirm their order there. Then every kitchen-made dish goes to the kitchen.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram2.jpg "Order use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16850489/13abb18c-4a08-11e6-8338-889747c73447.png "Order use case diagram")
 
 ### Kitchen & Delivery Staff
 Kitchen Staff have access to kitchen pending screen page where they see all the dishes waiting to be prepared. Just when they cook it they mark it as ‘done’ and this dish disappear from kitchen pending screen.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram3.jpg "Kitchen & Delivery Staff use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16850727/272a2c60-4a09-11e6-95c4-67340164e867.png "Kitchen & Delivery Staff use case diagram")
 
 ### Administrator
 There is an administrator in ERestaurant. Administrator's duty is managing the menu - to add new dishes, edit existing ones, set prices, mark dishes as available/unavailable.
 Administrator also can manage customers and block them.
-![alt text](https://raw.githubusercontent.com/DimaSanKiev/E-Restaurant/master/files/description/use-case-diagram4.jpg "Administrator use case diagram")
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16850912/cdd2ccc0-4a09-11e6-99f6-d6ce877dc351.png "Administrator use case diagram")
 
 ### Business Analyst
 Another employee role in ERestaurant is Business Analyst. He makes reports about restaurant statistics - how many dishes were sold, what is the most profitable dish category and the total income of specified period of time.

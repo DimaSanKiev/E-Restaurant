@@ -29,7 +29,8 @@ Another employee role in ERestaurant is Business Analyst. He makes reports about
 The Super User is the master of the restaurant. He hires and dismisses employees. There is only one Super User in ERestaurant system.
 ![alt text](https://cloud.githubusercontent.com/assets/11503436/16852645/9e0d445e-4a11-11e6-81af-b07efcccb33f.png "Super User use case diagram")
 
-## Project Architecture
+
+# Project Architecture
 My application is flexible and reusable because it is based on three-tier architecture:
 - *Presentation layer*,
 - *Business layer* and
@@ -46,7 +47,8 @@ In Presentation layer such technologies as **JSF**, **PrimeFaces**, **HTML** and
 Project is written in **Java 8** and built with **Maven**. It runs under lightweight **Jetty** HTTP Web Server, but can be easily replaced to Tomcat or any other Web Server.
 I tested my service methods with **JUnit** and used **Log4J** as a logging tool.
 
-## Database Architecture
+
+# Database Architecture
 Here is the structure of the database.
 ![alt text](https://cloud.githubusercontent.com/assets/11503436/16853481/2a75409c-4a15-11e6-931b-9af95045457f.png "Database structure diagram")
 
@@ -54,14 +56,15 @@ Main tables are **Customer**, **Employee**, **Orders**, **Dish** and **OrderDish
 **Role**, **OrderStatus** and **DishCategory** are subsidiary tables.
 Here is shown only the main fields and relations.
 
-## Accounts
+# Accounts
 Some registered **_customers' accounts_**:
 + olga.romanova@gmail.com:pass1
 + igor.shevchenko@yahoo.com:pass2
 + kate.belova@gmail.com:pass3
 
 
-**_Employees signing-in form_** is available on different URL https://erestaurant.herokuapp.com/employeeSignIn.xhtml:
+**_Employees signing-in form_** is available on different URL https://erestaurant.herokuapp.com/employeeSignIn.xhtml or by link:
+![alt text](https://cloud.githubusercontent.com/assets/11503436/16853714/3fc5f058-4a16-11e6-87ec-b99697361d69.png "Employee Login Link")
 + **Super User** (super@erestaurant.com:pass1)
 + **Administrator** (admin@erestaurant.com:pass2)
 + **Kitchen Staff** (kitchen@erestaurant.com:pass3)

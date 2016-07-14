@@ -10,12 +10,12 @@ CREATE TABLE photo (
 
 CREATE TABLE employee (
   id        SERIAL PRIMARY KEY,
-  name      TEXT    NOT NULL,
-  email     TEXT    NOT NULL UNIQUE,
-  password  TEXT    NOT NULL,
-  birthDate DATE,
-  hireDate  DATE    NOT NULL,
-  ready     BOOLEAN NOT NULL,
+  name      TEXT      NOT NULL,
+  email     TEXT      NOT NULL UNIQUE,
+  password  TEXT      NOT NULL,
+  birthDate TIMESTAMP,
+  hireDate  TIMESTAMP NOT NULL,
+  ready     BOOLEAN   NOT NULL,
   role_id   INT REFERENCES role (id) ON UPDATE CASCADE,
   photo_id  INT REFERENCES photo (id) ON UPDATE CASCADE
 );
@@ -43,7 +43,7 @@ CREATE TABLE customer (
   email     TEXT    NOT NULL UNIQUE,
   password  TEXT    NOT NULL,
   address   TEXT    NOT NULL,
-  birthDate DATE,
+  birthDate TIMESTAMP,
   blocked   BOOLEAN NOT NULL DEFAULT FALSE,
   photo_id  INT REFERENCES photo (id) ON DELETE CASCADE
 );

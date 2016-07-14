@@ -247,6 +247,13 @@
             <artifactId>derby</artifactId>
             <version>10.12.1.1</version>
         </dependency>
+        <!-- PostreSQL Database connector -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1200-jdbc41</version>
+        </dependency>
+
         <!-- Database connection pooling -->
         <dependency>
             <groupId>org.apache.commons</groupId>

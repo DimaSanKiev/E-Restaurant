@@ -42,10 +42,10 @@ during the specified period of time – how many dishes were sold, what is the m
 ### Super User
 The Super User is the master of the restaurant. He hires and dismisses employees (by blocking them). He can view the customer list, 
 block/unblock them abd he can also delete them permanently from system. He can view the menu (but not add new or edit existing dishes) 
-as well as generate different reports to see the restaurant statistics. There is only one Super User in ERestaurant system, his 
-role couldn't be changed and there is no possibility to add another employee with the role of Super User.
+as well as generate different reports to see the restaurant statistics.
 ![alt text](https://cloud.githubusercontent.com/assets/11503436/16852645/9e0d445e-4a11-11e6-81af-b07efcccb33f.png "Super User use case diagram")
-
+   There is only one Super User in ERestaurant system, his role couldn't be changed and there is no possibility to add another employee 
+with the role of Super User.
 
 # Project Architecture
 My application is flexible and reusable because it is based on three-tier architecture:

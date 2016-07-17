@@ -1,6 +1,6 @@
 CREATE TABLE role (
   id   SERIAL PRIMARY KEY,
-  name TEXT NOT NULL
+  name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE photo (
@@ -10,9 +10,9 @@ CREATE TABLE photo (
 
 CREATE TABLE employee (
   id        SERIAL PRIMARY KEY,
-  name      TEXT      NOT NULL,
-  email     TEXT      NOT NULL UNIQUE,
-  password  TEXT      NOT NULL,
+  name      VARCHAR(100)      NOT NULL,
+  email     VARCHAR(100)      NOT NULL UNIQUE,
+  password  VARCHAR(100)      NOT NULL,
   birthDate TIMESTAMP,
   hireDate  TIMESTAMP NOT NULL,
   ready     BOOLEAN   NOT NULL,
@@ -22,14 +22,14 @@ CREATE TABLE employee (
 
 CREATE TABLE dish_category (
   id          SERIAL PRIMARY KEY,
-  name        TEXT NOT NULL,
-  description TEXT NOT NULL
+  name        VARCHAR(100) NOT NULL,
+  description VARCHAR(500) NOT NULL
 );
 
 CREATE TABLE dish (
   id               SERIAL PRIMARY KEY,
-  name             TEXT           NOT NULL,
-  description      TEXT           NOT NULL,
+  name             VARCHAR(100)           NOT NULL,
+  description      VARCHAR(100)           NOT NULL,
   price            DECIMAL(15, 2) NOT NULL,
   kitchenmade      BOOLEAN        NOT NULL,
   available        BOOLEAN        NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE dish (
 
 CREATE TABLE customer (
   id        SERIAL PRIMARY KEY,
-  name      TEXT    NOT NULL,
-  email     TEXT    NOT NULL UNIQUE,
-  password  TEXT    NOT NULL,
-  address   TEXT    NOT NULL,
+  name      VARCHAR(100)    NOT NULL,
+  email     VARCHAR(100)    NOT NULL UNIQUE,
+  password  VARCHAR(100)    NOT NULL,
+  address   VARCHAR(500)    NOT NULL,
   birthDate TIMESTAMP,
   blocked   BOOLEAN NOT NULL DEFAULT FALSE,
   photo_id  INT REFERENCES photo (id) ON DELETE CASCADE
@@ -50,7 +50,7 @@ CREATE TABLE customer (
 
 CREATE TABLE orders_status (
   id   SERIAL PRIMARY KEY,
-  name TEXT NOT NULL
+  name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE orders (

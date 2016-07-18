@@ -1,12 +1,12 @@
-DROP TABLE IF EXISTS order_dishes;
-DROP TABLE IF EXISTS dish;
-DROP TABLE IF EXISTS dish_category;
-DROP TABLE IF EXISTS employee;
-DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS orders_status;
-DROP TABLE IF EXISTS customer;
-DROP TABLE IF EXISTS photo;
+DROP TABLE IF EXISTS order_dishes CASCADE;
+DROP TABLE IF EXISTS dish CASCADE;
+DROP TABLE IF EXISTS dish_category CASCADE;
+DROP TABLE IF EXISTS employee CASCADE;
+DROP TABLE IF EXISTS role CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
+DROP TABLE IF EXISTS orders_status CASCADE;
+DROP TABLE IF EXISTS customer CASCADE;
+DROP TABLE IF EXISTS photo CASCADE;
 
 CREATE TABLE role (
   id   SERIAL PRIMARY KEY,
@@ -39,7 +39,7 @@ CREATE TABLE dish_category (
 CREATE TABLE dish (
   id               SERIAL PRIMARY KEY,
   name             VARCHAR(100)   NOT NULL,
-  description      VARCHAR(100)   NOT NULL,
+  description      VARCHAR(500)   NOT NULL,
   price            DECIMAL(15, 2) NOT NULL,
   kitchenmade      BOOLEAN        NOT NULL,
   available        BOOLEAN        NOT NULL,

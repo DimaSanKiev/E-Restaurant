@@ -115,7 +115,6 @@ public class CustomerBean implements Serializable {
         customerService.blockUnblockCustomer(id);
     }
 
-    // FIXME: 7/12/16 - customer's password changes to encrypted password
     public String confirmChanges() {
         RequestContext context = RequestContext.getCurrentInstance();
         boolean confirmed;

@@ -133,7 +133,7 @@ public class DishBean implements Serializable {
         dishService.changeAvailability(dishId);
     }
 
-    // TODO: 7/13/16 - uploaded file preview renders only after page refresh
+    // TODO: 7/13/16 - uploaded image preview renders only after page refresh
     public String addDish() {
         refreshCategories();
         photoBean.setPhoto(null);

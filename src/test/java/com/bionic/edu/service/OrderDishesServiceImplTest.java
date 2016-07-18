@@ -1,9 +1,7 @@
 package com.bionic.edu.service;
 
 import com.bionic.edu.entity.OrderDishes;
-import com.bionic.edu.entity.Orders;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -12,6 +10,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+// TODO: 19.07.2016 - check tests
 public class OrderDishesServiceImplTest {
 
     private OrderDishesService orderDishesService;

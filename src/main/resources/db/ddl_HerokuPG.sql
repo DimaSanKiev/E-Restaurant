@@ -139,7 +139,7 @@ VALUES ('DELIVERING');
 INSERT INTO public.orders_status (name)
 VALUES ('DELIVERED');
 
-
+-- todo - add more test data for orders and order_dishes
 INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
   VALUES (localtimestamp - INTERVAL '7 days', localtimestamp - INTERVAL '7 days' + INTERVAL '45 minutes', 22.20, 5, 1);
 INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)

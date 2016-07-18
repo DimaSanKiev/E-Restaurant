@@ -1,4 +1,3 @@
-SEt SCHEMA ;
 DROP TABLE IF EXISTS order_dishes CASCADE;
 DROP TABLE IF EXISTS dish CASCADE;
 DROP TABLE IF EXISTS dish_category CASCADE;
@@ -44,8 +43,8 @@ CREATE TABLE dish (
   price            DECIMAL(15, 2) NOT NULL,
   kitchenmade      BOOLEAN        NOT NULL,
   available        BOOLEAN        NOT NULL,
-  photo_id         INT REFERENCES dish_category (id) ON DELETE CASCADE,
-  dish_category_id INT REFERENCES photo (id) ON DELETE CASCADE
+  photo_id         INT REFERENCES photo (id) ON DELETE CASCADE,
+  dish_category_id INT REFERENCES dish_category (id) ON DELETE CASCADE
 );
 
 CREATE TABLE customer (

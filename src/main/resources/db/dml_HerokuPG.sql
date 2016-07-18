@@ -1,3 +1,6 @@
+drop schema public cascade;
+create schema public;
+
 DROP TABLE IF EXISTS order_dishes CASCADE;
 DROP TABLE IF EXISTS dish CASCADE;
 DROP TABLE IF EXISTS dish_category CASCADE;

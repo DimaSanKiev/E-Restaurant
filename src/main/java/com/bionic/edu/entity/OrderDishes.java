@@ -20,7 +20,7 @@ public class OrderDishes {
     private double price;
 
     @NotNull
-    @Column(columnDefinition = "")
+    @Column(nullable = false)
     private boolean readiness = false;
 
     @ManyToOne(cascade = CascadeType.MERGE)

@@ -1,7 +1,5 @@
 package com.bionic.edu.entity;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -14,7 +12,6 @@ public class Photo {
     @NotNull
     @Lob
     @Column(length = 512000)
-    @Type(type = "org.hibernate.type.BinaryType")
     private byte[] content;
 
     public Photo() {

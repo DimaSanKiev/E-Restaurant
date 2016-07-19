@@ -92,7 +92,7 @@ public class ChartViewBean implements Serializable {
         axis.setTickFormat("%b %#d, %y");
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         axis.setMax(df.format(reportBean.getEndDate().getTime() + TimeUnit.DAYS.toMillis(1)));
-        axis.setMin(df.format(reportBean.getStartDate()));
+        axis.setMin(df.format(reportBean.getStartDate().getTime() - TimeUnit.DAYS.toMillis(1)));
         lineModel.getAxes().put(AxisType.X, axis);
         logger.warn("Daily Orders diagram was requested by employee " + employeeBean.getEmployee().getName() + " with ID:" + employeeBean.getEmployee().getId() + " and role as " + employeeBean.getEmployee().getRole().getName() + ".");
     }

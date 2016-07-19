@@ -155,13 +155,13 @@ INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, or
   VALUES (localtimestamp - INTERVAL '1 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 15.30, 2, 5);
 
 INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-  VALUES (localtimestamp - INTERVAL '9 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 50.25, 5, 5);
+  VALUES (localtimestamp - INTERVAL '9 days', localtimestamp - INTERVAL '9 days' + INTERVAL '30 minutes', 50.25, 5, 5);
 INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-  VALUES (localtimestamp - INTERVAL '8 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 33.1, 5, 5);
+  VALUES (localtimestamp - INTERVAL '8 days', localtimestamp - INTERVAL '8 days' + INTERVAL '30 minutes', 33.1, 5, 5);
 INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-  VALUES (localtimestamp - INTERVAL '3 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 33.25, 5, 5);
+  VALUES (localtimestamp - INTERVAL '3 days', localtimestamp - INTERVAL '3 days' + INTERVAL '30 minutes', 33.25, 5, 5);
 INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-  VALUES (localtimestamp - INTERVAL '2 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 17.70, 5, 5);
+  VALUES (localtimestamp - INTERVAL '2 days', localtimestamp - INTERVAL '2 days' + INTERVAL '30 minutes', 17.70, 5, 5);
 INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
   VALUES (localtimestamp - INTERVAL '1 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 19.90, 5, 5);
 

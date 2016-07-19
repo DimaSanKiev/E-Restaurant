@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
+import static java.time.LocalDate.now;
 import static org.junit.Assert.*;
 
 public class OrderServiceImplTest {
@@ -43,7 +44,7 @@ public class OrderServiceImplTest {
         List<Orders> orders = orderService.findAll();
         orders.forEach(System.out::println);
         assertNotNull(orders);
-        assertEquals(7, orders.size());
+        assertEquals(12, orders.size());
     }
 
     @Test
@@ -72,6 +73,7 @@ public class OrderServiceImplTest {
         orderService.save(order);
         assertEquals(2, order.getCustomer().getId());
         assertEquals("igor.shevchenko@yahoo.com", order.getCustomer().getEmail());
+        orderService.delete(order.getId());
     }
 
     @Test
@@ -87,7 +89,7 @@ public class OrderServiceImplTest {
         List<Orders> orders = orderService.getDeliveryListByTime();
         orders.forEach(System.out::println);
         assertNotNull(orders);
-        assertEquals(2, orders.size());
+        assertEquals(3, orders.size());
     }
 
     @Test
@@ -95,7 +97,7 @@ public class OrderServiceImplTest {
         List<Orders> orders = orderService.getDeliveryListByStatus();
         orders.forEach(System.out::println);
         assertNotNull(orders);
-        assertEquals(2, orders.size());
+        assertEquals(3, orders.size());
     }
 
     @Test
@@ -106,27 +108,27 @@ public class OrderServiceImplTest {
     }
 
     @Test
-    public void gettingTotalReport() throws Exception {
-        List<ReportTotal> reports = orderService.getReportTotal(Date.valueOf("2016-06-01"), Date.valueOf("2016-06-22"));
+    public void gettingTotalReport_FromWeekAgoTillNow() throws Exception {
+        List<ReportTotal> reports = orderService.getReportTotal(Date.valueOf(now().minusDays(7)), Date.valueOf(now()));
         reports.forEach(System.out::println);
         assertNotNull(reports);
-        assertEquals(4, reports.size());
+        assertEquals(7, reports.size());
     }
 
     @Test
-    public void gettingReportByCategory() throws Exception {
-        List<ReportCategory> reports = orderService.getReportCategory(Date.valueOf("2016-06-01"), Date.valueOf("2016-06-22"));
+    public void gettingReportByCategory_FromWeekAgoTillNow() throws Exception {
+        List<ReportCategory> reports = orderService.getReportCategory(Date.valueOf(now().minusDays(7)), Date.valueOf(now()));
         reports.forEach(System.out::println);
         assertNotNull(reports);
-        assertEquals(3, reports.size());
+        assertEquals(5, reports.size());
     }
 
     @Test
-    public void gettingReportByDishes() throws Exception {
-        List<ReportDish> reports = orderService.getReportDish(Date.valueOf("2016-06-01"), Date.valueOf("2016-06-22"));
+    public void gettingReportByDishes_FromWeekAgoTillNow() throws Exception {
+        List<ReportDish> reports = orderService.getReportDish(Date.valueOf(now().minusDays(7)), Date.valueOf(now()));
         reports.forEach(System.out::println);
         assertNotNull(reports);
-        assertEquals(6, reports.size());
+        assertEquals(14, reports.size());
     }
 
     private Orders createTestOrder() {

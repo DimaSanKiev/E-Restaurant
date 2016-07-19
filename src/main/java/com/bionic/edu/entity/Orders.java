@@ -22,7 +22,7 @@ public class Orders {
     @JoinColumn(name = "orders_status_id", columnDefinition = "INTEGER(10) default 1")
     private OrderStatus orderStatus;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

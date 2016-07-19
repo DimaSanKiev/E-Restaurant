@@ -75,6 +75,7 @@ public class RoleServiceImplTest {
         roleService.save(role);
         List<Role> list2 = roleService.findAll();
         assertEquals(1, list2.size() - list1.size());
+        roleService.delete(role.getId());
     }
 
     @Test

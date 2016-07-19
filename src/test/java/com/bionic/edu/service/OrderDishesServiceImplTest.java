@@ -10,7 +10,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-// TODO: 19.07.2016 - check tests
 public class OrderDishesServiceImplTest {
 
     private OrderDishesService orderDishesService;
@@ -33,20 +32,12 @@ public class OrderDishesServiceImplTest {
     }
 
     @Test
-    public void findAllListSize() throws Exception {
+    public void findAllReturnsListSize() throws Exception {
         List<OrderDishes> ordersDishes = orderDishesService.findAll();
 //        System.out.println("**************");
 //        ordersDishes.forEach(System.out::println);
         assertNotNull(ordersDishes);
-        assertEquals(20, ordersDishes.size());
-    }
-
-    @Test
-    public void findAllReturnsListSize() throws Exception {
-        OrderDishes orderDishes = orderDishesService.findById(1);
-        orderDishesService.save(orderDishes);
-        int id = orderDishes.getId();
-        assertNotNull(orderDishesService.findById(id));
+        assertEquals(38, ordersDishes.size());
     }
 
     @Test
@@ -101,7 +92,7 @@ public class OrderDishesServiceImplTest {
     public void gettingKitchenPendingList() throws Exception {
         List<OrderDishes> orderDishesList = orderDishesService.getKitchenPendingList();
         assertNotNull(orderDishesList);
-        assertEquals(5, orderDishesList.size());
+        assertEquals(4, orderDishesList.size());
     }
 
     private OrderDishes createTestOrderDish(boolean readiness, int orderId) {

@@ -12,7 +12,7 @@
         http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:db_heroku.properties"/>
+        <property name="location" value="classpath:db.properties"/>
     </bean>
 
     <context:component-scan base-package="com.bionic.edu"/>
@@ -37,8 +37,8 @@
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-                <!--<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>-->
-                <!--<prop key="hibernate.hbm2ddl.import_files">${hibernate.hbm2ddl.import_files}</prop>-->
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.hbm2ddl.import_files">${hibernate.hbm2ddl.import_files}</prop>
                 <prop key="hibernate.hbm2ddl.import_files_sql_extractor">
                     org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
                 </prop>

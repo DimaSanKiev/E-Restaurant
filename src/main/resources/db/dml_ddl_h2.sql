@@ -148,12 +148,127 @@ INSERT INTO customer (name, email, password, address, birthDate, blocked, photo_
   VALUES ('Sergey Butenko', 'sergey.butenko@gmail.com', 'uN5t8VYc16tq820MtwayFotPTGk=', '2 Polarna Str., App. 67, Kyiv', '1991-08-08', TRUE, NULL);
 
 INSERT INTO orders_status (name)
-VALUES ('KITCHEN_DONE');
+  VALUES ('KITCHEN_DONE');
 INSERT INTO orders_status (name)
-VALUES ('NON-KITCHEN_DONE');
+  VALUES ('NON-KITCHEN_DONE');
 INSERT INTO orders_status (name)
-VALUES ('READY_FOR_SHIPMENT');
+  VALUES ('READY_FOR_SHIPMENT');
 INSERT INTO orders_status (name)
-VALUES ('DELIVERING');
+  VALUES ('DELIVERING');
 INSERT INTO orders_status (name)
-VALUES ('DELIVERED');
+  VALUES ('DELIVERED');
+
+
+-- add some orders data for testing and creating reports --
+
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '7 days', localtimestamp - INTERVAL '7 days' + INTERVAL '45 minutes', 22.20, 5, 1);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '6 days', localtimestamp - INTERVAL '6 days' + INTERVAL '35 minutes', 8.00, 5, 2);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '5 days', localtimestamp - INTERVAL '5 days' + INTERVAL '30 minutes', 3.60, 5, 3);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '4 days', localtimestamp - INTERVAL '4 days' + INTERVAL '40 minutes', 51.90, 5, 4);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '3 days', localtimestamp - INTERVAL '3 days' + INTERVAL '35 minutes', 22.40, 4, 5);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '2 days', localtimestamp - INTERVAL '2 days' + INTERVAL '40 minutes', 16.90, 3, 4);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '1 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 15.30, 2, 5);
+
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '9 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 50.25, 5, 5);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '8 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 33.1, 5, 5);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '3 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 33.25, 5, 5);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '2 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 17.70, 5, 5);
+INSERT INTO public.orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
+  VALUES (localtimestamp - INTERVAL '1 days', localtimestamp - INTERVAL '1 days' + INTERVAL '30 minutes', 19.90, 5, 5);
+
+
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 8.40, TRUE, 1, 1);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.40, FALSE, 2, 1);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.40, FALSE, 2, 2);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 3.60, TRUE, 3, 3);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 4, 4);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 14.60, TRUE, 8, 4);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 8.60, TRUE, 6, 4);
+--
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.20, TRUE, 1, 5);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 4, 5);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 8.20, TRUE, 8, 5);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 3.50, FALSE, 14, 5);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.50, FALSE, 18, 5);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, FALSE, 15, 5);
+--
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 2.90, TRUE, 16, 6);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.30, TRUE, 9, 6);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.20, TRUE, 1, 6);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 4, 6);
+--
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 1, 7);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.50, TRUE, 4, 7);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.30, FALSE, 6, 7);
+--
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (3, 26.70, TRUE, 9, 8);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 9.80, TRUE, 13, 8);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 3.45, TRUE, 14, 8);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 10.30, TRUE, 10, 8);
+--
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 8.60, TRUE, 6, 9);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 7.25, TRUE, 7, 9);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 8.25, TRUE, 8, 9);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 9.00, TRUE, 15, 9);
+--
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (4, 16.80, TRUE, 11, 10);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 9.00, TRUE, 15, 10);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 2.95, TRUE, 16, 10);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.50, TRUE, 17, 10);
+--
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 5.40, TRUE, 2, 11);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 7.35, TRUE, 5, 11);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.95, TRUE, 13, 11);
+--
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 8.80, TRUE, 12, 12);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (1, 4.20, TRUE, 11, 12);
+INSERT INTO public.order_dishes (quantity, price, readiness, dish_id, orders_id)
+  VALUES (2, 6.90, TRUE, 14, 12);

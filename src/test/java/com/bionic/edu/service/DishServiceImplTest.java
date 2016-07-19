@@ -53,6 +53,7 @@ public class DishServiceImplTest {
         int originalId = dish.getId();
         dishService.save(dish);
         assertNotEquals(originalId, dishService.findById(originalId));
+        dishService.delete(dish.getId());
     }
 
     @Test
@@ -62,6 +63,7 @@ public class DishServiceImplTest {
         dishService.save(dish);
         List<Dish> list2 = dishService.findAll();
         assertEquals(list2.size() - list1.size(), 1);
+        dishService.delete(dish.getId());
     }
 
     @Test
@@ -73,6 +75,7 @@ public class DishServiceImplTest {
         fetched.setName("Updated Name");
         dishService.save(dish);
         assertEquals("Updated Name", fetched.getName());
+        dishService.delete(dish.getId());
     }
 
     @Test

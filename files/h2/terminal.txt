@@ -1,0 +1,2 @@
+Run from terminal to start H2 database in Server mode:
+java -cp files/h2/h2-1.4.192.jar org.h2.tools.Server

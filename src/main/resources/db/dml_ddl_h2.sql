@@ -185,7 +185,7 @@ INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_st
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
   VALUES (DATEADD('DAY', -2, NOW()), DATEADD('DAY', -2, NOW()), 17.70, 5, 5);
 INSERT INTO orders (date_time_taken, date_time_delivered, total_price, orders_status_id, customer_id)
-  VALUES (NOW(), NOW(), 19.90, 5, 5);
+  VALUES (DATEADD('DAY', -9, NOW()), DATEADD('DAY', -9, NOW()), 19.90, 5, 5);
 
 
 INSERT INTO order_dishes (quantity, price, readiness, dish_id, orders_id)

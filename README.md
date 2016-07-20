@@ -39,7 +39,7 @@ delivery staff with their dishes.
  At the same time when customer confirms order every kitchen-made dish goes to the kitchen and waiting to be done by kitchen staff 
 and all non-kitchen-made dishes skip kitchen and drops directly to the order.
 <p align="center">
-<img alt="Order use case diagram" src=https://cloud.githubusercontent.com/assets/11503436/16852466/f1f77c52-4a10-11e6-8f73-0c350bd7f692.png />
+ <img alt="Order use case diagram" src=https://cloud.githubusercontent.com/assets/11503436/16852466/f1f77c52-4a10-11e6-8f73-0c350bd7f692.png />
 </p>
  When the order consists of only kitchen-done dishes it has *'KITCHEN_DONE'* status, when it consists of both kitchen-done and
 non-kitchen-done dishes its status is set to *'NON-KITCHEN_DONE'*.
@@ -90,7 +90,7 @@ My application is flexible and reusable because it is based on three-tier archit
 </p>
 
 In Persistence layer is used **SQL** for inserting *Customer*, *Employee*, *Dish*, *Role*, *Photo*, *DishCategory*, *OrderStatus* 
-and *Dish* entities. That data is inserted with ***db/dml_ddl_h2.sql*** script.
+and *Dish* entities. That data is inserted with `db/dml_ddl_h2.sql` script.
 Persistence layer cooperate with Business layer with **JPA**, **HQL** and **Hibernate**.
 
 In Business layer **Spring Framework** is used as dependency injection and inversion of control container. It collaborates with 

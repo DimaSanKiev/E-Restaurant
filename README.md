@@ -79,17 +79,18 @@ block/unblock them abd he can also delete them permanently from system. He can v
  There is only one Super User in ERestaurant system, his role couldn't be changed and there is no possibility to add another employee 
 with the role of Super User.
 
-# Project Architecture
+
+## Project Architecture
 My application is flexible and reusable because it is based on three-tier architecture:
 - *Presentation layer*,
 - *Business layer* and
 - *Persistence layer*.
 <p align="center">
- <img alt="Project structure diagram" src=https://cloud.githubusercontent.com/assets/11503436/16853194/1a5b80c8-4a14-11e6-860f-37db835b54e5.png width=800 />
+ <img alt="Project structure diagram" src=https://cloud.githubusercontent.com/assets/11503436/16853194/1a5b80c8-4a14-11e6-860f-37db835b54e5.png width=700 />
 </p>
 
 In Persistence layer is used **SQL** for inserting *Customer*, *Employee*, *Dish*, *Role*, *Photo*, *DishCategory*, *OrderStatus* 
-and *Dish* entities. That data is inserted with ***db/dml_h2.sq*** script.
+and *Dish* entities. That data is inserted with ***db/dml_ddl_h2.sql*** script.
 Persistence layer cooperate with Business layer with **JPA**, **HQL** and **Hibernate**.
 
 In Business layer **Spring Framework** is used as dependency injection and inversion of control container. It collaborates with 
@@ -104,26 +105,26 @@ replaced to Tomcat or any other Web Server.
 I tested my service methods with **JUnit** and used **Log4J** as a logging tool.
 
 
-# Database Architecture
+## Database Architecture
 Here is the simplified structure of the database:
 <p align="center">
- <img alt="Database structure diagram" src=https://cloud.githubusercontent.com/assets/11503436/16853481/2a75409c-4a15-11e6-931b-9af95045457f.png width=800 />
+ <img alt="Database structure diagram" src=https://cloud.githubusercontent.com/assets/11503436/16853481/2a75409c-4a15-11e6-931b-9af95045457f.png width=700 />
 </p>
 
 Main tables are **Customer**, **Employee**, **Orders**, **Dish** and **OrderDishes** (as a linking table).
 **Photo**, **Role**, **OrderStatus** and **DishCategory** are subsidiary tables.
 
- Here is shown only the main fields and relations.
+ On this diagram are shown only the main fields and relations.
 
-# Accounts
-## Customers
+## Accounts
+### Customers
 Some registered **_customers' accounts_**:
 + olga.romanova@gmail.com:pass1
 + igor.shevchenko@yahoo.com:pass2
 + kate.belova@gmail.com:pass3
 
-## Employees
-**_Employees signing-in form_** is available on different URL https://erestaurant.herokuapp.com/employeeSignIn.xhtml or by link:
+### Employees
+**_Employees signing-in form_** is available on different URL https://erestaurant.herokuapp.com/employeeSignIn.xhtml or by link from the main page:
 <p align="center">
  <img alt="Employee Login Link Button" src=https://cloud.githubusercontent.com/assets/11503436/16853714/3fc5f058-4a16-11e6-87ec-b99697361d69.png width=800 />
 </p>
@@ -132,3 +133,9 @@ Some registered **_customers' accounts_**:
 + **Kitchen Staff** kitchen@erestaurant.com:pass3
 + **Delivery Staff** delivery@erestaurant.com:pass4
 + **Business Analyst** business@erestaurant.com:pass5
+
+#### Reports
+To see reports diagrams with some test data (*that are available to* ***Business Analyst*** *and* ***Super User***) you can use interval from **10.07.2016** to **19.07.2016**:
+<p align="center">
+ <img alt="Report Test Interval" src=https://cloud.githubusercontent.com/assets/11503436/17001343/4de5f3aa-4ecf-11e6-9202-fea40638deeb.png width=400 />
+</p>

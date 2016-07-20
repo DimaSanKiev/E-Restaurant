@@ -122,4 +122,3 @@ Some registered **_customers' accounts_**:
     `mvn jetty:run`
 
 5. Go to [http://localhost:8080/](http://localhost:8080/) in your browser.
-6. <a href="http://example.com/" target="_blank">Hello, world!</a>

@@ -106,3 +106,20 @@ Some registered **_customers' accounts_**:
 + **Kitchen Staff** kitchen@erestaurant.com:pass3
 + **Delivery Staff** delivery@erestaurant.com:pass4
 + **Business Analyst** business@erestaurant.com:pass5
+
+# How to run
+1. Clone this repository or download zip.
+2. Call from the command line:
+
+    `mvn compile`
+
+3. Start H2 database in Server mode:
+
+    `java -cp files/h2/h2-1.4.192.jar org.h2.tools.Server`
+
+4. Run a webapp with Jetty plugin: 
+
+    `mvn jetty:run`
+
+5. Go to [http://localhost:8080/](http://localhost:8080/) in your browser.
+6. <a href="http://example.com/" target="_blank">Hello, world!</a>

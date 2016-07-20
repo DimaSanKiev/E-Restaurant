@@ -5,6 +5,23 @@
 **Summary:** users order dishes to their addresses and get it delivered after some time. ERestaurant workers with different roles
 serve them.
 
+## How to run
+1. Clone this repository or download zip.
+2. Call from the command line:
+
+    `mvn compile`
+
+3. Start H2 database in Server mode:
+
+    `java -cp files/h2/h2-1.4.192.jar org.h2.tools.Server`
+
+4. Run a webapp with Jetty plugin: 
+
+    `mvn jetty:run`
+
+5. Go to [http://localhost:8080/](http://localhost:8080/) in your browser.
+
+## Description
 ### Customer
 When customers go to main page they see the menu. They can choose dishes by selecting dish category or full dishes list. 
 Here they fill up their shopping cart by choosing dish they want to order.
@@ -106,19 +123,3 @@ Some registered **_customers' accounts_**:
 + **Kitchen Staff** kitchen@erestaurant.com:pass3
 + **Delivery Staff** delivery@erestaurant.com:pass4
 + **Business Analyst** business@erestaurant.com:pass5
-
-# How to run
-1. Clone this repository or download zip.
-2. Call from the command line:
-
-    `mvn compile`
-
-3. Start H2 database in Server mode:
-
-    `java -cp files/h2/h2-1.4.192.jar org.h2.tools.Server`
-
-4. Run a webapp with Jetty plugin: 
-
-    `mvn jetty:run`
-
-5. Go to [http://localhost:8080/](http://localhost:8080/) in your browser.

@@ -5,22 +5,6 @@
 **Summary:** users order dishes to their addresses and get it delivered after some time. ERestaurant workers with different roles
 serve them.
 
-## How to run
-1. Clone this repository or download zip.
-2. Call from the command line:
-
-    `mvn compile`
-
-3. Start H2 database in Server mode:
-
-    `java -cp files/h2/h2-1.4.192.jar org.h2.tools.Server`
-
-4. Run a webapp with Jetty plugin: 
-
-    `mvn jetty:run`
-
-5. Go to [http://localhost:8080/](http://localhost:8080/) in your browser.
-
 ## Description
 ### Customer
 When customers go to main page they see the menu. They can choose dishes by selecting dish category or full dishes list. 
@@ -90,7 +74,7 @@ My application is flexible and reusable because it is based on three-tier archit
 </p>
 
 In Persistence layer is used **SQL** for inserting *Customer*, *Employee*, *Dish*, *Role*, *Photo*, *DishCategory*, *OrderStatus* 
-and *Dish* entities. That data is inserted with `db/dml_ddl_h2.sql` script.
+and *Dish* entities. That data is inserted with **`db/dml_ddl_h2.sql`** script.
 Persistence layer cooperate with Business layer with **JPA**, **HQL** and **Hibernate**.
 
 In Business layer **Spring Framework** is used as dependency injection and inversion of control container. It collaborates with 
@@ -115,6 +99,22 @@ Main tables are **Customer**, **Employee**, **Orders**, **Dish** and **OrderDish
 **Photo**, **Role**, **OrderStatus** and **DishCategory** are subsidiary tables.
 
  On this diagram are shown only the main fields and relations.
+
+## How to run
+1. Clone this repository or download zip.
+2. Call from the command line:
+
+    `mvn compile`
+
+3. Start H2 database in Server mode:
+
+    `java -cp files/h2/h2-1.4.192.jar org.h2.tools.Server`
+
+4. Run a webapp with Jetty plugin: 
+
+    `mvn jetty:run`
+
+5. Go to [http://localhost:8080/](http://localhost:8080/) in your browser.
 
 ## Accounts
 ### Customers

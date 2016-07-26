@@ -1,17 +1,25 @@
-target
-.settings
-.gitattributes
-out
-.idea
+### IntelliJ Idea
+*.idea
+*.iml
+out/
+
+### Eclipse
+**/target
 .classpath
 .project
+.settings/
 .springBeans
-E-Restaurant.iml
-e-restaurant.iml
-ERestaurant
 .dbeaver-data-sources.xml
+
+### NetBeans
+nbactions.xml
+nb-configuration.xml
+
+### Other files
+.gitattributes
+ERestaurant/
 files/userstories.txt
 files/project.txt
-logs
-data
+logs/
+data/
 src/main/webapp/resources/images/upload/

@@ -3,7 +3,7 @@ package com.bionic.edu.util;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-public class GlowlMessenger {
+public class GrowlMessenger {
 
     public static void addMessage(String header, String detail, FacesMessage.Severity severity) {
         FacesContext context = FacesContext.getCurrentInstance();

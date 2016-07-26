@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.bionic.edu.util.GlowlMessenger.addMessage;
+import static com.bionic.edu.util.GrowlMessenger.addMessage;
 import static javax.faces.application.FacesMessage.SEVERITY_INFO;
 
 @Named

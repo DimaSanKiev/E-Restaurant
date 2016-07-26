@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-import static com.bionic.edu.util.GlowlMessenger.addMessage;
+import static com.bionic.edu.util.GrowlMessenger.addMessage;
 import static javax.faces.application.FacesMessage.SEVERITY_ERROR;
 import static javax.faces.application.FacesMessage.SEVERITY_INFO;
 

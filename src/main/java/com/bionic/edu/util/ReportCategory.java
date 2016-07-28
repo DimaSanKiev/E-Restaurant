@@ -1,5 +1,8 @@
 package com.bionic.edu.util;
 
+/**
+ * Class for making reports by category.
+ */
 public class ReportCategory {
     private String dishCategoryName;
     private long count;

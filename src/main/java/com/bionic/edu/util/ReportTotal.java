@@ -2,6 +2,9 @@ package com.bionic.edu.util;
 
 import java.util.Date;
 
+/**
+ * Class for making total reports.
+ */
 public class ReportTotal {
     private long count;
     private double total;

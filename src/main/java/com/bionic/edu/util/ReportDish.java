@@ -1,5 +1,8 @@
 package com.bionic.edu.util;
 
+/**
+ * Class for making reports by dish.
+ */
 public class ReportDish implements Comparable<ReportDish> {
     private String dishName;
     private long count;

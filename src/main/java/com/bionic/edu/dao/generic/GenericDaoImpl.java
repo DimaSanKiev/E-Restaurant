@@ -9,6 +9,11 @@ import org.springframework.core.GenericTypeResolver;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+/**
+ * Implementation of <code>GenericDAO</code> using Hibernate.
+ *
+ * @param <T> The type of the domain object for which this instance is to be used
+ */
 public class GenericDaoImpl<T> implements GenericDao<T> {
 
     @SuppressWarnings("unchecked")

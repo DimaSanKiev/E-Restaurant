@@ -2,6 +2,8 @@ package com.bionic.edu.util;
 
 /**
  * Class for making reports by dish.
+ * Report contains dish name, quantity of dishes sold, and the total
+ * income of this dish.
  */
 public class ReportDish implements Comparable<ReportDish> {
     private String dishName;

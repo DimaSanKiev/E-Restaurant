@@ -2,6 +2,8 @@ package com.bionic.edu.util;
 
 /**
  * Class for making reports by category.
+ * Report contains the name of dish category, quantity of dishes in this
+ * category sold and the total income in this category.
  */
 public class ReportCategory {
     private String dishCategoryName;

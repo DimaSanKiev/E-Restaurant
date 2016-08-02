@@ -4,6 +4,8 @@ import java.util.Date;
 
 /**
  * Class for making total reports.
+ * Report contains the date of making order, quantity of dishes in order
+ * and the total price of the order.
  */
 public class ReportTotal {
     private long count;

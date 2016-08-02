@@ -8,7 +8,7 @@ import java.util.List;
  * It is responsible for loading, saving, searching and deleting entities of
  * the according type.
  *
- * @param <T> Type of an entity
+ * @param <T> Type of an entity for which this instance is to be used
  */
 public interface GenericDao<T> {
 

@@ -57,7 +57,8 @@ Administrator also can manage customers and block/unblock them.
 </p>
 
 ### Business Analyst
-Another employee role in ERestaurant is Business Analyst. He generates 3 different types of reports about restaurant statistics 
+
+Another employee role in ERestaurant is Business Analyst. He can generate 3 different types of reports about restaurant statistics 
 during the specified period of time – how many dishes were sold, what is the most profitable dish category and the total income.
 
 <p align="center">
@@ -77,6 +78,7 @@ He can view the dishes list (but not add new or edit existing dishes) as well as
 with the role of Super User.
 
 </br>
+
 ## Project Architecture
 
 My application is flexible and reusable because it is based on three-tier architecture:

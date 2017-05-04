@@ -138,7 +138,9 @@ Some registered **_customers' accounts_**:
 
 #### Reports
 Using on **https://erestaurant.herokuapp.com/superPanel.xhtml** to see reports diagrams with some test data (*that are available to* ***Business Analyst*** *and* ***Super User*** *roles*) you can use interval from **10.07.2016** to **19.07.2016**:
+
 <p align="center">
  <img alt="Report Test Interval" src=https://cloud.githubusercontent.com/assets/11503436/17001343/4de5f3aa-4ecf-11e6-9202-fea40638deeb.png width=400 />
 </p>
+
 Using on **[http://localhost:8080/reports.xhtml](http://localhost:8080/reports.xhtml)** just input *9 days before current date* for **Start Date** and *current date* for **End Date**.

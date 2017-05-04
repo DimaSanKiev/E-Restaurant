@@ -126,10 +126,15 @@ Some registered **_customers' accounts_**:
 + kate.belova@gmail.com:pass3
 
 ### Employees
+
 **_Employees signing-in form_** is available on different URL https://erestaurant.herokuapp.com/employeeSignIn.xhtml or by link from the main page:
+
 <p align="center">
  <img alt="Employee Login Link Button" src=https://cloud.githubusercontent.com/assets/11503436/16853714/3fc5f058-4a16-11e6-87ec-b99697361d69.png width=800 />
 </p>
+
+Roles accounts:
+
 + **Super User** super@erestaurant.com:pass1
 + **Administrator** admin@erestaurant.com:pass2
 + **Kitchen Staff** kitchen@erestaurant.com:pass3

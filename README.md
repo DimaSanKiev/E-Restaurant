@@ -2,11 +2,13 @@
 
 **Deployed:** https://erestaurant.herokuapp.com/
 
-**Summary:** users choose dishes, make orders to their addresses and get them delivered after some time. ERestaurant workers with different roles
-serve them.
+**Summary:** users register, choose dishes, make orders to their addresses and get them delivered after some time.  
+ERestaurant workers with such *roles* are here to serve them: Kitchen & Delivery Staff, Administrator, Business Analyst and Super User.
 
 ## Description
+
 ### Customer
+
 When customers go to main page they see the menu. They can choose dishes by selecting from dish category or from the full dishes list. 
 Here they fill up their shopping cart by choosing dish they want to order.
 
